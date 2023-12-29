@@ -1,0 +1,38 @@
+{
+  "name": "character-template",
+  "version": "1.0.0",
+  "description": "A template for ur character.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --trace-warnings --experimental-json-modules server.mjs",
+    "up": "node database/sql/character/migrations/index.js create",
+    "down": "node database/sql/character/migrations/index.js drop",
+    "seed": "node database/sql/character/migrations/index.js seeder",
+    "unseed": "node database/sql/character/migrations/index.js empty"
+  },
+  "keywords": [
+    "microservice"
+  ],
+  "author": "Dhymas Julyan Riyanto",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "make-runnable": "^1.3.10",
+    "multer": "^1.4.3",
+    "pg-monitor": "^1.4.1",
+    "pg-promise": "^10.11.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "3.5.36",
+    "@types/express": "4.17.13",
+    "@types/node": "16.10.2",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
+    "typescript": "4.4.3"
+  }
+}

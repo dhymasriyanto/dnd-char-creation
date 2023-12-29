@@ -1,0 +1,2 @@
+DELETE FROM character WHERE id = $1
+RETURNING id

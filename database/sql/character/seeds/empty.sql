@@ -1,0 +1,5 @@
+/*
+    
+*/
+
+TRUNCATE TABLE characters CASCADE
