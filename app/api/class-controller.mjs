@@ -10,7 +10,9 @@ export let characterClass = {
 		let datas = fs.readFileSync('./data/class/index.json', 'utf8', (err, data) => {
 			if (err) throw err
 		})
+
 		datas = JSON.parse(datas)
+
 		return response.ok(
 			'success',
 			'Retrieved all data',
@@ -18,6 +20,7 @@ export let characterClass = {
 			res
 		)
 	},
+
 	find: (req, res, next) => {
 		let value = req.params.value
 

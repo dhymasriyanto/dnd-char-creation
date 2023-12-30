@@ -10,6 +10,7 @@ export let race = {
 		let datas = fs.readFileSync('./data/races.json', 'utf8', (err, data) => {
 			if (err) throw err
 		})
+
 		datas = JSON.parse(datas)
 
 		return response.ok(

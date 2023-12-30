@@ -56,6 +56,7 @@ export let subClass = {
 		}
 
 	},
+
 	find: (req, res, next) => {
 		let className = req.params.className
 		let classSource = req.params.classSource

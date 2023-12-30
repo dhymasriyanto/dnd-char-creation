@@ -5,8 +5,8 @@ import dotenv from 'dotenv/config'
 import {router} from './routes/index.mjs'
 import cors from 'cors'
 
-const app = express()
 //dotenv.config()
+const app = express()
 const port = process.env.PORT
 
 app.use(cors())

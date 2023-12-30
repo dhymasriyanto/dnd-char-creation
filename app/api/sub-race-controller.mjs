@@ -10,6 +10,7 @@ export let subRace = {
 		let datas = fs.readFileSync('./data/races.json', 'utf8', (err, data) => {
 			if (err) throw err
 		})
+
 		datas = JSON.parse(datas)
 
 		return response.ok(
@@ -19,6 +20,7 @@ export let subRace = {
 			res
 		)
 	},
+
 	find: (req, res, next) => {
 		let raceName = req.params.raceName
 		let raceSource = req.params.raceSource
@@ -56,6 +58,7 @@ export let subRace = {
 			)
 		}
 	},
+
 	get: (req, res, next) => {
 		let raceName = req.params.raceName
 		let raceSource = req.params.raceSource

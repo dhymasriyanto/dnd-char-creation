@@ -20,6 +20,7 @@ export let character = {
 				return next(response.badRequest(error))
 			})
 	},
+
 	add: (req, res, next) => {
 		db.character.add(req.body)
 			.then(rows => {
@@ -34,6 +35,7 @@ export let character = {
 				return next(response.badRequest(error))
 			})
 	},
+
 	update: (req, res, next) => {
 		db.character.update(req.body, req.params.id)
 			.then(rows => {
@@ -48,6 +50,7 @@ export let character = {
 				return next(response.badRequest(error))
 			})
 	},
+
 	delete: (req, res, next) => {
 		db.character.delete(req.params.id)
 			.then(rows => {
@@ -62,6 +65,7 @@ export let character = {
 				return next(response.badRequest(error))
 			})
 	},
+
 	findId: async (req, res, next) => {
 		let datas = await db.character.findId(req.params.id)
 			.then(rows => {
@@ -231,6 +235,7 @@ export let character = {
 		)
 
 	},
+
 	find: (req, res, next) => {
 		db.character.find(req.params.value)
 			.then(rows => {
@@ -245,6 +250,7 @@ export let character = {
 				return next(response.badRequest(error))
 			})
 	},
+
 	about: (req, res) => {
 		let aboutInfo = {
 			name: properties.name,
