@@ -1,17 +1,10 @@
 'use strict'
 
 import {response} from '../../helper/response.mjs'
-// import fs from 'fs'
 import {getData} from '../service/getData.mjs'
 
 export let race = {
 	all: async (req, res, next) => {
-		// let datas = fs.readFileSync('./data/races.json', 'utf8', (err, data) => {
-		// 	if (err) throw err
-		// })
-		//
-		// datas = JSON.parse(datas)
-
 		let datas = await getData.all('races.json')
 
 		return response.ok(
