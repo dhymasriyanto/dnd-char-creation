@@ -1,6 +1,5 @@
 'use strict'
 
-// avoiding error on vscode using when import properties from '../../package.json' assert {type: 'json'}, using this instead: (you know, red is bad)
 const {default: properties} = await import('../../package.json', {assert: {type: 'json'}})
 import {db} from '../../database/index.mjs'
 import {response} from '../../helper/response.mjs'

@@ -1,25 +1,18 @@
 'use strict'
 
-// avoiding error on vscode using when import properties from '../../package.json' assert {type: 'json'}, using this instead: (you know, red is bad)
-const {default: properties} = await import('../../package.json', {assert: {type: 'json'}})
 import {response} from '../../helper/response.mjs'
-import fs from 'fs'
+import {getData} from '../service/getData.mjs'
 
 export let subClass = {
-	all: (req, res, next) => {
+	all: async (req, res, next) => {
 		let className = req.params.className
 		let classSource = req.params.classSource
 
-		let charClass = JSON.parse(fs.readFileSync('./data/class/index.json', 'utf8', (err) => {
-			if (err) throw err
-		}))
+		let charClass = await getData.all('class/index.json')
 
 		if (Object.prototype.propertyIsEnumerable.call(charClass, className)) {
-			let datas = fs.readFileSync('./data/class/' + charClass[className], 'utf8', (err) => {
-				if (err) throw err
-			})
+			let datas = await getData.all('class/' + charClass[className])
 
-			datas = JSON.parse(datas)
 			let subClassData = {}
 
 			subClassData.class = datas.class
@@ -57,7 +50,7 @@ export let subClass = {
 
 	},
 
-	find: (req, res, next) => {
+	find: async (req, res, next) => {
 		let className = req.params.className
 		let classSource = req.params.classSource
 		let name = req.params.name
@@ -65,16 +58,10 @@ export let subClass = {
 		let shortName = req.params.shortName
 		let page = req.params.page
 
-		let charClass = JSON.parse(fs.readFileSync('./data/class/index.json', 'utf8', (err) => {
-			if (err) throw err
-		}))
+		let charClass = await getData.all('class/index.json')
 
 		if (Object.prototype.propertyIsEnumerable.call(charClass, className)) {
-			let datas = fs.readFileSync('./data/class/' + charClass[className], 'utf8', (err) => {
-				if (err) throw err
-			})
-
-			datas = JSON.parse(datas)
+			let datas = await getData.all('class/' + charClass[className])
 
 			let subClassData = {}
 
