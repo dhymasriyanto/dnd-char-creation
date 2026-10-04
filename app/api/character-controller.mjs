@@ -1,6 +1,6 @@
 'use strict'
 
-const {default: properties} = await import('../../package.json', {assert: {type: 'json'}})
+// const {default: properties} = await import('../../package.json', {assert: {type: 'json'}})
 import {db} from '../../database/index.mjs'
 import {response} from '../../helper/response.mjs'
 
@@ -250,15 +250,15 @@ export let character = {
 			})
 	},
 
-	about: (req, res) => {
-		let aboutInfo = {
-			name: properties.name,
-			version: properties.version,
-		}
-		res.json({
-			status: 'success',
-			data: aboutInfo,
-			message: 'Retrieved about info of the character'
-		})
-	},
+	// about: (req, res) => {
+	// 	let aboutInfo = {
+	// 		name: properties.name,
+	// 		version: properties.version,
+	// 	}
+	// 	res.json({
+	// 		status: 'success',
+	// 		data: aboutInfo,
+	// 		message: 'Retrieved about info of the character'
+	// 	})
+	// },
 }
