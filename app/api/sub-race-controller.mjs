@@ -27,7 +27,8 @@ export let subRace = {
 		let subRaceData = {}
 
 		subRaceData = datas.subrace.filter((data) => {
-			if (data.raceName.toLowerCase() === raceName.toLowerCase() && data.raceSource.toLowerCase() === raceSource.toLowerCase() && (data.name ? data.name.toLowerCase() === name.toLowerCase() : true) && data.source.toLowerCase() === source.toLowerCase() && data.page.toString() === page) {
+		  // Add null exception
+			if (data.raceName && data.raceSource && data.source && data.raceName.toLowerCase() === raceName.toLowerCase() && data.raceSource.toLowerCase() === raceSource.toLowerCase() && (data.name ? data.name.toLowerCase() === name.toLowerCase() : true) && data.source.toLowerCase() === source.toLowerCase() && data.page.toString() === page) {
 				return data
 			}
 		})
@@ -58,7 +59,7 @@ export let subRace = {
 		let subRaceData = {}
 
 		subRaceData = datas.subrace.filter((data) => {
-			if (data.raceName.toLowerCase() === raceName.toLowerCase() && data.raceSource.toLowerCase() === raceSource.toLowerCase()) {
+			if (data.raceName && data.raceSource && data.raceName.toLowerCase() === raceName.toLowerCase() && data.raceSource.toLowerCase() === raceSource.toLowerCase()) {
 				return data
 			}
 		})
