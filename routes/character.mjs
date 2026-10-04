@@ -16,6 +16,6 @@ router.route('/:id').get(character.findId)
 
 router.route('/find/:value').get(character.find)
 
-router.route('/about').get(character.about)
+// router.route('/about').get(character.about)
 
 export {router as character}
