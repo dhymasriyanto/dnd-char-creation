@@ -1,4 +1,23 @@
-/*
-    Drop the entire table
-*/
-DROP TABLE characters
+DROP TABLE IF EXISTS
+    character_sub_race_features,
+    character_sub_races,
+    character_races,
+    character_sub_class_features,
+    character_sub_classes,
+    character_class_features,
+    character_classes,
+    treasures,
+    skill_proficiencies,
+    skill_expertises,
+    saving_throws,
+    equipments,
+    encumbrances,
+    character_traits,
+    character_senses,
+    character_proficiencies,
+    character_languages,
+    character_features,
+    character_feats,
+    ability_scores,
+    characters
+CASCADE;
