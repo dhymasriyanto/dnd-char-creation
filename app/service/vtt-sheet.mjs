@@ -32,6 +32,47 @@ const WEAPON_MASTERY_DESCRIPTIONS = {
 	vex: 'If you hit a creature and deal damage, you gain Advantage on your next attack roll against that creature before the end of your next turn.'
 }
 
+function hasJackOfAllTrades(character) {
+	if (!character) return false
+	const cfs = character.class_feature || []
+	if (Array.isArray(cfs) && cfs.some(f => (f.name || '').toLowerCase().includes('jack of all trades'))) {
+		return true
+	}
+	const classes = Array.isArray(character.classes)
+		? character.classes
+		: (Array.isArray(character.class) ? character.class : [])
+
+	for (const cl of classes) {
+		const name = (cl.name || cl.class_name || '').toLowerCase()
+		const lvl = Number(cl.level || character.level || 1)
+		if (name === 'bard' && lvl >= 2) return true
+	}
+
+	if (typeof character.class === 'string' && character.class.toLowerCase() === 'bard') {
+		const lvl = Number(character.level || 1)
+		if (lvl >= 2) return true
+	}
+
+	return false
+}
+
+function hasRemarkableAthlete(character) {
+	if (!character) return false
+	const scfs = character.sub_class_feature || []
+	if (Array.isArray(scfs) && scfs.some(f => (f.name || '').toLowerCase().includes('remarkable athlete'))) {
+		return true
+	}
+	const subClasses = Array.isArray(character.sub_class)
+		? character.sub_class
+		: (Array.isArray(character.sub_classes) ? character.sub_classes : [])
+	for (const sc of subClasses) {
+		const name = (sc.name || sc.subclass_name || '').toLowerCase()
+		const lvl = Number(sc.level || character.level || 1)
+		if (name === 'champion' && lvl >= 7) return true
+	}
+	return false
+}
+
 export function computeVttSheet(character) {
 	const level = Number(character.level || 1)
 	const pb = Math.floor((level - 1) / 4) + 2
@@ -70,10 +111,30 @@ export function computeVttSheet(character) {
 	const se = character.skill_expertise || {}
 	const skills = {}
 
+	const hasJoat = hasJackOfAllTrades(character)
+	const hasRa = hasRemarkableAthlete(character)
+	const joatBonus = Math.floor(pb / 2)
+	const raBonus = Math.ceil(pb / 2)
+
 	for (const [skill, ability] of Object.entries(SKILL_ABILITY_MAP)) {
 		const isProf = Boolean(sp[skill])
 		const isExp = Boolean(se[skill])
-		const bonus = isExp ? 2 * pb : (isProf ? pb : 0)
+		let isJoat = false
+		let isRa = false
+		let bonus = 0
+
+		if (isExp) {
+			bonus = 2 * pb
+		} else if (isProf) {
+			bonus = pb
+		} else if (hasJoat) {
+			bonus = joatBonus
+			isJoat = true
+		} else if (hasRa && (ability === 'strength' || ability === 'dexterity' || ability === 'constitution')) {
+			bonus = raBonus
+			isRa = true
+		}
+
 		const total = abilityStats[ability].modifier + bonus
 		const passive = 10 + total
 
@@ -81,6 +142,9 @@ export function computeVttSheet(character) {
 			ability,
 			proficient: isProf,
 			expertise: isExp,
+			jack_of_all_trades: isJoat,
+			remarkable_athlete: isRa,
+			bonus,
 			total,
 			passive,
 			modifier_string: total >= 0 ? `+${total}` : `${total}`,
@@ -92,7 +156,8 @@ export function computeVttSheet(character) {
 	const dexMod = abilityStats.dexterity.modifier
 	const strMod = abilityStats.strength.modifier
 
-	const initiative = dexMod
+	const initiativeBonus = hasJoat ? joatBonus : (hasRa ? raBonus : 0)
+	const initiative = dexMod + initiativeBonus
 	const initiativeRoll = initiative >= 0 ? `1d20+${initiative}` : `1d20${initiative}`
 
 	// AC Calculation
@@ -225,6 +290,7 @@ export function computeVttSheet(character) {
 			armor_class: ac,
 			initiative,
 			initiative_roll: initiativeRoll,
+			jack_of_all_trades: hasJoat,
 			speed: Number(character.speed || 30),
 			hp: {
 				current: Number(character.hp || 10),
