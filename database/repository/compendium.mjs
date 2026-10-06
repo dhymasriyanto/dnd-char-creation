@@ -220,7 +220,7 @@ class CompendiumRepository {
 	}
 
 	// --- Feats ---
-	async getFeats({ edition = '2024', category = null, search = null, source = null } = {}) {
+	async getFeats({ edition = '2024', category = null, search = null, source = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_feats WHERE 1=1'
 		const params = []
 
@@ -241,11 +241,19 @@ class CompendiumRepository {
 			query += ` AND LOWER(name) LIKE $${params.length}`
 		}
 		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
 		return this.db.any(query, params)
 	}
 
 	// --- Spells ---
-	async getSpells({ edition = '2024', level = null, maxLevel = null, school = null, className = null, search = null, source = null } = {}) {
+	async getSpells({ edition = '2024', level = null, maxLevel = null, school = null, className = null, search = null, source = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_spells WHERE 1=1'
 		const params = []
 
@@ -278,6 +286,14 @@ class CompendiumRepository {
 			query += ` AND LOWER(name) LIKE $${params.length}`
 		}
 		query += ' ORDER BY level ASC, name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
 		return this.db.any(query, params)
 	}
 
@@ -355,10 +371,17 @@ class CompendiumRepository {
 		return this.db.any(query, params)
 	}
 
-	async getMonsterByName(name, edition = '2024') {
+	async getMonsterByName(name, edition = '2024', source = null) {
+		const defaultSource = edition === '2024' ? 'XMM' : 'MM'
+		const srcUpper = (source || '').toUpperCase().trim()
 		return this.db.oneOrNone(
-			'SELECT * FROM compendium_monsters WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
-			[name, edition]
+			`SELECT * FROM compendium_monsters WHERE LOWER(name) = LOWER($1)
+			 ORDER BY
+				(CASE WHEN $2 != '' AND UPPER(source) = $2 THEN 0 ELSE 1 END) ASC,
+				(CASE WHEN edition = $3 THEN 0 ELSE 1 END) ASC,
+				(CASE WHEN UPPER(source) = $4 THEN 0 ELSE 1 END) ASC
+			 LIMIT 1`,
+			[name, srcUpper, edition, defaultSource]
 		)
 	}
 
@@ -399,18 +422,39 @@ class CompendiumRepository {
 		return this.db.any(query, params)
 	}
 
-	async getRuleByName(name, type = null, edition = '2024') {
-		let query = 'SELECT * FROM compendium_rules WHERE LOWER(name) = LOWER($1)'
-		const params = [name]
+	async getRuleByName(name, type = null, edition = '2024', source = null) {
+		const raw = String(name || '').trim().toLowerCase()
+		const singular = raw.replace(/s$/, '')
+		const plural = raw + 's'
+		const norm = raw.replace(/['"“”]/g, '').replace(/[\s_-]+/g, '').replace(/s(?=tool)/g, '').replace(/s$/, '')
+		const srcUpper = (source || '').toUpperCase().trim()
+		const sources2014 = ['PHB', 'DMG', 'MM', 'XGE', 'TCE', 'VGM', 'MTF', 'MPMM', 'SCAG', 'EGW', 'FTD', 'ERLW']
+		const sources2024 = ['XPHB', 'XDMG']
+		let effectiveEdition = edition
+		if (sources2014.includes(srcUpper)) effectiveEdition = '2014'
+		else if (sources2024.includes(srcUpper)) effectiveEdition = '2024'
+		const defaultSource = effectiveEdition === '2024' ? 'XPHB' : 'PHB'
+
+		let query = `
+			SELECT * FROM compendium_rules
+			WHERE (
+				LOWER(name) = $1
+				OR LOWER(name) = $2
+				OR LOWER(name) = $3
+				OR REPLACE(REPLACE(REPLACE(REPLACE(RTRIM(LOWER(name), 's'), '''', ''), ' ', ''), '_', ''), 'stool', 'tool') = $4
+			)
+		`
+		const params = [raw, singular, plural, norm]
 		if (type) {
 			params.push(type.toLowerCase())
 			query += ` AND LOWER(type) = $${params.length}`
 		}
-		if (edition) {
-			params.push(edition)
-			query += ` AND edition = $${params.length}`
-		}
-		query += ' LIMIT 1'
+		params.push(srcUpper, effectiveEdition, defaultSource)
+		query += ` ORDER BY
+			(CASE WHEN $${params.length - 2} != '' AND UPPER(source) = $${params.length - 2} THEN 0 ELSE 1 END) ASC,
+			(CASE WHEN edition = $${params.length - 1} THEN 0 ELSE 1 END) ASC,
+			(CASE WHEN UPPER(source) = $${params.length} THEN 0 ELSE 1 END) ASC
+			LIMIT 1`
 		return this.db.oneOrNone(query, params)
 	}
 
@@ -447,10 +491,23 @@ class CompendiumRepository {
 		return this.db.any(query, params)
 	}
 
-	async getOptionalFeatureByName(name, edition = '2024') {
+	async getOptionalFeatureByName(name, edition = '2024', source = null) {
+		const srcUpper = (source || '').toUpperCase().trim()
+		const sources2014 = ['PHB', 'DMG', 'MM', 'XGE', 'TCE', 'VGM', 'MTF', 'MPMM', 'SCAG', 'EGW', 'FTD', 'ERLW']
+		const sources2024 = ['XPHB', 'XDMG']
+		let effectiveEdition = edition
+		if (sources2014.includes(srcUpper)) effectiveEdition = '2014'
+		else if (sources2024.includes(srcUpper)) effectiveEdition = '2024'
+		const defaultSource = effectiveEdition === '2024' ? 'XPHB' : 'PHB'
+
 		return this.db.oneOrNone(
-			'SELECT * FROM compendium_optional_features WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
-			[name, edition]
+			`SELECT * FROM compendium_optional_features WHERE LOWER(name) = LOWER($1)
+			 ORDER BY
+				(CASE WHEN $2 != '' AND UPPER(source) = $2 THEN 0 ELSE 1 END) ASC,
+				(CASE WHEN edition = $3 THEN 0 ELSE 1 END) ASC,
+				(CASE WHEN UPPER(source) = $4 THEN 0 ELSE 1 END) ASC
+			 LIMIT 1`,
+			[name, srcUpper, effectiveEdition, defaultSource]
 		)
 	}
 }
