@@ -1,0 +1,184 @@
+{
+	"spellFluff": [
+		{
+			"name": "Barkskin",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Barkskin.webp"
+					},
+					"width": 377,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Burning Hands",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Burning Hands.webp"
+					},
+					"width": 377,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cloudkill",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Cloudkill.webp"
+					},
+					"width": 1000,
+					"height": 1375
+				}
+			]
+		},
+		{
+			"name": "Dimension Door",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Dimension Door.webp"
+					},
+					"width": 753,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Fireball",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Fireball.webp"
+					},
+					"width": 449,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Guardian of Faith",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Guardian of Faith.webp"
+					},
+					"width": 750,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Insect Plague",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Insect Plague.webp"
+					},
+					"width": 449,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Magic Missile",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Magic Missile.webp"
+					},
+					"width": 1359,
+					"height": 1700
+				}
+			]
+		},
+		{
+			"name": "Mordenkainen's Sword",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Mordenkainen's Sword.webp"
+					},
+					"width": 449,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Prismatic Spray",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Prismatic Spray.webp"
+					},
+					"width": 729,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sacred Flame",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Sacred Flame.webp"
+					},
+					"width": 449,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Web",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/PHB/Web.webp"
+					},
+					"width": 739,
+					"height": 1000
+				}
+			]
+		}
+	]
+}

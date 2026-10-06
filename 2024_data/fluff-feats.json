@@ -1,0 +1,716 @@
+{
+	"_meta": {
+		"internalCopies": [
+			"featFluff"
+		]
+	},
+	"featFluff": [
+		{
+			"name": "Aberrant Anatomy",
+			"source": "RHW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/RHW/Aberrant Anatomy.webp"
+					},
+					"title": "The Aberrant Anatomy Dark Gift might manifest as a distinctly piscine look",
+					"credit": "Leroy Steinmann",
+					"width": 850,
+					"height": 2056
+				}
+			]
+		},
+		{
+			"name": "Abjuration Adept",
+			"source": "AU",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/AU/Abjuration Adept.webp"
+					},
+					"title": "Any hero can use magic to enhance their skills.",
+					"credit": "Hendry Iwanaga",
+					"width": 850,
+					"height": 898
+				}
+			]
+		},
+		{
+			"name": "Adept of the Black Robes",
+			"source": "DSotDQ",
+			"_copy": {
+				"name": "Initiate of High Sorcery",
+				"source": "DSotDQ"
+			}
+		},
+		{
+			"name": "Adept of the Red Robes",
+			"source": "DSotDQ",
+			"_copy": {
+				"name": "Initiate of High Sorcery",
+				"source": "DSotDQ"
+			}
+		},
+		{
+			"name": "Adept of the White Robes",
+			"source": "DSotDQ",
+			"_copy": {
+				"name": "Initiate of High Sorcery",
+				"source": "DSotDQ"
+			}
+		},
+		{
+			"name": "Boon of Fate",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Boon of Fate.webp"
+					},
+					"credit": "Wayne England",
+					"width": 2063,
+					"height": 1123
+				}
+			]
+		},
+		{
+			"name": "Boon of Siberys",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Siberys Mark of Detection.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 277,
+					"height": 287
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Siberys Mark of Making.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 252,
+					"height": 319
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Siberys Mark of Shadow.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 337,
+					"height": 250
+				}
+			]
+		},
+		{
+			"name": "Boon of Skill",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Boon of Skill.webp"
+					},
+					"credit": "Wayne England",
+					"width": 1777,
+					"height": 1059
+				}
+			]
+		},
+		{
+			"name": "Eldritch Adept",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/TCE/Eldritch Adept.webp"
+					},
+					"credit": "Brian Valeza",
+					"width": 800,
+					"height": 1214
+				}
+			]
+		},
+		{
+			"name": "Elemental Familiar",
+			"source": "AU",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/AU/Elemental Familiar.webp"
+					},
+					"title": "Familiars imbued with the power of the elements engage in battle.",
+					"credit": "Hendry Iwanaga",
+					"width": 1700,
+					"height": 1049
+				}
+			]
+		},
+		{
+			"name": "Fey-Touched",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Fey-Touched.webp"
+					},
+					"credit": "Wayne England",
+					"width": 1637,
+					"height": 1182
+				}
+			]
+		},
+		{
+			"name": "Fury of the Frost Giant",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/BGG/Fury of the Frost Giant.webp"
+					},
+					"width": 850,
+					"height": 1172
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Detection",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Greater Mark of Detection.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 283,
+					"height": 284
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Finding",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Greater Mark of Finding.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 632,
+					"height": 541
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Making",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Greater Mark of Making.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 211,
+					"height": 307
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Passage",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Greater Mark of Passage.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 592,
+					"height": 564
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Shadow",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Greater Mark of Shadow.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 306,
+					"height": 247
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Storm",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Greater Mark of Storm.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 484,
+					"height": 614
+				}
+			]
+		},
+		{
+			"name": "Healer",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Healer.webp"
+					},
+					"credit": "Wayne England",
+					"width": 1999,
+					"height": 938
+				}
+			]
+		},
+		{
+			"name": "Initiate of High Sorcery",
+			"source": "DSotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/DSotDQ/Mage of High Sorcery.webp"
+					},
+					"title": "Mages of High Sorcery of the Orders of the Black, Red, and White Robes",
+					"credit": "Linda Lithén",
+					"width": 1700,
+					"height": 1223
+				}
+			]
+		},
+		{
+			"name": "Inspiring Leader",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/PHB/Inspiring Leader.webp"
+					},
+					"width": 1000,
+					"height": 750
+				}
+			]
+		},
+		{
+			"name": "Living Shadow",
+			"source": "RHW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/RHW/Living Shadow.webp"
+					},
+					"title": "The Living Shadow Dark Gift gives one's shadow an appearance and will of its own",
+					"credit": "Bokun An",
+					"width": 850,
+					"height": 2177
+				}
+			]
+		},
+		{
+			"name": "Mark of Detection",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Detection.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Finding",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Finding.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Handling",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Handling.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Healing",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Healing.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Hospitality",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Hospitality.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Making",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Making.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Passage",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Passage.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Scribing",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Scribing.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Sentinel",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Sentinel.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Shadow",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Shadow.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Storm",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Storm.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Mark of Warding",
+			"source": "EFA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/EFA/Mark of Warding.webp"
+					},
+					"credit": "Lee Moyer",
+					"width": 500,
+					"height": 525
+				}
+			]
+		},
+		{
+			"name": "Planar Wanderer",
+			"source": "SatO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/SatO/Planar Wanderer.webp"
+					},
+					"title": "A planar cartographer on a Lower Plane asks a pit fiend for directions",
+					"credit": "Michele Giorgi",
+					"width": 850,
+					"height": 1981
+				}
+			]
+		},
+		{
+			"name": "Poisoner",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Poisoner.webp"
+					},
+					"credit": "Wayne England",
+					"width": 2098,
+					"height": 1275
+				}
+			]
+		},
+		{
+			"name": "Ritual Caster",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/PHB/Ritual Caster.webp"
+					},
+					"width": 1000,
+					"height": 749
+				}
+			]
+		},
+		{
+			"name": "Ritual Caster",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Ritual Caster.webp"
+					},
+					"credit": "Wayne England",
+					"width": 1627,
+					"height": 1094
+				}
+			]
+		},
+		{
+			"name": "Servo Crafting",
+			"source": "PSK",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/PSK/Servo Crafting.webp"
+					},
+					"title": "Servo",
+					"credit": "Igor Kieryluk",
+					"width": 739,
+					"height": 985
+				}
+			]
+		},
+		{
+			"name": "Spell Resistant",
+			"source": "AU",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/AU/Spell Resistant.webp"
+					},
+					"title": "The bond between heroes and their familiars is as close as any friendship.",
+					"credit": "Erion Makuo",
+					"width": 1700,
+					"height": 1139
+				}
+			]
+		},
+		{
+			"name": "Telepathic",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/TCE/Telepathic.webp"
+					},
+					"title": "Astride a unicorn, a telepathic bard inspires her wizard companion.",
+					"credit": "Zoltan Boros",
+					"width": 1200,
+					"height": 802
+				}
+			]
+		},
+		{
+			"name": "Two-Weapon Fighting",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Two-Weapon Fighting.webp"
+					},
+					"credit": "Wayne England",
+					"width": 1409,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Watchers",
+			"source": "RHW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/RHW/Watchers.webp"
+					},
+					"title": "The Watchers Dark Gift might manifest as anything from simple vermin to alien beings\u2014like the Staring Cats of Uldun-Dar",
+					"credit": "Irina Nordsol",
+					"width": 850,
+					"height": 2068
+				}
+			]
+		},
+		{
+			"name": "Weapon Master",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/XPHB/Weapon Master.webp"
+					},
+					"credit": "Wayne England",
+					"width": 850,
+					"height": 657
+				}
+			]
+		}
+	]
+}

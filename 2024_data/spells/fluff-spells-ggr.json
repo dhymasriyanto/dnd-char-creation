@@ -1,0 +1,20 @@
+{
+	"spellFluff": [
+		{
+			"name": "Encode Thoughts",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/GGR/Encode Thoughts.webp"
+					},
+					"credit": "Clint Cearley",
+					"width": 2036,
+					"height": 1725
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,295 @@
+{
+	"_meta": {
+		"internalCopies": [
+			"monsterFluff"
+		]
+	},
+	"monsterFluff": [
+		{
+			"name": "Ambush Drake",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Ambush Drake.webp"
+					},
+					"width": 1000,
+					"height": 498
+				}
+			]
+		},
+		{
+			"name": "Azbara Jos",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Azbara Jos.webp"
+					},
+					"width": 850,
+					"height": 1144
+				}
+			]
+		},
+		{
+			"name": "Blagothkus",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Blagothkus.webp"
+					},
+					"width": 690,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Captain Othelstan",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Captain Othelstan.webp"
+					},
+					"width": 850,
+					"height": 1250
+				}
+			]
+		},
+		{
+			"name": "Dragonclaw",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Dragonclaw.webp"
+					},
+					"width": 1700,
+					"height": 3045
+				}
+			]
+		},
+		{
+			"name": "Dralmorrer Borngray",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Dralmorrer Borngray.webp"
+					},
+					"width": 878,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Four-Armed Troll",
+			"source": "HotDQ",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										"Sometimes when a troll loses a limb, it regenerates two limbs to replace the one it lost. This can result in trolls with multiple arms. A four-armed troll uses the troll stat block, except that it is a Challenge Rating 6 monster (2,300 XP) and has alternate action options to suit."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Four-Armed Troll.webp"
+					},
+					"width": 850,
+					"height": 1054
+				}
+			]
+		},
+		{
+			"name": "Frulam Mondath",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Frulam Mondath.webp"
+					},
+					"width": 850,
+					"height": 1331
+				}
+			]
+		},
+		{
+			"name": "Jamna Gleamsilver",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Jamna Gleamsilver.webp"
+					},
+					"width": 923,
+					"height": 1666
+				}
+			]
+		},
+		{
+			"name": "Langdedrosa Cyanwrath",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Langdedrosa Cyanwrath.webp"
+					},
+					"width": 900,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Leosin Erlanthar",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/015-tod-02-04.webp"
+					},
+					"width": 841,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ontharr Frume",
+			"source": "HotDQ",
+			"entries": [
+				"{@b Ideals}: Responsibility, greater good (\"The strong must defend the weak, whatever the cost.\")",
+				"{@b Personality Traits}: Friendly, hot-tempered",
+				"{@b Pledged Resources}: Paladins and healing clerics to support the fight against Tiamat's forces"
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/021-tod-04-02.webp"
+					},
+					"width": 819,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Pharblex Spattergoo",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Pharblex Spattergoo.webp"
+					},
+					"width": 812,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Rath Modar",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Rath Modar.webp"
+					},
+					"width": 850,
+					"height": 1089
+				}
+			]
+		},
+		{
+			"name": "Rezmir",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Rezmir.webp"
+					},
+					"width": 1700,
+					"height": 1828
+				}
+			]
+		},
+		{
+			"name": "Sandesyl Morgia",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/053-tod-08-05.webp"
+					},
+					"width": 636,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Talis the White",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/HotDQ/Talis the White.webp"
+					},
+					"width": 850,
+					"height": 1217
+				}
+			]
+		},
+		{
+			"name": "Trepsin",
+			"source": "HotDQ",
+			"_copy": {
+				"name": "Four-Armed Troll",
+				"source": "HotDQ"
+			}
+		}
+	]
+}

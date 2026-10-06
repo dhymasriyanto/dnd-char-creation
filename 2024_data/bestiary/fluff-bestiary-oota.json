@@ -1,0 +1,960 @@
+{
+	"_meta": {
+		"internalCopies": [
+			"monsterFluff"
+		]
+	},
+	"monsterFluff": [
+		{
+			"name": "Aljanor Keenblade",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Aljanor Keenblade.webp"
+					},
+					"width": 733,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Amarith Coppervein",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Amarith Coppervein.webp"
+					},
+					"width": 646,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Awakened Zurkhwood",
+			"source": "OotA",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										"This creature is an ordinary zurkhwood mushroom (see \"Fungi of the Underdark\" in chapter 2) given sentience and mobility. An awakened zurkhwood can be created by casting the {@spell awaken} spell on a normal zurkhwood mushroom. A myconid sovereign can create one by performing a lengthy ritual.",
+										"An awakened zurkhwood has the same statistics as an awakened tree (see appendix A of the Monster Manual), with the following modifications:",
+										{
+											"type": "list",
+											"items": [
+												"The awakened zurkhwood has {@sense darkvision} out to a range of 120 feet.",
+												"If the awakened zurkhwood was created by a myconid sovereign, it can't speak.",
+												"The awakened zurkhwood's False Appearance feature allows it to be mistaken for a normal zurkhwood mushroom (instead of a tree)."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Blurg",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Blurg.webp"
+					},
+					"width": 926,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "Buppido",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Buppido.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Deepking Horgar Steelshadow V",
+			"source": "OotA",
+			"entries": [
+				"Deepking Horgar V ascended to the throne in 1372 DR. He is a ruthless and canny ruler who engages in secret meetings with all the city's councils and clans to keep their members guessing what he's up to, hands out favors out of the blue, and lets it be known that he'll use any trick to maintain his hold on power. This includes hiring assassins through third parties to take care of potential troublemakers. This strategy keeps all the city's factions at each other's throats and out of Horgar's way.",
+				"Like many other duergar in the city, Horgar Steelshadow V has been touched by the demon lords' madness. Roll on the {@table Indefinite Madness} table in {@book chapter 8|DMG|8|Madness} of the {@i Dungeon Master's Guide} to determine Horgar's flaw."
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Deepking Horgar Steelshadow V.webp"
+					},
+					"width": 594,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Derro",
+			"source": "OotA",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"The derro are degenerate Underdark humanoids that resemble small dwarves. Cruel and insane, they take delight in tormenting others\u2014even their own kind.",
+								"Derro have blue-gray skin and straight hair that is white or yellow in color. Their uniformly pale white eyes lack both irises and pupils.",
+								{
+									"type": "entries",
+									"name": "Unnatural Origin",
+									"entries": [
+										"Derro believe they were created by their god, Diirinka, but they are actually the result of cruel experiments on dwarves by mind flayers. Like duergar, the derro were a slave race to the mind flayers, but eventually freed themselves."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Born to Madness",
+									"entries": [
+										"The process of their creation rendered the derro irrevocably insane. They cooperate with each other only out of necessity and when riled up by a charismatic leader."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Life of Attrition",
+									"entries": [
+										"Derro can live to be one hundred and fifty years old, but they mature and breed quickly. When their elders deem that their numbers are becoming unmanageable, the derro declare war on some other race and surge forth in a reckless horde, fighting until their population dwindles to a tolerable size. These ghastly purges weed out the weak among the derro and are referred to as \"Uniting Wars.\""
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Second-Class Citizens",
+									"entries": [
+										"Derro create no settlements of their own. Instead, they form small, isolated enclaves in non-derro settlements throughout the Underdark, where they are treated as vermin or slaves. Their own cutthroat politics prevent the derro from mounting any effective resistance against such exploitation."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Derro Weapons",
+									"entries": [
+										"The derro wield special weapons. They use a hooked shortspear, which is a martial melee weapon that deals {@damage 1d4} piercing damage, weighs 2 pounds, and has the light weapon property (see chapter 5, \"Equipment,\" of the Player's Handbook). It doesn't possess the thrown or versatile weapon properties of a normal spear. On a hit with this weapon, the wielder can forgo dealing damage and attempt to trip the target, in which case the target must succeed on a Strength saving throw or fall {@condition prone}. The DC is 8 + the wielder's Strength modifier + the wielder's proficiency bonus.",
+										"The derro also use a {@item light repeating crossbow|OotA} fitted with a cartridge that can hold up to six crossbow bolts. This weapon is similar to a light crossbow except that it has half the range (40/160 feet) and doesn't have the loading property. It automatically reloads after firing until it runs out of ammunition. Reloading the cartridge takes an action."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Derro.webp"
+					},
+					"width": 578,
+					"height": 800
+				}
+			]
+		},
+		{
+			"name": "Derro Savant",
+			"source": "OotA",
+			"_copy": {
+				"name": "Derro",
+				"source": "OotA"
+			},
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Derro Savant.webp"
+					},
+					"width": 476,
+					"height": 800
+				}
+			]
+		},
+		{
+			"name": "Droki",
+			"source": "OotA",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Roleplaying Droki",
+									"entries": [
+										"Droki hates everyone in general and surfacers in particular. He gnashes his teeth if he has to address the characters, taking every opportunity to be insulting and misleading. If the characters look through his satchel while he's still conscious, he throws an epic tantrum and becomes intractable until knocked {@condition unconscious}.",
+										"Droki is also obsessed with things happening where and when they should. If he is captured before he runs his errands in the Whorlstone Tunnels, he constantly complains about the characters altering fate by delaying him, and a good tactic to pressure him is to threaten to hold him indefinitely. He prefers to escape than to fight, except if the characters take his satchel."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Droki.webp"
+					},
+					"width": 300,
+					"height": 480
+				}
+			]
+		},
+		{
+			"name": "Duergar",
+			"source": "OotA",
+			"entries": [
+				{
+					"type": "section",
+					"name": "Duergar",
+					"entries": [
+						"The tyrannical duergar, also known as gray dwarves, dwell in fantastic cities deep in the Underdark. Using ancient dwarven knowledge and myriad slaves, they work tirelessly to expand their subterranean kingdoms.",
+						"Most duergar (including females) are bald and have ashen gray skin. They wear drab clothing designed to blend in with stone, along with simple jewelry that reflects their severe and utilitarian demeanor.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"name": "Slaves to Slavers",
+											"type": "entries",
+											"entries": [
+												"The duergar were once dwarves, before their greed and endless delving beneath the earth brought them into contact with the mind flayers. Held in captivity for generations by the illithids, the dwarves eventually won their independence with the aid of the evil god Laduguer. Slavery had forever changed them, however, darkening their spirits to make the duergar as evil as the tyrants they had escaped. Despite winning their freedom, duergar are dour, pessimistic, untrusting creatures, always toiling and complaining, with no memory of what it means to be happy or proud. Their craftsmanship and accomplishments endure, yet they are bereft of warmth or artistry.Duergar make war against their dwarven kin and all other subterranean races. They forge alliances when it is convenient, then break those alliances when they have nothing more to gain. They take and hold slaves to toil in the Underdark, regarding them as free labor and crude currency."
+											]
+										},
+										{
+											"name": "Tough as Stone",
+											"type": "entries",
+											"entries": [
+												"Like dwarves, duergar have strong constitutions. Adding to their physical stamina is an incredible mental fortitude resulting from their time as slaves of the illithids. A duergar's mind is a fortress, able to shrug off charms, illusions, and other spells.Born of Darkness. The Underdark is saturated with strange magical power, which the duergar absorbed over generations of imprisonment. A duergar can increase its size and strength for a short time, becoming a powerful ogre-sized warrior. If it faces a foe it can't fight, or when spying on creatures approaching its territory, it can just as easily become {@condition invisible} to slip away into the darkness. Eons spent in the Underdark also sharpened their {@sense darkvision}, allowing them to see twice as far as other dwarves. This keen eyesight comes at a cost, however, as a duergar's vision is compromised by sunlight."
+											]
+										},
+										{
+											"name": "Infernal Master",
+											"type": "entries",
+											"entries": [
+												"Asmodeus, Lord of the Nine Hells, has been known to impersonate duergar gods in order to cultivate the evil brimming in the hearts of the gray dwarves. He offers them divine guidance and vengeance against their enemies while urging them on toward greater acts of tyranny, all the while concealing his true identity."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Duergar Darkhaft",
+			"source": "OotA",
+			"_copy": {
+				"name": "Duergar",
+				"source": "OotA",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"name": "Duergar Darkhaft",
+								"entries": [
+									"The darkhafts are the members of the Deepking's secret corps of psionic agents."
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Duergar Keeper of the Flame",
+			"source": "OotA",
+			"_copy": {
+				"name": "Duergar",
+				"source": "OotA",
+				"_mod": {
+					"entries": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "section",
+								"name": "Duergar Keeper of the Flame",
+								"entries": [
+									"The Keepers of the Flame is a well-respected order of psionic clerics that serves the red dragon Themberchaud in Gracklstugh, and whose members are advisors to the Deepking."
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Eldeth Feldrun",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Eldeth Feldrun.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Female Steeder",
+			"source": "OotA",
+			"_copy": {
+				"name": "Steeder",
+				"source": "OotA"
+			}
+		},
+		{
+			"name": "Gash",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Gash.webp"
+					},
+					"width": 750,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ghazrim DuLoc",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Ghazrim DuLoc.webp"
+					},
+					"width": 726,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Glabbagool",
+			"source": "OotA",
+			"entries": [
+				"Juiblex's arrival in the Underdark has granted Glabbagool sentience and awareness. The ooze is genuinely curious about other creatures and wants to learn more about the world. It defends itself if attacked, but doesn't otherwise try to harm the characters, instead asking who they are, where they come from, and why they have come to the temple."
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Glabbagool.webp"
+					},
+					"width": 778,
+					"height": 1391
+				}
+			]
+		},
+		{
+			"name": "Grazilaxx",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Grazilaxx.webp"
+					},
+					"width": 926,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "Ilvara Mizzrym",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Ilvara Mizzrym.webp"
+					},
+					"width": 601,
+					"height": 962
+				}
+			]
+		},
+		{
+			"name": "Ixitxachitl",
+			"source": "OotA",
+			"entries": [
+				{
+					"type": "section",
+					"name": "Ixitxachitl",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										"Ixitxachitl (pronounced ick-zit-zah-chit-ul) are aquatic creatures resembling manta rays, with small, clawed hands at the ends of their \"wings\" and black eyes gleaming with sinister intelligence. Many creatures mistake ixitxachitl for common manta rays, but this can prove a deadly mistake. The ixitxachitl are as evil as they are cunning, leading to their common nickname \"demon rays.\" They inhabit bodies of fresh and salt water, but their violent nature means that little is known of them.",
+										{
+											"name": "Struggle for Survival",
+											"entries": [
+												"Ixitxachitl emerge from eggs as tiny creatures little more than a hand span in width. From that time onward, they struggle to survive at all costs, growing throughout their lives. Those ixitxachitl that master the secrets of survival gain powers of regeneration and feed on the life force of other creatures."
+											],
+											"type": "entries"
+										},
+										{
+											"name": "All Consuming",
+											"type": "entries",
+											"entries": [
+												"Ixitxachitl hollow out coral reefs or other natural aquatic formations to create labyrinthine dens, often compelling aid from captured aquatic species they enslave. They typically strip an area bare before moving on to new fertile grounds, leaving their abandoned dens behind. Schools of ixitxachitl often war on other aquatic creatures to claim feeding grounds and territory."
+											]
+										},
+										{
+											"name": "Demon Worshipers",
+											"type": "entries",
+											"entries": [
+												"The ixitxachitl venerate and serve various demons, particularly Demogorgon, whom they consider their patron and creator. They have an intense rivalry with the merrow over which of them are the greatest and most favored servants of the Prince of Demons."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Ixitxachitl.webp"
+					},
+					"width": 300,
+					"height": 406
+				}
+			]
+		},
+		{
+			"name": "Ixitxachitl Cleric",
+			"source": "OotA",
+			"_copy": {
+				"name": "Ixitxachitl",
+				"source": "OotA"
+			}
+		},
+		{
+			"name": "Jimjar",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Jimjar.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Khalessa Draga",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Khalessa Draga.webp"
+					},
+					"width": 616,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Kinyel Druu'giir",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Kinyel Druu'giir.webp"
+					},
+					"width": 611,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Kurr",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Kurr.webp"
+					},
+					"width": 944,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Male Steeder",
+			"source": "OotA",
+			"_copy": {
+				"name": "Steeder",
+				"source": "OotA"
+			}
+		},
+		{
+			"name": "Ougalop",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Ougalop.webp"
+					},
+					"width": 865,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Peebles",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Peebles.webp"
+					},
+					"width": 698,
+					"height": 965
+				}
+			]
+		},
+		{
+			"name": "Prince Derendil",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Prince Derendil.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Ront",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Ront.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Rumpadump",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Rumpadump.webp"
+					},
+					"width": 669,
+					"height": 982
+				}
+			]
+		},
+		{
+			"name": "Rystia Zav",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Rystia Zav.webp"
+					},
+					"width": 700,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sarith Kzekarit",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Sarith Kzekarit.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Shedrak of the Eyes",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Shedrak of the Eyes.webp"
+					},
+					"width": 404,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Shuushar the Awakened",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Shuushar the Awakened.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Skriss",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Skriss.webp"
+					},
+					"width": 926,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "Sladis Vadir",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Sladis Vadir.webp"
+					},
+					"width": 700,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sloopidoop",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Sloopidoop.webp"
+					},
+					"width": 926,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "Sovereign Basidia",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Sovereign Basidia.webp"
+					},
+					"width": 728,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Spiderbait",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Spiderbait.webp"
+					},
+					"width": 906,
+					"height": 730
+				}
+			]
+		},
+		{
+			"name": "Steeder",
+			"source": "OotA",
+			"entries": [
+				"Duergar breed and train these giant Underdark-dwelling tarantulas. Male steeders are as big as ponies and used by the duergar as beasts of burden. The larger females are trained and used as mounts.",
+				"Steeders don't spin webs, but they exude a sticky substance from their legs that lets them walk on walls and ceilings without trouble, as well as snare prey."
+			]
+		},
+		{
+			"name": "Stool",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Stool.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "The Pudding King",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/The Pudding King.webp"
+					},
+					"width": 572,
+					"height": 800
+				}
+			]
+		},
+		{
+			"name": "Themberchaud",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Themberchaud.webp"
+					},
+					"width": 791,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Topsy",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Topsy.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Troglodyte Champion of Laogzed",
+			"source": "OotA",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"The Monster Manual provides statistics for the typical troglodyte. Once in a while, a troglodyte tribe produces an unusually smart and strong specimen that can spew acid-what many troglodytes consider blessings from Laogzed, their demonic god. These hulking troglodyte champions make excellent chieftains."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Turvy",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Turvy.webp"
+					},
+					"width": 926,
+					"height": 347
+				}
+			]
+		},
+		{
+			"name": "Vampiric Ixitxachitl",
+			"source": "OotA",
+			"_copy": {
+				"name": "Ixitxachitl",
+				"source": "OotA"
+			}
+		},
+		{
+			"name": "Vampiric Ixitxachitl Cleric",
+			"source": "OotA",
+			"_copy": {
+				"name": "Ixitxachitl",
+				"source": "OotA"
+			}
+		},
+		{
+			"name": "Vizeran DeVir",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Vizeran DeVir.webp"
+					},
+					"width": 669,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Xazax the Eyemonger",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Xazax the Eyemonger.webp"
+					},
+					"width": 707,
+					"height": 911
+				}
+			]
+		},
+		{
+			"name": "Y",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Y.webp"
+					},
+					"width": 926,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "Yuk Yuk",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Yuk Yuk.webp"
+					},
+					"width": 906,
+					"height": 730
+				}
+			]
+		},
+		{
+			"name": "Zilchyn Q'Leptin",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OotA/Zilchyn Q'Leptin.webp"
+					},
+					"width": 700,
+					"height": 1000
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,4896 @@
+{
+	"feat": [
+		{
+			"name": "Aberrant Anatomy",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Warping Flesh",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "aberrantAnatomy"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"name": "Extrasensory Perception",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.senses.ranges.blindsight",
+							"value": 15,
+							"mode": "UPGRADE"
+						}
+					],
+					"description": "You have &Reference[Blindsight] with a range of 15 feet."
+				},
+				{
+					"foundryId": "aberrantAnatomy",
+					"name": "Warping Flesh (Stunned)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"stunned"
+					],
+					"description": "You have the &Reference[stunned apply=false] condition until the end of your next turn.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Abjuration Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Protective Ward",
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scaling * 2"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Actor",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Mimicry",
+					"type": "check",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"check": {
+						"associated": [
+							"ins"
+						],
+						"dc": {
+							"calculation": "cha"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Alert",
+			"source": "PHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.initiativeAlert",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Alert",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.initiativeAlert",
+							"mode": "ADD",
+							"value": true
+						}
+					]
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Artist",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Inspiring Magic",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "you cast a spell from the Illusion school"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "ally",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Eloquence",
+			"source": "AU",
+			"effects": [
+				{
+					"name": "Smooth Talker",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Infiltrator",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Dodge",
+					"type": "utility",
+					"description": "Take the Dodge action as a Bonus Action.",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "arcaneInfiltrato"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "arcaneInfiltrato",
+					"name": "Dodging",
+					"duration": {
+						"units": "seconds",
+						"expiry": "targetStart"
+					},
+					"statuses": [
+						"dodging"
+					],
+					"description": "&Reference[dodge]"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Omens",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Helpful Premonition",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "you or a target you can see within range fails a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1",
+							"special": "visible"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"name": "Save Bonus",
+						"formula": "1d4"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Overload",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Power Surge",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "when you cast an Evocation spell and deal damage with it"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "any"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"bonus": "@prof",
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Safeguard",
+			"source": "AU",
+			"system": {
+				"advancement.tkAWLfJZfdNCKVl7.configuration.spell.uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Sheltering Aid",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "when you take the Help action to assist with an ally's ability check"
+					},
+					"target": {
+						"affects": {
+							"type": "ally",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Cantrip Modifications",
+					"type": "enchantment",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "activities[forward].name",
+							"value": "Cast as Bonus Action",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "activities[forward].activation.type",
+							"value": "bonus",
+							"mode": "OVERRIDE"
+						},
+						{
+							"key": "activities[forward].activation.override",
+							"value": true,
+							"mode": "OVERRIDE"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Undertaker",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Understanding of Death",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "you take the Help action to stabilize a creature"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Knowledge from the Dead",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Archery",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Archery Style",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.bonuses.rwak.attack",
+							"mode": "ADD",
+							"value": 2
+						}
+					]
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Blind Fighting",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.senses.blindsight",
+							"mode": "UPGRADE",
+							"value": 10
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Dimensional Travel",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Teleport",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "Immediately after you take the Attack action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space",
+							"special": "Unoccupied space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Energy Resistance",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Choose Resistances",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/trait-damage-immunities.svg",
+					"activation": {
+						"type": "",
+						"condition": "Whenever you finish a Long Rest"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "boonOfEnergyResi"
+						},
+						{
+							"foundryId": "boonOfEnergyRes1"
+						},
+						{
+							"foundryId": "boonOfEnergyRes2"
+						},
+						{
+							"foundryId": "boonOfEnergyRes3"
+						},
+						{
+							"foundryId": "boonOfEnergyRes4"
+						},
+						{
+							"foundryId": "boonOfEnergyRes5"
+						},
+						{
+							"foundryId": "boonOfEnergyRes6"
+						},
+						{
+							"foundryId": "boonOfEnergyRes7"
+						},
+						{
+							"foundryId": "boonOfEnergyRes8"
+						}
+					]
+				},
+				{
+					"name": "Energy Redirection",
+					"type": "save",
+					"activation": {
+						"type": "reaction"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Isn't behind Total Cover"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 12,
+								"bonus": "@abilities.con.mod",
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "con"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "boonOfEnergyResi",
+					"name": "Acid: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "acid"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes1",
+					"name": "Cold: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "cold"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes2",
+					"name": "Fire: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "fire"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes3",
+					"name": "Lightning: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "lightning"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes4",
+					"name": "Necrotic: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "necrotic"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes5",
+					"name": "Poison: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "poison"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes6",
+					"name": "Psychic: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "psychic"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes7",
+					"name": "Radiant: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "radiant"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfEnergyRes8",
+					"name": "Thunder: Boon of Energy Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "thunder"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Erupting Spellpower",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Spell Overload",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast a spell that deals damage using a spell slot"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"effects": [
+						{
+							"foundryId": "boonOfEruptingSp"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "boonOfEruptingSp",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Fate",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Improve Fate",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you or another creature within 60 feet of you succeeds or fails a D20 Test"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"roll": {
+						"name": "Bonus/Penalty",
+						"formula": "2d4"
+					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Fortitude",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Fortify Health",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "Whenever you regain Hit Points"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@abilities.con.mod"
+					}
+				}
+			],
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.hp.bonuses.overall",
+							"mode": "ADD",
+							"value": 40
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Recovery",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Last Stand",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "When you would be reduced to 0 Hit Points"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(floor((@attributes.hp.max / 2)))"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Recover Vitality",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "10"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@scaling)d10"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Speed",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": 30
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of Spell Recall",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Free Cast Roll",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "Whenever you cast a spell with a level 1-4 spell slot"
+					},
+					"roll": {
+						"name": "Roll",
+						"formula": "1d4"
+					}
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Boon of the Night Spirit",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Merge with the Shadows",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "boonOfTheNightSp"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "acid"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "bludgeoning"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "cold"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "fire"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "force"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "lightning"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "necrotic"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "piercing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "poison"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "slashing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "thunder"
+						}
+					]
+				},
+				{
+					"foundryId": "boonOfTheNightSp",
+					"name": "Merged with Shadows",
+					"statuses": [
+						"invisible"
+					]
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Charger",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Charge Attack",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "If you move at least 10 feet in a straight line immediately before hitting it with a melee attack"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Chef",
+			"source": "XPHB",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Replenishing Meal",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "As part of a Short Rest"
+					},
+					"target": {
+						"affects": {
+							"count": "4 + @prof",
+							"type": "creature",
+							"special": "Who ate the food"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 8,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Bolstering Treats",
+					"type": "heal",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"duration": {
+						"units": "hour",
+						"value": "8"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-(@prof)"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				},
+				{
+					"name": "Eat Treat",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Conjuration Adept",
+			"source": "AU",
+			"effects": [
+				{
+					"name": "Conjuration Focus (INT)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.bonus",
+							"value": "@abilities.int.mod",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"name": "Conjuration Focus (WIS)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.bonus",
+							"value": "@abilities.wis.mod",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"name": "Conjuration Focus (CHA)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.bonus",
+							"value": "@abilities.cha.mod",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Defense",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 1
+						}
+					]
+				}
+			],
+			"ignoreSrdActivities": true,
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Defensive Duelist",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Parry",
+					"type": "utility",
+					"activation": {
+						"type": "reaction"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "defensiveDuelist"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "defensiveDuelist",
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": "@prof"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divination Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Prescient Intervention",
+					"type": "utility",
+					"activation": {
+						"type": "reaction"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					}
+				},
+				{
+					"name": "Restore Use",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "After casting a Divination spell using a spell slot"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dual Wielder",
+			"source": "PHB",
+			"effects": [
+				{
+					"name": "AC Increase",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": "+ 1"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dueling",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.bonuses.mwak.damage",
+							"mode": "ADD",
+							"value": 2
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Durable",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Speedy Recovery (Largest Die)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@attributes.hd.largestAvailable"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Speedy Recovery (Smallest Die)",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@attributes.hd.smallestAvailable"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.death.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "You have Advantage on Death Saving Throws."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Echoing Soul",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Intrusive Echos",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "echoingSoul"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "echoingSoul",
+					"name": "Intrusive Echoes (Incapacitated)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"incapacitated"
+					],
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.fly",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.swim",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.climb",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						},
+						{
+							"key": "system.attributes.movement.burrow",
+							"value": 0.5,
+							"mode": "MULTIPLY"
+						}
+					],
+					"description": "You have the &Reference[Incapacitated apply=false] condition until the end of your next turn. While you are Incapacitated in this way, your Speed is halved.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Elemental Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"foundryId": "elementalFamilia",
+					"name": "Acid Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamilia"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili1",
+					"name": "Cold Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili1"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili2",
+					"name": "Fire Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili2"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili3",
+					"name": "Lightning Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili3"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili4",
+					"name": "Thunder Elemental Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili4"
+						}
+					]
+				},
+				{
+					"name": "Energy Pulse",
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "5"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "120"
+					},
+					"damage": {
+						"onSave": "none",
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 4,
+								"types": [
+									"acid",
+									"cold",
+									"fire",
+									"lightning",
+									"thunder"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						},
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili5"
+						}
+					]
+				},
+				{
+					"name": "Elemental Energy",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"type": "spell"
+					},
+					"effects": [
+						{
+							"foundryId": "elementalFamili6",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "elementalFamilia"
+									},
+									{
+										"foundryId": "elementalFamili1"
+									},
+									{
+										"foundryId": "elementalFamili2"
+									},
+									{
+										"foundryId": "elementalFamili3"
+									},
+									{
+										"foundryId": "elementalFamili4"
+									}
+								]
+							}
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "elementalFamili6",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				},
+				{
+					"foundryId": "elementalFamilia",
+					"name": "Acid Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "acid",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili1",
+					"name": "Cold Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "cold",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili2",
+					"name": "Fire Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "fire",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili3",
+					"name": "Lightning Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "lightning",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili4",
+					"name": "Thunder Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "thunder",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "elementalFamili5",
+					"name": "Prone",
+					"duration": {
+						"units": "seconds"
+					},
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Elven Accuracy",
+			"source": "XGE",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.elvenAccuracy",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Evocation Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Fueled Evocation (Smallest Hit Die)",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast an Evocation spell and deal damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scaling)d(@attributes.hd.smallestFace)"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Fueled Evocation (Largest Hit Die)",
+					"type": "damage",
+					"activation": {
+						"type": "special",
+						"condition": "When you cast an Evocation spell and deal damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scaling)d(@attributes.hd.largestFace)"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing",
+									"acid",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"poison",
+									"psychic",
+									"radiant",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Familiar Friend",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Helpful Friend",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "you make an ability check with proficiency while your familiar is in range"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Fortified Familiar",
+					"type": "enchantment",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "activities[summon].bonuses.hp",
+							"value": "2 * @details.level",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Gathered Whispers",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Message (Spirit Whispers)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"uuid": "@spell[message|xphb]",
+						"properties": [
+							"material"
+						],
+						"spellbook": true
+					}
+				},
+				{
+					"name": "Augury (Spirit Whispers)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[augury|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material",
+							"ritual"
+						],
+						"spellbook": true,
+						"level": 2
+					}
+				},
+				{
+					"name": "Unearthly Scream",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "when you are hit by an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "@prof"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Modified AC",
+						"formula": "@attributes.ac.value + @prof"
+					}
+				},
+				{
+					"name": "Voices from Beyond",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "gatheredWhispers"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "gatheredWhispers",
+					"name": "Voices from Beyond (Deafened)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"deafened"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"While Deafened, you have Disadvantage on ability checks and attack rolls.",
+						"{@i Disadvantage on attack rolls is not automated.}"
+					],
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Great Weapon Master",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Heavy Weapon Damage",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with a weapon that has the Heavy property as part of the Attack action on your turn"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"bonus": "@prof",
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Healer",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Heal d6",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "1d6r1 + @prof"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Heal d8",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 8,
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "1d8r1 + @prof"
+						},
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				},
+				{
+					"name": "Heal d10",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 10,
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "1d10r1 + @prof"
+						},
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				},
+				{
+					"name": "Heal d12",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 12,
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "1d12r1 + @prof"
+						},
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Heavy Armor Master",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.traits.dm.amount.bludgeoning",
+							"mode": "ADD",
+							"value": "-(@prof)"
+						},
+						{
+							"key": "system.traits.dm.amount.piercing",
+							"mode": "ADD",
+							"value": "-(@prof)"
+						},
+						{
+							"key": "system.traits.dm.amount.slashing",
+							"mode": "ADD",
+							"value": "-(@prof)"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Inspiring Leader",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Inspire with Wisdom",
+					"type": "heal",
+					"activation": {
+						"type": "shortRest",
+						"condition": "When you finish a Short or Long Rest"
+					},
+					"target": {
+						"affects": {
+							"count": "6",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"formula": "@details.level + @abilities.wis.mod"
+						},
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@details.level + @abilities.wis.mod"
+					}
+				},
+				{
+					"name": "Inspire with Charisma",
+					"type": "heal",
+					"activation": {
+						"type": "shortRest",
+						"condition": "When you finish a Short or Long Rest"
+					},
+					"target": {
+						"affects": {
+							"count": "6",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"value": "30",
+						"units": "ft"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@details.level + @abilities.cha.mod"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Interception",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Intercept",
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "When a creature you can see hits another creature within 5 feet of you with an attack roll"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 10,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Living Shadow",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Mage Hand (Grasping Shadow)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"uuid": "@spell[mage hand|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true
+					}
+				},
+				{
+					"name": "Lengthened Strike",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "when you make a melee attack as part of the Attack or Magic action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "@prof"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Ominous Will",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "livingShadow"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "livingShadow",
+					"name": "Ominous Will (Incapacitated)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "turns",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"incapacitated"
+					],
+					"description": "On a failed save, you have the Incapacitated condition until the start of your next turn, at which point you must roll on the Shadow's Will table to determine what you do during that turn.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lucky",
+			"source": "PHB",
+			"system": {
+				"uses.max": 3,
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "none",
+						"value": 0
+					},
+					"roll": {
+						"formula": "1d20"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lucky",
+			"source": "XPHB",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Advantage",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d20.svg",
+					"activation": {
+						"type": "",
+						"condition": "When you roll a d20 for a D20 Test"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Disadvantage",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d20.svg",
+					"activation": {
+						"type": "",
+						"condition": "When a creature rolls a d20 for an attack roll against you"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mage Slayer",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Guard Mind",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you fail an Intelligence, Wisdom, or Charisma saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Medium Armor Master",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.bonus",
+							"mode": "ADD",
+							"value": 1
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mist Walker",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Domain Traveler",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "when you enter the Mists intent on reaching a domain"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"special": "including self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"roll": {
+						"visible": true,
+						"name": "Hours of Travel",
+						"formula": "1d6"
+					}
+				},
+				{
+					"name": "Mist Walk",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "take damage or fail a saving throw to avoid or end the Grappled or Restrained condition"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "@prof"
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "15"
+					}
+				},
+				{
+					"name": "Poisoned Roots",
+					"type": "save",
+					"activation": {
+						"type": "shortRest",
+						"condition": "within 10 miles of where you have Long Rested"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mobile",
+			"source": "PHB",
+			"effects": [
+				{
+					"name": "Movement Speed Increase",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": "+ 10"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Necromancy Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Life Manipulation (Smallest Hit Die)",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "Cast a Necromancy school spell using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@scaling)d(@attributes.hd.smallestFace)"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Life Manipulation (Largest Hit Die)",
+					"type": "heal",
+					"activation": {
+						"type": "special",
+						"condition": "Cast a Necromancy school spell using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "2"
+						},
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@scaling)d(@attributes.hd.largestFace)"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Observant",
+			"source": "PHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.observantFeat",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Otherworldly Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Enchant",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"type": "spell"
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFami",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "otherworldlyFami"
+									},
+									{
+										"foundryId": "otherworldlyFam1"
+									},
+									{
+										"foundryId": "otherworldlyFam2"
+									},
+									{
+										"foundryId": "otherworldlyFam3"
+									},
+									{
+										"foundryId": "otherworldlyFam4"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFami",
+					"name": "Otherworldly Necrotic Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam1"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam1",
+					"name": "Otherworldly Poison Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam2"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam2",
+					"name": "Otherworldly Psychic Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam3"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam3",
+					"name": "Otherworldly Radiant Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam4"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam4",
+					"name": "Otherworldly Thunder Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"disposition": true
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyFam5"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "otherworldlyFami",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					}
+				},
+				{
+					"foundryId": "otherworldlyFam1",
+					"name": "Necrotic Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "necrotic",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam2",
+					"name": "Poison Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "poison",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam3",
+					"name": "Psychic Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "psychic",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam4",
+					"name": "Radiant Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "radiant",
+							"mode": "ADD"
+						}
+					]
+				},
+				{
+					"foundryId": "otherworldlyFam5",
+					"name": "Thunder Resistance",
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"value": "thunder",
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Poisoner",
+			"source": "XPHB",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Create Poison Doses",
+					"type": "utility",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-@prof"
+							}
+						]
+					}
+				},
+				{
+					"name": "Apply Poison",
+					"type": "enchant",
+					"img": "systems/dnd5e/icons/svg/damage/poison.svg",
+					"activation": {
+						"type": "bonus"
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"effects": [
+						{
+							"foundryId": "poisoner",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "poisoner"
+									}
+								]
+							}
+						},
+						{
+							"foundryId": "poisoner1",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "poisoner1"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "poisoner",
+					"name": "Poison Save (Dexterity)",
+					"type": "save",
+					"descriptionChat": "&Reference[poisoned] on failure",
+					"activation": {
+						"type": ""
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"poison"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					}
+				},
+				{
+					"foundryId": "poisoner1",
+					"name": "Poison Save (Intelligence)",
+					"type": "save",
+					"descriptionChat": "&Reference[poisoned] on failure",
+					"activation": {
+						"type": ""
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"poison"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "int"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "poisoner",
+					"name": "Poisoned (Dex)",
+					"type": "enchantment",
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Poisoned"
+						}
+					],
+					"description": "When a creature takes damage from the poisoned item, that creature must succeed on a [[/save ability=con]] saving throw (DC 8 plus the modifier of the ability increased by this feat and your Proficiency Bonus) or take 2d8 Poison damage and have the &Reference[Poisoned] condition until the end of your next turn."
+				},
+				{
+					"foundryId": "poisoner1",
+					"name": "Poisoned (Int)",
+					"type": "enchantment",
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Poisoned"
+						}
+					],
+					"description": "When a creature takes damage from the poisoned item, that creature must succeed on a [[/save ability=con]] saving throw (DC 8 plus the modifier of the ability increased by this feat and your Proficiency Bonus) or take 2d8 Poison damage and have the &Reference[Poisoned] condition until the end of your next turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Polearm Master",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Pole Strike",
+					"type": "attack",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "weapon"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Reactive Strike",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/damage/bludgeoning.svg",
+					"activation": {
+						"type": "reaction"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Portal Jumper",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Portal Step",
+					"type": "teleport",
+					"activation": {
+						"type": "special",
+						"condition": "spending 15 feet of movement"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "space",
+							"count": "1",
+							"special": "unoccupied"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "15"
+					},
+					"teleport": {
+						"units": "ft"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Protection",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Protect",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "When a creature you can see attacks a target other than you within 5 feet of you"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "protection"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "protection",
+					"name": "Protected",
+					"duration": {
+						"turns": 1
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ritual Caster",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Fast Ritual Cast",
+					"type": "utility",
+					"activation": {
+						"type": "special"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Second Skin",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Alter Self (Second Skin)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[alter self|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material",
+							"concentration"
+						],
+						"spellbook": true,
+						"level": 2
+					}
+				},
+				{
+					"name": "Involuntary Change",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "at the start of your turn following experiencing the catalyst"
+					},
+					"duration": {
+						"units": "round",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "secondSkin"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "secondSkin",
+					"name": "Involuntary Change (Stunned)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 1,
+						"units": "rounds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"stunned"
+					],
+					"description": "If you've already expended the use of that feature, you instead have the &Reference[Stunned apply=false] condition until the start of your next turn.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sentinel",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Halted",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "OVERRIDE",
+							"value": 0
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sharp Eye",
+			"source": "RHW",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Expend Use on Success",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you take Advantage on a specific action and succeed"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shield Master",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Shield Bash",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "If you hit a creature with a Melee weapon within 5 feet of you as part of the Attack action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "str"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "shieldMaster"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "shieldMaster",
+					"name": "Shield Bashed",
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Skulker",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Fog of War",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.skills.ste.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"descriptionEntries": [
+						{
+							"type": "entries",
+							"name": "Fog of War",
+							"entries": [
+								"You exploit the distractions of battle, gaining Advantage on any Dexterity (Stealth) check you make as part of the Hide action during combat."
+							]
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Slasher",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Slashed",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": -10
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Speedy",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": 10
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spell Resistant",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Magic Resistant",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "When you would fail a saving throw against a spell or magical effect"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Magic Resistant Bonus",
+						"formula": "1d6"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Spell Subterfuge",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Shrouding Spells",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "After you cast a spell that has a casting time of an action using a spell slot"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Squat Nimbleness",
+			"source": "XGE",
+			"effects": [
+				{
+					"name": "Movement Speed Increase",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": "+ 5"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Survivor",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Steel Yourself",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "You fail a saving throw to avoid or end the Charmed or Frightened condition"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Save Bonus",
+						"formula": "@prof"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Symbiotic Being",
+			"source": "RHW",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Sustained Symbiosis (Smallest HD)",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d4.svg",
+					"activation": {
+						"type": "reaction",
+						"condition": "you fail a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Save Bonus",
+						"formula": "@consumed.hd"
+					}
+				},
+				{
+					"name": "Sustained Symbiosis (Largest HD)",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d12.svg",
+					"activation": {
+						"type": "reaction",
+						"condition": "you fail a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest"
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"formula": "@consumed.hd",
+						"name": "Save Bonus"
+					}
+				},
+				{
+					"name": "Symbiotic Agenda",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "spec",
+						"value": "1",
+						"special": "1d12 hours"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "symbioticBeing"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "symbioticBeing",
+					"name": "Symbiotic Agenda (Charmed)",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 43200,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"statuses": [
+						"charmed"
+					],
+					"description": "You have the Charmed condition for 1d12 hours. While Charmed, you must try to follow the symbiote's commands and further its goals, as determined by the DM. Whenever you take damage, you can repeat this save, ending the effect on a success.",
+					"showIcon": 2
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tavern Brawler",
+			"source": "PHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.tavernBrawlerFeat",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tavern Brawler",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Enhanced Unarmed Strike",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "1d4r1 + @abilities.str.mod"
+								},
+								"number": 1,
+								"denomination": 4,
+								"bonus": "@abilities.str.mod",
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.tavernBrawlerFeat",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Telekinetic",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Telekinetic Shove: Intelligence",
+					"type": "save",
+					"img": "systems/dnd5e/icons/svg/damage/psychic.svg",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "You can see"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "int"
+						}
+					}
+				},
+				{
+					"name": "Telekinetic Shove: Wisdom",
+					"type": "save",
+					"img": "systems/dnd5e/icons/svg/damage/psychic.svg",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "You can see"
+						}
+					},
+					"range": {
+						"value": "30",
+						"units": "ft"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "wis"
+						}
+					}
+				},
+				{
+					"name": "Telekinetic Shove: Charisma",
+					"type": "save",
+					"img": "systems/dnd5e/icons/svg/damage/psychic.svg",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "You can see"
+						}
+					},
+					"range": {
+						"value": "30",
+						"units": "ft"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"calculation": "cha"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Telepathic",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Telepathic Utterance",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/damage/psychic.svg",
+					"activation": {
+						"type": ""
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					}
+				},
+				{
+					"name": "Expend Use",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Touch of Death",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Chill Touch (Death Touch)",
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"spell": {
+						"uuid": "@spell[chill touch|xphb]",
+						"properties": [
+							"vocal",
+							"somatic",
+							"material"
+						],
+						"spellbook": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Pull of the Grave",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.death.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tough",
+			"source": "PHB",
+			"effects": [
+				{
+					"name": "HP Increase",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.hp.bonuses.overall",
+							"mode": "ADD",
+							"value": "+(2 * @details.level)"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tough",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.hp.bonuses.level",
+							"mode": "ADD",
+							"value": 2
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Transmutation Adept",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Magical Augmentation",
+					"type": "utility",
+					"activation": {
+						"type": "special",
+						"condition": "Cast a Transmutation spell using a spell slot"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "transmutationAde"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "transmutationAde",
+					"name": "Magical Augmentation: Speed Increase",
+					"duration": {
+						"units": "seconds",
+						"expiry": "turnEnd"
+					},
+					"description": "On your turn when you cast a spell from the Transmutation school using a spell slot, your Speed increases by a number of feet equal to five times the level of spell slot expended. This increase lasts until the end of the turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Transmuted Anatomy",
+			"source": "AU",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "you fail a Constitution saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"prompt": true,
+						"name": "Save Bonus",
+						"formula": "1d4"
+					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Lengthened Stride",
+					"transfer": true,
+					"duration": {
+						"units": "seconds"
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.bonus",
+							"value": 5,
+							"mode": "ADD"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Unarmed Fighting",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Unarmed Strike (Weapon in Hand)",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"bonus": "@abilities.str.mod",
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Unarmed Strike (Empty Hand)",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"bonus": "@abilities.str.mod",
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Grappled Damage",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "At the start of each of your turns"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Grappled by you"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "War Caster",
+			"source": "PHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"mode": "OVERRIDE",
+							"value": "1"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "War Caster",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Warlike Familiar",
+			"source": "AU",
+			"activities": [
+				{
+					"name": "Intercept Attack",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "A creature within 5 feet of your familiar is hit by an attack roll"
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"count": "1"
+						}
+					},
+					"roll": {
+						"name": "Armor Class Bonus",
+						"formula": "@prof"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Watchers",
+			"source": "RHW",
+			"activities": [
+				{
+					"name": "Heightened Suspicion",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/dice/d4.svg",
+					"activation": {
+						"type": "special",
+						"condition": "whenever you take the Search action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Search Bonus",
+						"formula": "1d4"
+					}
+				},
+				{
+					"name": "Incessant Watchers",
+					"type": "save",
+					"activation": {
+						"type": "special",
+						"condition": "immediately after rolling a 1 on a D20 Test"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "13 + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "watchers"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "watchers",
+					"name": "Paranoia",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"value": 60,
+						"units": "seconds",
+						"expiry": "turnStart"
+					},
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.death.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						},
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"value": -1,
+							"mode": "ADD"
+						}
+					],
+					"descriptionEntries": [
+						"{@i Disadvantage on attack rolls is not automated.}"
+					]
+				}
+			],
+			"migrationVersion": 3
+		}
+	]
+}

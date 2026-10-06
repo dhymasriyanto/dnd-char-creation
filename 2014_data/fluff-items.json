@@ -1,0 +1,7706 @@
+{
+	"_meta": {
+		"internalCopies": [
+			"itemFluff"
+		]
+	},
+	"itemFluff": [
+		{
+			"name": "+1 Fate Dealer's Deck",
+			"source": "BMT",
+			"_copy": {
+				"name": "Fate Dealer's Deck",
+				"source": "BMT"
+			}
+		},
+		{
+			"name": "+2 Fate Dealer's Deck",
+			"source": "BMT",
+			"_copy": {
+				"name": "Fate Dealer's Deck",
+				"source": "BMT"
+			}
+		},
+		{
+			"name": "+3 Fate Dealer's Deck",
+			"source": "BMT",
+			"_copy": {
+				"name": "Fate Dealer's Deck",
+				"source": "BMT"
+			}
+		},
+		{
+			"name": "Adze of Annam",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Adze of Annam.webp"
+					},
+					"credit": "Isabel Gibney",
+					"width": 817,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Akmon, Hammer of Purphoros",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Akmon, Hammer of Purphoros.webp"
+					},
+					"credit": "Yeong-Hao Han",
+					"width": 1000,
+					"height": 949
+				}
+			]
+		},
+		{
+			"name": "Alchemy Jug",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Alchemy Jug.webp"
+					},
+					"width": 778,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Amulet of Health",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Amulet of Health.webp"
+					},
+					"width": 433,
+					"height": 1133
+				}
+			]
+		},
+		{
+			"name": "Amulet of Proof against Detection and Location",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Amulet of Proof against Detection and Location.webp"
+					},
+					"width": 299,
+					"height": 775
+				}
+			]
+		},
+		{
+			"name": "Amulet of the Drunkard",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Amulet of the Drunkard.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 475,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Amulet of the Inferno",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Amulet of the Inferno.webp"
+					},
+					"credit": "Aaron Sims",
+					"width": 706,
+					"height": 399
+				}
+			]
+		},
+		{
+			"name": "Amulet of the Planes",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Amulet of the Planes.webp"
+					},
+					"width": 637,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Animated Shield",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Animated Shield.webp"
+					},
+					"width": 566,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Antigravity Belt",
+			"source": "QftIS",
+			"_copy": {
+				"name": "Technology",
+				"source": "QftIS"
+			}
+		},
+		{
+			"name": "Apparatus of Kwalish",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Apparatus of Kwalish.webp"
+					},
+					"credit": "Aaron Hübrich",
+					"width": 1000,
+					"height": 631
+				}
+			]
+		},
+		{
+			"name": "Armblade",
+			"source": "ERLW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/ERLW/Armblade.webp"
+					},
+					"width": 801,
+					"height": 594
+				}
+			]
+		},
+		{
+			"name": "Armor of Cold Resistance",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Armor of Cold Resistance.webp"
+					},
+					"title": "Armor of resistance (Leather Armor), Armor of invulnerability (Plate Armor)",
+					"credit": "Conceptopolis",
+					"width": 850,
+					"height": 1165
+				}
+			]
+		},
+		{
+			"name": "Armor of Fungal Spores",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Armor of Fungal Spores.webp"
+					},
+					"width": 838,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Armor of Invulnerability",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Armor of Invulnerability.webp"
+					},
+					"width": 732,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Armor of Resistance",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Armor of Resistance.webp"
+					},
+					"width": 776,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Armor of the Fallen",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Armor of the Fallen.webp"
+					},
+					"width": 694,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Arrow of Slaying (*)",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Arrow of Slaying.webp"
+					},
+					"width": 1000,
+					"height": 986
+				}
+			]
+		},
+		{
+			"name": "Atlas of Endless Horizons",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Atlas of Endless Horizons.webp"
+					},
+					"credit": "Andrew Mar",
+					"width": 852,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Axe Beak",
+			"source": "IDRotF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/IDRotF/Axe Beak.webp"
+					},
+					"width": 850,
+					"height": 942
+				}
+			]
+		},
+		{
+			"name": "Axe of the Dwarvish Lords",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Axe of the Dwarvish Lords.webp"
+					},
+					"width": 530,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Azorius Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Azorius Guild Signet.webp"
+					},
+					"credit": "Raoul Vitale",
+					"width": 640,
+					"height": 462
+				}
+			]
+		},
+		{
+			"name": "Azorius Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Azorius Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 620,
+					"height": 453
+				}
+			]
+		},
+		{
+			"name": "Baba Yaga's Mortar and Pestle",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Baba Yaga's Mortar and Pestle.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 800,
+					"height": 1045
+				}
+			]
+		},
+		{
+			"name": "Badge of the Watch",
+			"source": "WDH",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WDH/Badge of the Watch.webp"
+					},
+					"width": 791,
+					"height": 1086
+				}
+			]
+		},
+		{
+			"name": "Bag of Beans",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bag of Beans.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Bag of Devouring",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bag of Devouring.webp"
+					},
+					"width": 585,
+					"height": 877
+				}
+			]
+		},
+		{
+			"name": "Bag of Holding",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bag of Holding.webp"
+					},
+					"width": 560,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Bag of Tricks",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bag of Tricks.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Balance Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/03-balance.webp"
+					},
+					"credit": "Francesca Resta",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Battle Standard of Infernal Power",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Battle Standard of Infernal Power.webp"
+					},
+					"width": 800,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Belt of Dwarvenkind",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Belt of Dwarvenkind.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Belt of Giant Strength",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Belt of Giant Strength.webp"
+					},
+					"width": 604,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Belt of Stone Giant Strength",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Belt of Stone Giant Strength.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Belt of Storm Giant Strength",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Belt of Storm Giant Strength.webp"
+					},
+					"width": 604,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Berserker Axe",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Berserker Axe.webp"
+					},
+					"title": "Berserker axe (Battleaxe)",
+					"width": 541,
+					"height": 900
+				}
+			]
+		},
+		{
+			"name": "Bigby's Beneficent Bracelet",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Bigbys Beneficent Bracelet.webp"
+					},
+					"credit": "Isabel Gibney",
+					"width": 680,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Blackrazor",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Blackrazor.webp"
+					},
+					"width": 794,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Blood Spear",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Blood Spear.webp"
+					},
+					"width": 675,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Book of Exalted Deeds",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Book of Exalted Deeds.webp"
+					},
+					"width": 1000,
+					"height": 811
+				}
+			]
+		},
+		{
+			"name": "Book of Vile Darkness",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Book of Vile Darkness.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 760,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Book of Vile Darkness (Variant)",
+			"source": "KftGV",
+			"_copy": {
+				"name": "Book of Vile Darkness",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Boots of Elvenkind",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Boots of Elvenkind.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 850,
+					"height": 645
+				}
+			]
+		},
+		{
+			"name": "Boots of Speed",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Boots of Speed.webp"
+					},
+					"width": 753,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Boots of Striding and Springing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Boots of Striding and Springing.webp"
+					},
+					"width": 1000,
+					"height": 845
+				}
+			]
+		},
+		{
+			"name": "Boots of the Winterlands",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Boots of the Winterlands.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Boros Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Boros Guild Signet.webp"
+					},
+					"credit": "Mike Sass",
+					"width": 640,
+					"height": 468
+				}
+			]
+		},
+		{
+			"name": "Boros Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Boros Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 640,
+					"height": 468
+				}
+			]
+		},
+		{
+			"name": "Bow of Melodies",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Bow of Melodies.webp"
+					},
+					"width": 593,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Bowl of Commanding Water Elementals",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bowl of Commanding Water Elementals.webp"
+					},
+					"width": 941,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Bracers of Archery",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bracers of Archery.webp"
+					},
+					"width": 850,
+					"height": 822
+				}
+			]
+		},
+		{
+			"name": "Bracers of Defense",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Bracers of Defense.webp"
+					},
+					"width": 721,
+					"height": 753
+				}
+			]
+		},
+		{
+			"name": "Brazier of Commanding Fire Elementals",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Brazier of Commanding Fire Elementals.webp"
+					},
+					"width": 506,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Brooch of Shielding",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Brooch of Shielding.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Broom of Flying",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Broom of Flying.webp"
+					},
+					"width": 724,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Butcher's Bib",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Butcher's Bib.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 520,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Candle of Invocation",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Candle of Invocation.webp"
+					},
+					"width": 299,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Cape of the Mountebank",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cape of the Mountebank.webp"
+					},
+					"width": 659,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cartographer's Map Case",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/cartographers-map-case.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 1164,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cauldron of Rebirth",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Cauldron of Rebirth.webp"
+					},
+					"credit": "Zuzanna Wužyk",
+					"width": 677,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Censer of Controlling Air Elementals",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Censer of Controlling Air Elementals.webp"
+					},
+					"width": 797,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Chime of Exile",
+			"source": "VEoR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/VEoR/Chime of Exile.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 507,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Chime of Opening",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Chime of Opening.webp"
+					},
+					"width": 829,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Circlet of Blasting",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Circlet of Blasting.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cloak of Displacement",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cloak of Displacement.webp"
+					},
+					"width": 619,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cloak of Elvenkind",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cloak of Elvenkind.webp"
+					},
+					"width": 437,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cloak of Invisibility",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cloak of Invisibility.webp"
+					},
+					"width": 685,
+					"height": 685
+				}
+			]
+		},
+		{
+			"name": "Cloak of Many Fashions",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Cloak of Many Fashions.webp"
+					},
+					"credit": "Brian Valeza",
+					"width": 850,
+					"height": 1151
+				}
+			]
+		},
+		{
+			"name": "Cloak of Protection",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cloak of Protection.webp"
+					},
+					"width": 444,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Cloak of the Manta Ray",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cloak of the Manta Ray.webp"
+					},
+					"width": 363,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Coin of Decisionry",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/coin-of-decisionry.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 1218,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Comet Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/12-comet.webp"
+					},
+					"credit": "Vallez Gax",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Conch of Teleportation",
+			"source": "SKT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/SKT/Conch of Teleportation.webp"
+					},
+					"width": 785,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Concussion Grenade",
+			"source": "QftIS",
+			"_copy": {
+				"name": "Technology",
+				"source": "QftIS"
+			}
+		},
+		{
+			"name": "Constantori's Portrait",
+			"source": "KftGV",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/KftGV/Constantoris Portrait.webp"
+					},
+					"credit": "Nikki Dawes",
+					"width": 788,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Copper (cp)",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Copper (cp).webp"
+					},
+					"width": 200,
+					"height": 200
+				}
+			]
+		},
+		{
+			"name": "Crook of Rao",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Crook of Rao.webp"
+					},
+					"credit": "Robson Michel",
+					"width": 582,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Crown of Lies",
+			"source": "VEoR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/VEoR/Crown of Lies.webp"
+					},
+					"credit": "Lauren Walsh",
+					"width": 1000,
+					"height": 919
+				}
+			]
+		},
+		{
+			"name": "Crown of Whirling Comets",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Crown of Whirling Comets.webp"
+					},
+					"width": 1000,
+					"height": 984
+				}
+			]
+		},
+		{
+			"name": "Crystalline Chronicle",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Crystalline Chronicle.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 765,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cube of Force",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cube of Force.webp"
+					},
+					"width": 998,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Cubic Gate",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Cubic Gate.webp"
+					},
+					"width": 1000,
+					"height": 915
+				}
+			]
+		},
+		{
+			"name": "Daern's Instant Fortress",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Daern's Instant Fortress.webp"
+					},
+					"width": 644,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dagger of Venom",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dagger of Venom.webp"
+					},
+					"width": 835,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dancing Sword",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dancing Sword.webp"
+					},
+					"title": "Dancing Sword (Longsword)",
+					"width": 850,
+					"height": 444
+				}
+			]
+		},
+		{
+			"name": "Danoth's Visor",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Danoth's Visor.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 1000,
+					"height": 318
+				}
+			]
+		},
+		{
+			"name": "Danoth's Visor (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Danoth's Visor",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Danoth's Visor (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Danoth's Visor",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Danoth's Visor (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Danoth's Visor",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Daoud's Wondrous Lanthorn",
+			"source": "QftIS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/QftIS/Daouds Wondrous Lanthorn.webp"
+					},
+					"width": 824,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dawnbringer",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/OotA/Dawnbringer.webp"
+					},
+					"width": 674,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Decanter of Endless Water",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Decanter of Endless Water.webp"
+					},
+					"width": 900,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Deck of Dimensions",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Deck of Dimensions.webp"
+					},
+					"width": 695,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Deck of Many More Things",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Deck of Many More Things.webp"
+					},
+					"width": 607,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Deck of Many Things",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Deck of Many Things.webp"
+					},
+					"width": 229,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Deck of Wonder",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Deck of Wonder.webp"
+					},
+					"width": 1000,
+					"height": 668
+				}
+			]
+		},
+		{
+			"name": "Defender",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Defender.webp"
+					},
+					"title": "Defender (Greatsword)",
+					"width": 297,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dekella, Bident of Thassa",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Dekella, Bident of Thassa.webp"
+					},
+					"credit": "Yeong-Hao Han",
+					"width": 1000,
+					"height": 738
+				}
+			]
+		},
+		{
+			"name": "Demon Armor",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Demon Armor.webp"
+					},
+					"title": "Demon Armor (Plate Armor)",
+					"width": 458,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Demon Skin",
+			"source": "DitLCoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DitLCoT/Demon Skin.webp"
+					},
+					"width": 1000,
+					"height": 903
+				}
+			]
+		},
+		{
+			"name": "Demonomicon of Iggwilv",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Demonomicon of Iggwilv.webp"
+					},
+					"credit": "David Sladek",
+					"width": 831,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Devotee's Censer",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Devotee's Censer.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 792,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dimensional Shackles",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dimensional Shackles.webp"
+					},
+					"width": 708,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dimir Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Dimir Guild Signet.webp"
+					},
+					"credit": "Raoul Vitale",
+					"width": 640,
+					"height": 458
+				}
+			]
+		},
+		{
+			"name": "Dimir Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Dimir Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 640,
+					"height": 468
+				}
+			]
+		},
+		{
+			"name": "Docent",
+			"source": "ERLW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "adventure/VEoR/070-04-004.docent.webp"
+					},
+					"title": "A Docent",
+					"credit": "CoupleofKooks",
+					"width": 850,
+					"height": 1338
+				}
+			]
+		},
+		{
+			"name": "Documancy Satchel",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/documancy-satchel.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 934,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Donjon Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/17-donjon.webp"
+					},
+					"credit": "Jim Zaccaria",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Double-Bladed Scimitar",
+			"source": "ERLW",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"The double-bladed scimitar is the signature weapon of Valenar elves. A haft of fine wood supports a long, curving blade on either end. Forged with techniques honed over centuries, these blades are strong, sharp, and remarkably light. Each scimitar is a masterpiece, and as a result the double-bladed scimitar is an expensive weapon (100 gp)\u2014few though ever have the opportunity to purchase one. A Valenar blade in the hands of a non-elf is generally assumed to have been stolen or looted from a fallen foe, and a Valenar elf might feel entitled to demand its return or challenge the bearer to prove they're worthy to wield it."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Draakhorn",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/RoT/Draakhorn.webp"
+					},
+					"width": 1700,
+					"height": 1325
+				}
+			]
+		},
+		{
+			"name": "Dragon Scale Mail",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dragon Scale Mail.webp"
+					},
+					"width": 878,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dragon Slayer",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dragon Slayer.webp"
+					},
+					"title": "Dragon Slayer (Greatsword)",
+					"width": 751,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dragonlance",
+			"source": "FTD",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/FTD/Dragonlance.webp"
+					},
+					"title": "By Paladine's might, a dragonlance is restored",
+					"credit": "Irina Nordsol",
+					"width": 1700,
+					"height": 1123
+				}
+			]
+		},
+		{
+			"name": "Dragonstaff of Ahghairon",
+			"source": "WDH",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WDH/Dragonstaff of Ahghairon.webp"
+					},
+					"width": 440,
+					"height": 600
+				}
+			]
+		},
+		{
+			"name": "Dragontooth Dagger",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/RoT/Dragontooth Dagger.webp"
+					},
+					"width": 1700,
+					"height": 1365
+				}
+			]
+		},
+		{
+			"name": "Dread Helm",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Dread Helm.webp"
+					},
+					"credit": "Daarken",
+					"width": 850,
+					"height": 1254
+				}
+			]
+		},
+		{
+			"name": "Driftglobe",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Driftglobe.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Drown",
+			"source": "PotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PotA/Drown.webp"
+					},
+					"width": 138,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Duskcrusher",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Duskcrusher.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 582,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dust of Disappearance",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dust of Disappearance.webp"
+					},
+					"width": 529,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dust of Sneezing and Choking",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dust of Sneezing and Choking.webp"
+					},
+					"width": 647,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dwarven Plate",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dwarven Plate.webp"
+					},
+					"width": 683,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Dwarven Thrower",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Dwarven Thrower.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Earring of Message",
+			"source": "CRCotN",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CRCotN/Earring of Message.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 608,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Efreeti Bottle",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Efreeti Bottle.webp"
+					},
+					"width": 390,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Efreeti Chain",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Efreeti Chain.webp"
+					},
+					"width": 604,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Electrum (ep)",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Electrum (ep).webp"
+					},
+					"width": 184,
+					"height": 184
+				}
+			]
+		},
+		{
+			"name": "Elemental Gem",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Elemental Gem.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Elven Chain",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Elven Chain.webp"
+					},
+					"width": 821,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ephixis, Bow of Nylea",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Ephixis, Bow of Nylea.webp"
+					},
+					"credit": "Yeong-Hao Han",
+					"width": 1000,
+					"height": 1058
+				}
+			]
+		},
+		{
+			"name": "Euryale Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/22-euryale.webp"
+					},
+					"credit": "Tinnel Lovitt",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Euryale's Aegis",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Euryales Aegis.webp"
+					},
+					"width": 1000,
+					"height": 999
+				}
+			]
+		},
+		{
+			"name": "Eversmoking Bottle",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Eversmoking Bottle.webp"
+					},
+					"width": 565,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Eye and Hand of Vecna",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Eye and Hand of Vecna.webp"
+					},
+					"width": 654,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Eye of Vecna",
+			"source": "DMG",
+			"_copy": {
+				"name": "Eye and Hand of Vecna",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Eyes of Charming",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Eyes of Charming.webp"
+					},
+					"width": 1000,
+					"height": 860
+				}
+			]
+		},
+		{
+			"name": "Eyes of the Eagle",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Eyes of the Eagle.webp"
+					},
+					"width": 850,
+					"height": 725
+				}
+			]
+		},
+		{
+			"name": "Far Realm Shard",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Far Realm Shard.webp"
+					},
+					"credit": "Christopher Burdett",
+					"width": 547,
+					"height": 926
+				}
+			]
+		},
+		{
+			"name": "Fargab",
+			"source": "DSotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DSotDQ/Fargab.webp"
+					},
+					"credit": "Kent Davis",
+					"width": 850,
+					"height": 986
+				}
+			]
+		},
+		{
+			"name": "Fate Dealer's Deck",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Fate Dealers Deck.webp"
+					},
+					"width": 729,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Fates Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/08-fates.webp"
+					},
+					"credit": "Tinnel Lovitt",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Feywild Shard",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Feywild Shard.webp"
+					},
+					"credit": "Christopher Burdett",
+					"width": 507,
+					"height": 955
+				}
+			]
+		},
+		{
+			"name": "Feywild Trinket",
+			"source": "WBtW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Feywild Trinket.webp"
+					},
+					"credit": "Claudio Pozas",
+					"width": 850,
+					"height": 1085
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 1700,
+					"height": 904
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power, Ebony Fly",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power (Ebony Fly).webp"
+					},
+					"width": 1000,
+					"height": 792
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power, Golden Lions",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power (Golden Lions).webp"
+					},
+					"width": 1000,
+					"height": 663
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power, Ivory Goats",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power (Ivory Goats).webp"
+					},
+					"width": 511,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power, Marble Elephant",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power (Marble Elephant).webp"
+					},
+					"width": 886,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power, Obsidian Steed",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power (Obsidian Steed).webp"
+					},
+					"width": 880,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Figurine of Wondrous Power, Serpentine Owl",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Figurine of Wondrous Power (Serpentine Owl).webp"
+					},
+					"width": 613,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Fish Suit",
+			"source": "AAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AAG/Fish Suit.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 850,
+					"height": 924
+				}
+			]
+		},
+		{
+			"name": "Flame Tongue",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Flame Tongue.webp"
+					},
+					"title": "Flame Tongue (Longsword)",
+					"width": 692,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Flames Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/20-flames.webp"
+					},
+					"credit": "Harry Conway",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Flying Chariot",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Flying Chariot.webp"
+					},
+					"credit": "Ryan Alexander Lee",
+					"width": 1500,
+					"height": 1098
+				}
+			]
+		},
+		{
+			"name": "Folding Boat",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Folding Boat.webp"
+					},
+					"width": 850,
+					"height": 406
+				}
+			]
+		},
+		{
+			"name": "Fool Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/01-fool.webp"
+					},
+					"credit": "Harry Conway",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Frost Brand",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Frost Brand.webp"
+					},
+					"title": "Frost Brand (Scimitar)",
+					"width": 541,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Fulminating Treatise",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Fulminating Treatise.webp"
+					},
+					"credit": "Kieran Yanner",
+					"width": 898,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Gauntlets of Ogre Power",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Gauntlets of Ogre Power.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 850,
+					"height": 742
+				}
+			]
+		},
+		{
+			"name": "Gem Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/05-gem.webp"
+					},
+					"credit": "Tinnel Lovitt",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Gem of Brightness",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Gem of Brightness.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Gem of Seeing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Gem of Seeing.webp"
+					},
+					"width": 302,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ghost Lantern",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/ToA/Ghost Lantern.webp"
+					},
+					"width": 615,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Giant Slayer",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Giant Slayer.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Gloves of Missile Snaring",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Gloves of Missile Snaring.webp"
+					},
+					"width": 978,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Goggles of Night",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Goggles of Night.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Gold (gp)",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Gold (gp).webp"
+					},
+					"width": 212,
+					"height": 212
+				}
+			]
+		},
+		{
+			"name": "Golgari Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Golgari Guild Signet.webp"
+					},
+					"credit": "Greg Hildebrandt",
+					"width": 640,
+					"height": 461
+				}
+			]
+		},
+		{
+			"name": "Golgari Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Golgari Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 315,
+					"height": 230
+				}
+			]
+		},
+		{
+			"name": "Greater Silver Sword",
+			"source": "MTF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MTF/Greater Silver Sword.webp"
+					},
+					"width": 1000,
+					"height": 1003
+				}
+			]
+		},
+		{
+			"name": "Grimoire Infinitus",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Grimoire Infinitus.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 1000,
+					"height": 948
+				}
+			]
+		},
+		{
+			"name": "Grimoire Infinitus (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Grimoire Infinitus",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Grimoire Infinitus (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Grimoire Infinitus",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Grimoire Infinitus (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Grimoire Infinitus",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Grovelthrash",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Grovelthrash.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 475,
+					"height": 997
+				}
+			]
+		},
+		{
+			"name": "Grovelthrash (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Grovelthrash",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Grovelthrash (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Grovelthrash",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Grovelthrash (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Grovelthrash",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Gruul Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Gruul Guild Signet.webp"
+					},
+					"credit": "Efrem Palacios",
+					"width": 640,
+					"height": 498
+				}
+			]
+		},
+		{
+			"name": "Gruul Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Gruul Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 640,
+					"height": 468
+				}
+			]
+		},
+		{
+			"name": "Gulthias Staff",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Gulthias Staff.webp"
+					},
+					"width": 675,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Hammer of Runic Focus",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Hammer of Runic Focus.webp"
+					},
+					"width": 573,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Hammer of Thunderbolts",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Hammer of Thunderbolts.webp"
+					},
+					"width": 640,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Hammock of Worlds",
+			"source": "JttRC",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/JttRC/Hammock of Worlds.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 896,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Hand of Vecna",
+			"source": "DMG",
+			"_copy": {
+				"name": "Eye and Hand of Vecna",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Headband of Intellect",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Headband of Intellect.webp"
+					},
+					"width": 495,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Healer's Kit",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Healer's Kit.webp"
+					},
+					"width": 260,
+					"height": 221
+				}
+			]
+		},
+		{
+			"name": "Hellfire Weapon",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Hellfire Weapon.webp"
+					},
+					"width": 1500,
+					"height": 337
+				}
+			]
+		},
+		{
+			"name": "Helm of Brilliance",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Helm of Brilliance.webp"
+					},
+					"width": 795,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Helm of Comprehending Languages",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Helm of Comprehending Languages.webp"
+					},
+					"width": 600,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Helm of Devil Command",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Helm of Devil Command.webp"
+					},
+					"width": 878,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Helm of Disjunction",
+			"source": "HAT-LMI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/HAT-LMI/Helm of Disjunction.webp"
+					},
+					"width": 722,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Helm of Perfect Potential",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Helm of Perfect Potential.webp"
+					},
+					"credit": "Isabel Gibney",
+					"width": 680,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Helm of Telepathy",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Helm of Telepathy.webp"
+					},
+					"width": 867,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Helm of Teleportation",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Helm of Teleportation.webp"
+					},
+					"width": 755,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Heward's Handy Haversack",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Heward's Handy Haversack.webp"
+					},
+					"width": 771,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Hither-Thither Staff",
+			"source": "HAT-LMI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/HAT-LMI/Hither-Thither Staff.webp"
+					},
+					"width": 758,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Holy Avenger",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Holy Avenger.webp"
+					},
+					"title": "Holy Avenger (Greatsword)",
+					"width": 624,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Holy Symbol of Ravenkind",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Holy Symbol of Ravenkind.webp"
+					},
+					"width": 767,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Hoopak",
+			"source": "DSotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DSotDQ/Hoopak.webp"
+					},
+					"credit": "Crystal Sully",
+					"width": 850,
+					"height": 1164
+				}
+			]
+		},
+		{
+			"name": "Horn of Beckoning Death",
+			"source": "HAT-LMI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/HAT-LMI/Horn of Beckoning Death.webp"
+					},
+					"width": 860,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Horn of Blasting",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Horn of Blasting.webp"
+					},
+					"width": 859,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Horn of Valhalla",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Horn of Valhalla.webp"
+					},
+					"width": 1000,
+					"height": 797
+				}
+			]
+		},
+		{
+			"name": "Icewind Dale Trinket",
+			"source": "IDRotF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/IDRotF/Icewind Dale Trinket.webp"
+					},
+					"width": 1700,
+					"height": 1075
+				}
+			]
+		},
+		{
+			"name": "Icon of Ravenloft",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Icon of Ravenloft.webp"
+					},
+					"width": 601,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Iggwilv's Cauldron",
+			"source": "WBtW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Iggwilvs Cauldron.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 850,
+					"height": 1053
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Iggwilvs Cauldron (Iron).webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 850,
+					"height": 1053
+				}
+			]
+		},
+		{
+			"name": "Iggwilv's Horn",
+			"source": "DitLCoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DitLCoT/Iggwilvs Horn.webp"
+					},
+					"width": 1000,
+					"height": 747
+				}
+			]
+		},
+		{
+			"name": "Illusionist's Bracers",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Illusionist's Bracers.webp"
+					},
+					"credit": "Svetlin Velinov",
+					"width": 620,
+					"height": 400
+				}
+			]
+		},
+		{
+			"name": "Immovable Rod",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Immovable Rod.webp"
+					},
+					"width": 850,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Infiltrator's Key",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Infiltrator's Key.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 885,
+					"height": 834
+				}
+			]
+		},
+		{
+			"name": "Infiltrator's Key (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Infiltrator's Key",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Infiltrator's Key (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Infiltrator's Key",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Infiltrator's Key (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Infiltrator's Key",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Instrument of the Bards, Anstruth Harp",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Anstruth Harp.webp"
+					},
+					"width": 514,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Instrument of the Bards, Canaith Mandolin",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Canaith Mandolin.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 474,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Instrument of the Bards, Cli Lyre",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Cli Lyre.webp"
+					},
+					"width": 525,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Instrument of the Bards, Doss Lute",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Doss Lute.webp"
+					},
+					"width": 1000,
+					"height": 586
+				}
+			]
+		},
+		{
+			"name": "Instrument of the Bards, Fochlucan Bandore",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Fochlucan Bandore.webp"
+					},
+					"width": 468,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Instrument of the Bards, Mac-Fuirmidh Cittern",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Mac-Fuirmidh Cittern.webp"
+					},
+					"width": 671,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Instrument of the Bards, Ollamh Harp",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Instrument of the Bards, Ollamh Harp.webp"
+					},
+					"width": 687,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ioun Stone",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ioun Stone.webp"
+					},
+					"width": 1700,
+					"height": 627
+				}
+			]
+		},
+		{
+			"name": "Ioun Stone, Absorption",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Agility",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Awareness",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Fortitude",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Greater Absorption",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Insight",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Intellect",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Leadership",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Mastery",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Protection",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Regeneration",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Reserve",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Strength",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Ioun Stone, Sustenance",
+			"source": "DMG",
+			"_copy": {
+				"name": "Ioun Stone",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Iron Bands of Bilarro",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Iron Bands of Bilarro.webp"
+					},
+					"width": 988,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Iron Flask",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Iron Flask.webp"
+					},
+					"width": 931,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ironfang",
+			"source": "PotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PotA/Ironfang.webp"
+					},
+					"width": 463,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Izzet Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Izzet Guild Signet.webp"
+					},
+					"credit": "Raoul Vitale",
+					"width": 640,
+					"height": 461
+				}
+			]
+		},
+		{
+			"name": "Izzet Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Izzet Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 620,
+					"height": 453
+				}
+			]
+		},
+		{
+			"name": "Javelin of Lightning",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Javelin of Lightning.webp"
+					},
+					"width": 1000,
+					"height": 968
+				}
+			]
+		},
+		{
+			"name": "Jester Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/14-jester.webp"
+					},
+					"credit": "Harry Conway",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Jester's Mask",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Jesters Mask.webp"
+					},
+					"width": 501,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Jewel of Three Prayers",
+			"source": "CRCotN",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CRCotN/Jewel of Three Prayers.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 1750,
+					"height": 1110
+				}
+			]
+		},
+		{
+			"name": "Jewel of Three Prayers (Awakened)",
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Jewel of Three Prayers",
+				"source": "CRCotN"
+			}
+		},
+		{
+			"name": "Jewel of Three Prayers (Dormant)",
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Jewel of Three Prayers",
+				"source": "CRCotN"
+			}
+		},
+		{
+			"name": "Jewel of Three Prayers (Exalted)",
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Jewel of Three Prayers",
+				"source": "CRCotN"
+			}
+		},
+		{
+			"name": "Kagonesti Forest Shroud",
+			"source": "DSotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DSotDQ/Kagonesti Forest Shroud.webp"
+					},
+					"credit": "Caio E Santos",
+					"width": 850,
+					"height": 1020
+				}
+			]
+		},
+		{
+			"name": "Keoghtom's Ointment",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Keoghtom's Ointment.webp"
+					},
+					"width": 1000,
+					"height": 888
+				}
+			]
+		},
+		{
+			"name": "Key Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/02-key.webp"
+					},
+					"credit": "Tinnel Lovitt",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Khrusor, Spear of Heliod",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Khrusor, Spear of Heliod.webp"
+					},
+					"credit": "Yeong-Hao Han",
+					"width": 1000,
+					"height": 800
+				}
+			]
+		},
+		{
+			"name": "Knight Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/09-knight.webp"
+					},
+					"credit": "Vallez Gax",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Lantern of Revealing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Lantern of Revealing.webp"
+					},
+					"width": 611,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Lash of Shadows",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Lash of Shadows.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 779,
+					"height": 869
+				}
+			]
+		},
+		{
+			"name": "Lash of Shadows (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Lash of Shadows",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Lash of Shadows (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Lash of Shadows",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Lash of Shadows (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Lash of Shadows",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Lesser Hammock of Worlds",
+			"source": "JttRC",
+			"_copy": {
+				"name": "Hammock of Worlds",
+				"source": "JttRC"
+			}
+		},
+		{
+			"name": "Living Loot Satchel",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/living-loot-satchel.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 904,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Lord's Ensemble",
+			"source": "WDH",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WDH/Lord's Ensemble.webp"
+					},
+					"width": 791,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Luba's Tarokka of Souls",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Luba's Tarokka of Souls.webp"
+					},
+					"credit": "Claudio Pozas",
+					"width": 955,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Luck Blade",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Luck Blade.webp"
+					},
+					"title": "Luck Blade (Shortsword)",
+					"width": 767,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Luminous War Pick",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Luminous War Pick.webp"
+					},
+					"width": 525,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Luxon Beacon",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Luxon Beacon.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 1000,
+					"height": 803
+				}
+			]
+		},
+		{
+			"name": "Mace of Disruption",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Mace of Disruption.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Mace of Smiting",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Mace of Smiting.webp"
+					},
+					"width": 674,
+					"height": 1022
+				}
+			]
+		},
+		{
+			"name": "Mace of Terror",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Mace of Terror.webp"
+					},
+					"width": 576,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Mace of the Black Crown",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Mace of the Black Crown.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 230,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Mace of the Black Crown (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Mace of the Black Crown",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Mace of the Black Crown (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Mace of the Black Crown",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Mace of the Black Crown (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Mace of the Black Crown",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Mantle of Spell Resistance",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Mantle of Spell Resistance.webp"
+					},
+					"width": 850,
+					"height": 826
+				}
+			]
+		},
+		{
+			"name": "Manual of Bodily Health",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Bodily Health.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Manual of Clay Golems",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Clay Golems.webp"
+					},
+					"width": 789,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Manual of Flesh Golems",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Flesh Golems.webp"
+					},
+					"width": 850,
+					"height": 471
+				}
+			]
+		},
+		{
+			"name": "Manual of Golems",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Golems.webp"
+					},
+					"width": 850,
+					"height": 618
+				}
+			]
+		},
+		{
+			"name": "Manual of Iron Golems",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Iron Golems.webp"
+					},
+					"width": 850,
+					"height": 535
+				}
+			]
+		},
+		{
+			"name": "Manual of Quickness of Action",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Quickness of Action.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Manual of Stone Golems",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Manual of Stone Golems.webp"
+					},
+					"width": 850,
+					"height": 618
+				}
+			]
+		},
+		{
+			"name": "Mask of the Beast",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/ToA/Mask of the Beast.webp"
+					},
+					"width": 827,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Mask of the Dragon Queen",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/RoT/Mask of the Dragon Queen.webp"
+					},
+					"width": 850,
+					"height": 1681
+				}
+			]
+		},
+		{
+			"name": "Mastix, Whip of Erebos",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Mastix, Whip of Erebos.webp"
+					},
+					"credit": "Yeong-Hao Han",
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Matalotok",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Matalotok.webp"
+					},
+					"width": 903,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Medal of the Maze",
+			"source": "CRCotN",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CRCotN/Medal of the Maze.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 695,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Medallion of Thoughts",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Medallion of Thoughts.webp"
+					},
+					"width": 430,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Mighty Servant of Leuk-o",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Mighty Servant of Leuk-o.webp"
+					},
+					"credit": "David Sladek",
+					"width": 915,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Mimir",
+			"source": "SatO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/SatO/Mimir.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 772,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Mind Crystal",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Mind Crystal.webp"
+					},
+					"width": 1000,
+					"height": 542
+				}
+			]
+		},
+		{
+			"name": "Mind Crystal (Careful)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Distant)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Empowered)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Extended)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Heightened)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Quickened)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Subtle)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mindguard Crown",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Mindguard Crown.webp"
+					},
+					"width": 1000,
+					"height": 819
+				}
+			]
+		},
+		{
+			"name": "Mirror of Life Trapping",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Mirror of Life Trapping.webp"
+					},
+					"width": 446,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Mizzium Apparatus",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Mizzium Apparatus.webp"
+					},
+					"credit": "Terese Nielsen",
+					"width": 315,
+					"height": 223
+				}
+			]
+		},
+		{
+			"name": "Moodmark Paint",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Moodmark Paint.webp"
+					},
+					"credit": "Scott Murphy",
+					"width": 315,
+					"height": 230
+				}
+			]
+		},
+		{
+			"name": "Moon Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/11-moon.webp"
+					},
+					"credit": "Vallez Gax",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Moonblade",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Moonblade.webp"
+					},
+					"title": "Moonblade (Longsword)",
+					"width": 1000,
+					"height": 517
+				}
+			]
+		},
+		{
+			"name": "Mudslick Tower",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Mudslick Tower.webp"
+					},
+					"width": 779,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Narycrash",
+			"source": "DSotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DSotDQ/Narycrash.webp"
+					},
+					"credit": "Kent Davis",
+					"width": 850,
+					"height": 936
+				}
+			]
+		},
+		{
+			"name": "Nature's Mantle",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Nature's Mantle.webp"
+					},
+					"credit": "Brian Valeza",
+					"width": 698,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Necklace of Adaptation",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Necklace of Adaptation.webp"
+					},
+					"width": 624,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Necklace of Fireballs",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Necklace of Fireballs.webp"
+					},
+					"width": 630,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Necklace of Prayer Beads",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Necklace of Prayer Beads.webp"
+					},
+					"width": 731,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Needler Pistol",
+			"source": "QftIS",
+			"_copy": {
+				"name": "Technology",
+				"source": "QftIS"
+			}
+		},
+		{
+			"name": "Nepenthe",
+			"source": "VRGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/VRGR/Nepenthe.webp"
+					},
+					"width": 639,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Nine Lives Stealer",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Nine Lives Stealer.webp"
+					},
+					"title": "Nine Lives Stealer (Greatsword)",
+					"width": 1700,
+					"height": 394
+				}
+			]
+		},
+		{
+			"name": "Nolzur's Marvelous Pigments",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Nolzur's Marvelous Pigments.webp"
+					},
+					"width": 1000,
+					"height": 930
+				}
+			]
+		},
+		{
+			"name": "Oathbow",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Oathbow.webp"
+					},
+					"width": 1000,
+					"height": 999
+				}
+			]
+		},
+		{
+			"name": "Occultant Abacus",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/occultant-abacus.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 858,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Orb of Direction",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Orb of Direction.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 850,
+					"height": 1081
+				}
+			]
+		},
+		{
+			"name": "Orb of Dragonkind",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Orb of Dragonkind.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Orcus Figurine",
+			"source": "CM",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CM/Orcus Figurine.webp"
+					},
+					"credit": "Christopher Burdett",
+					"width": 850,
+					"height": 1544
+				}
+			]
+		},
+		{
+			"name": "Ornithopter of Flying",
+			"source": "WBtW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Ornithopter of Flying.webp"
+					},
+					"credit": "Matt Stewart",
+					"width": 850,
+					"height": 1133
+				}
+			]
+		},
+		{
+			"name": "Orrery of the Wanderer",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/Orrery of the Wanderer.webp"
+					},
+					"credit": "Nicholas Kay",
+					"width": 792,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Orzhov Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Orzhov Guild Signet.webp"
+					},
+					"credit": "Martina Pilcerova",
+					"width": 640,
+					"height": 461
+				}
+			]
+		},
+		{
+			"name": "Orzhov Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Orzhov Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 600,
+					"height": 439
+				}
+			]
+		},
+		{
+			"name": "Paper Bird",
+			"source": "WDH",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WDH/Paper Bird.webp"
+					},
+					"width": 791,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Paralysis Pistol",
+			"source": "QftIS",
+			"_copy": {
+				"name": "Technology",
+				"source": "QftIS"
+			}
+		},
+		{
+			"name": "Pariah's Shield",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Pariah's Shield.webp"
+					},
+					"credit": "Doug Chaffee",
+					"width": 417,
+					"height": 305
+				}
+			]
+		},
+		{
+			"name": "Peregrine Mask",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Peregrine Mask.webp"
+					},
+					"credit": "Edward P. Beard, Jr.",
+					"width": 616,
+					"height": 452
+				}
+			]
+		},
+		{
+			"name": "Periapt of Health",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Periapt of Health.webp"
+					},
+					"width": 368,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Periapt of Wound Closure",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Periapt of Wound Closure.webp"
+					},
+					"width": 686,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Pipe of Smoke Monsters",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Pipe of Smoke Monsters.webp"
+					},
+					"credit": "David René Christensen",
+					"width": 850,
+					"height": 964
+				}
+			]
+		},
+		{
+			"name": "Pipes of Haunting",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Pipes of Haunting.webp"
+					},
+					"width": 824,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Pipes of the Sewers",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Pipes of the Sewers.webp"
+					},
+					"width": 1000,
+					"height": 887
+				}
+			]
+		},
+		{
+			"name": "Piwafwi (Cloak of Elvenkind)",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/OotA/Piwafwi (Cloak of Elvenkind).webp"
+					},
+					"width": 700,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Platinum (pp)",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Platinum (pp).webp"
+					},
+					"width": 209,
+					"height": 209
+				}
+			]
+		},
+		{
+			"name": "Pole of Collapsing",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Pole of Collapsing.webp"
+					},
+					"credit": "Paul Scott Canavan",
+					"width": 850,
+					"height": 2044
+				}
+			]
+		},
+		{
+			"name": "Portal Compass",
+			"source": "SatO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/SatO/Portal Compass.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 782,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Potion of Polychromy",
+			"source": "DitLCoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DitLCoT/Potion of Polychromy.webp"
+					},
+					"width": 428,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Potion of Water Breathing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Potion of Water Breathing.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 539,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Prehistoric Figurines of Wondrous Power.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 1000,
+					"height": 634
+				}
+			]
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Carnelian Triceratops",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Jasper Tyrannosaurus Rex",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Kyanite Pteranodon",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prosthetic Limb",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Prosthetic Limb.webp"
+					},
+					"credit": "Ben Wootten",
+					"width": 674,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Psi Crystal",
+			"source": "IDRotF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/IDRotF/Psi Crystal.webp"
+					},
+					"width": 816,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Puzzle Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/04-puzzle.webp"
+					},
+					"credit": "Tinnel Lovitt",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Pyroconverger",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Pyroconverger.webp"
+					},
+					"credit": "Jack Wang",
+					"width": 620,
+					"height": 400
+				}
+			]
+		},
+		{
+			"name": "Pyxis of Pandemonium",
+			"source": "MOT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/MOT/Pyxis of Pandemonium.webp"
+					},
+					"credit": "David Palumbo",
+					"width": 1500,
+					"height": 1081
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaal's Feather Token.webp"
+					},
+					"title": "Quaal's Feather Tokens (Whip, Anchor, Bird, Swan Boat, Fan, Tree)",
+					"credit": "Conceptopolis",
+					"width": 2024,
+					"height": 966
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token, Anchor",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaals Feather Token (Anchor).webp"
+					},
+					"width": 971,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token, Bird",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaals Feather Token (Bird).webp"
+					},
+					"width": 904,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token, Fan",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaals Feather Token (Fan).webp"
+					},
+					"width": 953,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token, Swan Boat",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaals Feather Token (Swan boat).webp"
+					},
+					"width": 1000,
+					"height": 911
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token, Tree",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaals Feather Token (Tree).webp"
+					},
+					"width": 576,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Quaal's Feather Token, Whip",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quaals Feather Token (Whip).webp"
+					},
+					"width": 587,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Quiver of Ehlonna",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Quiver of Ehlonna.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 889,
+					"height": 1700
+				}
+			]
+		},
+		{
+			"name": "Rakdos Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Rakdos Guild Signet.webp"
+					},
+					"credit": "Martina Pilcerova",
+					"width": 640,
+					"height": 448
+				}
+			]
+		},
+		{
+			"name": "Rakdos Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Rakdos Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 620,
+					"height": 453
+				}
+			]
+		},
+		{
+			"name": "Rakdos Riteknife",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Rakdos Riteknife.webp"
+					},
+					"credit": "Jim Nelson",
+					"width": 640,
+					"height": 466
+				}
+			]
+		},
+		{
+			"name": "Ranseur of Torture",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Ranseur of Torture.webp"
+					},
+					"credit": "Aaron Sims",
+					"width": 1568,
+					"height": 450
+				}
+			]
+		},
+		{
+			"name": "Red Wizard Blade",
+			"source": "HAT-LMI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/HAT-LMI/Red Wizard Blade.webp"
+					},
+					"width": 700,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Air Elemental Command",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Air Elemental Command.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Ring of Animal Influence",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Animal Influence.webp"
+					},
+					"width": 1000,
+					"height": 521
+				}
+			]
+		},
+		{
+			"name": "Ring of Djinni Summoning",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Djinni Summoning.webp"
+					},
+					"width": 1000,
+					"height": 701
+				}
+			]
+		},
+		{
+			"name": "Ring of Evasion",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Evasion.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Feather Falling",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Feather Falling.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Ring of Free Action",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Free Action.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Invisibility",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Invisibility.webp"
+					},
+					"width": 757,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Mind Shielding",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Mind Shielding.webp"
+					},
+					"width": 660,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Obscuring",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Ring of Obscuring.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 586,
+					"height": 672
+				}
+			]
+		},
+		{
+			"name": "Ring of Protection",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Protection.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 490,
+					"height": 600
+				}
+			]
+		},
+		{
+			"name": "Ring of Red Fury",
+			"source": "CRCotN",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CRCotN/Ring of Red Fury.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 250,
+					"height": 249
+				}
+			]
+		},
+		{
+			"name": "Ring of Regeneration",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Regeneration.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Ring of Resistance",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Resistance.webp"
+					},
+					"width": 832,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Ring of Shooting Stars",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Shooting Stars.webp"
+					},
+					"width": 997,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Spell Storing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Spell Storing.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Ring of Spell Turning",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Spell Turning.webp"
+					},
+					"width": 857,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Telekinesis",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Telekinesis.webp"
+					},
+					"width": 686,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of the Orator",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Ring of the Orator.webp"
+					},
+					"width": 1000,
+					"height": 790
+				}
+			]
+		},
+		{
+			"name": "Ring of the Ram",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of the Ram.webp"
+					},
+					"width": 964,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Three Wishes",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Three Wishes.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Ring of Warmth",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Warmth.webp"
+					},
+					"width": 850,
+					"height": 1179
+				}
+			]
+		},
+		{
+			"name": "Ring of Water Walking",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of Water Walking.webp"
+					},
+					"width": 836,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ring of Winter",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/ToA/Ring of Winter.webp"
+					},
+					"width": 1000,
+					"height": 943
+				}
+			]
+		},
+		{
+			"name": "Ring of X-ray Vision",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Ring of X-ray Vision.webp"
+					},
+					"width": 1000,
+					"height": 992
+				}
+			]
+		},
+		{
+			"name": "Robe of Eyes",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Robe of Eyes.webp"
+					},
+					"width": 414,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Robe of Stars",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Robe of Stars.webp"
+					},
+					"width": 449,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Robe of the Archmagi",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Robe of the Archmagi.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Robe of Useful Items",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Robe of Useful Items.webp"
+					},
+					"width": 668,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Robot Controller",
+			"source": "QftIS",
+			"_copy": {
+				"name": "Technology",
+				"source": "QftIS"
+			}
+		},
+		{
+			"name": "Rod of Absorption",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Rod of Absorption.webp"
+					},
+					"width": 850,
+					"height": 501
+				}
+			]
+		},
+		{
+			"name": "Rod of Lordly Might",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Rod of Lordly Might.webp"
+					},
+					"width": 592,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Rod of Resurrection",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Rod of Resurrection.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Rod of Rulership",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Rod of Rulership.webp"
+					},
+					"width": 607,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Rod of Seven Parts",
+			"source": "VEoR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/VEoR/Rod of Seven Parts.webp"
+					},
+					"credit": "CoupleofKooks",
+					"width": 315,
+					"height": 1000
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/VEoR/Rod of Seven Parts Piece.webp"
+					},
+					"title": "A piece of the Rod of Seven Parts",
+					"credit": "CoupleofKooks",
+					"width": 850,
+					"height": 1151
+				}
+			]
+		},
+		{
+			"name": "Rogue Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/06-rogue.webp"
+					},
+					"credit": "Harry Conway",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Rope of Entanglement",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Rope of Entanglement.webp"
+					},
+					"width": 743,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Ruby Rod of Asmodeus",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Ruby Rod of Asmodeus and Scourge of Shadow.webp"
+					},
+					"title": "Scourge of Shadow (left) and Ruby Rod of Asmodeus (right)",
+					"credit": "Aaron Sims",
+					"width": 943,
+					"height": 1211
+				}
+			]
+		},
+		{
+			"name": "Ruidium Shield",
+			"source": "CRCotN",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CRCotN/Ruidium Shield.webp"
+					},
+					"credit": "CoupleOfKooks",
+					"width": 721,
+					"height": 1132
+				}
+			]
+		},
+		{
+			"name": "Ruidium Weapon",
+			"source": "CRCotN",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CRCotN/Ruidium Weapon.webp"
+					},
+					"title": "Ruidium Battleaxe",
+					"credit": "CoupleOfKooks",
+					"width": 611,
+					"height": 1132
+				}
+			]
+		},
+		{
+			"name": "Ruin Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/16-ruin.webp"
+					},
+					"credit": "Andrea Sipl",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Ruin's Wake",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Ruin's Wake.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 1700,
+					"height": 103
+				}
+			]
+		},
+		{
+			"name": "Ruin's Wake (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Ruin's Wake",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Ruin's Wake (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Ruin's Wake",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Ruin's Wake (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Ruin's Wake",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Sage Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/07-sage.webp"
+					},
+					"credit": "Joanna Barnum",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Saint Markovia's Thighbone",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Saint Markovia's Thighbone.webp"
+					},
+					"width": 741,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Scarab of Protection",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Scarab of Protection.webp"
+					},
+					"width": 719,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Scourge of Shadow",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Ruby Rod of Asmodeus and Scourge of Shadow.webp"
+					},
+					"title": "Scourge of Shadow (left) and Ruby Rod of Asmodeus (right)",
+					"credit": "Aaron Sims",
+					"width": 943,
+					"height": 1211
+				}
+			]
+		},
+		{
+			"name": "Selesnya Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Selesnya Guild Signet.webp"
+					},
+					"credit": "Raoul Vitale",
+					"width": 640,
+					"height": 459
+				}
+			]
+		},
+		{
+			"name": "Selesnya Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Selesnya Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 620,
+					"height": 453
+				}
+			]
+		},
+		{
+			"name": "Sending Stone",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/sending-stone.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 916,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sending Stones",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Sending Stones.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Shadowfell Shard",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Shadowfell Shard.webp"
+					},
+					"credit": "Christopher Burdett",
+					"width": 494,
+					"height": 918
+				}
+			]
+		},
+		{
+			"name": "Shard of Xeluan",
+			"source": "KftGV",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/KftGV/Shard of Xeluan.webp"
+					},
+					"credit": "Nikki Dawes",
+					"width": 730,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Shard Solitaire",
+			"source": "KftGV",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/KftGV/Shard Solitaire.webp"
+					},
+					"credit": "Nikki Dawes",
+					"width": 714,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Shard Solitaire (Black Sapphire)",
+			"source": "KftGV",
+			"_copy": {
+				"name": "Shard Solitaire",
+				"source": "KftGV"
+			}
+		},
+		{
+			"name": "Shard Solitaire (Diamond)",
+			"source": "KftGV",
+			"_copy": {
+				"name": "Shard Solitaire",
+				"source": "KftGV"
+			}
+		},
+		{
+			"name": "Shard Solitaire (Jacinth)",
+			"source": "KftGV",
+			"_copy": {
+				"name": "Shard Solitaire",
+				"source": "KftGV"
+			}
+		},
+		{
+			"name": "Shard Solitaire (Rainbow Pearl)",
+			"source": "KftGV",
+			"_copy": {
+				"name": "Shard Solitaire",
+				"source": "KftGV"
+			}
+		},
+		{
+			"name": "Shard Solitaire (Ruby)",
+			"source": "KftGV",
+			"_copy": {
+				"name": "Shard Solitaire",
+				"source": "KftGV"
+			}
+		},
+		{
+			"name": "Shield Guardian Amulet",
+			"source": "IDRotF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/IDRotF/Shield Guardian Amulet.webp"
+					},
+					"width": 850,
+					"height": 1107
+				}
+			]
+		},
+		{
+			"name": "Shield of Missile Attraction",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Shield of Missile Attraction.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Shield of the Hidden Lord",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Shield of the Hidden Lord.webp"
+					},
+					"width": 800,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Shield of the Tortoise",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Shield of the Tortoise.webp"
+					},
+					"width": 799,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Shrieking Greaves",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Shrieking Greaves.webp"
+					},
+					"width": 728,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Silver (sp)",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Silver (sp).webp"
+					},
+					"width": 176,
+					"height": 176
+				}
+			]
+		},
+		{
+			"name": "Simic Guild Signet",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Simic Guild Signet.webp"
+					},
+					"credit": "Mike Sass",
+					"width": 640,
+					"height": 468
+				}
+			]
+		},
+		{
+			"name": "Simic Keyrune",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Simic Keyrune.webp"
+					},
+					"credit": "Daniel Ljunggren",
+					"width": 474,
+					"height": 346
+				}
+			]
+		},
+		{
+			"name": "Skull Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/19-skull.webp"
+					},
+					"credit": "Alex Dos Diaz",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Skyblinder Staff",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Skyblinder Staff.webp"
+					},
+					"credit": "Mark Winters",
+					"width": 315,
+					"height": 221
+				}
+			]
+		},
+		{
+			"name": "Sleep Grenade",
+			"source": "QftIS",
+			"_copy": {
+				"name": "Technology",
+				"source": "QftIS"
+			}
+		},
+		{
+			"name": "Slippers of Spider Climbing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Slippers of Spider Climbing.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Snicker-Snack",
+			"source": "WBtW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Snicker-Snack.webp"
+					},
+					"credit": "Filip Burburan",
+					"width": 850,
+					"height": 1558
+				}
+			]
+		},
+		{
+			"name": "Soul Coin",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Soul Coin.webp"
+					},
+					"width": 1000,
+					"height": 797
+				}
+			]
+		},
+		{
+			"name": "Sovereign Glue",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Sovereign Glue.webp"
+					},
+					"width": 596,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Spell Bottle",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Spell Bottle.webp"
+					},
+					"credit": "Olga Drebas",
+					"width": 614,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Spellguard Shield",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Spellguard Shield.webp"
+					},
+					"width": 1024,
+					"height": 1024
+				}
+			]
+		},
+		{
+			"name": "Spelljamming Helm",
+			"source": "AAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AAG/Spelljamming Helm.webp"
+					},
+					"width": 942,
+					"height": 1000
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AAG/Spelljamming Helms.webp"
+					},
+					"title": "Three Examples of a Spelljamming Helm",
+					"credit": "Robson Michel",
+					"width": 1700,
+					"height": 903
+				}
+			]
+		},
+		{
+			"name": "Spindle of Fate",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Spindle of Fate.webp"
+					},
+					"width": 496,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Charming",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Charming.webp"
+					},
+					"width": 163,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Fire",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Fire.webp"
+					},
+					"width": 175,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Frost",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Frost.webp"
+					},
+					"width": 127,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Healing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Healing.webp"
+					},
+					"width": 112,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Power",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Power.webp"
+					},
+					"width": 244,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Ruling",
+			"source": "QftIS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/QftIS/Staff of Ruling.webp"
+					},
+					"width": 591,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Swarming Insects",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Swarming Insects.webp"
+					},
+					"width": 91,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of the Adder",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of the Adder.webp"
+					},
+					"width": 148,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of the Magi",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of the Magi.webp"
+					},
+					"width": 69,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of the Python",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of the Python.webp"
+					},
+					"width": 214,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of the Woodlands",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of the Woodlands.webp"
+					},
+					"width": 243,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Thunder and Lightning",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Thunder and Lightning.webp"
+					},
+					"width": 244,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Staff of Withering",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Staff of Withering.webp"
+					},
+					"width": 166,
+					"height": 1309
+				}
+			]
+		},
+		{
+			"name": "Star Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/13-star.webp"
+					},
+					"credit": "Vallez Gax",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Steel",
+			"source": "WBtW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Steel.webp"
+					},
+					"credit": "Daarken",
+					"width": 577,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Stone of Controlling Earth Elementals",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Stone of Controlling Earth Elementals.webp"
+					},
+					"width": 850,
+					"height": 793
+				}
+			]
+		},
+		{
+			"name": "Stone of Golorr",
+			"source": "WDH",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WDH/Stone of Golorr.webp"
+					},
+					"width": 791,
+					"height": 980
+				}
+			]
+		},
+		{
+			"name": "Stone of Good Luck",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Stone of Good Luck.webp"
+					},
+					"width": 711,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Stonespeaker Crystal",
+			"source": "OotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/OotA/Stonespeaker Crystal.webp"
+					},
+					"width": 654,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sun Blade",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Sun Blade.webp"
+					},
+					"width": 234,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sun Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/10-sun.webp"
+					},
+					"credit": "Vallez Gax",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Sunforger",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Sunforger.webp"
+					},
+					"credit": "Darrell Riche",
+					"width": 626,
+					"height": 457
+				}
+			]
+		},
+		{
+			"name": "Sunsword",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Sunsword.webp"
+					},
+					"width": 800,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sword of Kas",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Sword of Kas.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Sword of Life Stealing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Sword of Life Stealing.webp"
+					},
+					"title": "Sword of Life Stealing (Longsword)",
+					"width": 637,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sword of Sharpness",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Sword of Sharpness.webp"
+					},
+					"title": "Sword of Sharpness (Greatsword)",
+					"width": 654,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sword of the Paruns",
+			"source": "GGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/GGR/Sword of the Paruns.webp"
+					},
+					"credit": "Greg Hildebrandt",
+					"width": 421,
+					"height": 308
+				}
+			]
+		},
+		{
+			"name": "Sword of the Planes",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Sword of the Planes.webp"
+					},
+					"width": 325,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Sword of Zariel",
+			"source": "BGDIA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGDIA/Sword of Zariel.webp"
+					},
+					"width": 350,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Tablet of Reawakening",
+			"source": "HAT-LMI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/HAT-LMI/Tablet of Reawakening.webp"
+					},
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Talisman of the Sphere",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Talisman of the Sphere.webp"
+					},
+					"width": 1000,
+					"height": 643
+				}
+			]
+		},
+		{
+			"name": "Talisman of Ultimate Evil",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Talisman of Ultimate Evil.webp"
+					},
+					"width": 803,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Talking Doll",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Talking Doll.webp"
+					},
+					"credit": "Matt Stewart",
+					"width": 850,
+					"height": 1471
+				}
+			]
+		},
+		{
+			"name": "Talons Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/21-talons.webp"
+					},
+					"credit": "Abigail Larson",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Tasha's Creeping Keelboat",
+			"source": "DitLCoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DitLCoT/Tashas Creeping Keelboat.webp"
+					},
+					"width": 1000,
+					"height": 832
+				}
+			]
+		},
+		{
+			"name": "Technology",
+			"source": "QftIS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/QftIS/Technology.webp"
+					},
+					"title": "Left (Top to Bottom): Needler Pistol, Paralysis Pistol, Bandolier of Grenades. Middle: Antigravity Belt. Right (Top to Bottom): Laser Pistol, Robot Controller, Laser Rifle",
+					"credit": "Dave Melvin",
+					"width": 1700,
+					"height": 1053
+				}
+			]
+		},
+		{
+			"name": "Teeth of Dahlver-Nar",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TCE/Teeth of Dahlver-Nar.webp"
+					},
+					"credit": "Crystal Sully",
+					"width": 833,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Telescopic Transporter",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Telescopic Transporter.webp"
+					},
+					"width": 708,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Tentacle Rod",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Tentacle Rod.webp"
+					},
+					"width": 596,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "The Codicil of White",
+			"source": "IDRotF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/IDRotF/The Codicil of White.webp"
+					},
+					"width": 800,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "The Incantations of Iriolarthas",
+			"source": "IDRotF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/IDRotF/The Incantations of Iriolarthas.webp"
+					},
+					"width": 1000,
+					"height": 804
+				}
+			]
+		},
+		{
+			"name": "Thieves' Tools",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Thieves' Tools.webp"
+					},
+					"width": 250,
+					"height": 220
+				}
+			]
+		},
+		{
+			"name": "Throne Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/15-throne.webp"
+					},
+					"credit": "Andrea Sipl",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Thunderbuss",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Thunderbuss.webp"
+					},
+					"credit": "Isabel Gibney",
+					"width": 890,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Tinderstrike",
+			"source": "PotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PotA/Tinderstrike.webp"
+					},
+					"width": 205,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Tloques' Berserker Battleaxe",
+			"source": "TftYP",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/TftYP/Tloques' Berserker Battleaxe.webp"
+					},
+					"width": 897,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Tome of Clear Thought",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Tome of Clear Thought.webp"
+					},
+					"width": 656,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Tome of Leadership and Influence",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Tome of Leadership and Influence.webp"
+					},
+					"width": 791,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Tome of Strahd",
+			"source": "CoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoS/Tome of Strahd.webp"
+					},
+					"width": 1000,
+					"height": 840
+				}
+			]
+		},
+		{
+			"name": "Tome of Understanding",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Tome of Understanding.webp"
+					},
+					"width": 850,
+					"height": 755
+				}
+			]
+		},
+		{
+			"name": "Travel Alchemical Kit",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/travel-alchemical-kit.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 1070,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Trident of Fish Command",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Trident of Fish Command.webp"
+					},
+					"width": 1700,
+					"height": 306
+				}
+			]
+		},
+		{
+			"name": "Trinket",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/Trinket.webp"
+					},
+					"credit": "Kris Straub",
+					"width": 1000,
+					"height": 1000
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/Trinket-2.webp"
+					},
+					"credit": "Kris Straub",
+					"width": 1000,
+					"height": 1000
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/Trinket-3.webp"
+					},
+					"credit": "Kris Straub",
+					"width": 1000,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Trinket",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PHB/Trinket (PHB).webp"
+					},
+					"width": 1000,
+					"height": 400
+				}
+			]
+		},
+		{
+			"name": "Unbreakable Arrow",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/XGE/Unbreakable Arrow.webp"
+					},
+					"width": 339,
+					"height": 436
+				}
+			]
+		},
+		{
+			"name": "Universal Solvent",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Universal Solvent.webp"
+					},
+					"width": 247,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Vicious Weapon",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Vicious Weapon.webp"
+					},
+					"title": "Vicious Weapon (Rapier)",
+					"width": 335,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Void Card",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "decks/BMT/Deck of Many Things/18-void.webp"
+					},
+					"credit": "Alex Dos Diaz",
+					"width": 850,
+					"height": 1552
+				}
+			]
+		},
+		{
+			"name": "Vorpal Sword",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Vorpal Sword.webp"
+					},
+					"title": "Vorpal Sword (Longsword)",
+					"width": 245,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Binding",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Binding.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Wand of Enemy Detection",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Enemy Detection.webp"
+					},
+					"width": 1000,
+					"height": 623
+				}
+			]
+		},
+		{
+			"name": "Wand of Fear",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Fear.webp"
+					},
+					"width": 1000,
+					"height": 566
+				}
+			]
+		},
+		{
+			"name": "Wand of Fireballs",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Fireballs.webp"
+					},
+					"width": 1000,
+					"height": 618
+				}
+			]
+		},
+		{
+			"name": "Wand of Lightning Bolts",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Lightning Bolts.webp"
+					},
+					"width": 89,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Magic Detection",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Magic Detection.webp"
+					},
+					"width": 85,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Magic Missiles",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Magic Missiles.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 800,
+					"height": 450
+				}
+			]
+		},
+		{
+			"name": "Wand of Orcus",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Orcus.webp"
+					},
+					"width": 315,
+					"height": 315
+				}
+			]
+		},
+		{
+			"name": "Wand of Paralysis",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Paralysis.webp"
+					},
+					"width": 123,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Polymorph",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Polymorph.webp"
+					},
+					"width": 148,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Secrets",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Secrets.webp"
+					},
+					"width": 228,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Web",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Web.webp"
+					},
+					"width": 111,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wand of Winter",
+			"source": "HotDQ",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/HotDQ/Wand of Winter.webp"
+					},
+					"width": 1975,
+					"height": 834
+				}
+			]
+		},
+		{
+			"name": "Wand of Wonder",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wand of Wonder.webp"
+					},
+					"width": 202,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Warrior's Passkey",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BMT/Warriors Passkey.webp"
+					},
+					"width": 813,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wave",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wave.webp"
+					},
+					"width": 833,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Weapon of Warning",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Weapon of Warning.webp"
+					},
+					"title": "Weapon of Warning (Trident)",
+					"width": 137,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Weird Tank",
+			"source": "PotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PotA/Weird Tank.webp"
+					},
+					"width": 676,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Whelm",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Whelm.webp"
+					},
+					"width": 833,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Whisper Jar",
+			"source": "AI",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/AI/whisper-jar.webp"
+					},
+					"credit": "Chris Walton",
+					"width": 988,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wind Fan",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wind Fan.webp"
+					},
+					"width": 850,
+					"height": 687
+				}
+			]
+		},
+		{
+			"name": "Windvane",
+			"source": "PotA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PotA/Windvane.webp"
+					},
+					"width": 77,
+					"height": 850
+				}
+			]
+		},
+		{
+			"name": "Winged Boots",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Winged Boots.webp"
+					},
+					"credit": "Conceptopolis",
+					"width": 777,
+					"height": 600
+				}
+			]
+		},
+		{
+			"name": "Wings of Flying",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Wings of Flying.webp"
+					},
+					"width": 929,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Witchlight Vane",
+			"source": "WBtW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/WBtW/Witchlight Vane.webp"
+					},
+					"credit": "Nikki Dawes",
+					"width": 461,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Wreath of the Prism",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/EGW/Wreath of the Prism.webp"
+					},
+					"credit": "Irina Nordsol",
+					"width": 1000,
+					"height": 809
+				}
+			]
+		},
+		{
+			"name": "Wreath of the Prism (Awakened)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Wreath of the Prism",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Wreath of the Prism (Dormant)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Wreath of the Prism",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Wreath of the Prism (Exalted)",
+			"source": "EGW",
+			"_copy": {
+				"name": "Wreath of the Prism",
+				"source": "EGW"
+			}
+		},
+		{
+			"name": "Wrought-Iron Tower",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Wrought-Iron Tower.webp"
+					},
+					"credit": "Aaron Sims",
+					"width": 1517,
+					"height": 574
+				}
+			]
+		},
+		{
+			"name": "Wyrmskull Throne",
+			"source": "SKT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/SKT/Wyrmskull Throne.webp"
+					},
+					"width": 727,
+					"height": 1000
+				}
+			]
+		}
+	]
+}

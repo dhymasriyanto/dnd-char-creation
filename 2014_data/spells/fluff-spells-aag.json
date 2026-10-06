@@ -1,0 +1,20 @@
+{
+	"spellFluff": [
+		{
+			"name": "Air Bubble",
+			"source": "AAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/AAG/Air Bubble.webp"
+					},
+					"credit": "Nikki Dawes",
+					"width": 677,
+					"height": 850
+				}
+			]
+		}
+	]
+}

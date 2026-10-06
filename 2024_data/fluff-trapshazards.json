@@ -1,0 +1,142 @@
+{
+	"trapFluff": [
+		{
+			"name": "Balance and Ruin",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "traps/BMT/Balance and Ruin.webp"
+					},
+					"title": "Diagram 4.5: Balance and Ruin",
+					"credit": "Mike Schley",
+					"width": 850,
+					"height": 1186
+				}
+			]
+		},
+		{
+			"name": "Faceless Malice",
+			"source": "VRGR",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "traps/VRGR/Faceless Malice.webp"
+					},
+					"title": "The faceless malice haunted trap claims a victim",
+					"width": 850,
+					"height": 1253,
+					"credit": "Irina Nordsol"
+				}
+			]
+		},
+		{
+			"name": "Poisoned Darts",
+			"source": "XDMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "traps/XDMG/Poisoned Darts.webp"
+					},
+					"title": "Bobby and Hank barely avoid a fusillade of poisoned darts!",
+					"credit": "Linda Lithen",
+					"width": 1700,
+					"height": 1120
+				}
+			]
+		},
+		{
+			"name": "Surface of the Sun",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "traps/BMT/Surface of the Sun.webp"
+					},
+					"title": "Diagram 4.6: Surface of the Sun",
+					"credit": "Mike Schley",
+					"width": 850,
+					"height": 1189
+				}
+			]
+		},
+		{
+			"name": "Test of the Empty Moon",
+			"source": "BMT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "traps/BMT/Test of the Empty Moon.webp"
+					},
+					"title": "Diagram 4.7: Test of the Empty Moon",
+					"credit": "Mike Schley",
+					"width": 850,
+					"height": 1188
+				}
+			]
+		}
+	],
+	"hazardFluff": [
+		{
+			"name": "Green Slime",
+			"source": "XDMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "hazards/XDMG/Green Slime.webp"
+					},
+					"title": "Sheila discovers that green slime is more dangerous than it looks",
+					"credit": "Diana Cearley",
+					"width": 1700,
+					"height": 1107
+				}
+			]
+		},
+		{
+			"name": "Webs",
+			"source": "XDMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "hazards/XDMG/Webs.webp"
+					},
+					"title": "When caught in a web, it's best to get out before the spider shows up",
+					"credit": "Robson Michel",
+					"width": 1700,
+					"height": 1119
+				}
+			]
+		},
+		{
+			"name": "Witchbriars",
+			"source": "NF",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "hazards/NF/Witchbriars.webp"
+					},
+					"title": "A patch of witchbriars snags a Netherese peasant and mage",
+					"credit": "Zuzanna Wuzyk",
+					"width": 1700,
+					"height": 1165
+				}
+			]
+		}
+	]
+}

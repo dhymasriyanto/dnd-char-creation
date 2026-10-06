@@ -1,0 +1,154 @@
+{
+	"spellFluff": [
+		{
+			"name": "Control Flames",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Control Flames.webp"
+					},
+					"width": 1000,
+					"height": 686
+				}
+			]
+		},
+		{
+			"name": "Danse Macabre",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Danse Macabre.webp"
+					},
+					"width": 1000,
+					"height": 668
+				}
+			]
+		},
+		{
+			"name": "Erupting Earth",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Erupting Earth.webp"
+					},
+					"width": 1000,
+					"height": 686
+				}
+			]
+		},
+		{
+			"name": "Find Greater Steed",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Find Greater Steed.webp"
+					},
+					"width": 1000,
+					"height": 638
+				}
+			]
+		},
+		{
+			"name": "Infernal Calling",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Infernal Calling.webp"
+					},
+					"width": 1000,
+					"height": 668
+				}
+			]
+		},
+		{
+			"name": "Mighty Fortress",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Mighty Fortress.webp"
+					},
+					"width": 1000,
+					"height": 627
+				}
+			]
+		},
+		{
+			"name": "Shadow Blade",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Shadow Blade.webp"
+					},
+					"width": 742,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Storm Sphere",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Storm Sphere.webp"
+					},
+					"width": 1000,
+					"height": 668
+				}
+			]
+		},
+		{
+			"name": "Tiny Servant",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Tiny Servant.webp"
+					},
+					"width": 721,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Whirlwind",
+			"source": "XGE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/XGE/Whirlwind.webp"
+					},
+					"width": 1000,
+					"height": 806
+				}
+			]
+		}
+	]
+}

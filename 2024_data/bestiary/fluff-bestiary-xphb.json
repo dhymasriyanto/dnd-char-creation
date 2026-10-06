@@ -1,0 +1,238 @@
+{
+	"monsterFluff": [
+		{
+			"name": "Aberrant Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Aberrant Spirit.webp"
+					},
+					"credit": "Justine Cruz",
+					"width": 1189,
+					"height": 890
+				}
+			]
+		},
+		{
+			"name": "Animated Object",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Animated Object.webp"
+					},
+					"credit": "David Auden Nash",
+					"width": 802,
+					"height": 1333
+				}
+			]
+		},
+		{
+			"name": "Beast of the Land",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Beast of the Land.webp"
+					},
+					"width": 1745,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Beast of the Sea",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Beast of the Sea.webp"
+					},
+					"width": 1285,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Beast of the Sky",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Beast of the Sky.webp"
+					},
+					"width": 1279,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Bestial Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Bestial Spirit.webp"
+					},
+					"width": 1475,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Celestial Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Celestial Spirit.webp"
+					},
+					"credit": "Eric Belisle",
+					"width": 1238,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Construct Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Construct Spirit.webp"
+					},
+					"credit": "Hector Ortiz",
+					"width": 850,
+					"height": 1241
+				}
+			]
+		},
+		{
+			"name": "Draconic Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Draconic Spirit.webp"
+					},
+					"credit": "Polar Engine",
+					"width": 1152,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Elemental Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Elemental Spirit.webp"
+					},
+					"width": 883,
+					"height": 1393
+				}
+			]
+		},
+		{
+			"name": "Fey Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Fey Spirit.webp"
+					},
+					"credit": "Joseph Weston",
+					"width": 1111,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Fiendish Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Fiendish Spirit.webp"
+					},
+					"credit": "Alexandre Honore",
+					"width": 1403,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Giant Insect",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Giant Insect.webp"
+					},
+					"width": 1128,
+					"height": 1440
+				}
+			]
+		},
+		{
+			"name": "Otherworldly Steed",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Otherworldly Steed.webp"
+					},
+					"credit": "Nikki Dawes",
+					"width": 1304,
+					"height": 1339
+				}
+			]
+		},
+		{
+			"name": "Undead Spirit",
+			"source": "XPHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XPHB/Undead Spirit.webp"
+					},
+					"credit": "Ustin Sweet",
+					"width": 1108,
+					"height": 1440
+				}
+			]
+		}
+	]
+}

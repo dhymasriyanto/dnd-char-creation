@@ -1,0 +1,142 @@
+{
+	"monsterFluff": [
+		{
+			"name": "Ice Toad",
+			"source": "RoT",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										"Arauthator has attracted a number of ice toads to Oyaviggaton, where they help to maintain the iceberg and the dragon's many treasures and trophies. The ice toads are good at this job, thanks to their exceptionally intelligent leader, Marfulb.",
+										"Feeding on seals, sea birds, and fish caught for them by the Ice Hunters, Oyaviggaton's ice toads are not automatically hostile to strangers. Once characters get inside Arauthator's lair, they might find that these creatures can be helpful to their quest. Ice toads normally speak only their own obscure language. Those in Oyaviggaton know a little Draconic and Uluik (the language of the Ice Hunters), but their accents are thick and their pronunciation atrocious. Marfulb is fluent in Draconic thanks to many hours spent conversing with Arauthator.",
+										"When the characters encounter ice toads, their intelligence won't be apparent until they act or attempt to speak. Even then, characters might not recognize the ice toads' croaking as language. Ice toads move on all fours, but their webbed front feet are surprisingly dexterous. Some carry tools and useful items in pouches slung around their necks."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Iskander",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Iskander.webp"
+					},
+					"width": 714,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Maccath the Crimson",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Maccath the Crimson.webp"
+					},
+					"width": 697,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Naergoth Bladelord",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Naergoth Bladelord.webp"
+					},
+					"width": 680,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Neronvain",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Neronvain.webp"
+					},
+					"width": 850,
+					"height": 1229
+				}
+			]
+		},
+		{
+			"name": "Severin",
+			"source": "RoT",
+			"entries": [
+				{
+					"type": "inset",
+					"name": "Nelvik the Pseudodragon",
+					"entries": [
+						"Severin has a neutral evil {@creature pseudodragon} companion named Nelvik. The pseudodragon is never far from its master. During the ritual to summon Tiamat, it cowers on a ledge in the central spire of the Dragon Queen's temple. If Severin is slain, Nelvik attempts to befriend Severin's slayers, waiting for an opportune time to exact revenge."
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Severin.webp"
+					},
+					"width": 667,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Tiamat",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Tiamat.webp"
+					},
+					"width": 1277,
+					"height": 856
+				}
+			]
+		},
+		{
+			"name": "Varram",
+			"source": "RoT",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/RoT/Varram.webp"
+					},
+					"width": 796,
+					"height": 1000
+				}
+			]
+		}
+	]
+}

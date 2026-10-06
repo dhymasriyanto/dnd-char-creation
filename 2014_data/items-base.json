@@ -1,0 +1,4319 @@
+{
+	"_meta": {
+		"internalCopies": [
+			"itemType"
+		]
+	},
+	"baseitem": [
+		{
+			"name": "Alchemist's Supplies",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 79
+				}
+			],
+			"referenceSources": [
+				"IMR",
+				"JttRC",
+				"KftGV",
+				"OoW",
+				"PaBTSO",
+				"RtG",
+				"SCC-ARiR",
+				"TftYP-TSC",
+				"ToA",
+				"TTP",
+				"WDMM"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 8,
+			"value": 5000,
+			"additionalEntries": [
+				"Alchemist's supplies enable a character to produce useful concoctions, such as acid or alchemist's fire.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Alchemist's supplies include two glass beakers, a metal frame to hold a beaker in place over an open flame, a glass stirring rod, a small mortar and pestle, and a pouch of common alchemical ingredients, including salt, powdered iron, and purified water."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana",
+					"entries": [
+						"Proficiency with alchemist's supplies allows you to unlock more information on {@skill Arcana} checks involving potions and similar materials."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"When you inspect an area for clues, proficiency with alchemist's supplies grants additional insight into any chemicals or other substances that might have been used in the area."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Alchemical Crafting",
+					"entries": [
+						"You can use this tool proficiency to create alchemical items. A character can spend money to collect raw materials, which weigh 1 pound for every 50 gp spent. The DM can allow a character to make a check using the indicated skill with advantage. As part of a long rest, you can use alchemist's supplies to make one dose of {@item acid (vial)|phb|acid}, {@item alchemist's fire (flask)|phb|alchemist's fire}, {@item antitoxin (vial)|phb|antitoxin}, {@item oil (flask)|phb|oil}, {@item perfume (vial)|phb|perfume}, or {@item soap|phb}. Subtract half the value of the created item from the total gp worth of raw materials you are carrying."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Alchemist's Supplies",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Create a puff of thick smoke",
+							"10"
+						],
+						[
+							"Identify a poison",
+							"10"
+						],
+						[
+							"Identify a substance",
+							"15"
+						],
+						[
+							"Start a fire",
+							"15"
+						],
+						[
+							"Neutralize acid",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Antimatter Rifle",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"QftIS"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 10,
+			"weaponCategory": "martial",
+			"age": "futuristic",
+			"property": [
+				"AF|DMG",
+				"RLD",
+				"2H"
+			],
+			"range": "120/360",
+			"reload": 2,
+			"dmg1": "6d8",
+			"dmgType": "N",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "energy cell"
+		},
+		{
+			"name": "Arrow",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"ToA"
+			],
+			"type": "A",
+			"rarity": "none",
+			"weight": 0.05,
+			"value": 5,
+			"arrow": true
+		},
+		{
+			"name": "Arrows (20)",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CRCotN",
+				"DitLCoT",
+				"IDRotF",
+				"TftYP-TSC"
+			],
+			"type": "A",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"arrow": true,
+			"packContents": [
+				{
+					"item": "arrow|phb",
+					"quantity": 20
+				}
+			]
+		},
+		{
+			"name": "Automatic Pistol",
+			"source": "DMG",
+			"page": 268,
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"weaponCategory": "martial",
+			"age": "modern",
+			"property": [
+				"AF|DMG",
+				"RLD"
+			],
+			"range": "50/150",
+			"reload": 15,
+			"dmg1": "2d6",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "modern bullet"
+		},
+		{
+			"name": "Automatic Rifle",
+			"source": "DMG",
+			"page": 268,
+			"type": "R",
+			"rarity": "none",
+			"weight": 8,
+			"weaponCategory": "martial",
+			"age": "modern",
+			"property": [
+				"AF|DMG",
+				"BF|DMG",
+				"RLD",
+				"2H"
+			],
+			"range": "80/240",
+			"reload": 30,
+			"dmg1": "2d8",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "modern bullet"
+		},
+		{
+			"name": "Bagpipes",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"type": "INS",
+			"rarity": "none",
+			"weight": 6,
+			"value": 3000
+		},
+		{
+			"name": "Battleaxe",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d8",
+			"dmgType": "S",
+			"dmg2": "1d10",
+			"axe": true,
+			"weapon": true
+		},
+		{
+			"name": "Birdpipes",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"Pan pipes or satyr pipes, also known as the shalm, these are sacred to {@deity Lliira|Faerûnian|scag} and popular with wood elf and wild elf bards."
+			]
+		},
+		{
+			"name": "Blowgun",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"A",
+				"LD"
+			],
+			"range": "25/100",
+			"dmg1": "1",
+			"dmgType": "P",
+			"weapon": true,
+			"ammoType": "blowgun needle|phb"
+		},
+		{
+			"name": "Blowgun Needle",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"type": "A",
+			"rarity": "none",
+			"weight": 0.02,
+			"value": 2,
+			"needleBlowgun": true
+		},
+		{
+			"name": "Blowgun Needles (50)",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"type": "A",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"needleBlowgun": true,
+			"packContents": [
+				{
+					"item": "blowgun needle|phb",
+					"quantity": 50
+				}
+			]
+		},
+		{
+			"name": "Breastplate",
+			"source": "PHB",
+			"page": 145,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"PaBTSO",
+				"QftIS",
+				"WDMM"
+			],
+			"type": "MA",
+			"rarity": "none",
+			"weight": 20,
+			"value": 40000,
+			"ac": 14,
+			"armor": true,
+			"entries": [
+				"This armor consists of a fitted metal chest piece worn with supple leather. Although it leaves the legs and arms relatively unprotected, this armor provides good protection for the wearer's vital organs while leaving the wearer relatively unencumbered."
+			]
+		},
+		{
+			"name": "Brewer's Supplies",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 79
+				}
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 9,
+			"value": 2000,
+			"additionalEntries": [
+				"Brewing is the art of producing beer. Not only does beer serve as an alcoholic beverage, but the process of brewing purifies water. Crafting beer takes weeks of fermentation, but only a few hours of work.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Brewer's supplies include a large glass jug, a quantity of hops, a siphon, and several feet of tubing."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"Proficiency with brewer's supplies gives you additional insight on Intelligence ({@skill History}) checks concerning events that involve alcohol as a significant element."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Medicine",
+					"entries": [
+						"This tool proficiency grants additional insight when you treat anyone suffering from alcohol poisoning or when you can use alcohol to dull pain."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Persuasion",
+					"entries": [
+						"A stiff drink can help soften the hardest heart. Your proficiency with brewer's supplies can help you ply someone with drink, giving them just enough alcohol to mellow their mood."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Potable Water",
+					"entries": [
+						"Your knowledge of brewing enables you to purify water that would otherwise be undrinkable. As part of a long rest, you can purify up to 6 gallons of water, or 1 gallon as part of a short rest."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Brewer's Supplies",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Detect poison or impurities in a drink",
+							"10"
+						],
+						[
+							"Identify alcohol",
+							"15"
+						],
+						[
+							"Ignore effects of alcohol",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Calligrapher's Supplies",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 79
+				}
+			],
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"IMR",
+				"KftGV",
+				"PaBTSO",
+				"SCC-HfMT",
+				"ToFW"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 1000,
+			"additionalEntries": [
+				"Calligraphy treats writing as a delicate, beautiful art. Calligraphers produce text that is pleasing to the eye, using a style that is difficult to forge. Their supplies also give them some ability to examine scripts and determine if they are legitimate, since a calligrapher's training involves long hours of studying writing and attempting to replicate its style and design.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Calligrapher's supplies include ink, a dozen sheets of parchment, and three quills."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana",
+					"entries": [
+						"Although calligraphy is of little help in deciphering the content of magical writings, proficiency with these supplies can aid in identifying who wrote a script of a magical nature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"This tool proficiency can augment the benefit of successful checks made to analyze or investigate ancient writings, scrolls, or other texts, including runes etched in stone or messages in frescoes or other displays."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Decipher Treasure Map",
+					"entries": [
+						"This tool proficiency grants you expertise in examining maps. You can make an Intelligence check to determine a map's age, whether a map includes any hidden messages, or similar facts."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Calligrapher's Supplies",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-6",
+						"col-6"
+					],
+					"rows": [
+						[
+							"Identify writer of nonmagical script",
+							"10"
+						],
+						[
+							"Determine writer's state of mind",
+							"15"
+						],
+						[
+							"Spot forged text",
+							"15"
+						],
+						[
+							"Forge a signature",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Carpenter's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 80
+				}
+			],
+			"referenceSources": [
+				"OoW"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 6,
+			"value": 800,
+			"additionalEntries": [
+				"Skill at carpentry enables a character to construct wooden structures. A carpenter can build a house, a shack, a wooden cabinet, or similar items.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Carpenter's tools include a saw, a hammer, nails, a hatchet, a square, a ruler, an adze, a plane, and a chisel."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"This tool proficiency aids you in identifying the use and the origin of wooden buildings and other large wooden objects."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"You gain additional insight when inspecting areas within wooden structures, because you know tricks of construction that can conceal areas from discovery."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Perception",
+					"entries": [
+						"You can spot irregularities in wooden walls or floors, making it easier to find trap doors and secret passages."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Stealth",
+					"entries": [
+						"You can quickly assess the weak spots in a wooden floor, making it easier to avoid the places that creak and groan when they're stepped on."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fortify",
+					"entries": [
+						"With 1 minute of work and raw materials, you can make a door or window harder to force open. Increase the DC needed to open it by 5."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Temporary Shelter",
+					"entries": [
+						"As part of a long rest, you can construct a lean-to or a similar shelter to keep your group dry and in the shade for the duration of the rest. Because it was fashioned quickly from whatever wood was available, the shelter collapses {@dice 1d3} days after being assembled."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Carpenter's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Build a simple wooden structure",
+							"10"
+						],
+						[
+							"Design a complex wooden structure",
+							"15"
+						],
+						[
+							"Find a weak point in a wooden wall",
+							"15"
+						],
+						[
+							"Pry apart a door",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Cartographer's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 80
+				}
+			],
+			"referenceSources": [
+				"DoSI",
+				"KftGV",
+				"PaBTSO",
+				"ToA"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1500,
+			"additionalEntries": [
+				"Using cartographer's tools, you can create accurate maps to make travel easier for yourself and those who come after you. These maps can range from large-scale depictions of mountain ranges to diagrams that show the layout of a dungeon level.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Cartographer's tools consist of a quill, ink, parchment, a pair of compasses, calipers, and a ruler."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana, History, Religion",
+					"entries": [
+						"You can use your knowledge of maps and locations to unearth more detailed information when you use these skills. For instance, you might spot hidden messages in a map, identify when the map was made to determine if geographical features have changed since then, and so forth."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Nature",
+					"entries": [
+						"Your familiarity with physical geography makes it easier for you to answer questions or solve issues relating to the terrain around you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Survival",
+					"entries": [
+						"Your understanding of geography makes it easier to find paths to civilization, to predict areas where villages or towns might be found, and to avoid becoming lost. You have studied so many maps that common patterns, such as how trade routes evolve and where settlements arise in relation to geographic locations, are familiar to you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Craft a Map",
+					"entries": [
+						"While traveling, you can draw a map as you go in addition to engaging in other activity."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Cartographer's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Determine a map's age and origin",
+							"10"
+						],
+						[
+							"Estimate direction and distance to a landmark",
+							"15"
+						],
+						[
+							"Discern that a map is fake",
+							"15"
+						],
+						[
+							"Fill in a missing part of a map",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Chain Mail",
+			"source": "PHB",
+			"page": 145,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS",
+				"CRCotN",
+				"DSotDQ",
+				"GoS",
+				"PaBTSO",
+				"QftIS",
+				"SCC-ARiR",
+				"VEoR"
+			],
+			"type": "HA",
+			"rarity": "none",
+			"weight": 55,
+			"value": 7500,
+			"ac": 16,
+			"strength": "13",
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets."
+			]
+		},
+		{
+			"name": "Chain Shirt",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"TftYP-TSC",
+				"US"
+			],
+			"type": "MA",
+			"rarity": "none",
+			"weight": 20,
+			"value": 5000,
+			"ac": 13,
+			"armor": true,
+			"entries": [
+				"Made of interlocking metal rings, a chain shirt is worn between layers of clothing or leather. This armor offers modest protection to the wearer's upper body and allows the sound of the rings rubbing against one another to be muffled by outer layers."
+			]
+		},
+		{
+			"name": "Club",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"GoS",
+				"KftGV",
+				"TftYP-AtG",
+				"WDH"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 10,
+			"weaponCategory": "simple",
+			"property": [
+				"L"
+			],
+			"dmg1": "1d4",
+			"dmgType": "B",
+			"club": true,
+			"weapon": true
+		},
+		{
+			"name": "Cobbler's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 80
+				}
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 500,
+			"additionalEntries": [
+				"Although the cobbler's trade might seem too humble for an adventurer, a good pair of boots will see a character across rugged wilderness and through deadly dungeons.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Cobbler's tools consist of a hammer, an awl, a knife, a shoe stand, a cutter, spare leather, and thread."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana, History",
+					"entries": [
+						"Your knowledge of shoes aids you in identifying the magical properties of enchanted boots or the history of such items."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"Footwear holds a surprising number of secrets. You can learn where someone has recently visited by examining the wear and the dirt that has accumulated on their shoes. Your experience in repairing shoes makes it easier for you to identify where damage might come from."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Maintain Shoes",
+					"entries": [
+						"As part of a long rest, you can repair your companions' shoes. For the next 24 hours, up to six creatures of your choice who wear shoes you worked on can travel up to 10 hours a day without making saving throws to avoid {@condition exhaustion}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Craft Hidden Compartment",
+					"entries": [
+						"With 8 hours of work, you can add a hidden compartment to a pair of shoes. The compartment can hold an object up to 3 inches long and 1 inch wide and deep. You make an Intelligence check using your tool proficiency to determine the Intelligence ({@skill Investigation}) check DC needed to find the compartment."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Cobbler's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Determine a shoe's age and origin",
+							"10"
+						],
+						[
+							"Find a hidden compartment in a boot heel",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Cook's Utensils",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 80
+				}
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 8,
+			"value": 100,
+			"additionalEntries": [
+				"Adventuring is a hard life. With a cook along on the journey, your meals will be much better than the typical mix of hardtack and dried fruit.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Cook's utensils include a metal pot, knives, forks, a stirring spoon, and a ladle."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"Your knowledge of cooking techniques allows you to assess the social patterns involved in a culture's eating habits."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Medicine",
+					"entries": [
+						"When administering treatment, you can transform medicine that is bitter or sour into a pleasing concoction."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Survival",
+					"entries": [
+						"When foraging for food, you can make do with ingredients you scavenge that others would be unable to transform into nourishing meals."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Prepare Meals",
+					"entries": [
+						"As part of a short rest, you can prepare a tasty meal that helps your companions regain their strength. You and up to five creatures of your choice regain 1 extra hit point per Hit Die spent during a short rest, provided you have access to your cook's utensils and sufficient food."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Cook's Utensils",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Create a typical meal",
+							"10"
+						],
+						[
+							"Duplicate a meal",
+							"10"
+						],
+						[
+							"Spot poison or impurities in food",
+							"15"
+						],
+						[
+							"Create a gourmet meal",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Crossbow Bolt",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"TTP"
+			],
+			"type": "A",
+			"rarity": "none",
+			"weight": 0.075,
+			"value": 5,
+			"bolt": true
+		},
+		{
+			"name": "Crossbow Bolts (20)",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"CRCotN",
+				"GoS",
+				"IDRotF",
+				"KftGV",
+				"PaBTSO",
+				"SCC-ARiR",
+				"VEoR"
+			],
+			"type": "A",
+			"rarity": "none",
+			"weight": 1.5,
+			"value": 100,
+			"bolt": true,
+			"packContents": [
+				{
+					"item": "crossbow bolt|phb",
+					"quantity": 20
+				}
+			]
+		},
+		{
+			"name": "Crystal",
+			"group": [
+				"Arcane Focus"
+			],
+			"source": "PHB",
+			"page": 151,
+			"srd": true,
+			"basicRules": true,
+			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000
+		},
+		{
+			"name": "Dagger",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"CoS",
+				"DoSI",
+				"DSotDQ",
+				"GoS",
+				"IDRotF",
+				"JttRC",
+				"PaBTSO",
+				"QftIS",
+				"TftYP-TSC",
+				"ToFW",
+				"VEoR"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 1,
+			"value": 200,
+			"weaponCategory": "simple",
+			"property": [
+				"F",
+				"L",
+				"T"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "P",
+			"dagger": true,
+			"weapon": true
+		},
+		{
+			"name": "Dart",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 0.25,
+			"value": 5,
+			"weaponCategory": "simple",
+			"property": [
+				"F",
+				"T"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "P",
+			"weapon": true
+		},
+		{
+			"name": "Double-Bladed Scimitar",
+			"source": "ERLW",
+			"page": 21,
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 10000,
+			"weaponCategory": "martial",
+			"property": [
+				"S",
+				"2H"
+			],
+			"dmg1": "2d4",
+			"dmgType": "S",
+			"sword": true,
+			"weapon": true,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Special",
+					"entries": [
+						"If you attack with a double-bladed scimitar as part of the {@action Attack} action on your turn, you can use a bonus action immediately after to make a melee attack with it. This attack deals {@damage 1d4} slashing damage on a hit, instead of {@damage 2d4}."
+					]
+				}
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Drum",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"JttRC",
+				"RtG"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 3,
+			"value": 600
+		},
+		{
+			"name": "Dulcimer",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"ToA"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 10,
+			"value": 2500
+		},
+		{
+			"name": "Energy Cell",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"IDRotF",
+				"QftIS"
+			],
+			"type": "AF|DMG",
+			"rarity": "none",
+			"weight": 0.3125,
+			"age": "futuristic",
+			"cellEnergy": true,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Flail",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS",
+				"TftYP-AtG"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"weapon": true
+		},
+		{
+			"name": "Flute",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"RtG",
+				"ToA"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 1,
+			"value": 200
+		},
+		{
+			"name": "Glaive",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"GoS",
+				"SCC-ARiR"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 2000,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"R",
+				"2H"
+			],
+			"dmg1": "1d10",
+			"dmgType": "S",
+			"polearm": true,
+			"weapon": true
+		},
+		{
+			"name": "Glassblower's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 82
+				}
+			],
+			"referenceSources": [
+				"IMR"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 3000,
+			"additionalEntries": [
+				"Someone who is proficient with glassblower's tools has not only the ability to shape glass, but also specialized knowledge of the methods used to produce glass objects.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"The tools include a blowpipe, a small marver, blocks, and tweezers. You need a source of heat to work glass."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana, History",
+					"entries": [
+						"Your knowledge of glassmaking techniques aids you when you examine glass objects, such as potion bottles or glass items found in a treasure hoard. For instance, you can study how a glass potion bottle has been changed by its contents to help determine a potion's effects. (A potion might leave behind a residue, deform the glass, or stain it.)"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"When you study an area, your knowledge can aid you if the clues include broken glass or glass objects."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Identify Weakness",
+					"entries": [
+						"With 1 minute of study, you can identify the weak points in a glass object. Any damage dealt to the object by striking a weak spot is doubled."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Glassblower's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Identify source of glass",
+							"10"
+						],
+						[
+							"Determine what a glass object once held",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Glaur",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"Short, curved horns like a cornucopia. Played with valves, glaur sound like trumpets, while those without valves, known as gloon, have a more mournful sound."
+			]
+		},
+		{
+			"name": "Greataxe",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"IDRotF",
+				"PaBTSO",
+				"RMBRE",
+				"TftYP-AtG",
+				"WDMM"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 7,
+			"value": 3000,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"2H"
+			],
+			"dmg1": "1d12",
+			"dmgType": "S",
+			"axe": true,
+			"weapon": true
+		},
+		{
+			"name": "Greatclub",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 10,
+			"value": 20,
+			"weaponCategory": "simple",
+			"property": [
+				"2H"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"club": true,
+			"weapon": true
+		},
+		{
+			"name": "Greatsword",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"PaBTSO",
+				"TftYP-TSC"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 5000,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"2H"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"sword": true,
+			"weapon": true
+		},
+		{
+			"name": "Halberd",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"IDRotF",
+				"KftGV",
+				"VEoR"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 2000,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"R",
+				"2H"
+			],
+			"dmg1": "1d10",
+			"dmgType": "S",
+			"polearm": true,
+			"weapon": true
+		},
+		{
+			"name": "Half Plate Armor",
+			"source": "PHB",
+			"page": 145,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"LoX",
+				"ToA"
+			],
+			"type": "MA",
+			"rarity": "none",
+			"weight": 40,
+			"value": 75000,
+			"ac": 15,
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"Half plate consists of shaped metal plates that cover most of the wearer's body. It does not include leg protection beyond simple greaves that are attached with leather straps."
+			]
+		},
+		{
+			"name": "Hand Crossbow",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"VEoR"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"value": 7500,
+			"weaponCategory": "martial",
+			"property": [
+				"A",
+				"L",
+				"LD"
+			],
+			"range": "30/120",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"ammoType": "crossbow bolt|phb"
+		},
+		{
+			"name": "Hand Drum",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A double-headed skin drum fitted with handles along its side."
+			]
+		},
+		{
+			"name": "Handaxe",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"TftYP-TFoF"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 500,
+			"weaponCategory": "simple",
+			"property": [
+				"L",
+				"T"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "S",
+			"axe": true,
+			"weapon": true
+		},
+		{
+			"name": "Heavy Crossbow",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"IDRotF",
+				"KftGV",
+				"PaBTSO",
+				"SCC-ARiR",
+				"TTP"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 18,
+			"value": 5000,
+			"weaponCategory": "martial",
+			"property": [
+				"A",
+				"H",
+				"LD",
+				"2H"
+			],
+			"range": "100/400",
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"ammoType": "crossbow bolt|phb"
+		},
+		{
+			"name": "Hide Armor",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"WDMM"
+			],
+			"type": "MA",
+			"rarity": "none",
+			"weight": 12,
+			"value": 1000,
+			"ac": 12,
+			"armor": true,
+			"entries": [
+				"This crude armor consists of thick furs and pelts. It is commonly worn by barbarian tribes, evil humanoids, and other folk who lack access to the tools and materials needed to create better armor."
+			]
+		},
+		{
+			"name": "Hooked Shortspear",
+			"source": "OotA",
+			"page": 224,
+			"type": "M",
+			"rarity": "unknown",
+			"weight": 2,
+			"weaponCategory": "martial",
+			"property": [
+				"L"
+			],
+			"dmg1": "1d4",
+			"dmgType": "P",
+			"weapon": true,
+			"entries": [
+				"On a hit with this weapon, the wielder can forgo dealing damage and attempt to trip the target, in which case the target must succeed on a Strength saving throw or fall {@condition prone}. The DC is 8 + the wielder's Strength modifier + the wielder's proficiency bonus."
+			]
+		},
+		{
+			"name": "Hoopak",
+			"source": "DSotDQ",
+			"page": 188,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 10,
+			"weaponCategory": "martial",
+			"property": [
+				"A",
+				"F",
+				"S",
+				"2H"
+			],
+			"range": "40/160",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"weapon": true,
+			"entries": [
+				"A hoopak is a sturdy stick with a sling at one end and a pointed tip at the other.",
+				{
+					"type": "entries",
+					"name": "Special",
+					"entries": [
+						"When you make a melee attack with this weapon, you ignore its ammunition property. You can use the hoopak as a martial ranged weapon. If you do, it uses the ammunition property, uses sling bullets, and deals {@damage 1d4} bludgeoning damage on a hit."
+					]
+				}
+			],
+			"ammoType": "sling bullet|phb",
+			"hasFluffImages": true
+		},
+		{
+			"name": "Horn",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"TTP"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 2,
+			"value": 300
+		},
+		{
+			"name": "Hunting Rifle",
+			"source": "DMG",
+			"page": 268,
+			"type": "R",
+			"rarity": "none",
+			"weight": 8,
+			"weaponCategory": "martial",
+			"age": "modern",
+			"property": [
+				"AF|DMG",
+				"RLD",
+				"2H"
+			],
+			"range": "80/240",
+			"reload": 5,
+			"dmg1": "2d10",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "modern bullet"
+		},
+		{
+			"name": "Javelin",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"DSotDQ",
+				"GoS",
+				"IDRotF",
+				"TftYP-TSC"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 50,
+			"weaponCategory": "simple",
+			"property": [
+				"T"
+			],
+			"range": "30/120",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"spear": true,
+			"weapon": true
+		},
+		{
+			"name": "Jeweler's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 82
+				}
+			],
+			"referenceSources": [
+				"IMR",
+				"PaBTSO",
+				"RtG"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"additionalEntries": [
+				"Training with jeweler's tools includes the basic techniques needed to beautify gems. It also gives you expertise in identifying precious stones.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Jeweler's tools consist of a small saw and hammer, files, pliers, and tweezers."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana",
+					"entries": [
+						"Proficiency with jeweler's tools grants you knowledge about the reputed mystical uses of gems. This insight proves handy when you make {@skill Arcana} checks related to gems or gem-encrusted items."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"When you inspect jeweled objects, your proficiency with jeweler's tools aids you in picking out clues they might hold."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Identify Gems",
+					"entries": [
+						"You can identify gems and determine their value at a glance."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Jeweler's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Modify a gem's appearance",
+							"15"
+						],
+						[
+							"Determine a gem's history",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Lance",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"R",
+				"S"
+			],
+			"dmg1": "1d12",
+			"dmgType": "P",
+			"lance": true,
+			"weapon": true,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Special",
+					"entries": [
+						"You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted."
+					]
+				}
+			]
+		},
+		{
+			"name": "Laser Pistol",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"IDRotF",
+				"QftIS"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 2,
+			"weaponCategory": "martial",
+			"age": "futuristic",
+			"property": [
+				"AF|DMG",
+				"RLD"
+			],
+			"range": "40/120",
+			"reload": 50,
+			"dmg1": "3d6",
+			"dmgType": "R",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "energy cell"
+		},
+		{
+			"name": "Laser Rifle",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"IDRotF",
+				"QftIS"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 7,
+			"weaponCategory": "martial",
+			"age": "futuristic",
+			"property": [
+				"AF|DMG",
+				"RLD",
+				"2H"
+			],
+			"range": "100/300",
+			"reload": 30,
+			"dmg1": "3d8",
+			"dmgType": "R",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "energy cell"
+		},
+		{
+			"name": "Leather Armor",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"DSotDQ",
+				"WDMM"
+			],
+			"type": "LA",
+			"rarity": "none",
+			"weight": 10,
+			"value": 1000,
+			"ac": 11,
+			"armor": true,
+			"entries": [
+				"The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials."
+			]
+		},
+		{
+			"name": "Leatherworker's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 82
+				}
+			],
+			"referenceSources": [
+				"KftGV",
+				"RtG",
+				"ToA"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 500,
+			"additionalEntries": [
+				"Knowledge of leatherworking extends to lore concerning animal hides and their properties. It also confers knowledge of leather armor and similar goods.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Leatherworker's tools include a knife, a small mallet, an edger, a hole punch, thread, and leather scraps."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana",
+					"entries": [
+						"Your expertise in working with leather grants you added insight when you inspect magic items crafted from leather, such as boots and some cloaks."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"You gain added insight when studying leather items or clues related to them, as you draw on your knowledge of leather to pick out details that others would overlook."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Identify Hides",
+					"entries": [
+						"When looking at a hide or a leather item, you can determine the source of the leather and any special techniques used to treat it. For example, you can spot the difference between leather crafted using dwarven methods and leather crafted using halfling methods."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Leatherworker's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Modify a leather item's appearance",
+							"10"
+						],
+						[
+							"Determine a leather item's history",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Light Crossbow",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS",
+				"GoS",
+				"IDRotF",
+				"KftGV",
+				"PaBTSO",
+				"TftYP-AtG",
+				"US"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 5,
+			"value": 2500,
+			"weaponCategory": "simple",
+			"property": [
+				"A",
+				"LD",
+				"2H"
+			],
+			"range": "80/320",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"ammoType": "crossbow bolt|phb"
+		},
+		{
+			"name": "Light Hammer",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 200,
+			"weaponCategory": "simple",
+			"property": [
+				"L",
+				"T"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "B",
+			"hammer": true,
+			"weapon": true
+		},
+		{
+			"name": "Light Repeating Crossbow",
+			"source": "OotA",
+			"page": 224,
+			"type": "R",
+			"rarity": "unknown",
+			"weight": 5,
+			"weaponCategory": "simple",
+			"property": [
+				"A",
+				"2H"
+			],
+			"range": "40/160",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"entries": [
+				"This crossbow is fitted with a cartridge that can hold up to six crossbow bolts. It automatically reloads after firing until the cartridge runs out of ammunition. Reloading the cartridge takes an action."
+			],
+			"ammoType": "crossbow bolt|phb"
+		},
+		{
+			"name": "Longbow",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"IDRotF",
+				"LK",
+				"TftYP-TSC",
+				"WDH"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 2,
+			"value": 5000,
+			"weaponCategory": "martial",
+			"property": [
+				"A",
+				"H",
+				"2H"
+			],
+			"range": "150/600",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"bow": true,
+			"weapon": true,
+			"ammoType": "arrow|phb"
+		},
+		{
+			"name": "Longhorn",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A Faerûnian flute of sophisticated make, found only in areas with skilled artisans, as in great cities or elven enclaves."
+			]
+		},
+		{
+			"name": "Longsword",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"DSotDQ",
+				"GoS",
+				"IDRotF",
+				"KftGV",
+				"LK",
+				"LoX",
+				"PaBTSO",
+				"QftIS",
+				"RMBRE",
+				"TftYP-TSC",
+				"US",
+				"VEoR",
+				"WDH",
+				"WDMM"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 1500,
+			"weaponCategory": "martial",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d8",
+			"dmgType": "S",
+			"dmg2": "1d10",
+			"sword": true,
+			"weapon": true
+		},
+		{
+			"name": "Lute",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"DoSI",
+				"JttRC",
+				"LRDT",
+				"RtG",
+				"TftYP-ToH",
+				"ToA",
+				"TTP"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 2,
+			"value": 3500
+		},
+		{
+			"name": "Lyre",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"RtG",
+				"ToA",
+				"TTP"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 2,
+			"value": 3000
+		},
+		{
+			"name": "Mace",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"QftIS",
+				"VEoR"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "simple",
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"mace": true,
+			"weapon": true
+		},
+		{
+			"name": "Mason's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 83
+				}
+			],
+			"referenceSources": [
+				"CRCotN",
+				"DSotDQ",
+				"GoS",
+				"IMR",
+				"PaBTSO",
+				"RtG",
+				"SCC-ARiR",
+				"ToA"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 8,
+			"value": 1000,
+			"additionalEntries": [
+				"Mason's tools allow you to craft stone structures, including walls and buildings crafted from brick.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Mason's tools consist of a trowel, a hammer, a chisel, brushes, and a square."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"Your expertise aids you in identifying a stone building's date of construction and purpose, along with insight into who might have built it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"You gain additional insight when inspecting areas within stone structures."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Perception",
+					"entries": [
+						"You can spot irregularities in stone walls or floors, making it easier to find trap doors and secret passages."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Demolition",
+					"entries": [
+						"Your knowledge of masonry allows you to spot weak points in brick walls. You deal double damage to such structures with your weapon attacks."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Mason's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Chisel a small hole in a stone wall",
+							"10"
+						],
+						[
+							"Find a weak point in a stone wall",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Maul",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"RMBRE",
+				"SCC-ARiR"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 10,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"2H"
+			],
+			"dmg1": "2d6",
+			"dmgType": "B",
+			"hammer": true,
+			"weapon": true
+		},
+		{
+			"name": "Modern Bullet",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"WDMM"
+			],
+			"type": "AF|DMG",
+			"rarity": "none",
+			"weight": 0.1,
+			"age": "modern",
+			"bulletFirearm": true,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Modern Bullets (10)",
+			"source": "DMG",
+			"page": 268,
+			"type": "AF|DMG",
+			"rarity": "none",
+			"weight": 1,
+			"age": "modern",
+			"bulletFirearm": true,
+			"packContents": [
+				{
+					"item": "modern bullet",
+					"quantity": 10
+				}
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Morningstar",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS",
+				"GoS",
+				"PaBTSO"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1500,
+			"weaponCategory": "martial",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"mace": true,
+			"weapon": true
+		},
+		{
+			"name": "Musket",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"CoS",
+				"LoX"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 10,
+			"value": 50000,
+			"weaponCategory": "martial",
+			"age": "renaissance",
+			"property": [
+				"AF|DMG",
+				"LD",
+				"2H"
+			],
+			"range": "40/120",
+			"dmg1": "1d12",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "renaissance bullet"
+		},
+		{
+			"name": "Net",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"ToA",
+				"TTP"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"value": 100,
+			"weaponCategory": "martial",
+			"property": [
+				"S",
+				"T"
+			],
+			"range": "5/15",
+			"net": true,
+			"weapon": true,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Special",
+					"entries": [
+						"A Large or smaller creature hit by a net is {@condition restrained} until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a {@dc 10} Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make."
+					]
+				}
+			]
+		},
+		{
+			"name": "Orb",
+			"group": [
+				"Arcane Focus"
+			],
+			"source": "PHB",
+			"page": 151,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS"
+			],
+			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 3,
+			"value": 2000
+		},
+		{
+			"name": "Padded Armor",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"type": "LA",
+			"rarity": "none",
+			"weight": 8,
+			"value": 500,
+			"ac": 11,
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"Padded armor consists of quilted layers of cloth and batting."
+			]
+		},
+		{
+			"name": "Painter's Supplies",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 83
+				}
+			],
+			"referenceSources": [
+				"SCC-HfMT"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 1000,
+			"additionalEntries": [
+				"Proficiency with painter's supplies represents your ability to paint and draw. You also acquire an understanding of art history, which can aid you in examining works of art.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Painter's supplies include an easel, canvas, paints, brushes, charcoal sticks, and a palette."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana, History, Religion",
+					"entries": [
+						"Your expertise aids you in uncovering lore of any sort that is attached to a work of art, such as the magical properties of a painting or the origins of a strange mural found in a dungeon."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation, Perception",
+					"entries": [
+						"When you inspect a painting or a similar work of visual art, your knowledge of the practices behind creating it can grant you additional insight."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Painting and Drawing",
+					"entries": [
+						"As part of a short or long rest, you can produce a simple work of art. Although your work might lack precision, you can capture an image or a scene, or make a quick copy of a piece of art you saw."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Painter's Supplies",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Paint an accurate portrait",
+							"10"
+						],
+						[
+							"Create a painting with a hidden message",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Pan Flute",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"type": "INS",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1200
+		},
+		{
+			"name": "Pike",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"IDRotF",
+				"KftGV"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 18,
+			"value": 500,
+			"weaponCategory": "martial",
+			"property": [
+				"H",
+				"R",
+				"2H"
+			],
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"weapon": true
+		},
+		{
+			"name": "Pistol",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"HoL",
+				"LoX"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"value": 25000,
+			"weaponCategory": "martial",
+			"age": "renaissance",
+			"property": [
+				"AF|DMG",
+				"LD"
+			],
+			"range": "30/90",
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "renaissance bullet"
+		},
+		{
+			"name": "Plate Armor",
+			"source": "PHB",
+			"page": 145,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"GoS",
+				"PaBTSO",
+				"QftIS",
+				"TftYP-AtG",
+				"US"
+			],
+			"type": "HA",
+			"rarity": "none",
+			"weight": 65,
+			"value": 150000,
+			"ac": 18,
+			"strength": "15",
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"Plate consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body."
+			]
+		},
+		{
+			"name": "Potter's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 84
+				}
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 3,
+			"value": 1000,
+			"additionalEntries": [
+				"Potter's tools are used to create a variety of ceramic objects, most typically pots and similar vessels.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Potter's tools include potter's needles, ribs, scrapers, a knife, and calipers."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"Your expertise aids you in identifying ceramic objects, including when they were created and their likely place or culture of origin."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation, Perception",
+					"entries": [
+						"You gain additional insight when inspecting ceramics, uncovering clues others would overlook by spotting minor irregularities."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Reconstruction",
+					"entries": [
+						"By examining pottery shards, you can determine an object's original, intact form and its likely purpose."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Potter's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Determine what a vessel once held",
+							"10"
+						],
+						[
+							"Create a serviceable pot",
+							"15"
+						],
+						[
+							"Find a weak point in a ceramic object",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Quarterstaff",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"PaBTSO",
+				"TTP",
+				"WDH"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 20,
+			"weaponCategory": "simple",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"weapon": true
+		},
+		{
+			"name": "Rapier",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"DitLCoT",
+				"QftIS",
+				"US"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"weaponCategory": "martial",
+			"property": [
+				"F"
+			],
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"rapier": true,
+			"sword": true,
+			"weapon": true
+		},
+		{
+			"name": "Renaissance Bullet",
+			"source": "DMG",
+			"page": 268,
+			"type": "AF|DMG",
+			"rarity": "none",
+			"weight": 0.2,
+			"value": 30,
+			"age": "renaissance",
+			"bulletFirearm": true,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Renaissance Bullets (10)",
+			"source": "DMG",
+			"page": 268,
+			"type": "AF|DMG",
+			"rarity": "none",
+			"weight": 2,
+			"value": 300,
+			"age": "renaissance",
+			"bulletFirearm": true,
+			"packContents": [
+				{
+					"item": "renaissance bullet",
+					"quantity": 10
+				}
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Revolver",
+			"source": "DMG",
+			"page": 268,
+			"referenceSources": [
+				"WDMM"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"weaponCategory": "martial",
+			"age": "modern",
+			"property": [
+				"AF|DMG",
+				"RLD"
+			],
+			"range": "40/120",
+			"reload": 6,
+			"dmg1": "2d8",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "modern bullet"
+		},
+		{
+			"name": "Ring Mail",
+			"source": "PHB",
+			"page": 145,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"HoL"
+			],
+			"type": "HA",
+			"rarity": "none",
+			"weight": 40,
+			"value": 3000,
+			"ac": 14,
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"This armor is leather armor with heavy rings sewn into it. The rings help reinforce the armor against blows from swords and axes. Ring mail is inferior to chain mail, and it's usually worn only by those who can't afford better armor."
+			]
+		},
+		{
+			"name": "Rod",
+			"group": [
+				"Arcane Focus"
+			],
+			"source": "PHB",
+			"page": 151,
+			"srd": true,
+			"basicRules": true,
+			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000
+		},
+		{
+			"name": "Scale Mail",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"DSotDQ",
+				"TftYP-TFoF",
+				"TTP"
+			],
+			"type": "MA",
+			"rarity": "none",
+			"weight": 45,
+			"value": 5000,
+			"ac": 14,
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"This armor consists of a coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. The suit includes gauntlets."
+			]
+		},
+		{
+			"name": "Scimitar",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"KftGV",
+				"RMBRE",
+				"TftYP-TSC"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 2500,
+			"weaponCategory": "martial",
+			"property": [
+				"F",
+				"L"
+			],
+			"dmg1": "1d6",
+			"dmgType": "S",
+			"sword": true,
+			"weapon": true
+		},
+		{
+			"name": "Shawm",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"type": "INS",
+			"rarity": "none",
+			"weight": 1,
+			"value": 200
+		},
+		{
+			"name": "Shawm",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A double-reed instrument similar to an oboe or a bassoon, popular with gnomes, who have developed some bellows-powered versions."
+			]
+		},
+		{
+			"name": "Shield",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"CRCotN",
+				"GoS",
+				"QftIS",
+				"TftYP-AtG",
+				"TftYP-TSC",
+				"TTP",
+				"US",
+				"VEoR",
+				"WBtW",
+				"WDH"
+			],
+			"type": "S",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1000,
+			"ac": 2,
+			"entries": [
+				"A shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by 2. You can benefit from only one shield at a time."
+			]
+		},
+		{
+			"name": "Shortbow",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CRCotN",
+				"TftYP-TSC"
+			],
+			"type": "R",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"weaponCategory": "simple",
+			"property": [
+				"A",
+				"2H"
+			],
+			"range": "80/320",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"bow": true,
+			"weapon": true,
+			"ammoType": "arrow|phb"
+		},
+		{
+			"name": "Shortsword",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM",
+				"CoS",
+				"IDRotF",
+				"KftGV",
+				"PaBTSO",
+				"US",
+				"VEoR",
+				"WDMM"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"F",
+				"L"
+			],
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"sword": true,
+			"weapon": true
+		},
+		{
+			"name": "Shotgun",
+			"source": "DMG",
+			"page": 268,
+			"type": "R",
+			"rarity": "none",
+			"weight": 7,
+			"weaponCategory": "martial",
+			"age": "modern",
+			"property": [
+				"AF|DMG",
+				"RLD",
+				"2H"
+			],
+			"range": "30/90",
+			"reload": 2,
+			"dmg1": "2d8",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "modern bullet"
+		},
+		{
+			"name": "Sickle",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 100,
+			"weaponCategory": "simple",
+			"property": [
+				"L"
+			],
+			"dmg1": "1d4",
+			"dmgType": "S",
+			"weapon": true
+		},
+		{
+			"name": "Sling",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "R",
+			"rarity": "none",
+			"value": 10,
+			"weaponCategory": "simple",
+			"property": [
+				"A"
+			],
+			"range": "30/120",
+			"dmg1": "1d4",
+			"dmgType": "B",
+			"weapon": true,
+			"ammoType": "sling bullet|phb"
+		},
+		{
+			"name": "Sling Bullet",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"DoSI",
+				"IDRotF"
+			],
+			"type": "A",
+			"rarity": "none",
+			"weight": 0.075,
+			"value": 0.2,
+			"bulletSling": true
+		},
+		{
+			"name": "Sling Bullets (20)",
+			"source": "PHB",
+			"page": 150,
+			"srd": true,
+			"basicRules": true,
+			"type": "A",
+			"rarity": "none",
+			"weight": 1.5,
+			"value": 4,
+			"bulletSling": true,
+			"packContents": [
+				{
+					"item": "sling bullet|phb",
+					"quantity": 20
+				}
+			]
+		},
+		{
+			"name": "Smith's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 84
+				}
+			],
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"IDRotF",
+				"KftGV",
+				"QftIS",
+				"ToA",
+				"TTP",
+				"WDH"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 8,
+			"value": 2000,
+			"additionalEntries": [
+				"Smith's tools allow you to work metal, heating it to alter its shape, repair damage, or work raw ingots into useful items.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Smith's tools include hammers, tongs, charcoal, rags, and a whetstone."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana and History",
+					"entries": [
+						"Your expertise lends you additional insight when examining metal objects, such as weapons."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"You can spot clues and make deductions that others might overlook when an investigation involves armor, weapons, or other metalwork."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repair",
+					"entries": [
+						"With access to your tools and an open flame hot enough to make metal pliable, you can restore 10 hit points to a damaged metal object for each hour of work."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Smith's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Sharpen a dull blade",
+							"10"
+						],
+						[
+							"Repair a suit of armor",
+							"15"
+						],
+						[
+							"Sunder a nonmagical metal object",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Songhorn",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A recorder, a simple type of flute, usually carved from wood."
+			]
+		},
+		{
+			"name": "Spear",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CRCotN",
+				"DSotDQ",
+				"GoS",
+				"LK",
+				"PaBTSO",
+				"QftIS",
+				"SCC-ARiR",
+				"TftYP-AtG",
+				"TftYP-TSC",
+				"US"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 100,
+			"weaponCategory": "simple",
+			"property": [
+				"T",
+				"V"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"dmg2": "1d8",
+			"spear": true,
+			"weapon": true
+		},
+		{
+			"name": "Spiked Armor",
+			"source": "SCAG",
+			"page": 121,
+			"type": "MA",
+			"rarity": "unknown",
+			"weight": 45,
+			"value": 7500,
+			"ac": 14,
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"Spiked armor is a rare type of medium armor made by dwarves. It consists of a leather coat and leggings covered with spikes that are usually made of metal."
+			]
+		},
+		{
+			"name": "Splint Armor",
+			"source": "PHB",
+			"page": 145,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"SCC-ARiR",
+				"TftYP-AtG",
+				"TftYP-TSC",
+				"VEoR"
+			],
+			"type": "HA",
+			"rarity": "none",
+			"weight": 60,
+			"value": 20000,
+			"ac": 17,
+			"strength": "15",
+			"armor": true,
+			"stealth": true,
+			"entries": [
+				"This armor is made of narrow vertical strips of metal riveted to a backing of leather that is worn over cloth padding. Flexible chain mail protects the joints."
+			]
+		},
+		{
+			"name": "Staff",
+			"group": [
+				"Arcane Focus"
+			],
+			"source": "PHB",
+			"page": 151,
+			"srd": true,
+			"basicRules": true,
+			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "simple",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"staff": true
+		},
+		{
+			"name": "Studded Leather Armor",
+			"source": "PHB",
+			"page": 144,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"BGDIA",
+				"CM",
+				"GoS",
+				"JttRC",
+				"LMoP",
+				"TftYP-TSC",
+				"ToA"
+			],
+			"type": "LA",
+			"rarity": "none",
+			"weight": 13,
+			"value": 4500,
+			"ac": 12,
+			"armor": true,
+			"entries": [
+				"Made from tough but flexible leather, studded leather is reinforced with close-set rivets or spikes."
+			]
+		},
+		{
+			"name": "Tantan",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A tambourine, a popular instrument with halflings and humans south of the Dalelands."
+			]
+		},
+		{
+			"name": "Thelarr",
+			"alias": [
+				"Whistlecane"
+			],
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"Also known as a whistlecane, a simple and easy-to-make wind instrument cut from a reed. They are so simple, in fact, that skilled bards frequently make and give them away to children\u2014to the parents' delight or regret."
+			]
+		},
+		{
+			"name": "Tinker's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 84
+				}
+			],
+			"referenceSources": [
+				"BGDIA",
+				"IDRotF",
+				"IMR",
+				"KftGV",
+				"OoW",
+				"PaBTSO",
+				"QftIS",
+				"RtG",
+				"TTP",
+				"VEoR",
+				"WDMM"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 10,
+			"value": 5000,
+			"additionalEntries": [
+				"A set of tinker's tools is designed to enable you to repair many mundane objects. Though you can't manufacture much with tinker's tools, you can mend torn clothes, sharpen a worn sword, and patch a tattered suit of chain mail.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Tinker's tools include a variety of hand tools, thread, needles, a whetstone, scraps of cloth and leather, and a small pot of glue."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"You can determine the age and origin of objects, even if you have only a few pieces remaining from the original."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"When you inspect a damaged object, you gain knowledge of how it was damaged and how long ago."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repair",
+					"entries": [
+						"You can restore 10 hit points to a damaged object for each hour of work. For any object, you need access to the raw materials required to repair it. For metal objects, you need access to an open flame hot enough to make the metal pliable."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Tinker's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Temporarily repair a disabled device",
+							"10"
+						],
+						[
+							"Repair an item in half the time",
+							"15"
+						],
+						[
+							"Improvise a temporary item using scraps",
+							"20"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Tocken",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A hanging set of carved oval bells, usually played with a pair of light wooden hammers (or open handed). They are most common in underground cultures, where the resonant tones can carry."
+			]
+		},
+		{
+			"name": "Trident",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"GoS",
+				"TTP"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "martial",
+			"property": [
+				"T",
+				"V"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"dmg2": "1d8",
+			"weapon": true
+		},
+		{
+			"name": "Viol",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"ToA",
+				"TTP"
+			],
+			"type": "INS",
+			"rarity": "none",
+			"weight": 1,
+			"value": 3000
+		},
+		{
+			"name": "Wand",
+			"group": [
+				"Arcane Focus"
+			],
+			"source": "PHB",
+			"page": 151,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CM"
+			],
+			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000
+		},
+		{
+			"name": "War Pick",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 500,
+			"weaponCategory": "martial",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"weapon": true
+		},
+		{
+			"name": "Wargong",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A metal gong, traditionally made from a shield, particularly the shield of an enemy. Both goblins and dwarves make and play wargongs, their sound echoing through tunnels in the Underdark."
+			]
+		},
+		{
+			"name": "Warhammer",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"referenceSources": [
+				"CoS",
+				"GoS",
+				"TftYP-TFoF",
+				"US"
+			],
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1500,
+			"weaponCategory": "martial",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"dmg2": "1d10",
+			"hammer": true,
+			"weapon": true
+		},
+		{
+			"name": "Weaver's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 85
+				}
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"additionalEntries": [
+				"Weaver's tools allow you to create cloth and tailor it into articles of clothing.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Weaver's tools include thread, needles, and scraps of cloth. You know how to work a loom, but such equipment is too large to transport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana, History",
+					"entries": [
+						"Your expertise lends you additional insight when examining cloth objects, including cloaks and robes."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Investigation",
+					"entries": [
+						"Using your knowledge of the process of creating cloth objects, you can spot clues and make deductions that others would overlook when you examine tapestries, upholstery, clothing, and other woven items."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repair",
+					"entries": [
+						"As part of a short rest, you can repair a single damaged cloth object."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Craft Clothing",
+					"entries": [
+						"Assuming you have access to sufficient cloth and thread, you can create an outfit for a creature as part of a long rest."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Weaver's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Repurpose cloth",
+							"10"
+						],
+						[
+							"Mend a hole in a piece of cloth",
+							"10"
+						],
+						[
+							"Tailor an outfit",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Whip",
+			"source": "PHB",
+			"page": 149,
+			"srd": true,
+			"basicRules": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 200,
+			"weaponCategory": "martial",
+			"property": [
+				"F",
+				"R"
+			],
+			"dmg1": "1d4",
+			"dmgType": "S",
+			"weapon": true
+		},
+		{
+			"name": "Woodcarver's Tools",
+			"source": "PHB",
+			"page": 154,
+			"srd": true,
+			"basicRules": true,
+			"additionalSources": [
+				{
+					"source": "XGE",
+					"page": 85
+				}
+			],
+			"referenceSources": [
+				"IDRotF",
+				"RtG",
+				"VEoR"
+			],
+			"type": "AT",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"additionalEntries": [
+				"Woodcarver's tools allow you to craft intricate objects from wood, such as wooden tokens or arrows.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"Woodcarver's tools consist of a knife, a gouge, and a small saw."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcana, History",
+					"entries": [
+						"Your expertise lends you additional insight when you examine wooden objects, such as figurines or arrows."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Nature",
+					"entries": [
+						"Your knowledge of wooden objects gives you some added insight when you examine trees."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repair",
+					"entries": [
+						"As part of a short rest, you can repair a single damaged wooden object."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Craft Arrows",
+					"entries": [
+						"As part of a short rest, you can craft up to five arrows. As part of a long rest, you can craft up to twenty. You must have enough wood on hand to produce them."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Woodcarver's Tools",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Craft a small wooden figurine",
+							"10"
+						],
+						[
+							"Carve an intricate pattern in wood",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Wooden Staff",
+			"group": [
+				"Druidic Focus"
+			],
+			"source": "PHB",
+			"page": 151,
+			"srd": true,
+			"basicRules": true,
+			"type": "SCF",
+			"scfType": "druid",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "simple",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8"
+		},
+		{
+			"name": "Yarting",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A southern instrument from Amn and Calimshan that is a Faerûnian analog to the guitar. Numerous variations have spread across the continent."
+			]
+		},
+		{
+			"name": "Yklwa",
+			"source": "ToA",
+			"page": 32,
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 100,
+			"weaponCategory": "simple",
+			"property": [
+				"T"
+			],
+			"range": "10/30",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"weapon": true,
+			"entries": [
+				"A yklwa (pronounced YICK-ul-wah) is a simple melee weapon that is the traditional weapon of Chultan warriors. A yklwa consists of a 3-foot wooden shaft with a steel or stone blade up to 18 inches long. Although it has the thrown weapon property, the yklwa is not well balanced for throwing."
+			]
+		},
+		{
+			"name": "Zulkoon",
+			"source": "SCAG",
+			"page": 124,
+			"type": "INS",
+			"rarity": "none",
+			"entries": [
+				"A complex pump organ that originated with the zulkirs of Thay, who use it in the casting of their spells. It is considered to have a dramatic, but sinister, sound."
+			]
+		}
+	],
+	"itemProperty": [
+		{
+			"abbreviation": "2H",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Two-Handed",
+					"entries": [
+						"This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "A",
+			"source": "PHB",
+			"page": 146,
+			"template": "{{prop_name_lower}} ({{item.range}}\u00A0ft.)",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Ammunition",
+					"entries": [
+						"You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+						"If you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "AF",
+			"source": "DMG",
+			"page": 267,
+			"template": "{{prop_name_lower}} ({{item.range}}\u00A0ft.)",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Ammunition",
+					"entries": [
+						"You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. The ammunition of a firearm is destroyed upon use.",
+						"If you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "BF",
+			"source": "DMG",
+			"page": 267,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Burst Fire",
+					"entries": [
+						"A weapon that has the burst fire property can make a single-target attack, or it can spray a 10-foot-cube area within normal range with shots. Each creature in the area must succeed on a {@dc 15} Dexterity saving throw or take the weapon's normal damage. This action uses ten pieces of ammunition."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "F",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Finesse",
+					"entries": [
+						"When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "H",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Heavy",
+					"entries": [
+						"Creatures that are Small or Tiny have disadvantage on attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small or Tiny creature to use effectively."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "L",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Light",
+					"entries": [
+						"A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "LD",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Loading",
+					"entries": [
+						"Because of the time required to load this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or reaction to fire it, regardless of the number of attacks you can normally make."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "R",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Reach",
+					"entries": [
+						"This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "RLD",
+			"source": "DMG",
+			"page": 267,
+			"template": "{{prop_name_lower}} ({{item.reload}} shots)",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Reload",
+					"entries": [
+						"A limited number of shots can be made with a weapon that has the reload property. A character must then reload it using an action or a bonus action (the character's choice)."
+					]
+				}
+			]
+		},
+		{
+			"name": "special",
+			"abbreviation": "S",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}}"
+		},
+		{
+			"abbreviation": "T",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}} ({{item.range}}\u00A0ft.)",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Thrown",
+					"entries": [
+						"If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "V",
+			"source": "PHB",
+			"page": 147,
+			"template": "{{prop_name_lower}} ({{item.dmg2}})",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Versatile",
+					"entries": [
+						"This weapon can be used with one or two hands. A damage value in parentheses appears with the property\u2014the damage when the weapon is used with two hands to make a melee attack."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "Vst",
+			"source": "EGW",
+			"page": 270,
+			"template": "Vestige",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Vestige of Divergence",
+					"page": 200,
+					"entries": [
+						"{@note This item is a Vestige of Divergence, see {@book Vestiges of Divergence|EGW|7|Vestiges of Divergence} for more information.}"
+					]
+				}
+			]
+		}
+	],
+	"itemType": [
+		{
+			"name": "Treasure",
+			"abbreviation": "$",
+			"source": "DMG",
+			"page": 133
+		},
+		{
+			"name": "Treasure (Art Object)",
+			"abbreviation": "$A",
+			"source": "DMG",
+			"page": 133
+		},
+		{
+			"name": "Treasure (Coinage)",
+			"abbreviation": "$C",
+			"source": "PHB",
+			"page": 143
+		},
+		{
+			"name": "Treasure (Gemstone)",
+			"abbreviation": "$G",
+			"source": "DMG",
+			"page": 133
+		},
+		{
+			"name": "Ammunition",
+			"abbreviation": "A",
+			"source": "PHB",
+			"page": 148
+		},
+		{
+			"name": "Ammunition",
+			"abbreviation": "AF",
+			"source": "DMG",
+			"page": 267
+		},
+		{
+			"name": "Vehicle (Air)",
+			"abbreviation": "AIR",
+			"source": "DMG",
+			"page": 119,
+			"_copy": {
+				"abbreviation": "SHP",
+				"source": "DMG"
+			}
+		},
+		{
+			"name": "Artisan's Tools",
+			"abbreviation": "AT",
+			"source": "PHB",
+			"page": 154,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Artisan's Tools",
+					"entries": [
+						"These special tools include the items needed to pursue a craft or trade. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."
+					]
+				}
+			]
+		},
+		{
+			"name": "Explosive",
+			"abbreviation": "EXP",
+			"source": "DMG",
+			"page": 267
+		},
+		{
+			"name": "Food and Drink",
+			"abbreviation": "FD",
+			"source": "PHB",
+			"page": 158
+		},
+		{
+			"name": "Adventuring Gear",
+			"abbreviation": "G",
+			"source": "PHB",
+			"page": 148
+		},
+		{
+			"name": "Gaming Set",
+			"abbreviation": "GS",
+			"source": "PHB",
+			"page": 154,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Gaming Set",
+					"entries": [
+						"If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency."
+					]
+				}
+			]
+		},
+		{
+			"name": "Generic Variant",
+			"abbreviation": "GV",
+			"source": "DMG",
+			"page": 135
+		},
+		{
+			"name": "Heavy Armor",
+			"abbreviation": "HA",
+			"source": "PHB",
+			"page": 145
+		},
+		{
+			"name": "Instrument",
+			"abbreviation": "INS",
+			"source": "PHB",
+			"page": 154,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Instrument",
+					"entries": [
+						"If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency."
+					]
+				}
+			]
+		},
+		{
+			"name": "Light Armor",
+			"abbreviation": "LA",
+			"source": "PHB",
+			"page": 144
+		},
+		{
+			"name": "Melee Weapon",
+			"abbreviation": "M",
+			"source": "PHB",
+			"page": 146
+		},
+		{
+			"name": "Medium Armor",
+			"abbreviation": "MA",
+			"source": "PHB",
+			"page": 144
+		},
+		{
+			"name": "Mount",
+			"abbreviation": "MNT",
+			"source": "PHB",
+			"page": 155
+		},
+		{
+			"name": "Other",
+			"abbreviation": "OTH",
+			"source": "PHB",
+			"page": 143
+		},
+		{
+			"name": "Potion",
+			"abbreviation": "P",
+			"source": "PHB",
+			"page": 148
+		},
+		{
+			"name": "Ranged Weapon",
+			"abbreviation": "R",
+			"source": "PHB",
+			"page": 146,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Range",
+					"entries": [
+						"A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range."
+					]
+				}
+			]
+		},
+		{
+			"name": "Rod",
+			"abbreviation": "RD",
+			"source": "DMG",
+			"page": 139
+		},
+		{
+			"name": "Ring",
+			"abbreviation": "RG",
+			"source": "DMG",
+			"page": 139
+		},
+		{
+			"name": "Shield",
+			"abbreviation": "S",
+			"source": "PHB",
+			"page": 144
+		},
+		{
+			"name": "Scroll",
+			"abbreviation": "SC",
+			"source": "DMG",
+			"page": 139
+		},
+		{
+			"name": "Spellcasting Focus",
+			"abbreviation": "SCF",
+			"source": "PHB",
+			"page": 148
+		},
+		{
+			"name": "Vehicle (Water)",
+			"abbreviation": "SHP",
+			"source": "DMG",
+			"page": 119,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Crew",
+					"entries": [
+						"A ship needs a crew of skilled hirelings to function. As per the Player's Handbook, one skilled hireling costs at least 2 gp per day. The minimum number of skilled hirelings needed to crew a ship depends on the type of vessel.",
+						"You can track the loyalty of individual crew members or the crew as a whole using the optional loyalty rules in chapter 4 of the Dungeon Master's Guide. If at least half the crew becomes disloyal during a voyage, the crew turns hostile and stages a mutiny. If the ship is berthed, disloyal crew members leave the ship and never return."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Passengers",
+					"entries": [
+						"This indicates the number of Small and Medium passengers the ship can accommodate.",
+						"Accommodations consist of shared hammocks in tight quarters. A ship outfitted with private accommodations can carry one-fifth as many passengers.",
+						"A passenger is usually expected to pay 5 sp per day for a hammock, but prices can vary from ship to ship. A small private cabin usually costs 2 gp per day."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cargo",
+					"entries": [
+						"The maximum tonnage the ship can carry."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Damage Threshold",
+					"entries": [
+						"If a ship has a Damage Threshold, it has immunity to all damage unless it takes an amount of damage equal to or greater than its damage threshold, in which case it takes damage as normal. Any damage that fails to meet or exceed the damage threshold is considered superficial and doesn't reduce the ship's hit points."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ship Repair",
+					"entries": [
+						"Repairs to a damaged ship can be made while the vessel is berthed. Repairing 1 hit point of damage requires 1 day and costs 20 gp for materials and labor."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vehicle (Space)",
+			"abbreviation": "SPC",
+			"source": "AAG",
+			"page": 24
+		},
+		{
+			"name": "Tool",
+			"abbreviation": "T",
+			"source": "PHB",
+			"page": 154
+		},
+		{
+			"name": "Tack and Harness",
+			"abbreviation": "TAH",
+			"source": "PHB",
+			"page": 155
+		},
+		{
+			"name": "Trade Good",
+			"abbreviation": "TG",
+			"source": "PHB",
+			"page": 146,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Trade Good",
+					"entries": [
+						"Most wealth is not in coins. It is measured in livestock, grain, land, rights to collect taxes, or rights to resources (such as a mine or a forest).",
+						"Guilds, nobles, and royalty regulate trade. Chartered companies are granted rights to conduct trade along certain routes, to send merchant ships to various ports, or to buy or sell specific goods. Guilds set prices for the goods or services that they control, and determine who may or may not offer those goods and services. Merchants commonly exchange trade goods without using currency."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vehicle (Land)",
+			"abbreviation": "VEH",
+			"source": "PHB",
+			"page": 155
+		},
+		{
+			"name": "Wand",
+			"abbreviation": "WD",
+			"source": "DMG",
+			"page": 139
+		}
+	],
+	"itemTypeAdditionalEntries": [
+		{
+			"name": "Gaming Set",
+			"source": "XGE",
+			"appliesTo": "GS|PHB",
+			"entries": [
+				"Proficiency with a gaming set applies to one type of game, such as Three-Dragon Ante or games of chance that use dice.",
+				{
+					"type": "entries",
+					"name": "Components",
+					"entries": [
+						"A gaming set has all the pieces needed to play a specific game or type of game, such as a complete deck of cards or a board and tokens."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"Your mastery of a game includes knowledge of its history, as well as of important events it was connected to or prominent historical figures involved with it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Insight",
+					"entries": [
+						"Playing games with someone is a good way to gain understanding of their personality, granting you a better ability to discern their lies from their truths and read their mood."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sleight of Hand",
+					"entries": [
+						"Sleight of Hand is a useful skill for cheating at a game, as it allows you to swap pieces, palm cards, or alter a die roll. Alternatively, engrossing a target in a game by manipulating the components with dexterous movements is a great distraction for a pickpocketing attempt."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Gaming Set",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Catch a player cheating",
+							"15"
+						],
+						[
+							"Gain insight into an opponent's personality",
+							"15"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Instrument",
+			"source": "XGE",
+			"appliesTo": "INS|PHB",
+			"entries": [
+				"Proficiency with a musical instrument indicates you are familiar with the techniques used to play it. You also have knowledge of some songs commonly performed with that instrument.",
+				{
+					"type": "entries",
+					"name": "History",
+					"entries": [
+						"Your expertise aids you in recalling lore related to your instrument."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Performance",
+					"entries": [
+						"Your ability to put on a good show is improved when you incorporate an instrument into your act."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Compose a Tune",
+					"entries": [
+						"As part of a long rest, you can compose a new tune and lyrics for your instrument. You might use this ability to impress a noble or spread scandalous rumors with a catchy tune."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Musical Instrument",
+					"colLabels": [
+						"Activity",
+						"DC"
+					],
+					"colStyles": [
+						"col-10",
+						"col-2 text-center"
+					],
+					"rows": [
+						[
+							"Identify a tune",
+							"10"
+						],
+						[
+							"Improvise a tune",
+							"20"
+						]
+					]
+				}
+			]
+		}
+	],
+	"itemEntry": [
+		{
+			"name": "Absorbing Tattoo",
+			"source": "TCE",
+			"entriesTemplate": [
+				"Produced by a special needle, this magic tattoo features designs that emphasize one color ({{item.detail1}}).",
+				{
+					"type": "entries",
+					"name": "Tattoo Attunement",
+					"entries": [
+						"To attune to this item, you hold the needle to your skin where you want the tattoo to appear, pressing the needle there throughout the attunement process. When the attunement is complete, the needle turns into the ink that becomes the tattoo, which appears on the skin.",
+						"If your attunement to the tattoo ends, the tattoo vanishes, and the needle reappears in your space."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Damage Resistance",
+					"entries": [
+						"While the tattoo is on your skin, you have resistance to {{item.resist}} damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Damage Absorption",
+					"entries": [
+						"When you take {{item.resist}} damage, you can use your reaction to gain immunity against that instance of the damage, and you regain a number of hit points equal to half the damage you would have taken. Once this reaction is used, it can't be used again until the next dawn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Armor of Resistance",
+			"source": "DMG",
+			"entriesTemplate": [
+				"You have resistance to {{item.resist}} damage while you wear this armor."
+			]
+		},
+		{
+			"name": "Chromatic Rose",
+			"source": "WBtW",
+			"entriesTemplate": [
+				"While this rose is held, it {{item.detail1}} as a harmless visual effect.",
+				"While holding the rose by its stem, you gain resistance to {{item.resist}} damage. If you would take more than 10 {{item.resist}} damage from a single source (after applying the resistance), the rose disintegrates, and you take no damage instead.",
+				"As an action, you can blow the petals from the rose to produce a 20-foot cone of {{item.resist}}. Each creature in the cone must make a {@dc 15} Constitution saving throw, taking {@damage 3d10} {{item.resist}} damage on a failed save, or half as much damage on a successful one. Using this property destroys the rose."
+			]
+		},
+		{
+			"name": "Grenade",
+			"source": "DMG",
+			"entriesTemplate": [
+				"As an action, a character can throw a grenade at a point up to 60 feet away. With a grenade launcher, the character can propel the grenade up to 120 feet away."
+			]
+		},
+		{
+			"name": "Potion of Resistance",
+			"source": "DMG",
+			"entriesTemplate": [
+				"When you drink this potion, you gain resistance to {{item.resist}} damage for 1 hour."
+			]
+		},
+		{
+			"name": "Ring of Resistance",
+			"source": "DMG",
+			"entriesTemplate": [
+				"You have resistance to {{item.resist}} damage while wearing this ring. The ring is set with {{item.detail1}}."
+			]
+		}
+	]
+}

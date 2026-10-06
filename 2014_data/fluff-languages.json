@@ -1,0 +1,394 @@
+{
+	"languageFluff": [
+		{
+			"name": "Alzhedo",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Chessentan",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Chondathan",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Damaran",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Draconic",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Draconic.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Dwarvish",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Dwarvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Elvish",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Elvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Giant",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Dwarvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Gnomish",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Dwarvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Goblin",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Dwarvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Illuskan",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Midani",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Mulhorandi",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Orc",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Dwarvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Primordial",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Dwarvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Rashemi",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Roushoum",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Shou",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Sylvan",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Elvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Thayan",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Tuigan",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Turmic",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Uluik",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Undercommon",
+			"source": "PHB",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/PHB/Elvish.webp"
+					},
+					"width": 1000,
+					"height": 336
+				}
+			]
+		},
+		{
+			"name": "Untheric",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		},
+		{
+			"name": "Waelan",
+			"source": "SCAG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "languages/SCAG/Thorass Common.webp"
+					},
+					"width": 850,
+					"height": 278
+				}
+			]
+		}
+	]
+}

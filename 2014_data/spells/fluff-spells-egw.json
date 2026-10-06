@@ -1,0 +1,36 @@
+{
+	"spellFluff": [
+		{
+			"name": "Dark Star",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/EGW/Dark Star.webp"
+					},
+					"credit": "Axel Defois",
+					"width": 1496,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Reality Break",
+			"source": "EGW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "spells/EGW/Reality Break.webp"
+					},
+					"credit": "Brian Valeza",
+					"width": 1496,
+					"height": 1000
+				}
+			]
+		}
+	]
+}

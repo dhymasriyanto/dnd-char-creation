@@ -1,0 +1,79 @@
+{
+	"monsterFluff": [
+		{
+			"name": "Homunculus Servant",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/TCE/Homunculus Servant.webp"
+					},
+					"width": 1200,
+					"height": 835
+				}
+			]
+		},
+		{
+			"name": "Mighty Servant of Leuk-o",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/TCE/Mighty Servant of Leuk-o.webp"
+					},
+					"width": 915,
+					"height": 1000
+				}
+			]
+		},
+		{
+			"name": "Reflection",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/TCE/Reflection.webp"
+					},
+					"width": 1200,
+					"height": 800
+				}
+			]
+		},
+		{
+			"name": "Shadow Spirit",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/TCE/Summon Shadowspawn.webp"
+					},
+					"width": 1200,
+					"height": 807
+				}
+			]
+		},
+		{
+			"name": "Steel Defender",
+			"source": "TCE",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/TCE/Steel Defender.webp"
+					},
+					"width": 400,
+					"height": 593
+				}
+			]
+		}
+	]
+}
