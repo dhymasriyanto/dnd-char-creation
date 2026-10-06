@@ -1,7 +1,6 @@
 'use strict'
 
 import {response} from '../../helper/response.mjs'
-import {getData} from '../service/getData.mjs'
 import {db} from '../../database/index.mjs'
 
 const safeJson = (val, fallback = []) => {
@@ -107,45 +106,10 @@ export let subClass = {
 				return response.ok('success', 'Retrieved all data', formatSubClassResult(fullSubClass), res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium subclass query failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium subclass query failed:', err.message)
 		}
 
-		const charClass = await getData.all('class/index.json', edition)
-
-		if (charClass && Object.prototype.propertyIsEnumerable.call(charClass, className)) {
-			const datas = await getData.all('class/' + charClass[className], edition)
-			if (!datas) {
-				return response.notFound('error', 'Not Found', '', res)
-			}
-
-			const subClassData = {
-				class: datas.class?.filter(c => {
-					const is2024 = c.edition === 'one' || c.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				}) || [],
-				classFeature: datas.classFeature?.filter(cf => {
-					const is2024 = cf.classSource === 'XPHB' || cf.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				}) || [],
-				subClass: (datas.subclass || []).filter((data) => {
-					return data.classSource?.toLowerCase() === classSource?.toLowerCase()
-				})
-			}
-
-			return response.ok(
-				'success',
-				'Retrieved all data',
-				subClassData,
-				res
-			)
-		} else {
-			return response.notFound(
-				'error',
-				'Not Found',
-				'',
-				res
-			)
-		}
+		return response.notFound('error', 'Not Found', '', res)
 	},
 
 	find: async (req, res, next) => {
@@ -171,53 +135,9 @@ export let subClass = {
 				return response.ok('success', 'Retrieved all data', formatSubClassResult(fullSubClass), res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium subclass find failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium subclass find failed:', err.message)
 		}
 
-		const charClass = await getData.all('class/index.json', edition)
-
-		if (charClass && Object.prototype.propertyIsEnumerable.call(charClass, className)) {
-			const datas = await getData.all('class/' + charClass[className], edition)
-			if (!datas) {
-				return response.notFound('error', 'Not Found', '', res)
-			}
-
-			const subClassData = {
-				class: datas.class?.filter(c => {
-					const is2024 = c.edition === 'one' || c.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				}) || [],
-				classFeature: datas.classFeature?.filter(cf => {
-					const is2024 = cf.classSource === 'XPHB' || cf.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				}) || [],
-				subClass: (datas.subclass || []).filter((data) => {
-					return data.classSource?.toLowerCase() === classSource?.toLowerCase() &&
-						data.name?.toLowerCase() === name?.toLowerCase() &&
-						data.source?.toLowerCase() === source?.toLowerCase() &&
-						data.shortName?.toLowerCase() === shortName?.toLowerCase() &&
-						data.page?.toString() === page
-				}),
-				subClassFeature: (datas.subclassFeature || []).filter((data) => {
-					return data.classSource?.toLowerCase() === classSource?.toLowerCase() &&
-						data.subclassSource?.toLowerCase() === source?.toLowerCase() &&
-						data.subclassShortName?.toLowerCase() === shortName?.toLowerCase()
-				})
-			}
-
-			return response.ok(
-				'success',
-				'Retrieved all data',
-				subClassData,
-				res
-			)
-		} else {
-			return response.notFound(
-				'error',
-				'Not Found',
-				'',
-				res
-			)
-		}
+		return response.notFound('error', 'Not Found', '', res)
 	}
 }
