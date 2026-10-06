@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS
     skill_expertises,
     saving_throws,
     equipments,
+    character_spells,
     encumbrances,
     character_traits,
     character_senses,
