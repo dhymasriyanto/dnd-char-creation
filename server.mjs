@@ -11,10 +11,11 @@ const port = process.env.PORT
 
 app.use(cors())
 
-app.use(express.json()) // for parsing application/json
+app.use(express.json({ limit: '50mb' })) // for parsing application/json
 
 app.use(
 	express.urlencoded({
+		limit: '50mb',
 		extended: true
 	})
 ) // for parsing application/x-www-form-urlencoded
