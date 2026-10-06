@@ -49,7 +49,14 @@ function formatPrerequisite(prereq) {
 	if (!prereq) return null
 	if (typeof prereq === 'string') {
 		try {
-			const parsed = JSON.parse(prereq)
+			let parsed = JSON.parse(prereq)
+			while (typeof parsed === 'string') {
+				try {
+					parsed = JSON.parse(parsed)
+				} catch (_) {
+					break
+				}
+			}
 			if (typeof parsed === 'object' && parsed !== null) {
 				return formatPrerequisite(parsed)
 			}
@@ -763,13 +770,14 @@ async function seedItems() {
 	const itemsToInsert = []
 
 	const processItems = (itemList, edition) => {
-		for (const it of itemList) {
+		for (const it of itemList || []) {
 			const isWeapon = it.weaponCategory || it.dmg1
 			const isArmor = it.armorCategory || it.ac
 			let itemType = 'gear'
 			if (isWeapon) itemType = 'weapon'
 			else if (isArmor) itemType = 'armor'
-			else if (it.type === 'P') itemType = 'consumable'
+			else if (['AT', 'T', 'GS', 'INS'].includes(it.type)) itemType = 'tool'
+			else if (it.type === 'P' || it.type === 'SC') itemType = 'consumable'
 			else if (it.wondrous) itemType = 'wondrous'
 
 			let mastery = null
@@ -796,27 +804,94 @@ async function seedItems() {
 				ac_dex_bonus: it.dexMod ? 'yes' : null,
 				stealth_disadvantage: !!it.stealth,
 				strength_requirement: typeof it.strength === 'number' ? it.strength : 0,
-				properties: JSON.stringify(it.property || []),
-				entries: JSON.stringify(it.entries || [])
+				properties: it.property || [],
+				entries: it.entries || []
 			})
 		}
 	}
 
-	const items2014 = await readJson(join(DIR_2014, 'items.json'))
-	if (items2014?.item) processItems(items2014.item, '2014')
-
-	const items2024 = await readJson(join(DIR_2024, 'items.json'))
-	if (items2024?.item) {
-		const oneItems = items2024.item.filter(i => i.edition === 'one' || i.source === 'XPHB' || i.mastery)
-		processItems(oneItems, '2024')
+	const processItemGroups = (groupList, edition) => {
+		for (const grp of groupList || []) {
+			itemsToInsert.push({
+				name: grp.name,
+				edition,
+				source: grp.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: grp.page ? String(grp.page) : null,
+				item_type: 'tool',
+				rarity: grp.rarity || 'none',
+				cost_cp: typeof grp.value === 'number' ? grp.value : 0,
+				weight: typeof grp.weight === 'number' ? grp.weight : 0,
+				damage_dice: null,
+				damage_type: null,
+				versatile_dice: null,
+				mastery: null,
+				base_ac: 0,
+				ac_dex_bonus: null,
+				stealth_disadvantage: false,
+				strength_requirement: 0,
+				properties: grp.property || [],
+				entries: grp.entries || (grp.items ? ['Includes: ' + grp.items.map(s => String(s).split('|')[0]).join(', ')] : [])
+			})
+		}
 	}
 
-	await batchInsert('compendium_items', cs, itemsToInsert)
-	console.log(`Inserted ${itemsToInsert.length} items.`)
+	const processItemTypes = (typeList, edition) => {
+		for (const t of typeList || []) {
+			if (!t.name || !t.entries) continue
+			itemsToInsert.push({
+				name: t.name,
+				edition,
+				source: t.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: t.page ? String(t.page) : null,
+				item_type: 'tool',
+				rarity: 'none',
+				cost_cp: 0,
+				weight: 0,
+				damage_dice: null,
+				damage_type: null,
+				versatile_dice: null,
+				mastery: null,
+				base_ac: 0,
+				ac_dex_bonus: null,
+				stealth_disadvantage: false,
+				strength_requirement: 0,
+				properties: [],
+				entries: t.entries || []
+			})
+		}
+	}
+
+	for (const ed of ['2014', '2024']) {
+		const dir = ed === '2014' ? DIR_2014 : DIR_2024
+		const itemsData = await readJson(join(dir, 'items.json'))
+		const baseData = await readJson(join(dir, 'items-base.json'))
+
+		if (itemsData?.item) {
+			const list = ed === '2024'
+				? itemsData.item.filter(i => i.edition === 'one' || i.source === 'XPHB' || i.mastery)
+				: itemsData.item
+			processItems(list, ed)
+		}
+		if (itemsData?.itemGroup) processItemGroups(itemsData.itemGroup, ed)
+		if (baseData?.baseitem) processItems(baseData.baseitem, ed)
+		if (baseData?.itemType) processItemTypes(baseData.itemType, ed)
+	}
+
+	// Deduplicate by name, source, edition
+	const seen = new Set()
+	const deduped = itemsToInsert.filter(i => {
+		const key = `${i.name}|${i.source}|${i.edition}`.toLowerCase()
+		if (seen.has(key)) return false
+		seen.add(key)
+		return true
+	})
+
+	await batchInsert('compendium_items', cs, deduped)
+	console.log(`Inserted ${deduped.length} items.`)
 }
 
 // -------------------------------------------------------------
-// 7. RULES (Variant Rules, Rules Glossary, Actions, Conditions, Senses, Skills)
+// 7. RULES (Variant Rules, Rules Glossary, Actions, Conditions, Senses, Skills, Languages, Vehicles, Traps/Hazards, Builtins)
 // -------------------------------------------------------------
 async function seedRules() {
 	console.log('--- Seeding Rules ---')
@@ -859,7 +934,7 @@ async function seedRules() {
 			})
 		}
 
-		// 3. Conditions & Statuses & Diseases
+		// 3. Conditions, Statuses, & Diseases
 		const condData = await readJson(join(dir, 'conditionsdiseases.json'))
 		for (const c of condData?.condition || []) {
 			rulesToInsert.push({
@@ -881,6 +956,17 @@ async function seedRules() {
 				type: 'Status',
 				category: 'Status',
 				entries: s.entries || []
+			})
+		}
+		for (const d of condData?.disease || []) {
+			rulesToInsert.push({
+				name: d.name,
+				edition,
+				source: d.source || (edition === '2024' ? 'XDMG' : 'DMG'),
+				page: d.page ? String(d.page) : null,
+				type: 'Disease',
+				category: 'Disease',
+				entries: d.entries || []
 			})
 		}
 
@@ -911,10 +997,144 @@ async function seedRules() {
 				entries: sk.entries || []
 			})
 		}
+
+		// 6. Languages
+		const langData = await readJson(join(dir, 'languages.json'))
+		for (const l of langData?.language || []) {
+			const lEntries = l.entries || (l.typicalSpeakers ? ['Typical speakers: ' + l.typicalSpeakers.map(s => String(s).split('|')[0].replace(/^\{@[a-zA-Z]+\s+/, '').replace(/\}$/, '')).join(', ')] : [`A language spoken in the worlds of D&D.`])
+			rulesToInsert.push({
+				name: l.name,
+				edition,
+				source: l.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: l.page ? String(l.page) : null,
+				type: 'Language',
+				category: l.type ? `${l.type} Language` : 'Language',
+				entries: lEntries
+			})
+		}
+
+		// 7. Vehicles
+		const vehData = await readJson(join(dir, 'vehicles.json'))
+		for (const v of vehData?.vehicle || []) {
+			rulesToInsert.push({
+				name: v.name,
+				edition,
+				source: v.source || (edition === '2024' ? 'XDMG' : 'DMG'),
+				page: v.page ? String(v.page) : null,
+				type: 'Vehicle',
+				category: v.vehicleType || 'Vehicle',
+				entries: v.entries || []
+			})
+		}
+
+		// 8. Traps & Hazards
+		const trapData = await readJson(join(dir, 'trapshazards.json'))
+		for (const t of trapData?.trap || []) {
+			rulesToInsert.push({
+				name: t.name,
+				edition,
+				source: t.source || (edition === '2024' ? 'XDMG' : 'DMG'),
+				page: t.page ? String(t.page) : null,
+				type: 'Trap',
+				category: t.trapHazType || 'Trap',
+				entries: t.entries || []
+			})
+		}
+		for (const h of trapData?.hazard || []) {
+			rulesToInsert.push({
+				name: h.name,
+				edition,
+				source: h.source || (edition === '2024' ? 'XDMG' : 'DMG'),
+				page: h.page ? String(h.page) : null,
+				type: 'Hazard',
+				category: h.trapHazType || 'Hazard',
+				entries: h.entries || []
+			})
+		}
 	}
 
 	await processRules('2014')
 	await processRules('2024')
+
+	// 9. Built-in Core Rules & Damage Types
+	const CORE_RULES_DATA = [
+		{ name: "Artisan's Tools", type: 'Item', category: 'Tool', entries: ["These special tools include the items needed to pursue a craft or trade. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft.", "Each type of artisan's tools requires a separate proficiency (e.g. Alchemist's Supplies, Smith's Tools, Tinker's Tools, Brewer's Supplies, Woodcarver's Tools)."] },
+		{ name: "Thieves' Tools", type: 'Item', category: 'Tool', entries: ["This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers.", "Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks."] },
+		{ name: 'Concentration', type: 'Rule', category: 'Spellcasting', entries: ["Some spells require you to maintain concentration in order to keep their magic active.", "If you take damage while concentrating, you must make a Constitution saving throw (DC 10 or half the damage taken, whichever is higher). Taking another concentration spell ends the current one."] },
+		{ name: 'Opportunity Attack', type: 'Rule', category: 'Combat Reaction', entries: ["You can make an opportunity attack when a hostile creature that you can see moves out of your reach.", "Uses your reaction to make one melee attack against the provoking creature immediately before it leaves your reach."] },
+		{ name: 'Attunement', type: 'Rule', category: 'Magic Items', entries: ["Some magic items require a creature to form a bond with them before their magical properties can be used.", "Attuning requires a creature to spend a short rest focused on only that item. A creature can be attuned to no more than 3 magic items at once."] },
+		{ name: 'Carrying Capacity', type: 'Rule', category: 'Encumbrance', entries: ["Your carrying capacity is your Strength score multiplied by 15. This is the weight in pounds that you can carry.", "Push, Drag, or Lift: You can push, drag, or lift a weight in pounds up to twice your carrying capacity (Strength x 30)."] },
+		{ name: 'Temporary Hit Points', type: 'Rule', category: 'Health', entries: ["Temporary hit points serve as a buffer against damage, protecting you from injury.", "If you take damage, that damage is subtracted from your temporary hit points first. Leftover damage carries over to normal hit points.", "Temporary hit points do not stack; if you receive new temporary hit points, you decide whether to keep the existing amount or take the new amount."] },
+		{ name: 'Heroic Inspiration', type: 'Rule', category: 'Core Rule', entries: ["If you have Heroic Inspiration, you can expend it to reroll any one die roll and use the new result. You either have Heroic Inspiration or you do not; you cannot stockpile multiple instances."] },
+		{ name: 'Inspiration', type: 'Rule', category: 'Core Rule', entries: ["If you have Inspiration, you can expend it to reroll any one die roll and use the new result. You either have Inspiration or you do not; you cannot stockpile multiple instances."] },
+		{ name: 'Spell Slot', type: 'Rule', category: 'Spellcasting', entries: ["Spell slots represent the magical stamina available to cast spells. Casting a spell expends a slot of that spell's level or higher. Expended slots are regained after finishing a Long Rest (or Short Rest for Warlocks)."] },
+		{ name: 'Spell Slots', type: 'Rule', category: 'Spellcasting', entries: ["Spell slots represent the magical stamina available to cast spells. Casting a spell expends a slot of that spell's level or higher. Expended slots are regained after finishing a Long Rest (or Short Rest for Warlocks)."] },
+		{ name: 'Cantrip', type: 'Rule', category: 'Spellcasting', entries: ["A cantrip is a spell that can be cast at will, without using a spell slot and without being prepared in advance. It represents foundational magical knowledge."] },
+		{ name: 'Cantrips', type: 'Rule', category: 'Spellcasting', entries: ["A cantrip is a spell that can be cast at will, without using a spell slot and without being prepared in advance. It represents foundational magical knowledge."] },
+		{ name: 'Ritual Casting', type: 'Rule', category: 'Spellcasting', entries: ["Certain spells have the ritual tag. A ritual version takes 10 minutes longer to cast than normal, but does not expend a spell slot."] },
+		{ name: 'Advantage', type: 'Rule', category: 'Core Rule', entries: ["When you have advantage on a d20 roll (attack roll, ability check, or saving throw), roll two d20s and use the higher result."] },
+		{ name: 'Disadvantage', type: 'Rule', category: 'Core Rule', entries: ["When you have disadvantage on a d20 roll (attack roll, ability check, or saving throw), roll two d20s and use the lower result."] },
+		{ name: 'Saving Throw', type: 'Rule', category: 'Core Rule', entries: ["A saving throw represents an attempt to resist or endure a harmful effect (such as a spell or dragon's breath). Roll a d20, add the ability modifier, and add your proficiency bonus if proficient in that save."] },
+		{ name: 'Saving Throws', type: 'Rule', category: 'Core Rule', entries: ["A saving throw represents an attempt to resist or endure a harmful effect (such as a spell or dragon's breath). Roll a d20, add the ability modifier, and add your proficiency bonus if proficient in that save."] },
+		{ name: 'Proficiency Bonus', type: 'Rule', category: 'Core Rule', entries: ["Your proficiency bonus is based on total character level (+2 at level 1-4, +3 at 5-8, +4 at 9-12, +5 at 13-16, +6 at 17-20). It adds to attacks with proficient weapons, proficient skills, saving throws, and your spell save DC."] },
+		{ name: 'Armor Class', type: 'Rule', category: 'Combat', entries: ["Armor Class represents how difficult it is for an attacker to land a harmful blow on you. An attack roll must meet or beat your AC to hit."] },
+		{ name: 'Armor Class (AC)', type: 'Rule', category: 'Combat', entries: ["Armor Class represents how difficult it is for an attacker to land a harmful blow on you. An attack roll must meet or beat your AC to hit."] },
+		{ name: 'Initiative', type: 'Rule', category: 'Combat', entries: ["Initiative determines the order of turns during combat. Roll a d20 and add your Dexterity modifier when combat begins."] },
+		{ name: 'Hit Dice', type: 'Rule', category: 'Health', entries: ["You have a number of Hit Dice equal to your total character level. During a Short Rest, you can spend Hit Dice to regain lost Hit Points. You regain half your total Hit Dice at the end of a Long Rest."] },
+		{ name: 'Short Rest', type: 'Rule', category: 'Rest', entries: ["A Short Rest is a period of downtime, at least 1 hour long, during which a character does nothing more strenuous than eating, drinking, reading, and tending to wounds.", "A character can spend one or more Hit Dice at the end of a Short Rest, up to the character's maximum number of Hit Dice, to regain Hit Points."] },
+		{ name: 'Long Rest', type: 'Rule', category: 'Rest', entries: ["A Long Rest is a period of extended downtime, at least 8 hours long, during which a character sleeps or performs light activity (reading, talking, eating, or standing watch for no more than 2 hours).", "At the end of a Long Rest, a character regains all lost Hit Points, all spent spell slots, and up to half of their total number of Hit Dice."] }
+	]
+
+	const DAMAGE_TYPES = [
+		{ name: 'Acid', entries: ["The corrosive spray of a black dragon's breath and the dissolving enzymes secreted by a black pudding deal acid damage."] },
+		{ name: 'Bludgeoning', entries: ["Blunt force attacks—hammers, falling, constriction, and the like—deal bludgeoning damage."] },
+		{ name: 'Cold', entries: ["The infernal chill radiating from an ice devil's spear and the frigid blast of a white dragon's breath deal cold damage."] },
+		{ name: 'Fire', entries: ["Red dragons breathe fire, and many spells conjure flames to deal fire damage."] },
+		{ name: 'Force', entries: ["Force is pure magical energy focused into a damaging form. Most effects that deal force damage, including magic missile and spiritual weapon, are spells."] },
+		{ name: 'Lightning', entries: ["A lightning bolt spell and a blue dragon's breath deal lightning damage."] },
+		{ name: 'Necrotic', entries: ["Necrotic damage, dealt by certain undead and spells such as chill touch, withers matter and even the soul."] },
+		{ name: 'Piercing', entries: ["Puncturing and impaling attacks, including spears and monsters' bites, deal piercing damage."] },
+		{ name: 'Poison', entries: ["Venomous stings and the toxic gas of a green dragon's breath deal poison damage."] },
+		{ name: 'Psychic', entries: ["Mental abilities such as a psionic blast or vicious mockery deal psychic damage."] },
+		{ name: 'Radiant', entries: ["Radiant damage, dealt by a cleric's flame strike spell or an angel's smiting weapon, sears the flesh like fire and overloads the spirit with power."] },
+		{ name: 'Slashing', entries: ["Swords, axes, and monsters' claws deal slashing damage."] },
+		{ name: 'Thunder', entries: ["A concussive burst of sound, such as the effect of the Thunderwave spell, deals thunder damage."] }
+	]
+
+	for (const ed of ['2014', '2024']) {
+		const src = ed === '2024' ? 'XPHB' : 'PHB'
+		for (const cr of CORE_RULES_DATA) {
+			rulesToInsert.push({
+				name: cr.name,
+				edition: ed,
+				source: src,
+				page: null,
+				type: cr.type,
+				category: cr.category,
+				entries: cr.entries
+			})
+		}
+		for (const dt of DAMAGE_TYPES) {
+			rulesToInsert.push({
+				name: dt.name,
+				edition: ed,
+				source: src,
+				page: null,
+				type: 'Damage Type',
+				category: 'Damage',
+				entries: dt.entries
+			})
+			rulesToInsert.push({
+				name: `${dt.name} Damage`,
+				edition: ed,
+				source: src,
+				page: null,
+				type: 'Damage Type',
+				category: 'Damage',
+				entries: dt.entries
+			})
+		}
+	}
 
 	// Deduplicate by name, source, type, edition
 	const seen = new Set()
