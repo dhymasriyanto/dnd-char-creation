@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS characters (
     id BIGSERIAL PRIMARY KEY,
+    edition VARCHAR(10) NOT NULL DEFAULT '2014',
     level BIGINT NOT NULL DEFAULT 1,
     proficiency_bonus BIGINT DEFAULT 2,
     hp BIGINT DEFAULT 0,
@@ -125,6 +126,21 @@ CREATE TABLE IF NOT EXISTS character_traits (
     id BIGSERIAL PRIMARY KEY,
     character_id BIGINT NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS character_spells (
+    id BIGSERIAL PRIMARY KEY,
+    character_id BIGINT NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    level BIGINT DEFAULT 0,
+    school VARCHAR(50),
+    casting_time VARCHAR(100),
+    range VARCHAR(100),
+    duration VARCHAR(100),
+    components VARCHAR(100),
+    is_prepared BOOLEAN DEFAULT TRUE,
+    is_cantrip BOOLEAN DEFAULT FALSE,
+    source VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS encumbrances (
