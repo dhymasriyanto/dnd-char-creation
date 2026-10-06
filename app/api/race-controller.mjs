@@ -1,7 +1,6 @@
 'use strict'
 
 import {response} from '../../helper/response.mjs'
-import {getData} from '../service/getData.mjs'
 import {db} from '../../database/index.mjs'
 
 const safeJson = (val, fallback = []) => {
@@ -66,25 +65,14 @@ export let race = {
 				return response.ok('success', 'Retrieved all data', filtered.map(formatRace), res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium race query failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium race query failed:', err.message)
 		}
 
-		const datas = await getData.all('races.json', edition)
-		if (!datas || !datas.race) {
-			return response.ok('success', 'No races found', [], res)
-		}
-
-		const races = edition === '2024'
-			? datas.race.filter(r => r.source === 'XPHB')
-			: datas.race.filter(r => r.edition !== 'one' && r.source !== 'XPHB')
-
-		return response.ok('success', 'Retrieved all data', races, res)
+		return response.ok('success', 'No races found', [], res)
 	},
 
 	find: async (req, res, next) => {
 		const name = req.params.name
-		const source = req.params.source
-		const page = req.params.page
 		const edition = req.query.edition || '2024'
 
 		try {
@@ -93,20 +81,9 @@ export let race = {
 				return response.ok('success', 'Retrieved all data', [formatRace(dbRace)], res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium race query failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium race find failed:', err.message)
 		}
 
-		const datas = await getData.all('races.json', edition)
-		if (!datas || !datas.race) {
-			return response.ok('success', 'Not Found', [], res)
-		}
-
-		const raceData = datas.race.filter((data) => {
-			return data.name.toLowerCase() === name.toLowerCase() &&
-				data.source.toLowerCase() === source.toLowerCase() &&
-				data.page?.toString() === page
-		})
-
-		return response.ok('success', raceData.length > 0 ? 'Retrieved all data' : 'Not Found', raceData, res)
+		return response.ok('success', 'Not Found', [], res)
 	}
 }
