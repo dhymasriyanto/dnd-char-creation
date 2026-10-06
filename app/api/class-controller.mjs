@@ -1,7 +1,6 @@
 'use strict'
 
 import {response} from '../../helper/response.mjs'
-import {getData} from '../service/getData.mjs'
 import {db} from '../../database/index.mjs'
 
 const safeJson = (val, fallback = []) => {
@@ -109,22 +108,10 @@ export let characterClass = {
 				return response.ok('success', 'Retrieved all data', map, res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium class query failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium class query failed:', err.message)
 		}
 
-		const datas = await getData.all('class/index.json', edition)
-		const map = {}
-		for (const [k, v] of Object.entries(datas || {})) {
-			if (edition === '2024' && !CORE_2024_CLASSES.includes(k)) continue
-			if (edition === '2014' && (['mystic', 'sidekick'].includes(k) || k.includes('sidekick'))) continue
-			map[k] = v
-		}
-		return response.ok(
-			'success',
-			'Retrieved all data',
-			map,
-			res
-		)
+		return response.ok('success', 'Retrieved all data', {}, res)
 	},
 
 	find: async (req, res, next) => {
@@ -133,24 +120,8 @@ export let characterClass = {
 
 		try {
 			const fullClass = await db.compendium.getFullClass(value, edition)
-			if (fullClass) {
+			if (fullClass && fullClass.class?.[0]) {
 				const resObj = formatClassResult(fullClass)
-				const charClass = await getData.all('class/index.json', edition)
-				if (charClass && charClass[value]) {
-					const rawClassData = await getData.all('class/' + charClass[value], edition)
-					const matchedClass = (rawClassData?.class || []).find(c => {
-						const is2024 = c.edition === 'one' || c.source === 'XPHB'
-						return edition === '2024' ? is2024 : !is2024
-					}) || rawClassData?.class?.[0]
-					if (matchedClass) {
-						if (!resObj.class[0]?.startingEquipment && matchedClass.startingEquipment) {
-							resObj.class[0].startingEquipment = matchedClass.startingEquipment
-						}
-						if (!resObj.class[0]?.multiclassing && matchedClass.multiclassing) {
-							resObj.class[0].multiclassing = matchedClass.multiclassing
-						}
-					}
-				}
 				if (resObj.class[0]) {
 					if (!resObj.class[0].multiclassing) {
 						resObj.class[0].multiclassing = {}
@@ -162,62 +133,9 @@ export let characterClass = {
 				return response.ok('success', 'Retrieved all data', resObj, res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium class find failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium class find failed:', err.message)
 		}
 
-		const charClass = await getData.all('class/index.json', edition)
-
-		if (charClass && Object.prototype.propertyIsEnumerable.call(charClass, value)) {
-			const datas = await getData.all('class/' + charClass[value], edition)
-			if (!datas) {
-				return response.notFound('error', 'Not Found', '', res)
-			}
-
-			const filtered = { ...datas }
-
-			if (datas.class) {
-				filtered.class = datas.class.filter(c => {
-					const is2024 = c.edition === 'one' || c.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				})
-				if (filtered.class.length === 0) filtered.class = datas.class
-				if (filtered.class[0]) {
-					if (!filtered.class[0].multiclassing) {
-						filtered.class[0].multiclassing = {}
-					}
-					if (!filtered.class[0].multiclassing.requirements) {
-						filtered.class[0].multiclassing.requirements = STANDARD_MULTICLASS_REQ[value.toLowerCase()]
-					}
-				}
-			}
-
-			if (datas.subclass) {
-				filtered.subclass = datas.subclass.filter(sc => {
-					const is2024 = sc.classSource === 'XPHB' || sc.edition === 'one' || sc.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				})
-			}
-
-			if (datas.classFeature) {
-				filtered.classFeature = datas.classFeature.filter(cf => {
-					const is2024 = cf.classSource === 'XPHB' || cf.source === 'XPHB'
-					return edition === '2024' ? is2024 : !is2024
-				})
-			}
-
-			return response.ok(
-				'success',
-				'Retrieved all data',
-				filtered,
-				res
-			)
-		} else {
-			return response.notFound(
-				'error',
-				'Not Found',
-				'',
-				res
-			)
-		}
+		return response.notFound('error', 'Not Found', '', res)
 	}
 }
