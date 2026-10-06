@@ -10,7 +10,14 @@ function safeEntries(val) {
 	if (Array.isArray(val)) return val
 	if (typeof val === 'string') {
 		try {
-			const parsed = JSON.parse(val)
+			let parsed = JSON.parse(val)
+			while (typeof parsed === 'string') {
+				try {
+					parsed = JSON.parse(parsed)
+				} catch {
+					break
+				}
+			}
 			return Array.isArray(parsed) ? parsed : [parsed]
 		} catch {
 			return [val]
@@ -72,12 +79,14 @@ async function enrichWithCompendiumEntries(datas) {
 
 		// Feats
 		if (Array.isArray(datas.feat) && datas.feat.length > 0) {
-			const names = datas.feat.map(f => f.name.toLowerCase())
+			const rawNames = datas.feat.map(f => (f.name || '').trim().toLowerCase())
+			const baseNames = datas.feat.map(f => (f.name || '').split(/[-;(]/)[0].trim().toLowerCase()).filter(Boolean)
+			const allLookup = [...new Set([...rawNames, ...baseNames])]
 			const compRows = await db.any(
 				`SELECT name, entries FROM compendium_feats 
 				 WHERE LOWER(name) = ANY($1)
 				 ORDER BY CASE WHEN edition = $2 THEN 0 ELSE 1 END`,
-				[names, edition]
+				[allLookup, edition]
 			)
 			const fMap = new Map()
 			for (const r of compRows) {
@@ -88,7 +97,9 @@ async function enrichWithCompendiumEntries(datas) {
 			}
 			for (const ft of datas.feat) {
 				if (!ft.entries || ft.entries.length === 0) {
-					ft.entries = fMap.get(ft.name.toLowerCase()) || []
+					const exact = (ft.name || '').toLowerCase()
+					const base = (ft.name || '').split(/[-;(]/)[0].trim().toLowerCase()
+					ft.entries = fMap.get(exact) || fMap.get(base) || []
 				}
 			}
 		}
