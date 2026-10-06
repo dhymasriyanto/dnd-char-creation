@@ -166,6 +166,65 @@ CREATE TABLE IF NOT EXISTS compendium_items (
     CONSTRAINT uq_comp_items UNIQUE (name, source, edition)
 );
 
+CREATE TABLE IF NOT EXISTS compendium_monsters (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    edition VARCHAR(10) NOT NULL DEFAULT '2014',
+    source VARCHAR(100) NOT NULL,
+    page VARCHAR(50),
+    cr VARCHAR(50),
+    size JSONB,
+    type JSONB,
+    alignment JSONB,
+    ac JSONB,
+    hp JSONB,
+    speed JSONB,
+    str INTEGER,
+    dex INTEGER,
+    con INTEGER,
+    int INTEGER,
+    wis INTEGER,
+    cha INTEGER,
+    save JSONB,
+    skill JSONB,
+    passive INTEGER,
+    languages JSONB,
+    senses JSONB,
+    trait JSONB,
+    action JSONB,
+    bonus JSONB,
+    reaction JSONB,
+    legendary JSONB,
+    spellcasting JSONB,
+    environment JSONB,
+    raw_data JSONB,
+    CONSTRAINT uq_comp_monsters UNIQUE (name, source, edition)
+);
+
+CREATE TABLE IF NOT EXISTS compendium_rules (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    edition VARCHAR(10) NOT NULL DEFAULT '2014',
+    source VARCHAR(100) NOT NULL,
+    page VARCHAR(50),
+    type VARCHAR(50) NOT NULL DEFAULT 'Rule', -- 'Rule', 'Action', 'Condition', 'Sense', 'Skill', 'Variant Rule'
+    category VARCHAR(100),
+    entries JSONB,
+    CONSTRAINT uq_comp_rules UNIQUE (name, source, type, edition)
+);
+
+CREATE TABLE IF NOT EXISTS compendium_optional_features (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    edition VARCHAR(10) NOT NULL DEFAULT '2014',
+    source VARCHAR(100) NOT NULL,
+    page VARCHAR(50),
+    feature_type JSONB,
+    prerequisite JSONB,
+    entries JSONB,
+    CONSTRAINT uq_comp_opt_features UNIQUE (name, source, edition)
+);
+
 -- Performance Indexes
 CREATE INDEX IF NOT EXISTS idx_comp_races_edition ON compendium_races (edition);
 CREATE INDEX IF NOT EXISTS idx_comp_classes_edition ON compendium_classes (edition);
@@ -173,3 +232,8 @@ CREATE INDEX IF NOT EXISTS idx_comp_backgrounds_edition ON compendium_background
 CREATE INDEX IF NOT EXISTS idx_comp_feats_edition ON compendium_feats (edition, category);
 CREATE INDEX IF NOT EXISTS idx_comp_spells_edition_level ON compendium_spells (edition, level);
 CREATE INDEX IF NOT EXISTS idx_comp_items_edition_type ON compendium_items (edition, item_type);
+CREATE INDEX IF NOT EXISTS idx_comp_monsters_edition ON compendium_monsters (edition);
+CREATE INDEX IF NOT EXISTS idx_comp_monsters_cr ON compendium_monsters (cr);
+CREATE INDEX IF NOT EXISTS idx_comp_rules_edition ON compendium_rules (edition);
+CREATE INDEX IF NOT EXISTS idx_comp_rules_type ON compendium_rules (type);
+CREATE INDEX IF NOT EXISTS idx_comp_opt_features_edition ON compendium_optional_features (edition);
