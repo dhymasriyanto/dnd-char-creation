@@ -1,27 +1,34 @@
 'use strict'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config()
+
 // This is how to import ESModule to CommonJS module
 async function loadESModule() {
 	const { db } = await import('../../../index.mjs')
 
-	function create() {
-		db.character.create()
+	async function create() {
 		console.log('Creating table...')
+		await db.character.create()
+		console.log('Table created successfully.')
 	}
 
-	function drop() {
-		db.character.drop()
+	async function drop() {
 		console.log('Dropping table...')
+		await db.character.drop()
+		console.log('Table dropped successfully.')
 	}
 
-	function seeder() {
-		db.character.seeder()
+	async function seeder() {
 		console.log('Seeding table with data...')
+		await db.character.seeder()
+		console.log('Table seeded successfully.')
 	}
 
-	function empty() {
-		db.character.empty()
+	async function empty() {
 		console.log('Deleting table data...')
+		await db.character.empty()
+		console.log('Table emptied successfully.')
 	}
 
 	module.exports = {
