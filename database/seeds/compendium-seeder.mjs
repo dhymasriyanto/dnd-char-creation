@@ -45,6 +45,123 @@ function parseSize(sz) {
 	return sz || 'Medium'
 }
 
+function formatPrerequisite(prereq) {
+	if (!prereq) return null
+	if (typeof prereq === 'string') {
+		try {
+			const parsed = JSON.parse(prereq)
+			if (typeof parsed === 'object' && parsed !== null) {
+				return formatPrerequisite(parsed)
+			}
+		} catch (_) {}
+		return prereq
+	}
+	if (!Array.isArray(prereq)) prereq = [prereq]
+
+	const ordinal = (n) => {
+		const s = ['th', 'st', 'nd', 'rd']
+		const v = n % 100
+		return n + (s[(v - 20) % 10] || s[v] || s[0])
+	}
+
+	const cleanItem = (str) => {
+		if (typeof str !== 'string') return ''
+		return str.split('|')[0].replace(/#c$/, ' cantrip').trim()
+	}
+
+	const parts = []
+	for (const p of prereq) {
+		if (!p) continue
+		if (typeof p === 'string') {
+			parts.push(cleanItem(p))
+			continue
+		}
+
+		const sub = []
+
+		if (p.level != null) {
+			if (typeof p.level === 'number') {
+				sub.push(`${ordinal(p.level)} Level`)
+			} else if (typeof p.level === 'object') {
+				const lvl = p.level.level ? `${ordinal(p.level.level)}-level` : ''
+				const cls = p.level.class?.name || ''
+				const subcls = p.level.subclass?.name ? ` (${p.level.subclass.name})` : ''
+				sub.push(`${lvl} ${cls}${subcls}`.trim())
+			}
+		}
+
+		if (p.ability && Array.isArray(p.ability)) {
+			const abNames = { str: 'Strength', dex: 'Dexterity', con: 'Constitution', int: 'Intelligence', wis: 'Wisdom', cha: 'Charisma' }
+			const abParts = []
+			for (const abObj of p.ability) {
+				const pairs = Object.entries(abObj).map(([k, val]) => `${abNames[k.toLowerCase()] || k.toUpperCase()} ${val}`)
+				if (pairs.length) abParts.push(pairs.join(' or '))
+			}
+			if (abParts.length) sub.push(`${abParts.join(', ')} or higher`)
+		}
+
+		if (p.race && Array.isArray(p.race)) {
+			const rNames = p.race.map(r => {
+				let name = r.name || ''
+				name = name.charAt(0).toUpperCase() + name.slice(1)
+				if (r.subrace) name += ` (${r.subrace.charAt(0).toUpperCase() + r.subrace.slice(1)})`
+				return name
+			})
+			if (rNames.length) sub.push(rNames.join(' or '))
+		}
+
+		if (p.spell && Array.isArray(p.spell)) {
+			const spNames = p.spell.map(sp => {
+				if (typeof sp === 'string') {
+					const isCantrip = sp.endsWith('#c')
+					const name = sp.replace(/#c$/, '').split('|')[0]
+					const title = name.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+					return isCantrip ? `${title} cantrip` : title
+				}
+				if (typeof sp === 'object' && sp !== null) {
+					return sp.entry || sp.entrySummary || 'a Spell'
+				}
+				return String(sp)
+			})
+			if (spNames.length) sub.push(spNames.join(' or '))
+		}
+
+		if (p.feat && Array.isArray(p.feat)) {
+			const fNames = p.feat.map(f => {
+				const raw = String(f).split('|')[0]
+				return raw.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+			})
+			if (fNames.length) sub.push(fNames.join(' or '))
+		}
+
+		if (p.proficiency && Array.isArray(p.proficiency)) {
+			const profs = p.proficiency.map(pr => {
+				if (pr.armor) return `Proficiency with ${pr.armor} armor`
+				if (pr.weapon) return `Proficiency with ${pr.weapon} weapons`
+				return Object.entries(pr).map(([k, v]) => `Proficiency with ${v} ${k}`).join(', ')
+			})
+			if (profs.length) sub.push(profs.join(', '))
+		}
+
+		if (p.spellcasting || p.spellcastingFeature || p.spellcasting2020) {
+			sub.push('Spellcasting or Pact Magic feature')
+		}
+
+		if (p.pact) sub.push(`Pact of the ${p.pact}`)
+		if (p.patron) sub.push(`${p.patron} patron`)
+		if (p.feature && Array.isArray(p.feature)) sub.push(p.feature.join(', '))
+		if (p.item && Array.isArray(p.item)) sub.push(p.item.join(' or '))
+		if (p.background && Array.isArray(p.background)) sub.push(p.background.map(b => b.name).filter(Boolean).join(' or '))
+		if (p.campaign && Array.isArray(p.campaign)) sub.push(`${p.campaign.join('/')} campaign`)
+		if (p.other) sub.push(p.other)
+		if (p.otherSummary) sub.push(typeof p.otherSummary === 'object' ? (p.otherSummary.entry || p.otherSummary.entrySummary || '') : p.otherSummary)
+
+		if (sub.length) parts.push(sub.join(', '))
+	}
+
+	return parts.filter(Boolean).join('; ')
+}
+
 // -------------------------------------------------------------
 // 1. RACES & SUBRACES
 // -------------------------------------------------------------
@@ -497,7 +614,7 @@ async function seedFeats() {
 				source: f.source || 'PHB',
 				page: f.page ? String(f.page) : null,
 				category: 'General',
-				prerequisite: f.prerequisite ? JSON.stringify(f.prerequisite) : null,
+				prerequisite: f.prerequisite ? formatPrerequisite(f.prerequisite) : null,
 				ability_bonus: JSON.stringify(f.ability || []),
 				repeatable: false,
 				entries: JSON.stringify(f.entries || [])
@@ -521,7 +638,7 @@ async function seedFeats() {
 				source: f.source || 'XPHB',
 				page: f.page ? String(f.page) : null,
 				category,
-				prerequisite: f.prerequisite ? JSON.stringify(f.prerequisite) : null,
+				prerequisite: f.prerequisite ? formatPrerequisite(f.prerequisite) : null,
 				ability_bonus: JSON.stringify(f.ability || []),
 				repeatable: !!f.repeatable,
 				entries: JSON.stringify(f.entries || [])
@@ -699,6 +816,256 @@ async function seedItems() {
 }
 
 // -------------------------------------------------------------
+// 7. RULES (Variant Rules, Rules Glossary, Actions, Conditions, Senses, Skills)
+// -------------------------------------------------------------
+async function seedRules() {
+	console.log('--- Seeding Rules ---')
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'type', 'category', 'entries:json'
+	], { table: 'compendium_rules' })
+
+	const rulesToInsert = []
+
+	const processRules = async (edition) => {
+		const dir = edition === '2014' ? DIR_2014 : DIR_2024
+
+		// 1. Variant Rules & Rules Glossary
+		const vrData = await readJson(join(dir, 'variantrules.json'))
+		for (const r of vrData?.variantrule || []) {
+			const is2024 = r.ruleType === 'C' || r.source === 'XPHB' || edition === '2024'
+			const cat = r.ruleType === 'C' ? 'Rules Glossary' : (r.type || 'Variant Rule')
+			rulesToInsert.push({
+				name: r.name,
+				edition: is2024 ? '2024' : '2014',
+				source: r.source || (is2024 ? 'XPHB' : 'DMG'),
+				page: r.page ? String(r.page) : null,
+				type: 'Rule',
+				category: cat,
+				entries: r.entries || []
+			})
+		}
+
+		// 2. Actions
+		const actData = await readJson(join(dir, 'actions.json'))
+		for (const a of actData?.action || []) {
+			rulesToInsert.push({
+				name: a.name,
+				edition,
+				source: a.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: a.page ? String(a.page) : null,
+				type: 'Action',
+				category: a.time?.[0]?.unit ? `${a.time[0].unit} Action` : 'Action',
+				entries: a.entries || []
+			})
+		}
+
+		// 3. Conditions & Statuses & Diseases
+		const condData = await readJson(join(dir, 'conditionsdiseases.json'))
+		for (const c of condData?.condition || []) {
+			rulesToInsert.push({
+				name: c.name,
+				edition,
+				source: c.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: c.page ? String(c.page) : null,
+				type: 'Condition',
+				category: 'Condition',
+				entries: c.entries || []
+			})
+		}
+		for (const s of condData?.status || []) {
+			rulesToInsert.push({
+				name: s.name,
+				edition,
+				source: s.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: s.page ? String(s.page) : null,
+				type: 'Status',
+				category: 'Status',
+				entries: s.entries || []
+			})
+		}
+
+		// 4. Senses
+		const senseData = await readJson(join(dir, 'senses.json'))
+		for (const sn of senseData?.sense || []) {
+			rulesToInsert.push({
+				name: sn.name,
+				edition,
+				source: sn.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: sn.page ? String(sn.page) : null,
+				type: 'Sense',
+				category: 'Sense',
+				entries: sn.entries || []
+			})
+		}
+
+		// 5. Skills
+		const skillData = await readJson(join(dir, 'skills.json'))
+		for (const sk of skillData?.skill || []) {
+			rulesToInsert.push({
+				name: sk.name,
+				edition,
+				source: sk.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: sk.page ? String(sk.page) : null,
+				type: 'Skill',
+				category: 'Skill',
+				entries: sk.entries || []
+			})
+		}
+	}
+
+	await processRules('2014')
+	await processRules('2024')
+
+	// Deduplicate by name, source, type, edition
+	const seen = new Set()
+	const deduped = rulesToInsert.filter(r => {
+		const key = `${r.name}|${r.source}|${r.type}|${r.edition}`.toLowerCase()
+		if (seen.has(key)) return false
+		seen.add(key)
+		return true
+	})
+
+	await batchInsert('compendium_rules', cs, deduped)
+	console.log(`Inserted ${deduped.length} rules.`)
+}
+
+// -------------------------------------------------------------
+// 8. OPTIONAL FEATURES (Invocations, Metamagic, Maneuvers, Infusions, etc.)
+// -------------------------------------------------------------
+async function seedOptionalFeatures() {
+	console.log('--- Seeding Optional Features ---')
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'feature_type:json', 'prerequisite:json', 'entries:json'
+	], { table: 'compendium_optional_features' })
+
+	const featsToInsert = []
+
+	const processOpt = async (edition) => {
+		const dir = edition === '2014' ? DIR_2014 : DIR_2024
+		const data = await readJson(join(dir, 'optionalfeatures.json'))
+		for (const of of data?.optionalfeature || []) {
+			const is2024 = of.source === 'XPHB' || of.edition === 'one' || edition === '2024'
+			featsToInsert.push({
+				name: of.name,
+				edition: is2024 ? '2024' : '2014',
+				source: of.source || 'PHB',
+				page: of.page ? String(of.page) : null,
+				feature_type: of.featureType || [],
+				prerequisite: of.prerequisite ? formatPrerequisite(of.prerequisite) : null,
+				entries: of.entries || []
+			})
+		}
+	}
+
+	await processOpt('2014')
+	await processOpt('2024')
+
+	// Deduplicate by name, source, edition
+	const seen = new Set()
+	const deduped = featsToInsert.filter(f => {
+		const key = `${f.name}|${f.source}|${f.edition}`.toLowerCase()
+		if (seen.has(key)) return false
+		seen.add(key)
+		return true
+	})
+
+	await batchInsert('compendium_optional_features', cs, deduped)
+	console.log(`Inserted ${deduped.length} optional features.`)
+}
+
+// -------------------------------------------------------------
+// 9. MONSTERS / BESTIARY
+// -------------------------------------------------------------
+async function seedMonsters() {
+	console.log('--- Seeding Monsters / Bestiary ---')
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'cr',
+		'size:json', 'type:json', 'alignment:json', 'ac:json', 'hp:json', 'speed:json',
+		'str', 'dex', 'con', 'int', 'wis', 'cha',
+		'save:json', 'skill:json', 'passive', 'languages:json', 'senses:json',
+		'trait:json', 'action:json', 'bonus:json', 'reaction:json', 'legendary:json',
+		'spellcasting:json', 'environment:json', 'raw_data:json'
+	], { table: 'compendium_monsters' })
+
+	const processBestiaryDir = async (dir, edition) => {
+		const bestiaryDir = join(dir, 'bestiary')
+		let files = []
+		try {
+			const all = await readdir(bestiaryDir)
+			files = all.filter(f => f.startsWith('bestiary-') && f.endsWith('.json'))
+		} catch (e) {
+			console.warn(`Could not read bestiary dir ${bestiaryDir}:`, e.message)
+			return
+		}
+
+		let totalInserted = 0
+		for (const file of files) {
+			const data = await readJson(join(bestiaryDir, file))
+			if (!data?.monster || data.monster.length === 0) continue
+
+			const seenInFile = new Set()
+			const rows = []
+			for (const m of data.monster) {
+				if (!m.name || !m.source) continue
+
+				const key = `${m.name}|${m.source}`.toLowerCase()
+				if (seenInFile.has(key)) continue
+				seenInFile.add(key)
+
+				let crStr = '0'
+				if (typeof m.cr === 'string') crStr = m.cr
+				else if (typeof m.cr === 'number') crStr = String(m.cr)
+				else if (m.cr && typeof m.cr === 'object' && m.cr.cr) crStr = String(m.cr.cr)
+
+				const is2024 = m.source === 'XMM' || m.source === 'XPHB' || m.source === 'XDMG' || edition === '2024'
+
+				rows.push({
+					name: m.name,
+					edition: is2024 ? '2024' : '2014',
+					source: m.source,
+					page: m.page ? String(m.page) : null,
+					cr: crStr,
+					size: m.size || ['M'],
+					type: m.type || 'humanoid',
+					alignment: m.alignment || ['U'],
+					ac: m.ac || [],
+					hp: m.hp || {},
+					speed: m.speed || {},
+					str: typeof m.str === 'number' ? m.str : 10,
+					dex: typeof m.dex === 'number' ? m.dex : 10,
+					con: typeof m.con === 'number' ? m.con : 10,
+					int: typeof m.int === 'number' ? m.int : 10,
+					wis: typeof m.wis === 'number' ? m.wis : 10,
+					cha: typeof m.cha === 'number' ? m.cha : 10,
+					save: m.save || null,
+					skill: m.skill || null,
+					passive: typeof m.passive === 'number' ? m.passive : 10,
+					languages: m.languages || [],
+					senses: m.senses || [],
+					trait: m.trait || [],
+					action: m.action || [],
+					bonus: m.bonus || [],
+					reaction: m.reaction || [],
+					legendary: m.legendary || [],
+					spellcasting: m.spellcasting || [],
+					environment: m.environment || [],
+					raw_data: m
+				})
+			}
+
+			if (rows.length > 0) {
+				await batchInsert('compendium_monsters', cs, rows)
+				totalInserted += rows.length
+			}
+		}
+		console.log(`Seeded monsters from ${dir} (${totalInserted} monsters processed).`)
+	}
+
+	await processBestiaryDir(DIR_2014, '2014')
+	await processBestiaryDir(DIR_2024, '2024')
+}
+
+// -------------------------------------------------------------
 // MAIN RUNNER
 // -------------------------------------------------------------
 async function run() {
@@ -720,6 +1087,12 @@ async function run() {
 			await seedSpells()
 		} else if (target === 'items') {
 			await seedItems()
+		} else if (target === 'rules') {
+			await seedRules()
+		} else if (target === 'optionalfeatures') {
+			await seedOptionalFeatures()
+		} else if (target === 'monsters') {
+			await seedMonsters()
 		} else {
 			await seedRaces()
 			await seedClasses()
@@ -727,6 +1100,9 @@ async function run() {
 			await seedFeats()
 			await seedSpells()
 			await seedItems()
+			await seedRules()
+			await seedOptionalFeatures()
+			await seedMonsters()
 		}
 		console.log('=== Compendium Seeding Complete! ===')
 		process.exit(0)
