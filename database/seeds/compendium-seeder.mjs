@@ -1,0 +1,739 @@
+'use strict'
+
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+import { readdir, readFile } from 'fs/promises'
+import { db, pgp } from '../index.mjs'
+
+const __dirname = fileURLToPath(dirname(import.meta.url))
+const ROOT = join(__dirname, '../../')
+const DIR_2014 = join(ROOT, '2014_data')
+const DIR_2024 = join(ROOT, '2024_data')
+
+async function readJson(path) {
+	try {
+		const raw = await readFile(path, 'utf8')
+		return JSON.parse(raw)
+	} catch (err) {
+		console.warn(`[WARN] Skipping ${path}: ${err.message}`)
+		return null
+	}
+}
+
+async function batchInsert(table, cs, data, chunkSize = 500) {
+	if (!data || data.length === 0) return
+	for (let i = 0; i < data.length; i += chunkSize) {
+		const chunk = data.slice(i, i + chunkSize)
+		const query = pgp.helpers.insert(chunk, cs) + ' ON CONFLICT DO NOTHING'
+		await db.none(query)
+	}
+}
+
+function parseSpeed(spd) {
+	if (typeof spd === 'number') return { walk: spd, fly: 0, swim: 0, climb: 0 }
+	if (!spd || typeof spd !== 'object') return { walk: 30, fly: 0, swim: 0, climb: 0 }
+	return {
+		walk: typeof spd.walk === 'number' ? spd.walk : 30,
+		fly: typeof spd.fly === 'number' ? spd.fly : 0,
+		swim: typeof spd.swim === 'number' ? spd.swim : 0,
+		climb: typeof spd.climb === 'number' ? spd.climb : 0
+	}
+}
+
+function parseSize(sz) {
+	if (Array.isArray(sz)) return sz.join(', ')
+	return sz || 'Medium'
+}
+
+// -------------------------------------------------------------
+// 1. RACES & SUBRACES
+// -------------------------------------------------------------
+async function seedRaces() {
+	console.log('--- Seeding Races & Subraces ---')
+	const csRace = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'size',
+		'speed', 'fly_speed', 'swim_speed', 'climb_speed',
+		'darkvision', 'creature_types:json', 'ability_bonuses:json',
+		'traits:json', 'entries:json'
+	], { table: 'compendium_races' })
+
+	const racesToInsert = []
+
+	// 2014 Races
+	const data2014 = await readJson(join(DIR_2014, 'races.json'))
+	if (data2014?.race) {
+		for (const r of data2014.race) {
+			const spd = parseSpeed(r.speed)
+			racesToInsert.push({
+				name: r.name,
+				edition: '2014',
+				source: r.source || 'PHB',
+				page: r.page ? String(r.page) : null,
+				size: parseSize(r.size),
+				speed: spd.walk,
+				fly_speed: spd.fly,
+				swim_speed: spd.swim,
+				climb_speed: spd.climb,
+				darkvision: r.darkvision || 0,
+				creature_types: JSON.stringify(r.creatureTypes || ['humanoid']),
+				ability_bonuses: r.ability ? JSON.stringify(r.ability) : null,
+				traits: JSON.stringify(r.traitTags || []),
+				entries: JSON.stringify(r.entries || [])
+			})
+		}
+	}
+
+	// 2024 Races (edition === 'one' or source === 'XPHB')
+	const data2024 = await readJson(join(DIR_2024, 'races.json'))
+	if (data2024?.race) {
+		for (const r of data2024.race) {
+			const is2024 = r.edition === 'one' || r.source === 'XPHB' || r.source === 'EFA' || r.source === 'RHW'
+			if (!is2024) continue
+			const spd = parseSpeed(r.speed)
+			racesToInsert.push({
+				name: r.name,
+				edition: '2024',
+				source: r.source || 'XPHB',
+				page: r.page ? String(r.page) : null,
+				size: parseSize(r.size),
+				speed: spd.walk,
+				fly_speed: spd.fly,
+				swim_speed: spd.swim,
+				climb_speed: spd.climb,
+				darkvision: r.darkvision || 0,
+				creature_types: JSON.stringify(r.creatureTypes || ['humanoid']),
+				ability_bonuses: null, // 2024 species ASI is moved to Background
+				traits: JSON.stringify(r.traitTags || []),
+				entries: JSON.stringify(r.entries || [])
+			})
+		}
+	}
+
+	await batchInsert('compendium_races', csRace, racesToInsert)
+	console.log(`Inserted ${racesToInsert.length} races.`)
+
+	// Subraces
+	const csSubRace = new pgp.helpers.ColumnSet([
+		'race_id', 'name', 'edition', 'source', 'page',
+		'ability_bonuses:json', 'traits:json', 'entries:json'
+	], { table: 'compendium_sub_races' })
+
+	const dbRaces = await db.any('SELECT id, name, edition, source FROM compendium_races')
+	const raceMap = new Map()
+	for (const r of dbRaces) {
+		raceMap.set(`${r.name.toLowerCase()}|${r.edition}`, r.id)
+	}
+
+	const subRacesToInsert = []
+	const processSubrace = (srList, edition) => {
+		for (const sr of srList) {
+			const parentName = sr.raceName || sr._copy?.raceName
+			if (!parentName) continue
+			let srName = sr.name
+			if (!srName) {
+				if (parentName.toLowerCase() === 'human') {
+					srName = 'Standard'
+				} else {
+					continue
+				}
+			}
+			const raceId = raceMap.get(`${parentName.toLowerCase()}|${edition}`)
+			if (!raceId) continue
+
+			subRacesToInsert.push({
+				race_id: raceId,
+				name: srName,
+				edition,
+				source: sr.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: sr.page ? String(sr.page) : null,
+				ability_bonuses: sr.ability ? JSON.stringify(sr.ability) : null,
+				traits: JSON.stringify(sr.traitTags || []),
+				entries: JSON.stringify(sr.entries || [])
+			})
+		}
+	}
+
+	if (data2014?.subrace) processSubrace(data2014.subrace, '2014')
+	if (data2024?.subrace) {
+		const sr2024 = data2024.subrace.filter(s => s.edition === 'one' || s.source === 'XPHB')
+		processSubrace(sr2024, '2024')
+	}
+
+	await batchInsert('compendium_sub_races', csSubRace, subRacesToInsert)
+	console.log(`Inserted ${subRacesToInsert.length} subraces.`)
+}
+
+// -------------------------------------------------------------
+// 2. CLASSES, SUBCLASSES, & FEATURES
+// -------------------------------------------------------------
+async function seedClasses() {
+	console.log('--- Seeding Classes, Subclasses & Features ---')
+	const csClass = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'hit_dice',
+		'primary_ability', 'saving_throws:json', 'spellcasting_ability',
+		'subclass_title', 'subclass_level', 'armor_proficiencies:json',
+		'weapon_proficiencies:json', 'tool_proficiencies:json',
+		'skill_choices:json', 'starting_equipment:json', 'entries:json'
+	], { table: 'compendium_classes' })
+
+	const csSubClass = new pgp.helpers.ColumnSet([
+		'class_id', 'name', 'short_name', 'edition', 'source', 'page',
+		'spellcasting_ability', 'entries:json'
+	], { table: 'compendium_sub_classes' })
+
+	const csClassFeature = new pgp.helpers.ColumnSet([
+		'class_id', 'name', 'level', 'edition', 'source', 'page', 'entries:json'
+	], { table: 'compendium_class_features' })
+
+	const csSubClassFeature = new pgp.helpers.ColumnSet([
+		'sub_class_id', 'name', 'level', 'edition', 'source', 'page', 'entries:json'
+	], { table: 'compendium_sub_class_features' })
+
+	const classFiles = (await readdir(join(DIR_2024, 'class')))
+		.filter(f => f.startsWith('class-') && f.endsWith('.json'))
+
+	for (const file of classFiles) {
+		const cData = await readJson(join(DIR_2024, 'class', file))
+		if (!cData?.class) continue
+
+		// Classes (both 2014 and 2024 can exist in cData.class)
+		for (const cl of cData.class) {
+			const is2024 = cl.edition === 'one' || cl.source === 'XPHB'
+			const edition = is2024 ? '2024' : '2014'
+
+			const hitDice = cl.hd ? `d${cl.hd.faces}` : 'd8'
+			const savingThrows = cl.proficiency || []
+			const subLevel = is2024 ? 3 : (cl.subclassTitle ? 3 : 1)
+
+			const insertedClass = await db.oneOrNone(`
+				INSERT INTO compendium_classes (
+					name, edition, source, page, hit_dice, primary_ability,
+					saving_throws, spellcasting_ability, subclass_title,
+					subclass_level, armor_proficiencies, weapon_proficiencies,
+					tool_proficiencies, skill_choices, starting_equipment, entries
+				) VALUES (
+					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16
+				)
+				ON CONFLICT (name, source, edition) DO UPDATE SET hit_dice = EXCLUDED.hit_dice, starting_equipment = EXCLUDED.starting_equipment
+				RETURNING id
+			`, [
+				cl.name, edition, cl.source || (is2024 ? 'XPHB' : 'PHB'),
+				cl.page ? String(cl.page) : null, hitDice,
+				cl.primaryAbility ? JSON.stringify(cl.primaryAbility) : null,
+				JSON.stringify(savingThrows), cl.spellcastingAbility || null,
+				cl.subclassTitle || 'Subclass', subLevel,
+				JSON.stringify(cl.startingProficiencies?.armor || []),
+				JSON.stringify(cl.startingProficiencies?.weapons || []),
+				JSON.stringify(cl.startingProficiencies?.tools || []),
+				JSON.stringify(cl.startingProficiencies?.skills || []),
+				JSON.stringify(cl.startingEquipment || null),
+				JSON.stringify(cl.fluff || cl.entries || [])
+			])
+
+			const classId = insertedClass?.id
+			if (!classId) continue
+
+			// Class Features
+			if (cData.classFeature) {
+				const featuresToInsert = []
+				for (const cf of cData.classFeature) {
+					const cfIs2024 = cf.classSource === 'XPHB' || cf.source === 'XPHB'
+					if (cfIs2024 !== is2024 || cf.className !== cl.name) continue
+
+					featuresToInsert.push({
+						class_id: classId,
+						name: cf.name,
+						level: cf.level || 1,
+						edition,
+						source: cf.source || cl.source,
+						page: cf.page ? String(cf.page) : null,
+						entries: JSON.stringify(cf.entries || [])
+					})
+				}
+				await batchInsert('compendium_class_features', csClassFeature, featuresToInsert)
+			}
+
+			// Subclasses
+			if (cData.subclass) {
+				for (const sc of cData.subclass) {
+					const scSource = (sc.source || '').toUpperCase()
+					// For 2024 edition, prioritize XPHB and exclude 2014 PHB legacy copy duplicates
+					if (is2024 && scSource === 'PHB') continue
+					const scIs2024 = sc.edition === 'one' || scSource === 'XPHB' || (is2024 && sc.classSource === 'XPHB' && scSource !== 'PHB')
+					if (scIs2024 !== is2024 || sc.className !== cl.name) continue
+
+					const insertedSub = await db.oneOrNone(`
+						INSERT INTO compendium_sub_classes (
+							class_id, name, short_name, edition, source, page,
+							spellcasting_ability, entries
+						) VALUES (
+							$1, $2, $3, $4, $5, $6, $7, $8
+						)
+						ON CONFLICT (class_id, name, source, edition) DO UPDATE SET short_name = EXCLUDED.short_name
+						RETURNING id
+					`, [
+						classId, sc.name, sc.shortName || sc.name, edition,
+						sc.source || cl.source, sc.page ? String(sc.page) : null,
+						sc.spellcastingAbility || null, JSON.stringify(sc.entries || [])
+					])
+
+					const subClassId = insertedSub?.id
+					if (!subClassId || !cData.subclassFeature) continue
+
+					// Subclass Features (strictly match subclass source and deduplicate)
+					const scFeaturesToInsert = []
+					const seenFeatureKeys = new Set()
+					for (const scf of cData.subclassFeature) {
+						if (scf.className !== cl.name) continue
+						if (scf.subclassShortName !== sc.shortName && scf.subclassShortName !== sc.name) continue
+
+						const scfSource = (scf.subclassSource || scf.source || '').toUpperCase()
+						const targetSource = (sc.source || cl.source || '').toUpperCase()
+						if (scfSource && targetSource && scfSource !== targetSource) continue
+
+						const fKey = `${scf.name.trim().toLowerCase()}|${scf.level || subLevel}`
+						if (seenFeatureKeys.has(fKey)) continue
+						seenFeatureKeys.add(fKey)
+
+						scFeaturesToInsert.push({
+							sub_class_id: subClassId,
+							name: scf.name,
+							level: scf.level || subLevel,
+							edition,
+							source: scf.source || sc.source,
+							page: scf.page ? String(scf.page) : null,
+							entries: JSON.stringify(scf.entries || [])
+						})
+					}
+					await batchInsert('compendium_sub_class_features', csSubClassFeature, scFeaturesToInsert)
+				}
+			}
+		}
+	}
+	console.log('Classes, Subclasses, and Features seeded.')
+}
+
+// -------------------------------------------------------------
+// 3. BACKGROUNDS
+// -------------------------------------------------------------
+function resolveBg(bg, bgMap, visited = new Set()) {
+	if (!bg._copy) return { ...bg }
+	const copyKey = `${bg._copy.name}|${bg._copy.source || ''}`.toLowerCase()
+	if (visited.has(copyKey)) return { ...bg }
+	visited.add(copyKey)
+
+	let parent = bgMap.get(copyKey)
+	if (!parent) {
+		for (const [k, v] of bgMap.entries()) {
+			if (k.startsWith(`${bg._copy.name.toLowerCase()}|`)) {
+				parent = v
+				break
+			}
+		}
+	}
+	if (!parent) return { ...bg }
+
+	const resolvedParent = resolveBg(parent, bgMap, new Set(visited))
+	const result = {
+		...JSON.parse(JSON.stringify(resolvedParent)),
+		...bg,
+		name: bg.name,
+		source: bg.source || resolvedParent.source,
+		page: bg.page || resolvedParent.page
+	}
+
+	if (!bg.skillProficiencies && resolvedParent.skillProficiencies) {
+		result.skillProficiencies = JSON.parse(JSON.stringify(resolvedParent.skillProficiencies))
+	}
+	if (!bg.toolProficiencies && resolvedParent.toolProficiencies) {
+		result.toolProficiencies = JSON.parse(JSON.stringify(resolvedParent.toolProficiencies))
+	}
+	if (!bg.languageProficiencies && resolvedParent.languageProficiencies) {
+		result.languageProficiencies = JSON.parse(JSON.stringify(resolvedParent.languageProficiencies))
+	}
+	if (!bg.startingEquipment && resolvedParent.startingEquipment) {
+		result.startingEquipment = JSON.parse(JSON.stringify(resolvedParent.startingEquipment))
+	}
+	if (!bg.ability && resolvedParent.ability) {
+		result.ability = JSON.parse(JSON.stringify(resolvedParent.ability))
+	}
+	if (!bg.feats && resolvedParent.feats) {
+		result.feats = JSON.parse(JSON.stringify(resolvedParent.feats))
+	}
+
+	let entries = JSON.parse(JSON.stringify(resolvedParent.entries || []))
+	if (bg.entries && bg.entries.length > 0) {
+		entries = JSON.parse(JSON.stringify(bg.entries))
+	}
+
+	if (bg._copy._mod?.entries) {
+		const rawMods = bg._copy._mod.entries
+		const mods = Array.isArray(rawMods) ? rawMods : [rawMods]
+		for (const m of mods) {
+			const items = Array.isArray(m.items) ? m.items : (m.items ? [m.items] : [])
+			if (m.mode === 'replaceArr') {
+				if (typeof m.replace === 'string') {
+					const idx = entries.findIndex(e => e && (e.name === m.replace || e === m.replace))
+					if (idx !== -1) entries.splice(idx, 1, ...items)
+				} else if (typeof m.replace === 'object' && typeof m.replace.index === 'number') {
+					const idx = m.replace.index
+					if (idx >= 0 && idx < entries.length) entries.splice(idx, 1, ...items)
+				}
+			} else if (m.mode === 'insertArr') {
+				const idx = typeof m.index === 'number' ? m.index : entries.length
+				entries.splice(idx, 0, ...items)
+			} else if (m.mode === 'appendArr') {
+				entries.push(...items)
+			} else if (m.mode === 'prependArr') {
+				entries.unshift(...items)
+			} else if (m.mode === 'removeArr') {
+				if (typeof m.names === 'string') {
+					entries = entries.filter(e => !e || e.name !== m.names)
+				} else if (Array.isArray(m.names)) {
+					entries = entries.filter(e => !e || !m.names.includes(e.name))
+				}
+			}
+		}
+	}
+	result.entries = entries
+	return result
+}
+
+async function seedBackgrounds() {
+	console.log('--- Seeding Backgrounds ---')
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'ability_bonuses:json',
+		'feats:json', 'skill_proficiencies:json', 'tool_proficiencies:json',
+		'languages:json', 'equipment:json', 'entries:json'
+	], { table: 'compendium_backgrounds' })
+
+	const bgsToInsert = []
+
+	// 2014
+	const data2014 = await readJson(join(DIR_2014, 'backgrounds.json'))
+	if (data2014?.background) {
+		const bgMap2014 = new Map()
+		for (const b of data2014.background) {
+			bgMap2014.set(`${b.name}|${b.source || ''}`.toLowerCase(), b)
+		}
+
+		for (const rawB of data2014.background) {
+			const b = resolveBg(rawB, bgMap2014)
+			bgsToInsert.push({
+				name: b.name,
+				edition: '2014',
+				source: b.source || 'PHB',
+				page: b.page ? String(b.page) : null,
+				ability_bonuses: null,
+				feats: null,
+				skill_proficiencies: JSON.stringify(b.skillProficiencies || []),
+				tool_proficiencies: JSON.stringify(b.toolProficiencies || []),
+				languages: JSON.stringify(b.languageProficiencies || []),
+				equipment: JSON.stringify(b.startingEquipment || []),
+				entries: JSON.stringify(b.entries || [])
+			})
+		}
+	}
+
+	// 2024
+	const data2024 = await readJson(join(DIR_2024, 'backgrounds.json'))
+	if (data2024?.background) {
+		const bgMap2024 = new Map()
+		for (const b of data2024.background) {
+			bgMap2024.set(`${b.name}|${b.source || ''}`.toLowerCase(), b)
+		}
+
+		for (const rawB of data2024.background) {
+			const is2024 = rawB.edition === 'one' || rawB.source === 'XPHB' || rawB.source === 'EFA'
+			if (!is2024) continue
+			const b = resolveBg(rawB, bgMap2024)
+
+			bgsToInsert.push({
+				name: b.name,
+				edition: '2024',
+				source: b.source || 'XPHB',
+				page: b.page ? String(b.page) : null,
+				ability_bonuses: JSON.stringify(b.ability || []),
+				feats: JSON.stringify(b.feats || []),
+				skill_proficiencies: JSON.stringify(b.skillProficiencies || []),
+				tool_proficiencies: JSON.stringify(b.toolProficiencies || []),
+				languages: JSON.stringify(b.languageProficiencies || []),
+				equipment: JSON.stringify(b.startingEquipment || []),
+				entries: JSON.stringify(b.entries || [])
+			})
+		}
+	}
+
+	await db.none('DELETE FROM compendium_backgrounds')
+	await batchInsert('compendium_backgrounds', cs, bgsToInsert)
+	console.log(`Inserted ${bgsToInsert.length} backgrounds.`)
+}
+
+// -------------------------------------------------------------
+// 4. FEATS
+// -------------------------------------------------------------
+async function seedFeats() {
+	console.log('--- Seeding Feats ---')
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'category',
+		'prerequisite', 'ability_bonus:json', 'repeatable', 'entries:json'
+	], { table: 'compendium_feats' })
+
+	const featsToInsert = []
+	const catMap = {
+		'O': 'Origin',
+		'G': 'General',
+		'FS': 'Fighting Style',
+		'EB': 'Epic Boon'
+	}
+
+	// 2014
+	const data2014 = await readJson(join(DIR_2014, 'feats.json'))
+	if (data2014?.feat) {
+		for (const f of data2014.feat) {
+			featsToInsert.push({
+				name: f.name,
+				edition: '2014',
+				source: f.source || 'PHB',
+				page: f.page ? String(f.page) : null,
+				category: 'General',
+				prerequisite: f.prerequisite ? JSON.stringify(f.prerequisite) : null,
+				ability_bonus: JSON.stringify(f.ability || []),
+				repeatable: false,
+				entries: JSON.stringify(f.entries || [])
+			})
+		}
+	}
+
+	// 2024
+	const data2024 = await readJson(join(DIR_2024, 'feats.json'))
+	if (data2024?.feat) {
+		for (const f of data2024.feat) {
+			const is2024 = f.edition === 'one' || f.source === 'XPHB' || f.category
+			if (!is2024) continue
+
+			const rawCat = f.category || 'G'
+			const category = catMap[rawCat] || rawCat
+
+			featsToInsert.push({
+				name: f.name,
+				edition: '2024',
+				source: f.source || 'XPHB',
+				page: f.page ? String(f.page) : null,
+				category,
+				prerequisite: f.prerequisite ? JSON.stringify(f.prerequisite) : null,
+				ability_bonus: JSON.stringify(f.ability || []),
+				repeatable: !!f.repeatable,
+				entries: JSON.stringify(f.entries || [])
+			})
+		}
+	}
+
+	await batchInsert('compendium_feats', cs, featsToInsert)
+	console.log(`Inserted ${featsToInsert.length} feats.`)
+}
+
+// -------------------------------------------------------------
+// 5. SPELLS
+// -------------------------------------------------------------
+async function seedSpells() {
+	console.log('--- Seeding Spells ---')
+	const spellLookup = await readJson(join(DIR_2024, 'generated', 'gendata-spell-source-lookup.json')) || {}
+
+	function getClassesForSpell(spellName, edition) {
+		const k = spellName.toLowerCase()
+		const classes = new Set()
+		for (const [src, spells] of Object.entries(spellLookup)) {
+			const entry = spells[k]
+			if (!entry) continue
+			const checkObj = (obj) => {
+				for (const [book, clsObj] of Object.entries(obj)) {
+					const is2024 = book === 'XPHB' || book === 'EFA' || book === 'AU' || book === 'FRHoF'
+					if (edition === '2024' ? is2024 : !is2024) {
+						for (const c of Object.keys(clsObj)) classes.add(c)
+					}
+				}
+			}
+			if (entry.class) checkObj(entry.class)
+			if (entry.classVariant) checkObj(entry.classVariant)
+		}
+		return Array.from(classes)
+	}
+
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'level', 'school',
+		'casting_time', 'range', 'components', 'duration',
+		'concentration', 'ritual', 'damage_dice', 'damage_type',
+		'save_ability', 'classes:json', 'entries:json', 'higher_levels:json'
+	], { table: 'compendium_spells' })
+
+	const spellsToInsert = []
+
+	const processSpell = (spellList, edition) => {
+		for (const s of spellList) {
+			const timeStr = Array.isArray(s.time)
+				? s.time.map(t => `${t.number} ${t.unit}`).join(', ')
+				: '1 action'
+
+			const rangeStr = s.range ? (s.range.distance ? `${s.range.distance.amount || ''} ${s.range.distance.type || ''}`.trim() : s.range.type) : 'Self'
+
+			let compStr = ''
+			if (s.components) {
+				const parts = []
+				if (s.components.v) parts.push('V')
+				if (s.components.s) parts.push('S')
+				if (s.components.m) parts.push(typeof s.components.m === 'string' ? `M (${s.components.m})` : 'M')
+				compStr = parts.join(', ')
+			}
+
+			let durationStr = 'Instantaneous'
+			let concentration = false
+			if (Array.isArray(s.duration) && s.duration[0]) {
+				const d = s.duration[0]
+				concentration = !!d.concentration
+				durationStr = d.type === 'timed' ? `${d.duration?.amount || 1} ${d.duration?.type || 'round'}` : d.type
+				if (concentration) durationStr = `Concentration, up to ${durationStr}`
+			}
+
+			const derivedClasses = getClassesForSpell(s.name, edition)
+
+			spellsToInsert.push({
+				name: s.name,
+				edition,
+				source: s.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: s.page ? String(s.page) : null,
+				level: s.level || 0,
+				school: s.school || 'A',
+				casting_time: timeStr,
+				range: rangeStr,
+				components: compStr,
+				duration: durationStr,
+				concentration,
+				ritual: !!(s.meta?.ritual),
+				damage_dice: s.scalingLevelDice ? JSON.stringify(s.scalingLevelDice) : null,
+				damage_type: s.damageInflict ? s.damageInflict.join(', ') : null,
+				save_ability: s.savingThrow ? s.savingThrow.join(', ') : null,
+				classes: JSON.stringify(derivedClasses),
+				entries: JSON.stringify(s.entries || []),
+				higher_levels: JSON.stringify(s.entriesHigherLevel || [])
+			})
+		}
+	}
+
+	const dataPhb = await readJson(join(DIR_2024, 'spells', 'spells-phb.json'))
+	if (dataPhb?.spell) processSpell(dataPhb.spell, '2014')
+
+	const dataXphb = await readJson(join(DIR_2024, 'spells', 'spells-xphb.json'))
+	if (dataXphb?.spell) processSpell(dataXphb.spell, '2024')
+
+	await batchInsert('compendium_spells', cs, spellsToInsert)
+	console.log(`Inserted ${spellsToInsert.length} spells.`)
+}
+
+// -------------------------------------------------------------
+// 6. ITEMS & WEAPON MASTERY
+// -------------------------------------------------------------
+async function seedItems() {
+	console.log('--- Seeding Items ---')
+	const cs = new pgp.helpers.ColumnSet([
+		'name', 'edition', 'source', 'page', 'item_type',
+		'rarity', 'cost_cp', 'weight', 'damage_dice', 'damage_type',
+		'versatile_dice', 'mastery', 'base_ac', 'ac_dex_bonus',
+		'stealth_disadvantage', 'strength_requirement', 'properties:json',
+		'entries:json'
+	], { table: 'compendium_items' })
+
+	const itemsToInsert = []
+
+	const processItems = (itemList, edition) => {
+		for (const it of itemList) {
+			const isWeapon = it.weaponCategory || it.dmg1
+			const isArmor = it.armorCategory || it.ac
+			let itemType = 'gear'
+			if (isWeapon) itemType = 'weapon'
+			else if (isArmor) itemType = 'armor'
+			else if (it.type === 'P') itemType = 'consumable'
+			else if (it.wondrous) itemType = 'wondrous'
+
+			let mastery = null
+			if (Array.isArray(it.mastery) && it.mastery.length > 0) {
+				const first = it.mastery[0]
+				const mStr = typeof first === 'string' ? first : (first?.uid || first?.mastery || '')
+				mastery = mStr ? mStr.split('|')[0] : null
+			}
+
+			itemsToInsert.push({
+				name: it.name,
+				edition,
+				source: it.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+				page: it.page ? String(it.page) : null,
+				item_type: itemType,
+				rarity: it.rarity || 'none',
+				cost_cp: typeof it.value === 'number' ? it.value : 0,
+				weight: typeof it.weight === 'number' ? it.weight : 0,
+				damage_dice: it.dmg1 || null,
+				damage_type: it.dmgType || null,
+				versatile_dice: it.dmg2 || null,
+				mastery,
+				base_ac: typeof it.ac === 'number' ? it.ac : 0,
+				ac_dex_bonus: it.dexMod ? 'yes' : null,
+				stealth_disadvantage: !!it.stealth,
+				strength_requirement: typeof it.strength === 'number' ? it.strength : 0,
+				properties: JSON.stringify(it.property || []),
+				entries: JSON.stringify(it.entries || [])
+			})
+		}
+	}
+
+	const items2014 = await readJson(join(DIR_2014, 'items.json'))
+	if (items2014?.item) processItems(items2014.item, '2014')
+
+	const items2024 = await readJson(join(DIR_2024, 'items.json'))
+	if (items2024?.item) {
+		const oneItems = items2024.item.filter(i => i.edition === 'one' || i.source === 'XPHB' || i.mastery)
+		processItems(oneItems, '2024')
+	}
+
+	await batchInsert('compendium_items', cs, itemsToInsert)
+	console.log(`Inserted ${itemsToInsert.length} items.`)
+}
+
+// -------------------------------------------------------------
+// MAIN RUNNER
+// -------------------------------------------------------------
+async function run() {
+	const target = process.argv[2]
+	console.log(`=== Starting Compendium ETL Seeder (Target: ${target || 'ALL'}) ===`)
+	try {
+		console.log('Ensuring compendium tables exist...')
+		await db.compendium.create()
+
+		if (target === 'backgrounds') {
+			await seedBackgrounds()
+		} else if (target === 'races') {
+			await seedRaces()
+		} else if (target === 'classes') {
+			await seedClasses()
+		} else if (target === 'feats') {
+			await seedFeats()
+		} else if (target === 'spells') {
+			await seedSpells()
+		} else if (target === 'items') {
+			await seedItems()
+		} else {
+			await seedRaces()
+			await seedClasses()
+			await seedBackgrounds()
+			await seedFeats()
+			await seedSpells()
+			await seedItems()
+		}
+		console.log('=== Compendium Seeding Complete! ===')
+		process.exit(0)
+	} catch (err) {
+		console.error('Seeding failed:', err)
+		process.exit(1)
+	}
+}
+
+run()
