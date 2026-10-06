@@ -7,6 +7,7 @@ import {characterClass} from './character-class.mjs'
 import {subClass} from './sub-class.mjs'
 import {race} from './race.mjs'
 import {subRace} from './sub-race.mjs'
+import {compendiumRoute} from './compendium.mjs'
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -19,5 +20,6 @@ router.use('/class', characterClass)
 router.use('/race', race)
 router.use('/sub-race', subRace)
 router.use('/sub-class', subClass)
+router.use('/compendium', compendiumRoute)
 
 export {router}
