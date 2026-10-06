@@ -5,6 +5,7 @@ import pgPromise from 'pg-promise' // pg-promise core library
 import { dbConfig } from './config.mjs' //db connection config
 import { Diagnostics } from './diagnostics/index.mjs'
 import { Service } from './repository/index.mjs'
+import { compendium as Compendium } from './repository/compendium.mjs'
 //import dotenv from 'dotenv'
 
 //dotenv.config()
@@ -29,6 +30,7 @@ const initOptions = {
 		// Do not use 'require()' here, because this event occurs for every task and transaction being executed,
 		// which should be as fast as possible.
 		obj.character = new Service(obj, pgp)
+		obj.compendium = new Compendium(obj, pgp)
 	}
 }
 
