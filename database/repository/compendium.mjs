@@ -220,7 +220,7 @@ class CompendiumRepository {
 	}
 
 	// --- Feats ---
-	async getFeats({ edition = '2024', category = null, search = null } = {}) {
+	async getFeats({ edition = '2024', category = null, search = null, source = null } = {}) {
 		let query = 'SELECT * FROM compendium_feats WHERE 1=1'
 		const params = []
 
@@ -232,6 +232,10 @@ class CompendiumRepository {
 			params.push(category)
 			query += ` AND category = $${params.length}`
 		}
+		if (source) {
+			params.push(source.toUpperCase())
+			query += ` AND UPPER(source) = $${params.length}`
+		}
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -241,13 +245,17 @@ class CompendiumRepository {
 	}
 
 	// --- Spells ---
-	async getSpells({ edition = '2024', level = null, maxLevel = null, school = null, className = null, search = null } = {}) {
+	async getSpells({ edition = '2024', level = null, maxLevel = null, school = null, className = null, search = null, source = null } = {}) {
 		let query = 'SELECT * FROM compendium_spells WHERE 1=1'
 		const params = []
 
 		if (edition) {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
+		}
+		if (source) {
+			params.push(source.toUpperCase())
+			query += ` AND UPPER(source) = $${params.length}`
 		}
 		if (level != null) {
 			params.push(level)
@@ -308,6 +316,142 @@ class CompendiumRepository {
 			query += ` OFFSET $${params.length}`
 		}
 		return this.db.any(query, params)
+	}
+
+	// --- Monsters ---
+	async getMonsters({ edition = '2024', cr = null, type = null, search = null, source = null, limit = 100, offset = 0 } = {}) {
+		let query = 'SELECT * FROM compendium_monsters WHERE 1=1'
+		const params = []
+
+		if (edition) {
+			params.push(edition)
+			query += ` AND edition = $${params.length}`
+		}
+		if (cr != null && cr !== '' && cr !== 'all') {
+			params.push(String(cr))
+			query += ` AND cr = $${params.length}`
+		}
+		if (type != null && type !== '' && type !== 'all') {
+			params.push(`%${type.toLowerCase()}%`)
+			query += ` AND LOWER(type::text) LIKE $${params.length}`
+		}
+		if (source) {
+			params.push(source.toUpperCase())
+			query += ` AND UPPER(source) = $${params.length}`
+		}
+		if (search) {
+			params.push(`%${search.toLowerCase()}%`)
+			query += ` AND LOWER(name) LIKE $${params.length}`
+		}
+		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
+		return this.db.any(query, params)
+	}
+
+	async getMonsterByName(name, edition = '2024') {
+		return this.db.oneOrNone(
+			'SELECT * FROM compendium_monsters WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+			[name, edition]
+		)
+	}
+
+	// --- Rules ---
+	async getRules({ edition = '2024', type = null, category = null, search = null, source = null, limit = 200, offset = 0 } = {}) {
+		let query = 'SELECT * FROM compendium_rules WHERE 1=1'
+		const params = []
+
+		if (edition) {
+			params.push(edition)
+			query += ` AND edition = $${params.length}`
+		}
+		if (type && type !== 'all') {
+			params.push(type)
+			query += ` AND LOWER(type) = LOWER($${params.length})`
+		}
+		if (category && category !== 'all') {
+			params.push(category)
+			query += ` AND LOWER(category) = LOWER($${params.length})`
+		}
+		if (source) {
+			params.push(source.toUpperCase())
+			query += ` AND UPPER(source) = $${params.length}`
+		}
+		if (search) {
+			params.push(`%${search.toLowerCase()}%`)
+			query += ` AND LOWER(name) LIKE $${params.length}`
+		}
+		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
+		return this.db.any(query, params)
+	}
+
+	async getRuleByName(name, type = null, edition = '2024') {
+		let query = 'SELECT * FROM compendium_rules WHERE LOWER(name) = LOWER($1)'
+		const params = [name]
+		if (type) {
+			params.push(type.toLowerCase())
+			query += ` AND LOWER(type) = $${params.length}`
+		}
+		if (edition) {
+			params.push(edition)
+			query += ` AND edition = $${params.length}`
+		}
+		query += ' LIMIT 1'
+		return this.db.oneOrNone(query, params)
+	}
+
+	// --- Optional Features ---
+	async getOptionalFeatures({ edition = '2024', featureType = null, search = null, source = null, limit = 200, offset = 0 } = {}) {
+		let query = 'SELECT * FROM compendium_optional_features WHERE 1=1'
+		const params = []
+
+		if (edition) {
+			params.push(edition)
+			query += ` AND edition = $${params.length}`
+		}
+		if (featureType && featureType !== 'all') {
+			params.push(`%${featureType.toLowerCase()}%`)
+			query += ` AND LOWER(feature_type::text) LIKE $${params.length}`
+		}
+		if (source) {
+			params.push(source.toUpperCase())
+			query += ` AND UPPER(source) = $${params.length}`
+		}
+		if (search) {
+			params.push(`%${search.toLowerCase()}%`)
+			query += ` AND LOWER(name) LIKE $${params.length}`
+		}
+		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
+		return this.db.any(query, params)
+	}
+
+	async getOptionalFeatureByName(name, edition = '2024') {
+		return this.db.oneOrNone(
+			'SELECT * FROM compendium_optional_features WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+			[name, edition]
+		)
 	}
 }
 
