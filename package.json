@@ -8,6 +8,9 @@
     "start": "nodemon --trace-warnings --experimental-json-modules server.mjs",
     "up": "node database/sql/character/migrations/index.js create",
     "down": "node database/sql/character/migrations/index.js drop",
+    "up:compendium": "node database/sql/compendium/migrations/index.js create",
+    "down:compendium": "node database/sql/compendium/migrations/index.js drop",
+    "seed:compendium": "node database/seeds/compendium-seeder.mjs",
     "seed": "node database/sql/character/migrations/index.js seeder",
     "unseed": "node database/sql/character/migrations/index.js empty"
   },
