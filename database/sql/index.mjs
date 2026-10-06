@@ -55,11 +55,17 @@ export const character = {
 	findSubRaceFeature: sql('character/findSubRaceFeature.sql'),
 	findTrait: sql('character/findTrait.sql'),
 	findTreasure: sql('character/findTreasure.sql'),
+	findSpell: sql('character/findSpell.sql'),
 	findId: sql('character/findId.sql'),
 	find: sql('character/find.sql'),
 	add: sql('character/add.sql'),
 	update: sql('character/update.sql'),
 	delete: sql('character/delete.sql')
+}
+
+export const compendium = {
+	create: sql('compendium/migrations/create.sql'),
+	drop: sql('compendium/migrations/drop.sql')
 }
 
 ///////////////////////////////////////////////
