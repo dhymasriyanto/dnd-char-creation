@@ -1,7 +1,6 @@
 'use strict'
 
 import {response} from '../../helper/response.mjs'
-import {getData} from '../service/getData.mjs'
 import {db} from '../../database/index.mjs'
 
 const safeJson = (val, fallback = []) => {
@@ -50,16 +49,10 @@ export let subRace = {
 				return response.ok('success', 'Retrieved all data', dbSubRaces.map(formatSubRace), res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium subrace query failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium subrace query failed:', err.message)
 		}
 
-		const datas = await getData.all('races.json', edition)
-		return response.ok(
-			'success',
-			'Retrieved all data',
-			datas?.subrace || [],
-			res
-		)
+		return response.ok('success', 'Retrieved all data', [], res)
 	},
 
 	find: async (req, res, next) => {
@@ -72,7 +65,7 @@ export let subRace = {
 
 		try {
 			const dbSubRaces = await db.compendium.getSubRacesByParent({ raceName, raceSource, edition })
-			const filtered = dbSubRaces.filter(sr => {
+			const filtered = (dbSubRaces || []).filter(sr => {
 				const selfMatch = (!name || sr.name.toLowerCase() === name.toLowerCase()) &&
 					(!source || sr.source.toLowerCase() === source.toLowerCase()) &&
 					(!page || sr.page?.toString() === page)
@@ -82,39 +75,10 @@ export let subRace = {
 				return response.ok('success', 'Retrieved all data', filtered.map(formatSubRace), res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium subrace find failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium subrace find failed:', err.message)
 		}
 
-		const datas = await getData.all('races.json', edition)
-		if (!datas || !datas.subrace) {
-			return response.ok('error', 'Not Found', [], res)
-		}
-
-		const matchSource = (s1, s2) => {
-			if (!s1 || !s2) return true
-			const a = s1.toLowerCase()
-			const b = s2.toLowerCase()
-			if (a === b) return true
-			if ((a === 'xphb' && b === 'phb') || (a === 'phb' && b === 'xphb')) return true
-			return false
-		}
-
-		const subRaceData = datas.subrace.filter((data) => {
-			const pName = data.raceName || data._copy?.raceName
-			const pSource = data.raceSource || data._copy?.raceSource
-			const parentMatch = pName?.toLowerCase() === raceName.toLowerCase() && matchSource(pSource, raceSource)
-			const selfMatch = (!name || data.name?.toLowerCase() === name.toLowerCase()) &&
-				(!source || data.source?.toLowerCase() === source.toLowerCase()) &&
-				(!page || data.page?.toString() === page)
-			return parentMatch && selfMatch
-		})
-
-		return response.ok(
-			'success',
-			subRaceData.length > 0 ? 'Retrieved all data' : 'Not Found',
-			subRaceData,
-			res
-		)
+		return response.ok('error', 'Not Found', [], res)
 	},
 
 	get: async (req, res, next) => {
@@ -128,35 +92,9 @@ export let subRace = {
 				return response.ok('success', 'Retrieved all data', dbSubRaces.map(formatSubRace), res)
 			}
 		} catch (err) {
-			console.warn('[WARN] DB compendium subrace get failed, falling back to JSON:', err.message)
+			console.warn('[WARN] DB compendium subrace get failed:', err.message)
 		}
 
-		const datas = await getData.all('races.json', edition)
-		if (!datas || !datas.subrace) {
-			return response.ok('error', 'Not Found', [], res)
-		}
-
-		const matchSource = (s1, s2) => {
-			if (!s1 || !s2) return true
-			const a = s1.toLowerCase()
-			const b = s2.toLowerCase()
-			if (a === b) return true
-			if ((a === 'xphb' && b === 'phb') || (a === 'phb' && b === 'xphb')) return true
-			return false
-		}
-
-		const subRaceData = datas.subrace.filter((data) => {
-			const pName = data.raceName || data._copy?.raceName
-			const pSource = data.raceSource || data._copy?.raceSource
-			const parentMatch = pName?.toLowerCase() === raceName.toLowerCase() && matchSource(pSource, raceSource)
-			return parentMatch && data.name
-		})
-
-		return response.ok(
-			'success',
-			subRaceData.length > 0 ? 'Retrieved all data' : 'Not Found',
-			subRaceData,
-			res
-		)
+		return response.ok('error', 'Not Found', [], res)
 	}
 }
