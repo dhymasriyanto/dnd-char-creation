@@ -23,6 +23,8 @@ UPDATE characters SET
     ac_custom = CASE WHEN ${has_ac_custom} THEN ${ac_custom}::jsonb ELSE ac_custom END,
     speeds = CASE WHEN ${has_speeds} THEN ${speeds}::jsonb ELSE speeds END,
     image_url = CASE WHEN ${has_image_url} THEN ${image_url} ELSE image_url END,
-    characteristics = CASE WHEN ${has_characteristics} THEN ${characteristics}::jsonb ELSE characteristics END
+    characteristics = CASE WHEN ${has_characteristics} THEN ${characteristics}::jsonb ELSE characteristics END,
+    is_public = CASE WHEN ${has_is_public} THEN ${is_public} ELSE is_public END,
+    public_id = COALESCE(${public_id}, public_id)
 WHERE id = ${id}
 RETURNING id

@@ -43,7 +43,9 @@ CREATE TABLE IF NOT EXISTS characters (
     defenses JSONB DEFAULT '{"resistances":[],"immunities":[],"vulnerabilities":[]}'::jsonb,
     saving_throw_notes TEXT,
     image_url TEXT,
-    characteristics JSONB DEFAULT '{}'::jsonb
+    characteristics JSONB DEFAULT '{}'::jsonb,
+    public_id VARCHAR(32) UNIQUE,
+    is_public BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE IF NOT EXISTS ability_scores (

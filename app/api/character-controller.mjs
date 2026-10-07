@@ -275,69 +275,70 @@ export async function loadFullCharacter(characterId) {
 		.catch(() => null)
 
 	if (!datas) return null
+	const realId = datas.id
 
-	datas.race = await db.character.findRace(characterId)
+	datas.race = await db.character.findRace(realId)
 		.then(rows => rows ? rows[0] : null)
 		.catch(() => null)
 
-	datas.sub_race = await db.character.findSubRace(characterId)
+	datas.sub_race = await db.character.findSubRace(realId)
 		.then(rows => rows ? rows[0] : null)
 		.catch(() => null)
 
-	datas.class = await db.character.findClass(characterId)
+	datas.class = await db.character.findClass(realId)
 		.catch(() => [])
 
-	datas.class_feature = await db.character.findClassFeature(characterId)
+	datas.class_feature = await db.character.findClassFeature(realId)
 		.catch(() => [])
 
-	datas.sub_class = await db.character.findSubClass(characterId)
+	datas.sub_class = await db.character.findSubClass(realId)
 		.catch(() => [])
 
-	datas.sub_class_feature = await db.character.findSubClassFeature(characterId)
+	datas.sub_class_feature = await db.character.findSubClassFeature(realId)
 		.catch(() => [])
 
-	datas.ability_score = await db.character.findAbilityScore(characterId)
+	datas.ability_score = await db.character.findAbilityScore(realId)
 		.then(rows => rows ? rows[0] : {})
 		.catch(() => ({}))
 
-	datas.saving_throw = await db.character.findSavingThrow(characterId)
+	datas.saving_throw = await db.character.findSavingThrow(realId)
 		.then(rows => rows ? rows[0] : {})
 		.catch(() => ({}))
 
-	datas.skill_proficiency = await db.character.findSkillProficiency(characterId)
+	datas.skill_proficiency = await db.character.findSkillProficiency(realId)
 		.then(rows => rows ? rows[0] : {})
 		.catch(() => ({}))
 
-	datas.skill_expertise = await db.character.findSkillExpertise(characterId)
+	datas.skill_expertise = await db.character.findSkillExpertise(realId)
 		.then(rows => rows ? rows[0] : {})
 		.catch(() => ({}))
 
-	datas.sense = await db.character.findSense(characterId)
+	datas.sense = await db.character.findSense(realId)
 		.catch(() => [])
 
-	datas.feat = await db.character.findFeat(characterId)
+	datas.feat = await db.character.findFeat(realId)
 		.catch(() => [])
 
-	datas.trait = await db.character.findTrait(characterId)
+	datas.trait = await db.character.findTrait(realId)
 		.catch(() => [])
 
-	datas.feature = await db.character.findFeature(characterId)
+	datas.feature = await db.character.findFeature(realId)
 		.catch(() => [])
 
-	datas.proficiency = await db.character.findProficiency(characterId)
+	datas.proficiency = await db.character.findProficiency(realId)
 		.catch(() => [])
 
-	datas.language = await db.character.findLanguage(characterId)
+	datas.language = await db.character.findLanguage(realId)
 		.catch(() => [])
 
-	datas.treasure = await db.character.findTreasure(characterId)
+	datas.treasure = await db.character.findTreasure(realId)
 		.then(rows => rows ? rows[0] : {})
 		.catch(() => ({}))
 
-	datas.equipment = await db.character.findEquipment(characterId)
+	datas.equipment = await db.character.findEquipment(realId)
 		.catch(() => [])
 
-	datas.spells = await db.character.findSpell(characterId)
+	datas.spells = await db.character.findSpell(realId)
 		.then(rows => {
 			return (rows || []).map(r => ({
 				...r,
@@ -347,7 +348,7 @@ export async function loadFullCharacter(characterId) {
 		})
 		.catch(() => [])
 
-	datas.encumbrance = await db.character.findEncumbrance(characterId)
+	datas.encumbrance = await db.character.findEncumbrance(realId)
 		.then(rows => rows ? rows[0] : {})
 		.catch(() => ({}))
 
@@ -396,34 +397,38 @@ export let character = {
 			})
 	},
 
-	update: (req, res, next) => {
-		db.character.update(req.body, req.params.id)
-			.then(rows => {
-				return response.ok(
-					'success',
-					'Data updated',
-					rows,
-					res
-				)
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
+	update: async (req, res, next) => {
+		try {
+			const target = await db.character.findId(req.params.id).then(r => r?.[0]).catch(() => null)
+			if (!target) {
+				return res.status(404).json({ status: 'error', message: 'Character not found' })
+			}
+			const userId = req.user?.id
+			if (target.user_id && (!userId || String(userId) !== String(target.user_id))) {
+				return response.notAuthenticated('error', 'You do not have permission to edit this character', null, res)
+			}
+			const rows = await db.character.update(req.body, target.id)
+			return response.ok('success', 'Data updated', rows, res)
+		} catch (error) {
+			return next(response.badRequest(error))
+		}
 	},
 
-	delete: (req, res, next) => {
-		db.character.delete(req.params.id)
-			.then(rows => {
-				return response.ok(
-					'success',
-					'Data deleted',
-					rows,
-					res
-				)
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
+	delete: async (req, res, next) => {
+		try {
+			const target = await db.character.findId(req.params.id).then(r => r?.[0]).catch(() => null)
+			if (!target) {
+				return res.status(404).json({ status: 'error', message: 'Character not found' })
+			}
+			const userId = req.user?.id
+			if (target.user_id && (!userId || String(userId) !== String(target.user_id))) {
+				return response.notAuthenticated('error', 'You do not have permission to delete this character', null, res)
+			}
+			const rows = await db.character.delete(target.id)
+			return response.ok('success', 'Data deleted', rows, res)
+		} catch (error) {
+			return next(response.badRequest(error))
+		}
 	},
 
 	findId: async (req, res, next) => {
@@ -433,6 +438,14 @@ export let character = {
 				return res.status(404).json({
 					status: 'error',
 					message: 'Character not found',
+					data: null
+				})
+			}
+			const isOwner = req.user && String(req.user.id) === String(datas.user_id)
+			if (datas.is_public === false && !isOwner) {
+				return res.status(403).json({
+					status: 'error',
+					message: 'This character is private',
 					data: null
 				})
 			}
@@ -454,6 +467,13 @@ export let character = {
 				return res.status(404).json({
 					status: 'error',
 					message: 'Character not found'
+				})
+			}
+			const isOwner = req.user && String(req.user.id) === String(datas.user_id)
+			if (datas.is_public === false && !isOwner) {
+				return res.status(403).json({
+					status: 'error',
+					message: 'This character is private'
 				})
 			}
 			const host = req.get('host') || 'localhost'

@@ -20,7 +20,9 @@ INSERT INTO characters(
     defenses,
     saving_throw_notes,
     image_url,
-    characteristics
+    characteristics,
+    public_id,
+    is_public
 ) VALUES (
     ${user_id},
     COALESCE(${edition}, '2014'),
@@ -43,6 +45,8 @@ INSERT INTO characters(
     COALESCE(${defenses}::jsonb, '{"resistances":[],"immunities":[],"vulnerabilities":[]}'::jsonb),
     ${saving_throw_notes},
     ${image_url},
-    COALESCE(${characteristics}::jsonb, '{}'::jsonb)
+    COALESCE(${characteristics}::jsonb, '{}'::jsonb),
+    ${public_id},
+    COALESCE(${is_public}, TRUE)
 )
 RETURNING id

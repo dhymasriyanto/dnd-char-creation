@@ -1,6 +1,7 @@
 'use strict'
 
 import {character as sql} from '../sql/index.mjs'
+import crypto from 'crypto'
 //import dotenv from 'dotenv'
 
 //dotenv.config()
@@ -249,7 +250,9 @@ class ServiceRepository {
 				defenses: JSON.stringify(data.defenses || { resistances: [], immunities: [], vulnerabilities: [] }),
 				saving_throw_notes: data.saving_throw_notes || null,
 				image_url: data.image_url || null,
-				characteristics: JSON.stringify(data.characteristics || {})
+				characteristics: JSON.stringify(data.characteristics || {}),
+				public_id: data.public_id || crypto.randomBytes(6).toString('hex'),
+				is_public: data.is_public !== false
 			}, r => +r.id)
 
 			// ability_scores
@@ -608,7 +611,10 @@ class ServiceRepository {
 				has_image_url: data.image_url !== undefined,
 				image_url: data.image_url !== undefined ? data.image_url : null,
 				has_characteristics: data.characteristics !== undefined,
-				characteristics: data.characteristics !== undefined ? JSON.stringify(data.characteristics) : null
+				characteristics: data.characteristics !== undefined ? JSON.stringify(data.characteristics) : null,
+				has_is_public: data.is_public !== undefined,
+				is_public: data.is_public != null ? Boolean(data.is_public) : null,
+				public_id: data.public_id || null
 			}, r => +r.id)
 
 			// Ability scores
