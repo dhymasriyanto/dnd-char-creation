@@ -433,13 +433,6 @@ export let character = {
 
 	findId: async (req, res, next) => {
 		try {
-			if (/^\d+$/.test(String(req.params.id).trim())) {
-				return res.status(404).json({
-					status: 'error',
-					message: 'Character not found. Access via unique character ID is required.',
-					data: null
-				})
-			}
 			const datas = await loadFullCharacter(req.params.id)
 			if (!datas) {
 				return res.status(404).json({
@@ -449,6 +442,14 @@ export let character = {
 				})
 			}
 			const isOwner = req.user && String(req.user.id) === String(datas.user_id)
+			const isNumeric = /^\d+$/.test(String(req.params.id).trim())
+			if (isNumeric && !isOwner) {
+				return res.status(404).json({
+					status: 'error',
+					message: 'Character not found. Access via unique character ID is required.',
+					data: null
+				})
+			}
 			if (datas.is_public === false && !isOwner) {
 				return res.status(403).json({
 					status: 'error',
@@ -469,12 +470,6 @@ export let character = {
 
 	exportAvrae: async (req, res, next) => {
 		try {
-			if (/^\d+$/.test(String(req.params.id).trim())) {
-				return res.status(404).json({
-					status: 'error',
-					message: 'Character not found. Access via unique character ID is required.'
-				})
-			}
 			const datas = await loadFullCharacter(req.params.id)
 			if (!datas) {
 				return res.status(404).json({
@@ -483,6 +478,13 @@ export let character = {
 				})
 			}
 			const isOwner = req.user && String(req.user.id) === String(datas.user_id)
+			const isNumeric = /^\d+$/.test(String(req.params.id).trim())
+			if (isNumeric && !isOwner) {
+				return res.status(404).json({
+					status: 'error',
+					message: 'Character not found. Access via unique character ID is required.'
+				})
+			}
 			if (datas.is_public === false && !isOwner) {
 				return res.status(403).json({
 					status: 'error',

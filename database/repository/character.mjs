@@ -228,6 +228,7 @@ class ServiceRepository {
 			const race = data.race || data.characterRace || {}
 			const walkSpeed = race.speed?.walk || (typeof race.speed === 'number' ? race.speed : 30)
 
+			const charPublicId = data.public_id || (crypto.randomBytes ? crypto.randomBytes(6).toString('hex') : null)
 			const characterId = await t.one(sql.add, {
 				user_id: data.user_id ? +data.user_id : (userId ? +userId : null),
 				edition: data.edition || '2014',
@@ -251,7 +252,7 @@ class ServiceRepository {
 				saving_throw_notes: data.saving_throw_notes || null,
 				image_url: data.image_url || null,
 				characteristics: JSON.stringify(data.characteristics || {}),
-				public_id: data.public_id || crypto.randomBytes(6).toString('hex'),
+				public_id: charPublicId,
 				is_public: data.is_public === true
 			}, r => +r.id)
 
@@ -526,11 +527,11 @@ class ServiceRepository {
 				)
 			}
 
-			return { id: characterId }
+			return { id: characterId, public_id: charPublicId }
 		})
 	}
 
-	// update a data
+// update a data
 	async update(data, id) {
 		return this.db.tx('update-character', async t => {
 			const characterId = +id
@@ -975,11 +976,12 @@ class ServiceRepository {
 				}
 			}
 
-			return { id: characterId }
+			const charRow = await t.oneOrNone('SELECT public_id FROM characters WHERE id = $1', characterId)
+			return { id: characterId, public_id: charRow?.public_id || null }
 		})
 	}
 
-	// delete a data
+// delete a data
 	async delete(id) {
 		return this.db.map(sql.delete, id, row => row.id)
 	}
