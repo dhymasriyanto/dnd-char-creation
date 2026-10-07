@@ -197,6 +197,9 @@ function formatOptionalFeature(of) {
 }
 
 function formatRule(r) {
+	const entries = safeJson(r.entries, [])
+	const isVeh = r.type === 'Vehicle' || (r.category && ['ship', 'air', 'vehicle', 'spelljammer', 'elemental_airship', 'infwar'].includes(r.category.toLowerCase()))
+	const vehStats = isVeh ? extractVehicleStats(entries) : {}
 	return {
 		id: r.id,
 		name: r.name,
@@ -205,7 +208,69 @@ function formatRule(r) {
 		page: r.page,
 		type: r.type,
 		category: r.category,
-		entries: safeJson(r.entries, [])
+		entries,
+		...vehStats
+	}
+}
+
+function formatRace(r, subraces = []) {
+	return {
+		id: r.id,
+		name: r.name,
+		edition: r.edition,
+		source: r.source,
+		page: r.page,
+		size: safeJson(r.size, ['M']),
+		speed: r.speed,
+		flySpeed: r.fly_speed,
+		swimSpeed: r.swim_speed,
+		climbSpeed: r.climb_speed,
+		darkvision: r.darkvision,
+		creatureTypes: safeJson(r.creature_types, ['Humanoid']),
+		abilityBonuses: safeJson(r.ability_bonuses, []),
+		traits: safeJson(r.traits, []),
+		entries: safeJson(r.entries, []),
+		subraces: (subraces || []).map(sr => ({
+			id: sr.id,
+			name: sr.name,
+			source: sr.source,
+			edition: sr.edition,
+			abilityBonuses: safeJson(sr.ability_bonuses, []),
+			traits: safeJson(sr.traits, []),
+			entries: safeJson(sr.entries, [])
+		}))
+	}
+}
+
+function formatClass(cl, subclasses = []) {
+	return {
+		id: cl.id,
+		name: cl.name,
+		edition: cl.edition,
+		source: cl.source,
+		page: cl.page,
+		hitDice: cl.hit_dice,
+		primaryAbility: safeJson(cl.primary_ability, []),
+		savingThrows: safeJson(cl.saving_throws, []),
+		subclassLevel: cl.subclass_level,
+		subclassTitle: cl.subclass_title,
+		armorProficiencies: safeJson(cl.armor_proficiencies, []),
+		weaponProficiencies: safeJson(cl.weapon_proficiencies, []),
+		toolProficiencies: safeJson(cl.tool_proficiencies, []),
+		skillChoices: safeJson(cl.skill_choices, {}),
+		startingEquipment: safeJson(cl.starting_equipment, []),
+		spellcastingAbility: cl.spellcasting_ability,
+		entries: safeJson(cl.entries, []),
+		subclasses: (subclasses || []).map(sc => ({
+			id: sc.id,
+			name: sc.name,
+			shortName: sc.short_name,
+			source: sc.source,
+			edition: sc.edition,
+			page: sc.page,
+			spellcastingAbility: sc.spellcasting_ability,
+			entries: safeJson(sc.entries, [])
+		}))
 	}
 }
 
@@ -495,6 +560,50 @@ function synthesizeItemEntries(it, rawProps = []) {
 	return entries
 }
 
+function extractVehicleStats(entries) {
+	let crew = null, capPassenger = null, capCargo = null, speed = null
+	let vehAc = null, vehHp = null, vehDmgThresh = null, carryingCapacity = null
+
+	if (!Array.isArray(entries)) return { crew, capPassenger, capCargo, speed, vehAc, vehHp, vehDmgThresh, carryingCapacity }
+
+	for (const e of entries) {
+		if (e && e.type === 'table' && Array.isArray(e.rows)) {
+			for (const row of e.rows) {
+				if (!Array.isArray(row) || row.length < 2) continue
+				const [prop, val] = row
+				const pLower = String(prop || '').toLowerCase()
+				const vStr = String(val || '').trim()
+				if (pLower.includes('crew') && !crew) crew = vStr
+				if (pLower.includes('passenger') && !capPassenger) capPassenger = vStr
+				if (pLower.includes('cargo') && !capCargo) capCargo = vStr
+				if (pLower.includes('speed') || pLower.includes('pace')) {
+					speed = speed ? `${speed}; ${vStr}` : vStr
+				}
+				if (pLower.includes('armor class') && !vehAc) {
+					vehAc = vStr.replace(/^ac\s*/i, '').trim()
+				}
+				if (pLower.includes('hit points') && !vehHp) {
+					vehHp = vStr
+					const mDt = vStr.match(/damage threshold\s*(\d+)/i)
+					if (mDt && !vehDmgThresh) vehDmgThresh = mDt[1]
+				}
+				if (pLower.includes('hull')) {
+					const mAc = vStr.match(/AC\s*(\d+)/i)
+					if (mAc && !vehAc) vehAc = mAc[1]
+					const mHp = vStr.match(/HP\s*(\d+)/i)
+					if (mHp && !vehHp) vehHp = mHp[1]
+					const mDt = vStr.match(/Damage Threshold\s*(\d+)/i)
+					if (mDt && !vehDmgThresh) vehDmgThresh = mDt[1]
+				}
+				if (pLower.includes('carrying capacity') && !carryingCapacity) {
+					carryingCapacity = vStr
+				}
+			}
+		}
+	}
+	return { crew, capPassenger, capCargo, speed, vehAc, vehHp, vehDmgThresh, carryingCapacity }
+}
+
 function formatItem(it) {
 	const rawProps = safeJson(it.properties, [])
 	const versatileDice = it.versatile_dice || null
@@ -505,6 +614,10 @@ function formatItem(it) {
 		? (it.mastery.split('|')[0].trim() || null)
 		: (Array.isArray(it.mastery) && it.mastery.length > 0 ? String(it.mastery[0]).split('|')[0].trim() : null)
 	const dmgTypeFull = it.damage_type ? (DAMAGE_TYPE_MAP[it.damage_type.toUpperCase()] || it.damage_type) : null
+	const vehStats = extractVehicleStats(entries)
+	const costFormatted = it.cost_cp
+		? (Number(it.cost_cp) >= 100 ? `${Number(it.cost_cp) / 100} gp` : `${it.cost_cp} cp`)
+		: null
 
 	return {
 		id: it.id,
@@ -517,6 +630,7 @@ function formatItem(it) {
 		rarity: it.rarity,
 		value: Number(it.cost_cp),
 		costCp: Number(it.cost_cp),
+		cost: costFormatted,
 		weight: Number(it.weight),
 		dmg1: it.damage_dice,
 		damageDice: it.damage_dice,
@@ -531,6 +645,14 @@ function formatItem(it) {
 		strength: Number(it.strength_requirement) || 0,
 		property: mappedProps,
 		properties: mappedProps,
+		crew: it.crew || vehStats.crew,
+		capPassenger: it.capPassenger || vehStats.capPassenger,
+		capCargo: it.capCargo || vehStats.capCargo,
+		speed: it.speed || it.vehSpeed || vehStats.speed,
+		vehAc: it.vehAc || vehStats.vehAc,
+		vehHp: it.vehHp || vehStats.vehHp,
+		vehDmgThresh: it.vehDmgThresh || vehStats.vehDmgThresh,
+		carryingCapacity: it.carryingCapacity || vehStats.carryingCapacity,
 		entries
 	}
 }
@@ -545,6 +667,7 @@ function formatLookupItem(dbItem) {
 		? (dbItem.mastery.split('|')[0].trim() || null)
 		: (Array.isArray(dbItem.mastery) && dbItem.mastery.length > 0 ? String(dbItem.mastery[0]).split('|')[0].trim() : null)
 	const dmgTypeFull = dbItem.damage_type ? (DAMAGE_TYPE_MAP[dbItem.damage_type.toUpperCase()] || dbItem.damage_type) : null
+	const vehStats = extractVehicleStats(entries)
 
 	let dmgString = null
 	if (dbItem.damage_dice) {
@@ -578,6 +701,14 @@ function formatLookupItem(dbItem) {
 		cost: dbItem.cost_cp ? (Number(dbItem.cost_cp) >= 100 ? `${Number(dbItem.cost_cp) / 100} gp` : `${dbItem.cost_cp} cp`) : null,
 		stealth: dbItem.stealth_disadvantage,
 		strength: strNum > 0 ? strNum : null,
+		crew: dbItem.crew || vehStats.crew,
+		capPassenger: dbItem.capPassenger || vehStats.capPassenger,
+		capCargo: dbItem.capCargo || vehStats.capCargo,
+		speed: dbItem.speed || dbItem.vehSpeed || vehStats.speed,
+		vehAc: dbItem.vehAc || vehStats.vehAc,
+		vehHp: dbItem.vehHp || vehStats.vehHp,
+		vehDmgThresh: dbItem.vehDmgThresh || vehStats.vehDmgThresh,
+		carryingCapacity: dbItem.carryingCapacity || vehStats.carryingCapacity,
 		entries
 	}
 }
@@ -654,10 +785,11 @@ export const compendium = {
 		try {
 			const bgs = await db.compendium.getBackgrounds({ edition, search })
 			if (bgs && bgs.length > 0) {
-				const filtered = edition === '2024'
-					? bgs.filter(b => b.source === 'XPHB')
-					: bgs.filter(b => b.source !== 'XPHB')
-				return response.ok('success', 'Retrieved backgrounds', (filtered.length > 0 ? filtered : bgs).map(formatBackground), res)
+				const sourceFilter = req.query.source ? req.query.source.toUpperCase().trim() : null
+				const filtered = sourceFilter
+					? bgs.filter(b => b.source.toUpperCase() === sourceFilter)
+					: bgs
+				return response.ok('success', 'Retrieved backgrounds', filtered.map(formatBackground), res)
 			}
 		} catch (err) {
 			console.warn('[WARN] DB compendium backgrounds query failed:', err.message)
@@ -788,9 +920,8 @@ export const compendium = {
 	rules: async (req, res) => {
 		const edition = req.query.edition || '2024'
 		const search = req.query.search ? req.query.search.toLowerCase().trim() : null
-		const category = req.query.category ? req.query.category.toLowerCase().trim() : null
+		const catRaw = req.query.category ? req.query.category.toLowerCase().trim() : null
 		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
-		const catRaw = category
 		const limit = req.query.limit ? Number(req.query.limit) : 400
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
@@ -805,8 +936,14 @@ export const compendium = {
 				} else if (catRaw === 'condition' || catRaw === 'status') {
 					sqlQ += 'AND (LOWER(type) = $2 OR LOWER(type) = $3) '
 					params.push('condition', 'status')
+				} else if (catRaw === 'hazard' || catRaw === 'trap') {
+					sqlQ += 'AND (LOWER(type) = $2 OR LOWER(type) = $3) '
+					params.push('hazard', 'trap')
+				} else if (catRaw === 'vehicle' || catRaw === 'ship') {
+					sqlQ += 'AND (LOWER(type) = $2 OR LOWER(category) IN ($3, $4, $5, $6, $7, $8, $9)) '
+					params.push('vehicle', 'ship', 'air', 'spelljammer', 'elemental_airship', 'infwar', 'object', 'creature')
 				} else {
-					sqlQ += 'AND LOWER(type) = $2 '
+					sqlQ += 'AND (LOWER(type) = $2 OR LOWER(category) = $2) '
 					params.push(catRaw)
 				}
 				if (source) {
@@ -828,6 +965,80 @@ export const compendium = {
 		} catch (err) {
 			console.warn('[WARN] DB compendium rules query failed:', err.message)
 			return response.ok('success', 'Retrieved rules and glossary', [], res)
+		}
+	},
+
+	races: async (req, res) => {
+		const edition = req.query.edition || '2024'
+		const search = req.query.search ? req.query.search.toLowerCase().trim() : null
+		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const limit = req.query.limit ? Number(req.query.limit) : 200
+		const offset = req.query.offset ? Number(req.query.offset) : 0
+
+		try {
+			let sqlQ = 'SELECT * FROM compendium_races WHERE edition = $1 '
+			const params = [edition]
+			if (source) {
+				params.push(source)
+				sqlQ += `AND UPPER(source) = $${params.length} `
+			}
+			if (search) {
+				params.push(`%${search}%`)
+				sqlQ += `AND LOWER(name) LIKE $${params.length} `
+			}
+			sqlQ += `ORDER BY name ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`
+			params.push(limit, offset)
+			const races = await db.any(sqlQ, params)
+
+			const formatted = []
+			for (const r of races) {
+				const subraces = await db.any(
+					'SELECT * FROM compendium_sub_races WHERE race_id = $1 AND edition = $2 ORDER BY name ASC',
+					[r.id, edition]
+				)
+				formatted.push(formatRace(r, subraces))
+			}
+			return response.ok('success', 'Retrieved races', formatted, res)
+		} catch (err) {
+			console.warn('[WARN] DB compendium races query failed:', err.message)
+			return response.ok('success', 'Retrieved races', [], res)
+		}
+	},
+
+	classes: async (req, res) => {
+		const edition = req.query.edition || '2024'
+		const search = req.query.search ? req.query.search.toLowerCase().trim() : null
+		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const limit = req.query.limit ? Number(req.query.limit) : 100
+		const offset = req.query.offset ? Number(req.query.offset) : 0
+
+		try {
+			let sqlQ = 'SELECT * FROM compendium_classes WHERE edition = $1 '
+			const params = [edition]
+			if (source) {
+				params.push(source)
+				sqlQ += `AND UPPER(source) = $${params.length} `
+			}
+			if (search) {
+				params.push(`%${search}%`)
+				sqlQ += `AND LOWER(name) LIKE $${params.length} `
+			}
+			sqlQ += `ORDER BY name ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`
+			params.push(limit, offset)
+			const classes = await db.any(sqlQ, params)
+
+			const formatted = []
+			for (const cl of classes) {
+				const subclasses = await db.any(
+					'SELECT * FROM compendium_sub_classes WHERE class_id = $1 AND edition = $2 ORDER BY name ASC',
+					[cl.id, edition]
+				)
+				formatted.push(formatClass(cl, subclasses))
+			}
+			return response.ok('success', 'Retrieved classes', formatted, res)
+		} catch (err) {
+			console.warn('[WARN] DB compendium classes query failed:', err.message)
+			return response.ok('success', 'Retrieved classes', [], res)
 		}
 	},
 
@@ -1068,8 +1279,8 @@ export const compendium = {
 			}
 		}
 
-		// 5. Rule & Rules-based Entities (Condition, Action, Skill, Sense, Language, Vehicle, Trap, Hazard, etc.)
-		const ruleLikeTypes = ['rule', 'variantrule', 'skill', 'sense', 'action', 'condition', 'status', 'disease', 'language', 'vehicle', 'trap', 'hazard']
+		// 5. Rule & Rules-based Entities (Condition, Action, Skill, Sense, Language, Vehicle, Trap, Hazard, Object, Ship, etc.)
+		const ruleLikeTypes = ['rule', 'variantrule', 'skill', 'sense', 'action', 'condition', 'status', 'disease', 'language', 'vehicle', 'trap', 'hazard', 'object', 'ship']
 		if (ruleLikeTypes.includes(type)) {
 			try {
 				let dbRule = await db.compendium.getRuleByName(name, null, edition, source)

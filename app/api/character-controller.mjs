@@ -433,6 +433,13 @@ export let character = {
 
 	findId: async (req, res, next) => {
 		try {
+			if (/^\d+$/.test(String(req.params.id).trim())) {
+				return res.status(404).json({
+					status: 'error',
+					message: 'Character not found. Access via unique character ID is required.',
+					data: null
+				})
+			}
 			const datas = await loadFullCharacter(req.params.id)
 			if (!datas) {
 				return res.status(404).json({
@@ -462,6 +469,12 @@ export let character = {
 
 	exportAvrae: async (req, res, next) => {
 		try {
+			if (/^\d+$/.test(String(req.params.id).trim())) {
+				return res.status(404).json({
+					status: 'error',
+					message: 'Character not found. Access via unique character ID is required.'
+				})
+			}
 			const datas = await loadFullCharacter(req.params.id)
 			if (!datas) {
 				return res.status(404).json({

@@ -41,9 +41,17 @@ export const campaignController = {
 
 	detail: async (req, res) => {
 		try {
-			const campaignId = +req.params.id
+			const idParam = String(req.params.id).trim()
 			const userId = req.user?.id
-			const data = await db.campaign.findById(campaignId, userId)
+			let data = null
+			if (/^\d+$/.test(idParam)) {
+				data = await db.campaign.findById(+idParam, userId)
+			} else {
+				const camp = await db.campaign.findByInviteCode(idParam.toUpperCase())
+				if (camp) {
+					data = await db.campaign.findById(camp.id, userId)
+				}
+			}
 			if (!data) {
 				return response.notFound('error', 'Campaign not found', null, res)
 			}

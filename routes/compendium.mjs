@@ -11,6 +11,8 @@ router.get('/items', compendium.items)
 router.get('/monsters', compendium.monsters)
 router.get('/rules', compendium.rules)
 router.get('/optionalfeatures', compendium.optionalfeatures)
+router.get('/races', compendium.races)
+router.get('/classes', compendium.classes)
 router.get('/lookup', compendium.lookup)
 
 export { router as compendiumRoute }

@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS characters (
     image_url TEXT,
     characteristics JSONB DEFAULT '{}'::jsonb,
     public_id VARCHAR(32) UNIQUE,
-    is_public BOOLEAN DEFAULT TRUE
+    is_public BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS ability_scores (

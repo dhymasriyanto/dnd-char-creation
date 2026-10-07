@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { readdir, readFile } from 'fs/promises'
 import { db, pgp } from '../index.mjs'
+import { enrichCompendium } from './enrich-compendium.mjs'
 
 const __dirname = fileURLToPath(dirname(import.meta.url))
 const ROOT = join(__dirname, '../../')
@@ -568,8 +569,6 @@ async function seedBackgrounds() {
 		}
 
 		for (const rawB of data2024.background) {
-			const is2024 = rawB.edition === 'one' || rawB.source === 'XPHB' || rawB.source === 'EFA'
-			if (!is2024) continue
 			const b = resolveBg(rawB, bgMap2024)
 
 			bgsToInsert.push({
@@ -588,9 +587,18 @@ async function seedBackgrounds() {
 		}
 	}
 
+	// Deduplicate backgrounds
+	const seenBg = new Set()
+	const dedupedBgs = bgsToInsert.filter(b => {
+		const key = `${b.name}|${b.source}|${b.edition}`.toLowerCase()
+		if (seenBg.has(key)) return false
+		seenBg.add(key)
+		return true
+	})
+
 	await db.none('DELETE FROM compendium_backgrounds')
-	await batchInsert('compendium_backgrounds', cs, bgsToInsert)
-	console.log(`Inserted ${bgsToInsert.length} backgrounds.`)
+	await batchInsert('compendium_backgrounds', cs, dedupedBgs)
+	console.log(`Inserted ${dedupedBgs.length} backgrounds.`)
 }
 
 // -------------------------------------------------------------
@@ -744,14 +752,36 @@ async function seedSpells() {
 		}
 	}
 
-	const dataPhb = await readJson(join(DIR_2024, 'spells', 'spells-phb.json'))
-	if (dataPhb?.spell) processSpell(dataPhb.spell, '2014')
+	const fs = await import('fs')
+	const spellFiles = (await fs.promises.readdir(join(DIR_2024, 'spells')))
+		.filter(f => f.startsWith('spells-') && f.endsWith('.json'))
 
-	const dataXphb = await readJson(join(DIR_2024, 'spells', 'spells-xphb.json'))
-	if (dataXphb?.spell) processSpell(dataXphb.spell, '2024')
+	for (const f of spellFiles) {
+		const data = await readJson(join(DIR_2024, 'spells', f))
+		if (!data?.spell) continue
+		if (f === 'spells-phb.json') {
+			processSpell(data.spell, '2014')
+		} else if (f === 'spells-xphb.json') {
+			processSpell(data.spell, '2024')
+		} else {
+			// Supplement spells (XGE, TCE, FTD, EGW, SCC, etc.) apply to both editions
+			processSpell(data.spell, '2014')
+			processSpell(data.spell, '2024')
+		}
+	}
 
-	await batchInsert('compendium_spells', cs, spellsToInsert)
-	console.log(`Inserted ${spellsToInsert.length} spells.`)
+	// Deduplicate by name, source, edition
+	const seenSpells = new Set()
+	const dedupedSpells = spellsToInsert.filter(s => {
+		const key = `${s.name}|${s.source}|${s.edition}`.toLowerCase()
+		if (seenSpells.has(key)) return false
+		seenSpells.add(key)
+		return true
+	})
+
+	await db.none('DELETE FROM compendium_spells')
+	await batchInsert('compendium_spells', cs, dedupedSpells)
+	console.log(`Inserted ${dedupedSpells.length} spells.`)
 }
 
 // -------------------------------------------------------------
@@ -778,6 +808,8 @@ async function seedItems() {
 			else if (isArmor) itemType = 'armor'
 			else if (['AT', 'T', 'GS', 'INS'].includes(it.type)) itemType = 'tool'
 			else if (it.type === 'P' || it.type === 'SC') itemType = 'consumable'
+			else if (it.type === 'MNT') itemType = 'mount'
+			else if ((it.type && (it.type.startsWith('SHP') || it.type.startsWith('AIR') || it.type.startsWith('VEH') || it.type.startsWith('SPC'))) || it.vehicleType || it.vehAc || ['sailing ship', 'warship', 'longship', 'airship', 'galley', 'keelboat', 'rowboat', 'wagon', 'carriage', 'cart', 'chariot', 'sled'].includes(it.name.toLowerCase())) itemType = 'vehicle'
 			else if (it.wondrous) itemType = 'wondrous'
 
 			let mastery = null
@@ -867,17 +899,11 @@ async function seedItems() {
 		const baseData = await readJson(join(dir, 'items-base.json'))
 
 		if (itemsData?.item) {
-			const list = ed === '2024'
-				? itemsData.item.filter(i => i.edition === 'one' || i.source === 'XPHB' || i.mastery)
-				: itemsData.item
-			processItems(list, ed)
+			processItems(itemsData.item, ed)
 		}
 		if (itemsData?.itemGroup) processItemGroups(itemsData.itemGroup, ed)
 		if (baseData?.baseitem) {
-			const bList = ed === '2024'
-				? baseData.baseitem.filter(i => i.edition === 'one' || i.source === 'XPHB' || i.source === 'XDMG' || i.mastery)
-				: baseData.baseitem.filter(i => i.edition !== 'one' && i.source !== 'XPHB' && i.source !== 'XDMG')
-			processItems(bList, ed)
+			processItems(baseData.baseitem, ed)
 		}
 		if (baseData?.itemType) processItemTypes(baseData.itemType, ed)
 	}
@@ -895,6 +921,165 @@ async function seedItems() {
 	await batchInsert('compendium_items', cs, deduped)
 	console.log(`Inserted ${deduped.length} items.`)
 }
+
+function formatVehicleEntries(v, fluffEntries = []) {
+	const entries = []
+	if (Array.isArray(fluffEntries) && fluffEntries.length > 0) {
+		entries.push(...fluffEntries)
+	}
+
+	const statsTable = {
+		type: 'table',
+		caption: `${v.name} Statistics`,
+		colLabels: ['Property', 'Details'],
+		rows: []
+	}
+
+	if (v.dimensions) {
+		statsTable.rows.push(['Dimensions', Array.isArray(v.dimensions) ? v.dimensions.join(' by ') : String(v.dimensions)])
+	}
+	if (v.terrain) {
+		statsTable.rows.push(['Terrain', Array.isArray(v.terrain) ? v.terrain.join(', ') : String(v.terrain)])
+	}
+	if (v.capCrew != null) {
+		statsTable.rows.push(['Crew Capacity', `${v.capCrew} crew members`])
+	}
+	if (v.capCargo != null) {
+		statsTable.rows.push(['Cargo Capacity', `${v.capCargo} tons`])
+	}
+	if (v.cost != null) {
+		statsTable.rows.push(['Cost', v.cost >= 100 ? `${v.cost / 100} gp` : `${v.cost} cp`])
+	}
+	if (v.pace) {
+		const paceStr = typeof v.pace === 'object' ? Object.entries(v.pace).map(([k, val]) => `${k}: ${val} mph`).join(', ') : `${v.pace} mph`
+		statsTable.rows.push(['Travel Pace', paceStr])
+	}
+	if (v.speed) {
+		const formatSpeed = (s) => {
+			if (!s) return ''
+			if (typeof s === 'number' || typeof s === 'string') return `${s} ft.`
+			if (typeof s === 'object') {
+				return Object.entries(s).map(([k, val]) => {
+					if (typeof val === 'object' && val !== null) {
+						return `${k}: ${val.number || 30} ft.${val.condition ? ` ${val.condition}` : ''}`
+					}
+					return `${k}: ${val} ft.`
+				}).join(', ')
+			}
+			return String(s)
+		}
+		const speedStr = formatSpeed(v.speed)
+		statsTable.rows.push(['Tactical Speed', speedStr])
+	}
+	if (v.hull) {
+		const hullDesc = `AC ${v.hull.ac || '—'}, HP ${v.hull.hp || '—'}${v.hull.dt ? `, Damage Threshold ${v.hull.dt}` : ''}`
+		statsTable.rows.push(['Hull', hullDesc])
+	}
+
+	if (statsTable.rows.length > 0) {
+		entries.push(statsTable)
+	}
+
+	if (Array.isArray(v.weapon) && v.weapon.length > 0) {
+		const weaponSection = {
+			type: 'entries',
+			name: 'Weapons & Armaments',
+			entries: []
+		}
+		for (const w of v.weapon) {
+			const wSub = {
+				type: 'entries',
+				name: `${w.name}${w.count ? ` (${w.count})` : ''}`,
+				entries: []
+			}
+			const wStats = []
+			if (w.ac != null) wStats.push(`AC ${w.ac}`)
+			if (w.hp != null) wStats.push(`HP ${w.hp}`)
+			if (w.crew != null) wStats.push(`Crew ${w.crew}`)
+			if (wStats.length) wSub.entries.push(`**Stats:** ${wStats.join(', ')}`)
+			if (w.entries) wSub.entries.push(...(Array.isArray(w.entries) ? w.entries : [w.entries]))
+			if (w.action) {
+				for (const act of w.action) {
+					if (act.entries) {
+						wSub.entries.push(`**${act.name || 'Action'}:** ${Array.isArray(act.entries) ? act.entries.join(' ') : act.entries}`)
+					}
+				}
+			}
+			weaponSection.entries.push(wSub)
+		}
+		entries.push(weaponSection)
+	}
+
+	if (Array.isArray(v.control) && v.control.length > 0) {
+		const controlSec = {
+			type: 'entries',
+			name: 'Controls',
+			entries: v.control.map(c => `**${c.name}:** AC ${c.ac || '—'}, HP ${c.hp || '—'}. ${(c.entries || []).join(' ')}`)
+		}
+		entries.push(controlSec)
+	}
+
+	if (Array.isArray(v.movement) && v.movement.length > 0) {
+		const moveSec = {
+			type: 'entries',
+			name: 'Movement',
+			entries: v.movement.map(m => `**${m.name}:** AC ${m.ac || '—'}, HP ${m.hp || '—'}. ${(m.speed?.[0]?.entries || m.entries || []).join(' ')}`)
+		}
+		entries.push(moveSec)
+	}
+
+	return entries
+	}
+
+	function formatStandaloneVehicleEntries(it) {
+		const entries = []
+		const isAir = it.type && (it.type.includes('AIR') || it.name.toLowerCase().includes('airship'))
+		const isWater = it.type && (it.type.includes('SHP') || it.name.toLowerCase().includes('ship') || it.name.toLowerCase().includes('boat'))
+		const isDrawn = it.type && it.type.includes('VEH')
+
+		let intro = `A standard conveyance described in the rules.`
+		if (isAir) {
+			intro = `${it.name} is a majestic airborne vessel buoyed by magical buoyancy or gas chambers and propelled by sails or elemental engines through the skies.`
+		} else if (isWater) {
+			intro = `${it.name} is a waterborne vessel designed for seafaring voyages, coastal patrols, or river transit.`
+		} else if (isDrawn) {
+			intro = `${it.name} is a land conveyance drawn by draft animals such as horses, oxen, or mules.`
+		}
+		entries.push(intro)
+
+		const statsTable = {
+			type: 'table',
+			caption: `${it.name} Statistics`,
+			colLabels: ['Property', 'Details'],
+			rows: []
+		}
+
+		if (it.vehAc) statsTable.rows.push(['Armor Class', `AC ${it.vehAc}`])
+		if (it.vehHp) statsTable.rows.push(['Hit Points', `${it.vehHp}${it.vehDmgThresh ? ` (Damage Threshold ${it.vehDmgThresh})` : ''}`])
+		if (it.vehSpeed) statsTable.rows.push(['Speed', `${it.vehSpeed} mph (${it.vehSpeed * 24} miles per day)`])
+		if (it.crew) statsTable.rows.push(['Crew Required', `${it.crew} crew members`])
+		if (it.capPassenger) statsTable.rows.push(['Passenger Capacity', `${it.capPassenger} passengers`])
+		if (it.capCargo) statsTable.rows.push(['Cargo Capacity', `${it.capCargo} ton${it.capCargo > 1 ? 's' : ''}`])
+		if (it.weight) statsTable.rows.push(['Vehicle Weight', `${it.weight} lb.`])
+		if (it.value) statsTable.rows.push(['Cost', it.value >= 100 ? `${it.value / 100} gp` : `${it.value} cp`])
+
+		if (statsTable.rows.length > 0) entries.push(statsTable)
+
+		if (isDrawn) {
+			entries.push({
+				type: 'entries',
+				name: 'Drawn Vehicles Rules',
+				entries: [
+					"An animal pulling a carriage, cart, chariot, sled, or wagon can move weight up to five times its base carrying capacity, including the weight of the vehicle. If multiple animals pull the same vehicle, add their carrying capacities together."
+				]
+			})
+		}
+		if (Array.isArray(it.entries) && it.entries.length > 0) {
+			entries.push(...it.entries)
+		}
+
+		return entries
+	}
 
 // -------------------------------------------------------------
 // 7. RULES (Variant Rules, Rules Glossary, Actions, Conditions, Senses, Skills, Languages, Vehicles, Traps/Hazards, Builtins)
@@ -1021,7 +1206,13 @@ async function seedRules() {
 
 		// 7. Vehicles
 		const vehData = await readJson(join(dir, 'vehicles.json'))
+		const vehFluffData = await readJson(join(dir, 'fluff-vehicles.json'))
+		const vehFluffMap = new Map()
+		for (const vf of vehFluffData?.vehicleFluff || []) {
+			if (vf && vf.name) vehFluffMap.set(vf.name.toLowerCase(), vf.entries || [])
+		}
 		for (const v of vehData?.vehicle || []) {
+			const richEntries = formatVehicleEntries(v, vehFluffMap.get(v.name.toLowerCase()) || v.entries || [])
 			rulesToInsert.push({
 				name: v.name,
 				edition,
@@ -1029,8 +1220,29 @@ async function seedRules() {
 				page: v.page ? String(v.page) : null,
 				type: 'Vehicle',
 				category: v.vehicleType || 'Vehicle',
-				entries: v.entries || []
+				entries: richEntries
 			})
+		}
+
+		// Standalone vehicles from items.json (e.g. Airship, Canoe, Carriage, Cart, Chariot, etc.)
+		const itemRawData = await readJson(join(dir, 'items.json'))
+		const existingVehNames = new Set((vehData?.vehicle || []).map(v => v.name.toLowerCase()))
+		for (const it of itemRawData?.item || []) {
+			const isVeh = (it.type && (it.type.startsWith('SHP') || it.type.startsWith('AIR') || it.type.startsWith('VEH') || it.type.startsWith('SPC'))) || it.vehAc || ['sailing ship', 'warship', 'longship', 'airship', 'galley', 'keelboat', 'rowboat', 'wagon', 'carriage', 'cart', 'chariot', 'sled'].includes(it.name.toLowerCase())
+			if (isVeh && !existingVehNames.has(it.name.toLowerCase())) {
+				existingVehNames.add(it.name.toLowerCase())
+				const isWater = it.type && (it.type.includes('SHP') || it.name.toLowerCase().includes('ship') || it.name.toLowerCase().includes('boat'))
+				const isAir = it.type && (it.type.includes('AIR') || it.name.toLowerCase().includes('airship'))
+				rulesToInsert.push({
+					name: it.name,
+					edition,
+					source: it.source || (edition === '2024' ? 'XPHB' : 'PHB'),
+					page: it.page ? String(it.page) : null,
+					type: 'Vehicle',
+					category: isWater ? 'SHIP' : (isAir ? 'AIR' : 'VEHICLE'),
+					entries: formatStandaloneVehicleEntries(it)
+				})
+			}
 		}
 
 		// 8. Traps & Hazards
@@ -1313,12 +1525,14 @@ async function run() {
 			await seedSpells()
 		} else if (target === 'items') {
 			await seedItems()
+			await enrichCompendium()
 		} else if (target === 'rules') {
 			await seedRules()
 		} else if (target === 'optionalfeatures') {
 			await seedOptionalFeatures()
 		} else if (target === 'monsters') {
 			await seedMonsters()
+			await enrichCompendium()
 		} else {
 			await seedRaces()
 			await seedClasses()
@@ -1329,6 +1543,7 @@ async function run() {
 			await seedRules()
 			await seedOptionalFeatures()
 			await seedMonsters()
+			await enrichCompendium()
 		}
 		console.log('=== Compendium Seeding Complete! ===')
 		process.exit(0)

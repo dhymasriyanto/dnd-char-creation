@@ -47,6 +47,6 @@ INSERT INTO characters(
     ${image_url},
     COALESCE(${characteristics}::jsonb, '{}'::jsonb),
     ${public_id},
-    COALESCE(${is_public}, TRUE)
+    COALESCE(${is_public}, FALSE)
 )
 RETURNING id

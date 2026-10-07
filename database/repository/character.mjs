@@ -252,7 +252,7 @@ class ServiceRepository {
 				image_url: data.image_url || null,
 				characteristics: JSON.stringify(data.characteristics || {}),
 				public_id: data.public_id || crypto.randomBytes(6).toString('hex'),
-				is_public: data.is_public !== false
+				is_public: data.is_public === true
 			}, r => +r.id)
 
 			// ability_scores
