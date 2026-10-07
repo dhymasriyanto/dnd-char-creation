@@ -612,6 +612,8 @@ class ServiceRepository {
 				image_url: data.image_url !== undefined ? data.image_url : null,
 				has_characteristics: data.characteristics !== undefined,
 				characteristics: data.characteristics !== undefined ? JSON.stringify(data.characteristics) : null,
+				has_sheet_resources: data.sheet_resources !== undefined,
+				sheet_resources: data.sheet_resources !== undefined ? (typeof data.sheet_resources === 'string' ? data.sheet_resources : JSON.stringify(data.sheet_resources)) : null,
 				has_is_public: data.is_public !== undefined,
 				is_public: data.is_public != null ? Boolean(data.is_public) : null,
 				public_id: data.public_id || null

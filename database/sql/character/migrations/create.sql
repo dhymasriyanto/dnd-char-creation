@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS characters (
     saving_throw_notes TEXT,
     image_url TEXT,
     characteristics JSONB DEFAULT '{}'::jsonb,
+    sheet_resources JSONB DEFAULT '{}'::jsonb,
     public_id VARCHAR(32) UNIQUE,
     is_public BOOLEAN DEFAULT FALSE
 );
