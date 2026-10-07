@@ -1,4 +1,5 @@
 INSERT INTO characters(
+    user_id,
     edition,
     name,
     level,
@@ -14,6 +15,7 @@ INSERT INTO characters(
     alignment,
     inspiration
 ) VALUES (
+    ${user_id},
     COALESCE(${edition}, '2014'),
     ${name},
     COALESCE(${level}, 1),

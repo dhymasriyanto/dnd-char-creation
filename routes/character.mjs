@@ -3,8 +3,11 @@
 import express from 'express'
 const router = express.Router()
 import {character} from '../app/api/character-controller.mjs'
+import {requireAuth} from '../helper/auth.mjs'
 import multer from 'multer'
 const upload = multer() // for parsing multipart/form-data
+
+router.use(requireAuth)
 
 router.route('/')
 	.get(character.all)

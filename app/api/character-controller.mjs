@@ -184,7 +184,11 @@ async function enrichWithCompendiumEntries(datas) {
 
 export let character = {
 	all: (req, res, next) => {
-		db.character.all()
+		const userId = req.user?.id
+		if (!userId) {
+			return response.notAuthenticated('error', 'Authentication required', null, res)
+		}
+		db.character.all(userId)
 			.then(rows => {
 				return response.ok(
 					'success',
@@ -199,7 +203,11 @@ export let character = {
 	},
 
 	add: (req, res, next) => {
-		db.character.add(req.body)
+		const userId = req.user?.id
+		if (!userId) {
+			return response.notAuthenticated('error', 'Authentication required', null, res)
+		}
+		db.character.add(req.body, userId)
 			.then(rows => {
 				return response.ok(
 					'success',

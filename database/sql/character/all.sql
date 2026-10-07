@@ -27,4 +27,5 @@ LEFT JOIN LATERAL (
     FROM character_sub_classes 
     WHERE character_id = c.id
 ) csc ON true
+WHERE c.user_id = $1::BIGINT
 ORDER BY c.id DESC

@@ -20,5 +20,6 @@ DROP TABLE IF EXISTS
     character_features,
     character_feats,
     ability_scores,
-    characters
+    characters,
+    users
 CASCADE;

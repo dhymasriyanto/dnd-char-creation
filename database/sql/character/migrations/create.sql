@@ -1,5 +1,18 @@
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255),
+    salt VARCHAR(64),
+    auth_provider VARCHAR(50) NOT NULL DEFAULT 'local',
+    provider_id VARCHAR(255),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 CREATE TABLE IF NOT EXISTS characters (
     id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
     edition VARCHAR(10) NOT NULL DEFAULT '2014',
     level BIGINT NOT NULL DEFAULT 1,
     proficiency_bonus BIGINT DEFAULT 2,

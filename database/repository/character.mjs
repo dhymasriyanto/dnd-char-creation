@@ -76,8 +76,8 @@ class ServiceRepository {
 	}
 
 	// List all table data; 
-	async all() {
-		return this.db.any(sql.all)
+	async all(userId = null) {
+		return this.db.any(sql.all, [userId ? +userId : null])
 	}
 
 	async findAbilityScore(id) {
@@ -175,7 +175,7 @@ class ServiceRepository {
 	}
 
 	// add new data
-	async add(data) {
+	async add(data, userId = null) {
 		return this.db.tx('add-character', async t => {
 			const abs = data.ability_scores || {
 				strength: data.strength || 10,
@@ -228,6 +228,7 @@ class ServiceRepository {
 			const walkSpeed = race.speed?.walk || (typeof race.speed === 'number' ? race.speed : 30)
 
 			const characterId = await t.one(sql.add, {
+				user_id: data.user_id ? +data.user_id : (userId ? +userId : null),
 				edition: data.edition || '2014',
 				name: data.name || data.characterName || 'Unnamed Character',
 				level: totalLevel,
