@@ -275,6 +275,9 @@ function formatClass(cl, subclasses = []) {
 }
 
 function formatMonster(m) {
+	const raw = safeJson(m.raw_data, {}) || {}
+	const traits = safeJson(m.trait, [])
+	const actions = safeJson(m.action, [])
 	return {
 		id: m.id,
 		name: m.name,
@@ -299,14 +302,22 @@ function formatMonster(m) {
 		passive: m.passive,
 		languages: safeJson(m.languages, []),
 		senses: safeJson(m.senses, []),
-		trait: safeJson(m.trait, []),
-		action: safeJson(m.action, []),
+		trait: traits,
+		action: actions,
 		bonus: safeJson(m.bonus, []),
 		reaction: safeJson(m.reaction, []),
 		legendary: safeJson(m.legendary, []),
 		spellcasting: safeJson(m.spellcasting, []),
 		environment: safeJson(m.environment, []),
-		raw_data: safeJson(m.raw_data, null)
+		entries: [
+			...(traits.map(t => ({ type: 'entries', name: t.name, entries: Array.isArray(t.entries) ? t.entries : (t.entries ? [t.entries] : []) }))),
+			...(actions.map(a => ({ type: 'entries', name: a.name, entries: Array.isArray(a.entries) ? a.entries : (a.entries ? [a.entries] : []) })))
+		],
+		resist: raw.resist || null,
+		immune: raw.immune || null,
+		conditionImmune: raw.conditionImmune || null,
+		vulnerable: raw.vulnerable || null,
+		raw_data: raw
 	}
 }
 
@@ -1299,6 +1310,77 @@ export const compendium = {
 			}
 		}
 
+		// 5b. Background Lookup
+		if (type === 'background') {
+			try {
+				let dbBg = await db.oneOrNone(
+					`SELECT * FROM compendium_backgrounds 
+					 WHERE LOWER(name) = LOWER($1) 
+					 ORDER BY
+						(CASE WHEN $2 != '' AND UPPER(source) = $2 THEN 0 ELSE 1 END) ASC,
+						(CASE WHEN edition = $3 THEN 0 ELSE 1 END) ASC,
+						(CASE WHEN UPPER(source) = $4 THEN 0 ELSE 1 END) ASC 
+					 LIMIT 1`,
+					[name, source, edition, defaultSource]
+				)
+				if (dbBg) {
+					return response.ok('success', 'Found background', formatBackground(dbBg), res)
+				}
+			} catch (err) {
+				console.warn('[WARN] Background lookup DB query failed:', err.message)
+			}
+		}
+
+		// 5c. Race & Species Lookup
+		if (type === 'race' || type === 'subrace' || type === 'species') {
+			try {
+				let dbRace = await db.oneOrNone(
+					`SELECT * FROM compendium_races 
+					 WHERE LOWER(name) = LOWER($1) 
+					 ORDER BY
+						(CASE WHEN $2 != '' AND UPPER(source) = $2 THEN 0 ELSE 1 END) ASC,
+						(CASE WHEN edition = $3 THEN 0 ELSE 1 END) ASC,
+						(CASE WHEN UPPER(source) = $4 THEN 0 ELSE 1 END) ASC 
+					 LIMIT 1`,
+					[name, source, edition, defaultSource]
+				)
+				if (dbRace) {
+					const subraces = await db.any(
+						'SELECT * FROM compendium_sub_races WHERE race_id = $1 AND edition = $2 ORDER BY name ASC',
+						[dbRace.id, dbRace.edition]
+					)
+					return response.ok('success', 'Found race', formatRace(dbRace, subraces), res)
+				}
+
+				let dbSubRace = await db.oneOrNone(
+					`SELECT sr.*, r.name as parent_race_name, r.source as parent_race_source
+					 FROM compendium_sub_races sr
+					 JOIN compendium_races r ON sr.race_id = r.id
+					 WHERE LOWER(sr.name) = LOWER($1)
+					 ORDER BY
+						(CASE WHEN $2 != '' AND UPPER(sr.source) = $2 THEN 0 ELSE 1 END) ASC,
+						(CASE WHEN sr.edition = $3 THEN 0 ELSE 1 END) ASC,
+						(CASE WHEN UPPER(sr.source) = $4 THEN 0 ELSE 1 END) ASC 
+					 LIMIT 1`,
+					[name, source, edition, defaultSource]
+				)
+				if (dbSubRace) {
+					return response.ok('success', 'Found subrace', {
+						name: dbSubRace.name,
+						type: 'subrace',
+						edition: dbSubRace.edition,
+						source: dbSubRace.source,
+						category: `${dbSubRace.parent_race_name} Subrace`,
+						abilityBonuses: safeJson(dbSubRace.ability_bonuses, []),
+						traits: safeJson(dbSubRace.traits, []),
+						entries: safeJson(dbSubRace.entries, [])
+					}, res)
+				}
+			} catch (err) {
+				console.warn('[WARN] Race lookup DB query failed:', err.message)
+			}
+		}
+
 		// 6. Universal Database Fallback
 		const otherEdition = edition === '2024' ? '2014' : '2024'
 		try {
@@ -1447,6 +1529,38 @@ export const compendium = {
 					category: subDesc,
 					entries: safeJson(fbCf.entries, [])
 				}, res)
+			}
+
+			let fbBg = await db.oneOrNone(
+				`SELECT * FROM compendium_backgrounds 
+				 WHERE LOWER(name) = LOWER($1) 
+				 ORDER BY
+					(CASE WHEN $2 != '' AND UPPER(source) = $2 THEN 0 ELSE 1 END) ASC,
+					(CASE WHEN edition = $3 THEN 0 ELSE 1 END) ASC,
+					(CASE WHEN UPPER(source) = $4 THEN 0 ELSE 1 END) ASC 
+				 LIMIT 1`,
+				[name, source, edition, defaultSource]
+			)
+			if (fbBg) {
+				return response.ok('success', 'Found background', formatBackground(fbBg), res)
+			}
+
+			let fbRace = await db.oneOrNone(
+				`SELECT * FROM compendium_races 
+				 WHERE LOWER(name) = LOWER($1) 
+				 ORDER BY
+					(CASE WHEN $2 != '' AND UPPER(source) = $2 THEN 0 ELSE 1 END) ASC,
+					(CASE WHEN edition = $3 THEN 0 ELSE 1 END) ASC,
+					(CASE WHEN UPPER(source) = $4 THEN 0 ELSE 1 END) ASC 
+				 LIMIT 1`,
+				[name, source, edition, defaultSource]
+			)
+			if (fbRace) {
+				const subraces = await db.any(
+					'SELECT * FROM compendium_sub_races WHERE race_id = $1 AND edition = $2 ORDER BY name ASC',
+					[fbRace.id, fbRace.edition]
+				)
+				return response.ok('success', 'Found race', formatRace(fbRace, subraces), res)
 			}
 		} catch (err) {
 			console.warn('[WARN] Universal lookup DB query failed:', err.message)
