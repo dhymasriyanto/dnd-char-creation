@@ -794,16 +794,16 @@ async function seedItems() {
 				page: it.page ? String(it.page) : null,
 				item_type: itemType,
 				rarity: it.rarity || 'none',
-				cost_cp: typeof it.value === 'number' ? it.value : 0,
-				weight: typeof it.weight === 'number' ? it.weight : 0,
+				cost_cp: it.value ? (Number(it.value) || 0) : 0,
+				weight: it.weight ? (Number(it.weight) || 0) : 0,
 				damage_dice: it.dmg1 || null,
 				damage_type: it.dmgType || null,
 				versatile_dice: it.dmg2 || null,
 				mastery,
-				base_ac: typeof it.ac === 'number' ? it.ac : 0,
+				base_ac: it.ac ? (Number(it.ac) || 0) : 0,
 				ac_dex_bonus: it.dexMod ? 'yes' : null,
 				stealth_disadvantage: !!it.stealth,
-				strength_requirement: typeof it.strength === 'number' ? it.strength : 0,
+				strength_requirement: it.strength ? (Number(it.strength) || 0) : 0,
 				properties: it.property || [],
 				entries: it.entries || []
 			})
@@ -873,7 +873,12 @@ async function seedItems() {
 			processItems(list, ed)
 		}
 		if (itemsData?.itemGroup) processItemGroups(itemsData.itemGroup, ed)
-		if (baseData?.baseitem) processItems(baseData.baseitem, ed)
+		if (baseData?.baseitem) {
+			const bList = ed === '2024'
+				? baseData.baseitem.filter(i => i.edition === 'one' || i.source === 'XPHB' || i.source === 'XDMG' || i.mastery)
+				: baseData.baseitem.filter(i => i.edition !== 'one' && i.source !== 'XPHB' && i.source !== 'XDMG')
+			processItems(bList, ed)
+		}
 		if (baseData?.itemType) processItemTypes(baseData.itemType, ed)
 	}
 
@@ -886,6 +891,7 @@ async function seedItems() {
 		return true
 	})
 
+	await db.none('DELETE FROM compendium_items')
 	await batchInsert('compendium_items', cs, deduped)
 	console.log(`Inserted ${deduped.length} items.`)
 }

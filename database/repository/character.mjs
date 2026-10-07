@@ -495,8 +495,8 @@ class ServiceRepository {
 				if (!sp || !sp.name) continue
 				await t.none(
 					`INSERT INTO character_spells (
-						character_id, name, level, school, casting_time, range, duration, components, is_prepared, is_cantrip, source
-					) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+						character_id, name, level, school, casting_time, range, duration, components, is_prepared, is_cantrip, source, source_feat, is_feat_spell
+					) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
 					[
 						characterId,
 						sp.name,
@@ -508,7 +508,9 @@ class ServiceRepository {
 						typeof sp.components === 'string' ? sp.components : (sp.components ? Object.keys(sp.components).join(', ').toUpperCase() : ''),
 						sp.is_prepared !== false,
 						Boolean(sp.level === 0 || sp.is_cantrip),
-						sp.source || null
+						sp.source || null,
+						sp.sourceFeat || sp.source_feat || null,
+						Boolean(sp.is_feat_spell || sp.sourceFeat || sp.source_feat)
 					]
 				)
 			}
@@ -916,8 +918,8 @@ class ServiceRepository {
 					if (!sp || !sp.name) continue
 					await t.none(
 						`INSERT INTO character_spells (
-							character_id, name, level, school, casting_time, range, duration, components, is_prepared, is_cantrip, source
-						) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+							character_id, name, level, school, casting_time, range, duration, components, is_prepared, is_cantrip, source, source_feat, is_feat_spell
+						) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
 						[
 							characterId,
 							sp.name,
@@ -929,7 +931,9 @@ class ServiceRepository {
 							typeof sp.components === 'string' ? sp.components : (sp.components ? Object.keys(sp.components).join(', ').toUpperCase() : ''),
 							sp.is_prepared !== false,
 							Boolean(sp.level === 0 || sp.is_cantrip),
-							sp.source || null
+							sp.source || null,
+							sp.sourceFeat || sp.source_feat || null,
+							Boolean(sp.is_feat_spell || sp.sourceFeat || sp.source_feat)
 						]
 					)
 				}

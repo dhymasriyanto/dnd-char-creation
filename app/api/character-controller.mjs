@@ -406,7 +406,11 @@ export let character = {
 
 		datas.spells = await db.character.findSpell(req.params.id)
 			.then(rows => {
-				return rows
+				return (rows || []).map(r => ({
+					...r,
+					sourceFeat: r.source_feat || r.sourceFeat || null,
+					is_feat_spell: Boolean(r.is_feat_spell || r.source_feat || r.sourceFeat)
+				}))
 			})
 			.catch((error) => {
 				return []

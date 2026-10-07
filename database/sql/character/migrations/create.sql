@@ -153,7 +153,9 @@ CREATE TABLE IF NOT EXISTS character_spells (
     components VARCHAR(100),
     is_prepared BOOLEAN DEFAULT TRUE,
     is_cantrip BOOLEAN DEFAULT FALSE,
-    source VARCHAR(100)
+    source VARCHAR(100),
+    source_feat VARCHAR(255),
+    is_feat_spell BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS encumbrances (

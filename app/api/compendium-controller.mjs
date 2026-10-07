@@ -267,7 +267,245 @@ function formatSpell(s) {
 	}
 }
 
+const DAMAGE_TYPE_MAP = {
+	B: 'Bludgeoning',
+	P: 'Piercing',
+	S: 'Slashing',
+	A: 'Acid',
+	C: 'Cold',
+	F: 'Fire',
+	O: 'Force',
+	L: 'Lightning',
+	N: 'Necrotic',
+	I: 'Poison',
+	Y: 'Psychic',
+	R: 'Radiant',
+	T: 'Thunder'
+}
+
+const PROPERTY_DEFINITIONS = {
+	'2H': {
+		name: 'Two-Handed',
+		desc: {
+			'2024': 'A Two-Handed weapon requires two hands when you attack with it.',
+			'2014': 'This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.'
+		}
+	},
+	'A': {
+		name: 'Ammunition',
+		desc: {
+			'2024': 'You can use a weapon that has the Ammunition property to make a ranged attack only if you have ammunition to fire from it. Each attack expends one piece of ammunition. Drawing the ammunition is part of the attack. After a fight, you can spend 1 minute to recover half the ammunition used.',
+			'2014': 'You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack, you expend one piece of ammunition. You can recover half your expended ammunition after combat.'
+		}
+	},
+	'AF': {
+		name: 'Ammunition (Firearms)',
+		desc: {
+			'2024': 'Firearm Bullets are destroyed upon use in a modern firearm. Futuristic firearms use Energy Cells that become depleted but can possibly be recharged.',
+			'2014': 'The ammunition of a firearm is destroyed upon use.'
+		}
+	},
+	'BF': {
+		name: 'Burst Fire',
+		desc: {
+			'2024': 'As an action, you can expend 10 pieces of ammunition to spray shots in a 10-foot Cube within normal range. Each creature in that area must succeed on a DC 15 Dexterity saving throw or take the weapon\'s normal damage.',
+			'2014': 'A weapon with burst fire can spray a 10-foot-cube area within normal range. Each creature in the area must succeed on a DC 15 Dexterity saving throw or take the weapon\'s normal damage (uses 10 pieces of ammunition).'
+		}
+	},
+	'F': {
+		name: 'Finesse',
+		desc: {
+			'2024': 'When making an attack with a Finesse weapon, use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.',
+			'2014': 'When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.'
+		}
+	},
+	'H': {
+		name: 'Heavy',
+		desc: {
+			'2024': 'You have Disadvantage on attack rolls with a Heavy weapon if it\'s a Melee weapon and your Strength score isn\'t at least 13 or if it\'s a Ranged weapon and your Dexterity score isn\'t at least 13.',
+			'2014': 'Small creatures have disadvantage on attack rolls with heavy weapons. A heavy weapon\'s size and bulk make it too large for a Small creature to use effectively.'
+		}
+	},
+	'L': {
+		name: 'Light',
+		desc: {
+			'2024': 'When you take the Attack action on your turn and attack with a Light weapon, you can make one extra attack as a Bonus Action later on the same turn. That extra attack must be made with a different Light weapon, and you don\'t add your ability modifier to the extra attack\'s damage unless that modifier is negative.',
+			'2014': 'A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.'
+		}
+	},
+	'LD': {
+		name: 'Loading',
+		desc: {
+			'2024': 'You can fire only one piece of ammunition from a Loading weapon when you use an action, a Bonus Action, or a Reaction to fire it, regardless of the number of attacks you can normally make.',
+			'2014': 'Because of the time required to load this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or reaction to fire it, regardless of the number of attacks you can normally make.'
+		}
+	},
+	'R': {
+		name: 'Reach',
+		desc: {
+			'2024': 'A Reach weapon adds 5 feet to your reach when you attack with it, as well as when determining your reach for Opportunity Attacks with it.',
+			'2014': 'This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon.'
+		}
+	},
+	'RLD': {
+		name: 'Reload',
+		desc: {
+			'2024': 'You can make a limited number of shots with a Reload weapon. You must then reload the weapon as an action or a Bonus Action.',
+			'2014': 'A limited number of shots can be made with a weapon that has the reload property. A character must then reload it using an action or a bonus action.'
+		}
+	},
+	'S': {
+		name: 'Special',
+		desc: {
+			'2024': 'A weapon with the Special property has unusual rules governing its use, explained in the weapon\'s description.',
+			'2014': 'A weapon with the special property has unusual rules governing its use, explained in the weapon\'s description.'
+		}
+	},
+	'T': {
+		name: 'Thrown',
+		desc: {
+			'2024': 'If a weapon has the Thrown property, you can throw the weapon to make a ranged attack, and you can draw that weapon as part of the attack. If the weapon is a Melee weapon, use the same ability modifier for the attack and damage rolls that you use for a melee attack with that weapon.',
+			'2014': 'If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon.'
+		}
+	},
+	'V': {
+		name: 'Versatile',
+		desc: {
+			'2024': 'A Versatile weapon can be used with one or two hands. A damage value in parentheses appears with the property. The weapon deals that damage when used with two hands to make a melee attack.',
+			'2014': 'This weapon can be used with one or two hands. A damage value in parentheses appears with the property—the damage when the weapon is used with two hands to make a melee attack.'
+		}
+	}
+}
+
+const MASTERY_DEFINITIONS = {
+	'Cleave': 'If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon\'s damage, but don\'t add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn.',
+	'Graze': 'If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier.',
+	'Nick': 'When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn.',
+	'Push': 'If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller.',
+	'Sap': 'If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn.',
+	'Slow': 'If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn\'t exceed 10 feet.',
+	'Topple': 'If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 + attack ability modifier + Proficiency Bonus). On a failed save, the creature has the Prone condition.',
+	'Vex': 'If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn.'
+}
+
+const WEAPON_RANGE_MAP = {
+	dagger: '20/60',
+	handaxe: '20/60',
+	javelin: '30/120',
+	'light hammer': '20/60',
+	spear: '20/60',
+	dart: '20/60',
+	shortbow: '80/320',
+	sling: '30/120',
+	'light crossbow': '80/320',
+	blowgun: '25/100',
+	'hand crossbow': '30/120',
+	'heavy crossbow': '100/400',
+	longbow: '150/600',
+	trident: '20/60',
+	net: '5/15',
+	musket: '40/120',
+	pistol: '30/90'
+}
+
+function formatPropertyNames(props, versatileDice = null, weaponName = '') {
+	if (!Array.isArray(props)) return []
+	const wName = (weaponName || '').toLowerCase()
+	const defaultRange = WEAPON_RANGE_MAP[wName] || null
+
+	return props.map(p => {
+		if (typeof p !== 'string') return ''
+		const code = p.split('|')[0].trim()
+		const def = PROPERTY_DEFINITIONS[code]
+		const name = def ? def.name : code
+		if ((code === 'V' || name.toLowerCase() === 'versatile') && versatileDice) {
+			return `${name} (${versatileDice})`
+		}
+		if ((code === 'T' || code === 'A') && defaultRange) {
+			return `${name} (Range ${defaultRange} ft.)`
+		}
+		return name
+	}).filter(Boolean)
+}
+
+function synthesizeItemEntries(it, rawProps = []) {
+	const edition = it.edition || '2024'
+	const entries = []
+	const wName = (it.name || '').toLowerCase()
+	const defaultRange = WEAPON_RANGE_MAP[wName] || null
+
+	const isWeapon = it.item_type === 'weapon' || !!it.damage_dice || !!it.dmg1
+	if (isWeapon) {
+		const props = Array.isArray(rawProps) ? rawProps : []
+		for (const p of props) {
+			const code = typeof p === 'string' ? p.split('|')[0].trim() : ''
+			const def = PROPERTY_DEFINITIONS[code]
+			if (def) {
+				let title = def.name
+				if ((code === 'V' || title.toLowerCase() === 'versatile') && (it.versatile_dice || it.dmg2)) {
+					title += ` (${it.versatile_dice || it.dmg2})`
+				} else if ((code === 'T' || code === 'A') && defaultRange) {
+					title += ` (Range ${defaultRange} ft.)`
+				}
+				const desc = def.desc[edition] || def.desc['2024'] || def.desc['2014']
+				entries.push(`<b>${title}.</b> ${desc}`)
+			}
+		}
+
+		const rawMastery = typeof it.mastery === 'string'
+			? it.mastery
+			: (Array.isArray(it.mastery) && it.mastery.length > 0 ? it.mastery[0] : null)
+		if (rawMastery) {
+			const mName = String(rawMastery).split('|')[0].trim()
+			const mDesc = MASTERY_DEFINITIONS[mName]
+			if (mDesc) {
+				entries.push(`<b>Mastery: ${mName}.</b> ${mDesc}`)
+			}
+		}
+		return entries
+	}
+
+	const isArmor = it.item_type === 'armor' || Number(it.base_ac) > 0 || Number(it.ac) > 0
+	if (isArmor) {
+		const ac = Number(it.base_ac || it.ac)
+		const str = Number(it.strength_requirement || it.strength)
+		const stealthDis = !!(it.stealth_disadvantage || it.stealth)
+		const isShield = wName.includes('shield')
+
+		if (isShield) {
+			entries.push('<b>Shield.</b> A shield increases your Armor Class by 2 while wielded. You can benefit from only one shield at a time.')
+		} else {
+			let armorDesc = `Armor Class: ${ac}.`
+			if (it.ac_dex_bonus === 'yes' || it.dexMod) {
+				armorDesc += ' Adds Dexterity modifier.'
+			}
+			entries.push(`<b>Armor Class.</b> ${armorDesc}`)
+		}
+
+		if (str > 0) {
+			entries.push(`<b>Strength Requirement.</b> Requires Strength ${str}. If the wearer has a lower Strength score, their speed is reduced by 10 feet.`)
+		}
+
+		if (stealthDis) {
+			entries.push('<b>Stealth.</b> The wearer has Disadvantage on Dexterity (Stealth) checks.')
+		}
+		return entries
+	}
+
+	return entries
+}
+
 function formatItem(it) {
+	const rawProps = safeJson(it.properties, [])
+	const versatileDice = it.versatile_dice || null
+	const mappedProps = formatPropertyNames(rawProps, versatileDice, it.name)
+	const rawEntries = safeJson(it.entries, [])
+	const entries = rawEntries.length > 0 ? rawEntries : synthesizeItemEntries(it, rawProps)
+	const masteryStr = typeof it.mastery === 'string'
+		? (it.mastery.split('|')[0].trim() || null)
+		: (Array.isArray(it.mastery) && it.mastery.length > 0 ? String(it.mastery[0]).split('|')[0].trim() : null)
+	const dmgTypeFull = it.damage_type ? (DAMAGE_TYPE_MAP[it.damage_type.toUpperCase()] || it.damage_type) : null
+
 	return {
 		id: it.id,
 		name: it.name,
@@ -275,19 +513,72 @@ function formatItem(it) {
 		source: it.source,
 		page: it.page,
 		type: it.item_type,
+		itemType: it.item_type,
 		rarity: it.rarity,
 		value: Number(it.cost_cp),
+		costCp: Number(it.cost_cp),
 		weight: Number(it.weight),
 		dmg1: it.damage_dice,
-		dmgType: it.damage_type,
-		dmg2: it.versatile_dice,
-		mastery: it.mastery ? [it.mastery] : [],
-		ac: Number(it.base_ac),
+		damageDice: it.damage_dice,
+		dmgType: dmgTypeFull,
+		dmg2: versatileDice,
+		versatileDice: versatileDice,
+		mastery: masteryStr,
+		ac: Number(it.base_ac) || null,
+		baseAc: Number(it.base_ac) || null,
 		dexMod: it.ac_dex_bonus === 'yes',
 		stealth: it.stealth_disadvantage,
-		strength: Number(it.strength_requirement),
-		property: safeJson(it.properties, []),
-		entries: safeJson(it.entries, [])
+		strength: Number(it.strength_requirement) || 0,
+		property: mappedProps,
+		properties: mappedProps,
+		entries
+	}
+}
+
+function formatLookupItem(dbItem) {
+	const rawProps = safeJson(dbItem.properties, [])
+	const versatileDice = dbItem.versatile_dice || null
+	const mappedProps = formatPropertyNames(rawProps, versatileDice, dbItem.name)
+	const rawEntries = safeJson(dbItem.entries, [])
+	const entries = rawEntries.length > 0 ? rawEntries : synthesizeItemEntries(dbItem, rawProps)
+	const masteryStr = typeof dbItem.mastery === 'string'
+		? (dbItem.mastery.split('|')[0].trim() || null)
+		: (Array.isArray(dbItem.mastery) && dbItem.mastery.length > 0 ? String(dbItem.mastery[0]).split('|')[0].trim() : null)
+	const dmgTypeFull = dbItem.damage_type ? (DAMAGE_TYPE_MAP[dbItem.damage_type.toUpperCase()] || dbItem.damage_type) : null
+
+	let dmgString = null
+	if (dbItem.damage_dice) {
+		dmgString = `${dbItem.damage_dice}${dmgTypeFull ? ' ' + dmgTypeFull : ''}`
+		if (versatileDice) {
+			dmgString += ` (Versatile ${versatileDice})`
+		}
+	}
+
+	const baseAcNum = Number(dbItem.base_ac) || 0
+	const strNum = Number(dbItem.strength_requirement) || 0
+
+	return {
+		name: dbItem.name,
+		type: 'item',
+		edition: dbItem.edition,
+		source: dbItem.source,
+		itemType: dbItem.item_type || 'Item',
+		damage: dmgString,
+		dmg1: dbItem.damage_dice,
+		damageDice: dbItem.damage_dice,
+		dmg2: versatileDice,
+		versatileDice: versatileDice,
+		dmgType: dmgTypeFull,
+		ac: baseAcNum > 0 ? String(baseAcNum) : null,
+		baseAc: baseAcNum > 0 ? baseAcNum : null,
+		properties: mappedProps.length > 0 ? mappedProps.join(', ') : null,
+		property: mappedProps,
+		mastery: masteryStr,
+		weight: dbItem.weight ? `${dbItem.weight} lb` : null,
+		cost: dbItem.cost_cp ? (Number(dbItem.cost_cp) >= 100 ? `${Number(dbItem.cost_cp) / 100} gp` : `${dbItem.cost_cp} cp`) : null,
+		stealth: dbItem.stealth_disadvantage,
+		strength: strNum > 0 ? strNum : null,
+		entries
 	}
 }
 
@@ -718,20 +1009,7 @@ export const compendium = {
 					[raw, singular, plural, norm, `%${raw.replace(/['’]/g, '').trim()}%`, source, edition, defaultSource]
 				)
 				if (dbItem) {
-					return response.ok('success', 'Found item', {
-						name: dbItem.name,
-						type: 'item',
-						edition: dbItem.edition,
-						source: dbItem.source,
-						itemType: dbItem.item_type || 'Item',
-						damage: dbItem.damage_dice ? `${dbItem.damage_dice} ${dbItem.damage_type || ''}`.trim() : null,
-						ac: dbItem.base_ac ? String(dbItem.base_ac) : null,
-						properties: Array.isArray(safeJson(dbItem.properties)) ? safeJson(dbItem.properties).join(', ') : null,
-						mastery: dbItem.mastery || null,
-						weight: dbItem.weight ? `${dbItem.weight} lb` : null,
-						cost: dbItem.cost_cp ? (Number(dbItem.cost_cp) >= 100 ? `${Number(dbItem.cost_cp) / 100} gp` : `${dbItem.cost_cp} cp`) : null,
-						entries: safeJson(dbItem.entries, [])
-					}, res)
+					return response.ok('success', 'Found item', formatLookupItem(dbItem), res)
 				}
 			} catch (err) {
 				console.warn('[WARN] Item lookup DB query failed:', err.message)
@@ -851,20 +1129,7 @@ export const compendium = {
 				[raw, singular, plural, norm, `%${raw.replace(/['’]/g, '').trim()}%`, source, edition, defaultSource]
 			)
 			if (fbItem) {
-				return response.ok('success', 'Found item', {
-					name: fbItem.name,
-					type: 'item',
-					edition: fbItem.edition,
-					source: fbItem.source,
-					itemType: fbItem.item_type || 'Item',
-					damage: fbItem.damage_dice ? `${fbItem.damage_dice} ${fbItem.damage_type || ''}`.trim() : null,
-					ac: fbItem.base_ac ? String(fbItem.base_ac) : null,
-					properties: Array.isArray(safeJson(fbItem.properties)) ? safeJson(fbItem.properties).join(', ') : null,
-					mastery: fbItem.mastery || null,
-					weight: fbItem.weight ? `${fbItem.weight} lb` : null,
-					cost: fbItem.cost_cp ? (Number(fbItem.cost_cp) >= 100 ? `${Number(fbItem.cost_cp) / 100} gp` : `${fbItem.cost_cp} cp`) : null,
-					entries: safeJson(fbItem.entries, [])
-				}, res)
+				return response.ok('success', 'Found item', formatLookupItem(fbItem), res)
 			}
 
 			let fbFeat = await db.oneOrNone(
