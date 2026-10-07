@@ -159,6 +159,8 @@ CREATE TABLE IF NOT EXISTS compendium_items (
     mastery VARCHAR(50), -- 2024 Weapon Mastery: Cleave, Graze, Nick, Push, Sap, Slow, Topple, Vex
     base_ac BIGINT DEFAULT 0,
     ac_dex_bonus VARCHAR(50),
+    equip_type VARCHAR(50), -- 'weapon', 'armor', 'shield', 'wearable', 'container'
+    container_capacity NUMERIC(8, 2),
     stealth_disadvantage BOOLEAN DEFAULT FALSE,
     strength_requirement BIGINT DEFAULT 0,
     properties JSONB,

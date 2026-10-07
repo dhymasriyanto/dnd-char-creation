@@ -12,6 +12,17 @@ UPDATE characters SET
     hit_dice = COALESCE(${hit_dice}, hit_dice),
     background = COALESCE(${background}, background),
     alignment = COALESCE(${alignment}, alignment),
-    inspiration = COALESCE(${inspiration}, inspiration)
+    inspiration = COALESCE(${inspiration}, inspiration),
+    campaign_id = CASE WHEN ${has_campaign_id} THEN ${campaign_id} ELSE campaign_id END,
+    campaign_name = CASE WHEN ${has_campaign_name} THEN ${campaign_name} ELSE campaign_name END,
+    conditions = COALESCE(${conditions}::jsonb, conditions),
+    defenses = COALESCE(${defenses}::jsonb, defenses),
+    saving_throw_notes = COALESCE(${saving_throw_notes}, saving_throw_notes),
+    max_hp_modifier = CASE WHEN ${has_max_hp_modifier} THEN ${max_hp_modifier} ELSE max_hp_modifier END,
+    override_max_hp = CASE WHEN ${has_override_max_hp} THEN ${override_max_hp} ELSE override_max_hp END,
+    ac_custom = CASE WHEN ${has_ac_custom} THEN ${ac_custom}::jsonb ELSE ac_custom END,
+    speeds = CASE WHEN ${has_speeds} THEN ${speeds}::jsonb ELSE speeds END,
+    image_url = CASE WHEN ${has_image_url} THEN ${image_url} ELSE image_url END,
+    characteristics = CASE WHEN ${has_characteristics} THEN ${characteristics}::jsonb ELSE characteristics END
 WHERE id = ${id}
 RETURNING id

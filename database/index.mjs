@@ -4,7 +4,7 @@ import promise from 'bluebird' // best promise library (according to pg-promise 
 import pgPromise from 'pg-promise' // pg-promise core library
 import { dbConfig } from './config.mjs' //db connection config
 import { Diagnostics } from './diagnostics/index.mjs'
-import { Service, User } from './repository/index.mjs'
+import { Service, User, Campaign } from './repository/index.mjs'
 import { compendium as Compendium } from './repository/compendium.mjs'
 //import dotenv from 'dotenv'
 
@@ -32,6 +32,7 @@ const initOptions = {
 		obj.character = new Service(obj, pgp)
 		obj.compendium = new Compendium(obj, pgp)
 		obj.user = new User(obj, pgp)
+		obj.campaign = new Campaign(obj, pgp)
 	}
 }
 

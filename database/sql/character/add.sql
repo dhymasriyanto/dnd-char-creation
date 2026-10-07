@@ -13,7 +13,14 @@ INSERT INTO characters(
     hit_dice,
     background,
     alignment,
-    inspiration
+    inspiration,
+    campaign_id,
+    campaign_name,
+    conditions,
+    defenses,
+    saving_throw_notes,
+    image_url,
+    characteristics
 ) VALUES (
     ${user_id},
     COALESCE(${edition}, '2014'),
@@ -29,6 +36,13 @@ INSERT INTO characters(
     ${hit_dice},
     ${background},
     ${alignment},
-    COALESCE(${inspiration}, FALSE)
+    COALESCE(${inspiration}, FALSE),
+    ${campaign_id},
+    ${campaign_name},
+    COALESCE(${conditions}::jsonb, '[]'::jsonb),
+    COALESCE(${defenses}::jsonb, '{"resistances":[],"immunities":[],"vulnerabilities":[]}'::jsonb),
+    ${saving_throw_notes},
+    ${image_url},
+    COALESCE(${characteristics}::jsonb, '{}'::jsonb)
 )
 RETURNING id

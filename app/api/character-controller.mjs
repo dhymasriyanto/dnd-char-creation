@@ -130,31 +130,49 @@ async function enrichWithCompendiumEntries(datas) {
 		}
 
 		// Racial traits
-		if (Array.isArray(datas.trait) && datas.trait.length > 0 && datas.race?.name) {
+		if (datas.race?.name) {
 			const compRace = await db.oneOrNone(
-				`SELECT entries, traits FROM compendium_races 
+				`SELECT entries, traits, speed, fly_speed, swim_speed, climb_speed FROM compendium_races 
 				 WHERE LOWER(name) = LOWER($1) 
 				 ORDER BY CASE WHEN edition = $2 THEN 0 ELSE 1 END LIMIT 1`,
 				[datas.race.name, edition]
 			)
 			if (compRace) {
-				const raceEntries = safeEntries(compRace.entries)
+				if (compRace.fly_speed) datas.race.fly_speed = Number(compRace.fly_speed)
+				if (compRace.swim_speed) datas.race.swim_speed = Number(compRace.swim_speed)
+				if (compRace.climb_speed) datas.race.climb_speed = Number(compRace.climb_speed)
+				if (compRace.speed && !datas.speed) datas.race.speed = Number(compRace.speed)
+				datas.compendium_race_entries = safeEntries(compRace.entries)
+				const raceEntries = datas.compendium_race_entries
 				const raceEntriesMap = new Map()
 				for (const item of raceEntries) {
 					if (item && item.name) {
 						raceEntriesMap.set(item.name.toLowerCase(), safeEntries(item.entries || [item]))
 					}
 				}
-				for (const rt of datas.trait) {
-					if (!rt.entries || rt.entries.length === 0) {
-						rt.entries = raceEntriesMap.get(rt.name.toLowerCase()) || []
+				if (!Array.isArray(datas.trait)) datas.trait = []
+				if (datas.trait.length > 0) {
+					for (const rt of datas.trait) {
+						if (!rt.entries || rt.entries.length === 0) {
+							rt.entries = raceEntriesMap.get(rt.name.toLowerCase()) || []
+						}
+					}
+				} else {
+					const fluff = ['age', 'size', 'alignment', 'speed', 'languages', 'language']
+					for (const item of raceEntries) {
+						if (item && item.name && !fluff.includes(item.name.toLowerCase())) {
+							datas.trait.push({
+								name: item.name,
+								entries: safeEntries(item.entries || [item])
+							})
+						}
 					}
 				}
 			}
 		}
 
 		// Subrace traits
-		if (Array.isArray(datas.trait) && datas.sub_race?.name) {
+		if (datas.sub_race?.name) {
 			const compSubRace = await db.oneOrNone(
 				`SELECT entries FROM compendium_sub_races 
 				 WHERE LOWER(name) = LOWER($1) 
@@ -162,17 +180,85 @@ async function enrichWithCompendiumEntries(datas) {
 				[datas.sub_race.name, edition]
 			)
 			if (compSubRace) {
-				const srEntries = safeEntries(compSubRace.entries)
+				datas.compendium_sub_race_entries = safeEntries(compSubRace.entries)
+				const srEntries = datas.compendium_sub_race_entries
 				const srMap = new Map()
 				for (const item of srEntries) {
 					if (item && item.name) {
 						srMap.set(item.name.toLowerCase(), safeEntries(item.entries || [item]))
 					}
 				}
+				if (!Array.isArray(datas.trait)) datas.trait = []
 				for (const rt of datas.trait) {
 					if (!rt.entries || rt.entries.length === 0) {
 						const found = srMap.get(rt.name.toLowerCase())
 						if (found) rt.entries = found
+					}
+				}
+				for (const item of srEntries) {
+					if (item && item.name && !datas.trait.some(t => (t.name || '').toLowerCase() === item.name.toLowerCase())) {
+						datas.trait.push({
+							name: item.name,
+							entries: safeEntries(item.entries || [item])
+						})
+					}
+				}
+			}
+		}
+
+		// Classes (enrich spellcasting_ability, hit_dice, saving_throws from compendium)
+		const classList = Array.isArray(datas.class) ? datas.class : (datas.class ? [datas.class] : [])
+		if (classList.length > 0) {
+			const classNames = classList.map(c => (c.name || '').toLowerCase()).filter(Boolean)
+			if (classNames.length > 0) {
+				const compClasses = await db.any(
+					`SELECT name, spellcasting_ability, hit_dice, saving_throws FROM compendium_classes 
+					 WHERE LOWER(name) = ANY($1) 
+					 ORDER BY CASE WHEN edition = $2 THEN 0 ELSE 1 END`,
+					[classNames, edition]
+				)
+				const ccMap = new Map()
+				for (const cc of compClasses) {
+					if (!ccMap.has(cc.name.toLowerCase())) {
+						ccMap.set(cc.name.toLowerCase(), cc)
+					}
+				}
+				for (const c of classList) {
+					const found = ccMap.get((c.name || '').toLowerCase())
+					if (found) {
+						if (!c.spellcasting_ability) c.spellcasting_ability = found.spellcasting_ability
+						if (!c.hit_dice) c.hit_dice = found.hit_dice
+						if (!c.saving_throws) c.saving_throws = found.saving_throws
+					}
+				}
+			}
+		}
+
+		// Equipment (enrich base_ac, item_type, ac_dex_bonus from compendium)
+		const eqList = Array.isArray(datas.equipment) ? datas.equipment : []
+		if (eqList.length > 0) {
+			const eqNames = eqList.map(e => (e.name || '').toLowerCase()).filter(Boolean)
+			if (eqNames.length > 0) {
+				const compItems = await db.any(
+					`SELECT name, item_type, base_ac, ac_dex_bonus, equip_type, container_capacity FROM compendium_items 
+					 WHERE LOWER(name) = ANY($1) 
+					 ORDER BY CASE WHEN edition = $2 THEN 0 ELSE 1 END`,
+					[eqNames, edition]
+				)
+				const itMap = new Map()
+				for (const it of compItems) {
+					if (!itMap.has(it.name.toLowerCase())) {
+						itMap.set(it.name.toLowerCase(), it)
+					}
+				}
+				for (const eq of eqList) {
+					const found = itMap.get((eq.name || '').toLowerCase())
+					if (found) {
+						if (eq.base_ac == null && found.base_ac != null) eq.base_ac = Number(found.base_ac)
+						if (!eq.item_type && found.item_type) eq.item_type = found.item_type
+						if (eq.ac_dex_bonus == null && found.ac_dex_bonus != null) eq.ac_dex_bonus = found.ac_dex_bonus
+						if (!eq.equip_type && found.equip_type) eq.equip_type = found.equip_type
+						if (eq.container_capacity == null && found.container_capacity != null) eq.container_capacity = Number(found.container_capacity)
 					}
 				}
 			}
@@ -451,6 +537,19 @@ export let character = {
 			.catch((error) => {
 				return next(response.badRequest(error))
 			})
+	},
+
+	uploadImage: (req, res, next) => {
+		if (!req.file) {
+			return next(response.badRequest(new Error('No image file provided')))
+		}
+		const relativeUrl = `/uploads/characters/${req.file.filename}`
+		return response.ok(
+			'success',
+			'Image uploaded successfully',
+			{ url: relativeUrl, filename: req.file.filename },
+			res
+		)
 	},
 
 	// about: (req, res) => {

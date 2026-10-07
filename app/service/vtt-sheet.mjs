@@ -173,7 +173,16 @@ export function computeVttSheet(character) {
 		if (nameLower.includes('shield')) {
 			hasShield = true
 		} else if (eq.is_armor || eq.item_type === 'armor') {
-			if (nameLower.includes('padded') || nameLower.includes('leather') || nameLower.includes('studded')) {
+			const itemAc = eq.base_ac != null ? Number(eq.base_ac) : (eq.ac ? Number(eq.ac) : null)
+			if (itemAc !== null && itemAc > 0) {
+				if (eq.ac_dex_bonus === false || itemAc >= 16) {
+					baseArmorAc = itemAc
+				} else if (itemAc >= 12 && itemAc <= 15) {
+					baseArmorAc = itemAc + Math.min(2, Math.max(0, dexMod))
+				} else {
+					baseArmorAc = itemAc + dexMod
+				}
+			} else if (nameLower.includes('padded') || nameLower.includes('leather') || nameLower.includes('studded')) {
 				const base = nameLower.includes('studded') ? 12 : 11
 				baseArmorAc = base + dexMod
 			} else if (nameLower.includes('hide') || nameLower.includes('chain shirt') || nameLower.includes('scale mail') || nameLower.includes('breastplate') || nameLower.includes('half plate')) {
@@ -190,9 +199,6 @@ export function computeVttSheet(character) {
 				else if (nameLower.includes('splint')) base = 17
 				else if (nameLower.includes('plate')) base = 18
 				baseArmorAc = base
-			} else if (eq.ac || eq.base_ac) {
-				const base = Number(eq.ac || eq.base_ac)
-				baseArmorAc = base > 0 ? (base + (eq.dexMod ? dexMod : 0)) : (10 + dexMod)
 			}
 		}
 	}
@@ -217,10 +223,24 @@ export function computeVttSheet(character) {
 
 	// Weapon Attacks
 	const attacks = []
+	const COMMON_WEAPONS = [
+		'club', 'dagger', 'greatclub', 'handaxe', 'javelin', 'light hammer', 'mace', 'quarterstaff', 'sickle', 'spear',
+		'light crossbow', 'dart', 'shortbow', 'sling', 'battleaxe', 'flail', 'glaive', 'greataxe', 'greatsword',
+		'halberd', 'lance', 'longsword', 'maul', 'morningstar', 'pike', 'rapier', 'scimitar', 'shortsword', 'trident',
+		'war pick', 'warhammer', 'whip', 'blowgun', 'heavy crossbow', 'hand crossbow', 'longbow', 'net'
+	]
 
 	for (const eq of equipments) {
-		const isWeapon = eq.damage_dice || eq.dmg1 || eq.status === 'equipped'
-		if (!isWeapon) continue
+		const isEquipped = eq.status === 'equipped'
+		if (!isEquipped) continue
+		const nameLower = (eq.name || '').toLowerCase()
+
+		const isNotWeapon = eq.is_armor || eq.equip_type === 'armor' || eq.equip_type === 'shield' || eq.equip_type === 'container' || eq.equip_type === 'wearable' || eq.item_type === 'armor' || eq.item_type === 'gear' || eq.item_type === 'tool' || nameLower.includes('shield') || nameLower.includes('armor') || ['chest', 'backpack', 'pouch', 'sack'].includes(nameLower)
+		if (isNotWeapon) continue
+
+		const isExplicitWeapon = eq.equip_type === 'weapon' || eq.item_type === 'weapon' || Boolean(eq.damage_dice || eq.dmg1)
+		const isKnownWeapon = COMMON_WEAPONS.some(w => nameLower.includes(w))
+		if (!isExplicitWeapon && !isKnownWeapon) continue
 
 		const dmgDice = eq.damage_dice || eq.dmg1 || '1d6'
 		const isFinesseOrRanged = eq.properties?.includes('finesse') || eq.item_type === 'weapon_ranged'
@@ -257,12 +277,17 @@ export function computeVttSheet(character) {
 	let spellcasting = null
 	const primaryClass = Array.isArray(character.class) ? character.class[0] : character.class
 	if (primaryClass) {
-		const cName = (primaryClass.name || '').toLowerCase()
 		let spellAbility = null
-
-		if (['wizard', 'artificer'].includes(cName)) spellAbility = 'intelligence'
-		else if (['cleric', 'druid', 'ranger'].includes(cName)) spellAbility = 'wisdom'
-		else if (['bard', 'paladin', 'sorcerer', 'warlock'].includes(cName)) spellAbility = 'charisma'
+		const rawAbility = primaryClass.spellcasting_ability || primaryClass.spellAbility
+		if (rawAbility) {
+			const map = { int: 'intelligence', wis: 'wisdom', cha: 'charisma', str: 'strength', dex: 'dexterity', con: 'constitution' }
+			spellAbility = map[String(rawAbility).toLowerCase()] || String(rawAbility).toLowerCase()
+		} else {
+			const cName = (primaryClass.name || '').toLowerCase()
+			if (['wizard', 'artificer'].includes(cName)) spellAbility = 'intelligence'
+			else if (['cleric', 'druid', 'ranger'].includes(cName)) spellAbility = 'wisdom'
+			else if (['bard', 'paladin', 'sorcerer', 'warlock'].includes(cName)) spellAbility = 'charisma'
+		}
 
 		if (spellAbility) {
 			const sMod = abilityStats[spellAbility].modifier
@@ -279,12 +304,111 @@ export function computeVttSheet(character) {
 		}
 	}
 
+	// Defenses & Saving throw advantages dynamic extraction
+	let storedDefenses = character.defenses
+	if (typeof storedDefenses === 'string') {
+		try { storedDefenses = JSON.parse(storedDefenses) } catch { storedDefenses = null }
+	}
+	const defenses = storedDefenses || { resistances: [], immunities: [], vulnerabilities: [] }
+	if (!defenses.resistances) defenses.resistances = []
+	if (!defenses.immunities) defenses.immunities = []
+	if (!defenses.vulnerabilities) defenses.vulnerabilities = []
+
+	function cleanEntryText(val) {
+		if (!val) return ''
+		if (typeof val === 'string') return val.replace(/\{@\w+\s+([^|}]+)(?:\|[^}]+)?\}/g, '$1')
+		if (Array.isArray(val)) return val.map(cleanEntryText).join(' ')
+		if (typeof val === 'object') {
+			const n = val.name ? `${val.name}: ` : ''
+			const sub = cleanEntryText(val.entries || val.entry || '')
+			return `${n}${sub}`
+		}
+		return ''
+	}
+
+	const allSources = []
+	if (Array.isArray(character.compendium_race_entries)) allSources.push(...character.compendium_race_entries)
+	if (Array.isArray(character.compendium_sub_race_entries)) allSources.push(...character.compendium_sub_race_entries)
+	if (Array.isArray(character.trait)) allSources.push(...character.trait)
+	if (Array.isArray(character.class_feature)) allSources.push(...character.class_feature)
+	if (Array.isArray(character.sub_class_feature)) allSources.push(...character.sub_class_feature)
+	if (Array.isArray(character.feature)) allSources.push(...character.feature)
+	if (Array.isArray(character.feat)) allSources.push(...character.feat)
+
+	const DAMAGE_TYPES = ['Acid', 'Bludgeoning', 'Cold', 'Fire', 'Force', 'Lightning', 'Necrotic', 'Piercing', 'Poison', 'Psychic', 'Radiant', 'Slashing', 'Thunder']
+
+	// Dynamic Resistances from compendium entries
+	if (defenses.resistances.length === 0) {
+		for (const src of allSources) {
+			const text = cleanEntryText(src)
+			for (const dt of DAMAGE_TYPES) {
+				const re1 = new RegExp(`(?:resistance|resistant)[^.]*?\\b${dt}\\b`, 'i')
+				const re2 = new RegExp(`\\b${dt}\\b[^.]*?(?:damage)?[^.]*?(?:resistance|resistant)`, 'i')
+				if ((re1.test(text) || re2.test(text)) && !defenses.resistances.includes(dt)) {
+					defenses.resistances.push(dt)
+				}
+			}
+		}
+	}
+
+	// Dynamic Immunities from compendium entries
+	if (defenses.immunities.length === 0) {
+		for (const src of allSources) {
+			const text = cleanEntryText(src)
+			for (const dt of DAMAGE_TYPES) {
+				const re = new RegExp(`(?:immune|immunity)[^.]*?\\b${dt}\\b`, 'i')
+				if (re.test(text) && !defenses.immunities.includes(dt)) {
+					defenses.immunities.push(dt)
+				}
+			}
+		}
+	}
+
+	// Dynamic Saving Throw Advantages from compendium entries
+	const saveAdvantageNotes = []
+	const seenAdvLabels = new Set()
+
+	for (const src of allSources) {
+		const text = cleanEntryText(src)
+		if (/advantage[^.]*?(?:saving throw|save)/i.test(text) || /advantage on[^.]*?save/i.test(text)) {
+			const name = src.name || ''
+			const sentences = text.split(/(?<=[.!?])\s+/)
+			const advSentence = sentences.find(s => /advantage[^.]*?(?:saving throw|save)/i.test(s) || /advantage on[^.]*?save/i.test(s))
+			if (advSentence) {
+				let label = advSentence.trim()
+				if (name && !label.toLowerCase().includes(name.toLowerCase())) {
+					label = `${label} (${name})`
+				}
+				if (!seenAdvLabels.has(label.toLowerCase())) {
+					seenAdvLabels.add(label.toLowerCase())
+					saveAdvantageNotes.push({ type: 'advantage', label })
+				}
+			}
+		}
+	}
+
+	if (character.saving_throw_notes) {
+		saveAdvantageNotes.push({ type: 'custom', label: character.saving_throw_notes })
+	}
+
+	let storedConditions = character.conditions
+	if (typeof storedConditions === 'string') {
+		try { storedConditions = JSON.parse(storedConditions) } catch { storedConditions = [] }
+	}
+	const conditions = Array.isArray(storedConditions) ? storedConditions : []
+
 	return {
 		edition: character.edition || '2014',
 		level,
 		proficiency_bonus: pb,
 		abilities: abilityStats,
 		saving_throws: savingThrows,
+		saving_throw_notes: saveAdvantageNotes,
+		defenses,
+		conditions,
+		inspiration: Boolean(character.inspiration),
+		campaign_name: character.campaign_name || null,
+		campaign_id: character.campaign_id || null,
 		skills,
 		combat: {
 			armor_class: ac,
@@ -292,11 +416,15 @@ export function computeVttSheet(character) {
 			initiative_roll: initiativeRoll,
 			jack_of_all_trades: hasJoat,
 			speed: Number(character.speed || 30),
+			speeds: character.speeds || {},
+			ac_custom: character.ac_custom || {},
 			hp: {
 				current: Number(character.hp || 10),
 				max: Number(character.max_hp || 10),
 				temp: Number(character.temp_hp || 0),
-				hit_dice: character.hit_dice || '1d8'
+				hit_dice: character.hit_dice || '1d8',
+				max_hp_modifier: Number(character.max_hp_modifier || 0),
+				override_max_hp: character.override_max_hp != null ? Number(character.override_max_hp) : null
 			}
 		},
 		senses,

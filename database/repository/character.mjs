@@ -242,7 +242,14 @@ class ServiceRepository {
 				hit_dice: data.hit_dice || computedHitDice,
 				background: data.background || data.characterBackground || null,
 				alignment: data.alignment || null,
-				inspiration: data.inspiration || false
+				inspiration: data.inspiration || false,
+				campaign_id: data.campaign_id != null ? +data.campaign_id : null,
+				campaign_name: data.campaign_name || null,
+				conditions: JSON.stringify(data.conditions || []),
+				defenses: JSON.stringify(data.defenses || { resistances: [], immunities: [], vulnerabilities: [] }),
+				saving_throw_notes: data.saving_throw_notes || null,
+				image_url: data.image_url || null,
+				characteristics: JSON.stringify(data.characteristics || {})
 			}, r => +r.id)
 
 			// ability_scores
@@ -453,15 +460,16 @@ class ServiceRepository {
 				const wtNum = parseFloat(eq.weight) || 0
 				totalWeight += (wtNum * amt)
 				await t.none(
-					`INSERT INTO equipments (character_id, name, weight, amount, status, is_armor)
-					 VALUES ($1, $2, $3, $4, $5, $6)`,
+					`INSERT INTO equipments (character_id, name, weight, amount, status, is_armor, container_name)
+					 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 					[
 						characterId,
 						eq.name,
 						eq.weight ? String(eq.weight) : '0',
 						amt,
-						eq.status || 'equipped',
-						Boolean(eq.is_armor)
+						eq.status || 'inventory',
+						Boolean(eq.is_armor),
+						eq.container_name || null
 					]
 				)
 			}
@@ -581,7 +589,26 @@ class ServiceRepository {
 				hit_dice: data.hit_dice || computedHitDice,
 				background: data.background || data.characterBackground || null,
 				alignment: data.alignment || null,
-				inspiration: data.inspiration != null ? data.inspiration : null
+				inspiration: data.inspiration != null ? data.inspiration : null,
+				has_campaign_id: data.campaign_id !== undefined,
+				campaign_id: data.campaign_id != null ? +data.campaign_id : null,
+				has_campaign_name: data.campaign_name !== undefined,
+				campaign_name: data.campaign_name !== undefined ? data.campaign_name : null,
+				conditions: data.conditions !== undefined ? JSON.stringify(data.conditions) : null,
+				defenses: data.defenses !== undefined ? JSON.stringify(data.defenses) : null,
+				saving_throw_notes: data.saving_throw_notes !== undefined ? data.saving_throw_notes : null,
+				has_max_hp_modifier: data.max_hp_modifier !== undefined,
+				max_hp_modifier: data.max_hp_modifier != null ? +data.max_hp_modifier : 0,
+				has_override_max_hp: data.override_max_hp !== undefined,
+				override_max_hp: data.override_max_hp != null ? +data.override_max_hp : null,
+				has_ac_custom: data.ac_custom !== undefined,
+				ac_custom: data.ac_custom != null ? JSON.stringify(data.ac_custom) : null,
+				has_speeds: data.speeds !== undefined,
+				speeds: data.speeds != null ? JSON.stringify(data.speeds) : null,
+				has_image_url: data.image_url !== undefined,
+				image_url: data.image_url !== undefined ? data.image_url : null,
+				has_characteristics: data.characteristics !== undefined,
+				characteristics: data.characteristics !== undefined ? JSON.stringify(data.characteristics) : null
 			}, r => +r.id)
 
 			// Ability scores
@@ -640,15 +667,16 @@ class ServiceRepository {
 					const wtNum = parseFloat(eq.weight) || 0
 					totalWeight += (wtNum * amt)
 					await t.none(
-						`INSERT INTO equipments (character_id, name, weight, amount, status, is_armor)
-						 VALUES ($1, $2, $3, $4, $5, $6)`,
+						`INSERT INTO equipments (character_id, name, weight, amount, status, is_armor, container_name)
+						 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 						[
 							characterId,
 							eq.name,
 							eq.weight ? String(eq.weight) : '0',
 							amt,
 							eq.status || 'inventory',
-							Boolean(eq.is_armor)
+							Boolean(eq.is_armor),
+							eq.container_name || null
 						]
 					)
 				}

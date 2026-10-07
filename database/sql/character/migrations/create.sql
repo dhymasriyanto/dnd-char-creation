@@ -10,6 +10,16 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS campaigns (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    dm_name VARCHAR(255),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 CREATE TABLE IF NOT EXISTS characters (
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT REFERENCES users(id) ON DELETE SET NULL,
@@ -26,7 +36,14 @@ CREATE TABLE IF NOT EXISTS characters (
     max_hp BIGINT DEFAULT 0,
     ac BIGINT DEFAULT 10,
     initiative BIGINT DEFAULT 0,
-    speed BIGINT DEFAULT 30
+    speed BIGINT DEFAULT 30,
+    campaign_id BIGINT REFERENCES campaigns(id) ON DELETE SET NULL,
+    campaign_name VARCHAR(255),
+    conditions JSONB DEFAULT '[]'::jsonb,
+    defenses JSONB DEFAULT '{"resistances":[],"immunities":[],"vulnerabilities":[]}'::jsonb,
+    saving_throw_notes TEXT,
+    image_url TEXT,
+    characteristics JSONB DEFAULT '{}'::jsonb
 );
 
 CREATE TABLE IF NOT EXISTS ability_scores (
@@ -173,7 +190,8 @@ CREATE TABLE IF NOT EXISTS equipments (
     weight VARCHAR(50),
     amount BIGINT DEFAULT 1,
     status VARCHAR(255),
-    is_armor BOOLEAN DEFAULT FALSE
+    is_armor BOOLEAN DEFAULT FALSE,
+    container_name VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS saving_throws (

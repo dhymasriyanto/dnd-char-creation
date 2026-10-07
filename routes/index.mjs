@@ -9,6 +9,7 @@ import {race} from './race.mjs'
 import {subRace} from './sub-race.mjs'
 import {compendiumRoute} from './compendium.mjs'
 import {auth} from './auth.mjs'
+import {campaign} from './campaign.mjs'
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -23,5 +24,6 @@ router.use('/race', race)
 router.use('/sub-race', subRace)
 router.use('/sub-class', subClass)
 router.use('/compendium', compendiumRoute)
+router.use('/campaign', campaign)
 
 export {router}
