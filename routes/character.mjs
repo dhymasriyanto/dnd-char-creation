@@ -32,6 +32,8 @@ const imageUpload = multer({
 })
 
 router.post('/upload-image', optionalAuth, imageUpload.single('image'), character.uploadImage)
+router.get('/:id/avrae', optionalAuth, character.exportAvrae)
+router.get('/:id', optionalAuth, character.findId)
 
 router.use(requireAuth)
 
@@ -39,7 +41,7 @@ router.route('/')
 	.get(character.all)
 	.post(upload.array(), character.add)
 
-router.route('/:id').get(character.findId)
+router.route('/:id')
 	.put(upload.array(), character.update)
 	.delete(character.delete)
 

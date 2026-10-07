@@ -4,6 +4,7 @@
 import {db} from '../../database/index.mjs'
 import {response} from '../../helper/response.mjs'
 import {computeVttSheet} from '../service/vtt-sheet.mjs'
+import {buildAvraeData} from '../service/avrae-export.mjs'
 
 function safeEntries(val) {
 	if (!val) return []
@@ -268,6 +269,94 @@ async function enrichWithCompendiumEntries(datas) {
 	}
 }
 
+export async function loadFullCharacter(characterId) {
+	let datas = await db.character.findId(characterId)
+		.then(rows => rows ? rows[0] : null)
+		.catch(() => null)
+
+	if (!datas) return null
+
+	datas.race = await db.character.findRace(characterId)
+		.then(rows => rows ? rows[0] : null)
+		.catch(() => null)
+
+	datas.sub_race = await db.character.findSubRace(characterId)
+		.then(rows => rows ? rows[0] : null)
+		.catch(() => null)
+
+	datas.class = await db.character.findClass(characterId)
+		.catch(() => [])
+
+	datas.class_feature = await db.character.findClassFeature(characterId)
+		.catch(() => [])
+
+	datas.sub_class = await db.character.findSubClass(characterId)
+		.catch(() => [])
+
+	datas.sub_class_feature = await db.character.findSubClassFeature(characterId)
+		.catch(() => [])
+
+	datas.ability_score = await db.character.findAbilityScore(characterId)
+		.then(rows => rows ? rows[0] : {})
+		.catch(() => ({}))
+
+	datas.saving_throw = await db.character.findSavingThrow(characterId)
+		.then(rows => rows ? rows[0] : {})
+		.catch(() => ({}))
+
+	datas.skill_proficiency = await db.character.findSkillProficiency(characterId)
+		.then(rows => rows ? rows[0] : {})
+		.catch(() => ({}))
+
+	datas.skill_expertise = await db.character.findSkillExpertise(characterId)
+		.then(rows => rows ? rows[0] : {})
+		.catch(() => ({}))
+
+	datas.sense = await db.character.findSense(characterId)
+		.catch(() => [])
+
+	datas.feat = await db.character.findFeat(characterId)
+		.catch(() => [])
+
+	datas.trait = await db.character.findTrait(characterId)
+		.catch(() => [])
+
+	datas.feature = await db.character.findFeature(characterId)
+		.catch(() => [])
+
+	datas.proficiency = await db.character.findProficiency(characterId)
+		.catch(() => [])
+
+	datas.language = await db.character.findLanguage(characterId)
+		.catch(() => [])
+
+	datas.treasure = await db.character.findTreasure(characterId)
+		.then(rows => rows ? rows[0] : {})
+		.catch(() => ({}))
+
+	datas.equipment = await db.character.findEquipment(characterId)
+		.catch(() => [])
+
+	datas.spells = await db.character.findSpell(characterId)
+		.then(rows => {
+			return (rows || []).map(r => ({
+				...r,
+				sourceFeat: r.source_feat || r.sourceFeat || null,
+				is_feat_spell: Boolean(r.is_feat_spell || r.source_feat || r.sourceFeat)
+			}))
+		})
+		.catch(() => [])
+
+	datas.encumbrance = await db.character.findEncumbrance(characterId)
+		.then(rows => rows ? rows[0] : {})
+		.catch(() => ({}))
+
+	await enrichWithCompendiumEntries(datas)
+	datas.vtt = computeVttSheet(datas)
+
+	return datas
+}
+
 export let character = {
 	all: (req, res, next) => {
 		const userId = req.user?.id
@@ -338,190 +427,42 @@ export let character = {
 	},
 
 	findId: async (req, res, next) => {
-		let datas = await db.character.findId(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.race = await db.character.findRace(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.sub_race = await db.character.findSubRace(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.class = await db.character.findClass(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.class_feature = await db.character.findClassFeature(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.sub_class = await db.character.findSubClass(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.sub_class_feature = await db.character.findSubClassFeature(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.ability_score = await db.character.findAbilityScore(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.saving_throw = await db.character.findSavingThrow(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.skill_proficiency = await db.character.findSkillProficiency(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.skill_expertise = await db.character.findSkillExpertise(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.sense = await db.character.findSense(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.feat = await db.character.findFeat(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.trait = await db.character.findTrait(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.feature = await db.character.findFeature(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.proficiency = await db.character.findProficiency(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.language = await db.character.findLanguage(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.treasure = await db.character.findTreasure(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.equipment = await db.character.findEquipment(req.params.id)
-			.then(rows => {
-				return rows
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		datas.spells = await db.character.findSpell(req.params.id)
-			.then(rows => {
-				return (rows || []).map(r => ({
-					...r,
-					sourceFeat: r.source_feat || r.sourceFeat || null,
-					is_feat_spell: Boolean(r.is_feat_spell || r.source_feat || r.sourceFeat)
-				}))
-			})
-			.catch((error) => {
-				return []
-			})
-
-		datas.encumbrance = await db.character.findEncumbrance(req.params.id)
-			.then(rows => {
-				return rows[0]
-			})
-			.catch((error) => {
-				return next(response.badRequest(error))
-			})
-
-		if (datas) {
-			await enrichWithCompendiumEntries(datas)
-			datas.vtt = computeVttSheet(datas)
+		try {
+			const datas = await loadFullCharacter(req.params.id)
+			if (!datas) {
+				return res.status(404).json({
+					status: 'error',
+					message: 'Character not found',
+					data: null
+				})
+			}
+			return response.ok(
+				'success',
+				'Retrieved all data',
+				datas,
+				res
+			)
+		} catch (error) {
+			return next(response.badRequest(error))
 		}
+	},
 
-		return response.ok(
-			'success',
-			'Retrieved all data',
-			datas,
-			res
-		)
-
+	exportAvrae: async (req, res, next) => {
+		try {
+			const datas = await loadFullCharacter(req.params.id)
+			if (!datas) {
+				return res.status(404).json({
+					status: 'error',
+					message: 'Character not found'
+				})
+			}
+			const host = req.get('host') || 'localhost'
+			const origin = `${req.protocol}://${host}`
+			const avraeData = buildAvraeData(datas, origin)
+			return res.json(avraeData)
+		} catch (error) {
+			return next(response.badRequest(error))
+		}
 	},
 
 	find: (req, res, next) => {
