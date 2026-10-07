@@ -17,7 +17,7 @@ class CompendiumRepository {
 	}
 
 	// --- Races / Species ---
-	async getRaces({ edition = '2024', source = null, search = null } = {}) {
+	async getRaces({ edition = '2024', source = null, search = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_races WHERE 1=1'
 		const params = []
 
@@ -34,6 +34,14 @@ class CompendiumRepository {
 			query += ` AND LOWER(name) LIKE $${params.length}`
 		}
 		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
 		return this.db.any(query, params)
 	}
 
@@ -85,7 +93,7 @@ class CompendiumRepository {
 	}
 
 	// --- Classes & Subclasses ---
-	async getClasses({ edition = '2024', source = null, search = null } = {}) {
+	async getClasses({ edition = '2024', source = null, search = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_classes WHERE 1=1'
 		const params = []
 
@@ -102,6 +110,14 @@ class CompendiumRepository {
 			query += ` AND LOWER(name) LIKE $${params.length}`
 		}
 		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
 		return this.db.any(query, params)
 	}
 
@@ -203,7 +219,7 @@ class CompendiumRepository {
 	}
 
 	// --- Backgrounds ---
-	async getBackgrounds({ edition = '2024', search = null } = {}) {
+	async getBackgrounds({ edition = '2024', search = null, source = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_backgrounds WHERE 1=1'
 		const params = []
 
@@ -211,11 +227,23 @@ class CompendiumRepository {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
 		}
+		if (source) {
+			params.push(source.toUpperCase())
+			query += ` AND UPPER(source) = $${params.length}`
+		}
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
 		}
 		query += ' ORDER BY name ASC'
+		if (limit) {
+			params.push(Number(limit))
+			query += ` LIMIT $${params.length}`
+		}
+		if (offset) {
+			params.push(Number(offset))
+			query += ` OFFSET $${params.length}`
+		}
 		return this.db.any(query, params)
 	}
 

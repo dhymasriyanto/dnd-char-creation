@@ -781,21 +781,17 @@ export const compendium = {
 	backgrounds: async (req, res) => {
 		const edition = req.query.edition || '2024'
 		const search = req.query.search || null
+		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const limit = req.query.limit ? Number(req.query.limit) : null
+		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
-			const bgs = await db.compendium.getBackgrounds({ edition, search })
-			if (bgs && bgs.length > 0) {
-				const sourceFilter = req.query.source ? req.query.source.toUpperCase().trim() : null
-				const filtered = sourceFilter
-					? bgs.filter(b => b.source.toUpperCase() === sourceFilter)
-					: bgs
-				return response.ok('success', 'Retrieved backgrounds', filtered.map(formatBackground), res)
-			}
+			const bgs = await db.compendium.getBackgrounds({ edition, search, source, limit, offset })
+			return response.ok('success', 'Retrieved backgrounds', (bgs || []).map(formatBackground), res)
 		} catch (err) {
 			console.warn('[WARN] DB compendium backgrounds query failed:', err.message)
+			return response.ok('success', 'Retrieved backgrounds', [], res)
 		}
-
-		return response.ok('success', 'Retrieved backgrounds', [], res)
 	},
 
 	feats: async (req, res) => {
