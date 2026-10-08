@@ -414,8 +414,16 @@ return {
 	subclassTitle: cl.subclass_title || 'Subclass',
 	subclassLevel: cl.subclass_level || 3,
 	headers: customHeaders,
-	rows
-}
+	rows,
+		allFeatures: dbFeatures.map(f => ({
+			id: f.id,
+			name: f.name,
+			level: Math.min(20, Math.max(1, Number(f.level) || 1)),
+			source: f.source,
+			edition: f.edition,
+			entries: safeJson(f.entries, [])
+		}))
+	}
 }
 
 function formatMonster(m) {
@@ -937,11 +945,12 @@ export const compendium = {
 		const edition = req.query.edition || '2024'
 		const search = req.query.search || null
 		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : null
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
-			const bgs = await db.compendium.getBackgrounds({ edition, search, source, limit, offset })
+			const bgs = await db.compendium.getBackgrounds({ edition, search, source, sources, limit, offset })
 			return response.ok('success', 'Retrieved backgrounds', (bgs || []).map(formatBackground), res)
 		} catch (err) {
 			console.warn('[WARN] DB compendium backgrounds query failed:', err.message)
@@ -954,11 +963,12 @@ export const compendium = {
 		const category = req.query.category || null
 		const search = req.query.search || null
 		const source = req.query.source || null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : null
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
-			const feats = await db.compendium.getFeats({ edition, category, search, source, limit, offset })
+			const feats = await db.compendium.getFeats({ edition, category, search, source, sources, limit, offset })
 			return response.ok('success', 'Retrieved feats', (feats || []).map(formatFeat), res)
 		} catch (err) {
 			console.warn('[WARN] DB compendium feats query failed:', err.message)
@@ -973,6 +983,7 @@ export const compendium = {
 		const schoolRaw = req.query.school || null
 		const search = req.query.search || null
 		const source = req.query.source || null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : null
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 		let className = req.query.className || req.query.class || null
@@ -987,7 +998,7 @@ export const compendium = {
 			: null
 
 		try {
-			const spells = await db.compendium.getSpells({ edition, level, maxLevel, school: schoolRaw, className, search, source, limit, offset })
+			const spells = await db.compendium.getSpells({ edition, level, maxLevel, school: schoolRaw, className, search, source, sources, limit, offset })
 			let result = spells || []
 			if (levelRaw === '!0') {
 				result = result.filter(s => s.level !== 0)
@@ -1016,11 +1027,12 @@ export const compendium = {
 		const featureTypeRaw = (req.query['feature type'] || req.query.featureType || '').toUpperCase().trim()
 		const search = (req.query.search || '').toLowerCase().trim()
 		const source = req.query.source || null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : 300
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
-			const ofs = await db.compendium.getOptionalFeatures({ edition, featureType: featureTypeRaw, search, source, limit, offset })
+			const ofs = await db.compendium.getOptionalFeatures({ edition, featureType: featureTypeRaw, search, source, sources, limit, offset })
 			return response.ok('success', 'Retrieved optional features', (ofs || []).map(formatOptionalFeature), res)
 		} catch (err) {
 			console.warn('[WARN] DB compendium optional features query failed:', err.message)
@@ -1034,11 +1046,12 @@ export const compendium = {
 		const type = req.query.type || null
 		const search = req.query.search || null
 		const source = req.query.source || null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : 80
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
-			const monsters = await db.compendium.getMonsters({ edition, cr, type, search, source, limit, offset })
+			const monsters = await db.compendium.getMonsters({ edition, cr, type, search, source, sources, limit, offset })
 			if (monsters && monsters.length > 0) {
 				return response.ok('success', 'Retrieved monsters', monsters.map(formatMonster), res)
 			}
@@ -1056,11 +1069,12 @@ export const compendium = {
 		const mastery = req.query.mastery || null
 		const search = req.query.search || null
 		const source = req.query.source || null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : 80
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
-			const items = await db.compendium.getItems({ edition, itemType, mastery, search, source, limit, offset })
+			const items = await db.compendium.getItems({ edition, itemType, mastery, search, source, sources, limit, offset })
 			return response.ok('success', 'Retrieved items', (items || []).map(formatItem), res)
 		} catch (err) {
 			console.warn('[WARN] DB compendium items query failed:', err.message)
@@ -1073,6 +1087,7 @@ export const compendium = {
 		const search = req.query.search ? req.query.search.toLowerCase().trim() : null
 		const catRaw = req.query.category ? req.query.category.toLowerCase().trim() : null
 		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : 400
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
@@ -1097,7 +1112,10 @@ export const compendium = {
 					sqlQ += 'AND (LOWER(type) = $2 OR LOWER(category) = $2) '
 					params.push(catRaw)
 				}
-				if (source) {
+				if (sources && sources.length) {
+					params.push(sources)
+					sqlQ += `AND UPPER(source) = ANY($${params.length}) `
+				} else if (source) {
 					params.push(source)
 					sqlQ += `AND UPPER(source) = $${params.length} `
 				}
@@ -1110,7 +1128,7 @@ export const compendium = {
 				params.push(limit, offset)
 				rules = await db.any(sqlQ, params)
 			} else {
-				rules = await db.compendium.getRules({ edition, search, source, limit, offset })
+				rules = await db.compendium.getRules({ edition, search, source, sources, limit, offset })
 			}
 			return response.ok('success', 'Retrieved rules and glossary', (rules || []).map(formatRule), res)
 		} catch (err) {
@@ -1123,13 +1141,17 @@ export const compendium = {
 		const edition = req.query.edition || '2024'
 		const search = req.query.search ? req.query.search.toLowerCase().trim() : null
 		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : 200
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
 			let sqlQ = 'SELECT * FROM compendium_races WHERE edition = $1 '
 			const params = [edition]
-			if (source) {
+			if (sources && sources.length) {
+				params.push(sources)
+				sqlQ += `AND UPPER(source) = ANY($${params.length}) `
+			} else if (source) {
 				params.push(source)
 				sqlQ += `AND UPPER(source) = $${params.length} `
 			}
@@ -1143,10 +1165,14 @@ export const compendium = {
 
 			const formatted = []
 			for (const r of races) {
-				const subraces = await db.any(
-					'SELECT * FROM compendium_sub_races WHERE race_id = $1 AND edition = $2 ORDER BY name ASC',
-					[r.id, edition]
-				)
+				let srSql = 'SELECT * FROM compendium_sub_races WHERE race_id = $1 AND edition = $2 '
+				const srParams = [r.id, edition]
+				if (sources && sources.length) {
+					srParams.push(sources)
+					srSql += `AND UPPER(source) = ANY($${srParams.length}) `
+				}
+				srSql += 'ORDER BY name ASC'
+				const subraces = await db.any(srSql, srParams)
 				formatted.push(formatRace(r, subraces))
 			}
 			return response.ok('success', 'Retrieved races', formatted, res)
@@ -1160,13 +1186,17 @@ export const compendium = {
 		const edition = req.query.edition || '2024'
 		const search = req.query.search ? req.query.search.toLowerCase().trim() : null
 		const source = req.query.source ? req.query.source.toUpperCase().trim() : null
+		const sources = req.query.sources ? req.query.sources.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : (source ? [source] : null)
 		const limit = req.query.limit ? Number(req.query.limit) : 100
 		const offset = req.query.offset ? Number(req.query.offset) : 0
 
 		try {
 			let sqlQ = 'SELECT * FROM compendium_classes WHERE edition = $1 '
 			const params = [edition]
-			if (source) {
+			if (sources && sources.length) {
+				params.push(sources)
+				sqlQ += `AND UPPER(source) = ANY($${params.length}) `
+			} else if (source) {
 				params.push(source)
 				sqlQ += `AND UPPER(source) = $${params.length} `
 			}
@@ -1180,10 +1210,14 @@ export const compendium = {
 
 			const formatted = []
 			for (const cl of classes) {
-				const subclasses = await db.any(
-					'SELECT * FROM compendium_sub_classes WHERE class_id = $1 AND edition = $2 ORDER BY name ASC',
-					[cl.id, edition]
-				)
+				let scSql = 'SELECT * FROM compendium_sub_classes WHERE class_id = $1 AND edition = $2 '
+				const scParams = [cl.id, edition]
+				if (sources && sources.length) {
+					scParams.push(sources)
+					scSql += `AND UPPER(source) = ANY($${scParams.length}) `
+				}
+				scSql += 'ORDER BY name ASC'
+				const subclasses = await db.any(scSql, scParams)
 				formatted.push(formatClass(cl, subclasses))
 			}
 			return response.ok('success', 'Retrieved classes', formatted, res)
@@ -1745,6 +1779,107 @@ export const compendium = {
 			return response.ok('success', 'Retrieved class progression table', progression, res)
 		} catch (err) {
 			console.error('Failed to get class table:', err)
+			return response.badRequest(err.message, null, res)
+		}
+	},
+
+	subclassDetail: async (req, res) => {
+		const id = req.query.id ? Number(req.query.id) : null
+		const name = (req.query.name || '').trim()
+		const classId = req.query.class_id ? Number(req.query.class_id) : null
+		const className = (req.query.class_name || req.query.class || '').trim()
+		let edition = req.query.edition || '2024'
+
+		try {
+			let sc = null
+			if (id) {
+				sc = await db.oneOrNone('SELECT * FROM compendium_sub_classes WHERE id = $1', [id])
+			} else if (name) {
+				if (classId) {
+					sc = await db.oneOrNone(
+						'SELECT * FROM compendium_sub_classes WHERE LOWER(name) = LOWER($1) AND class_id = $2 AND edition = $3 LIMIT 1',
+						[name, classId, edition]
+					)
+				} else if (className) {
+					sc = await db.oneOrNone(
+						`SELECT sc.* FROM compendium_sub_classes sc
+						 JOIN compendium_classes c ON c.id = sc.class_id
+						 WHERE LOWER(sc.name) = LOWER($1) AND LOWER(c.name) = LOWER($2) AND sc.edition = $3 LIMIT 1`,
+						[name, className, edition]
+					)
+				} else {
+					sc = await db.oneOrNone(
+						'SELECT * FROM compendium_sub_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+						[name, edition]
+					)
+				}
+				if (!sc) {
+					const fallbackEdition = edition === '2024' ? '2014' : '2024'
+					if (className) {
+						sc = await db.oneOrNone(
+							`SELECT sc.* FROM compendium_sub_classes sc
+							 JOIN compendium_classes c ON c.id = sc.class_id
+							 WHERE LOWER(sc.name) = LOWER($1) AND LOWER(c.name) = LOWER($2) AND sc.edition = $3 LIMIT 1`,
+							[name, className, fallbackEdition]
+						)
+					} else {
+						sc = await db.oneOrNone(
+							'SELECT * FROM compendium_sub_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+							[name, fallbackEdition]
+						)
+					}
+				}
+			}
+
+			if (!sc) {
+				return response.ok('not_found', 'Subclass not found', null, res)
+			}
+
+			const features = await db.any(
+				'SELECT * FROM compendium_sub_class_features WHERE sub_class_id = $1 ORDER BY level ASC, name ASC',
+				[sc.id]
+			)
+
+			let subclassEntries = safeJson(sc.entries, [])
+			let displayFeatures = features
+
+			const introFeat = features.find(f => (f.name || '').trim().toLowerCase() === (sc.name || '').trim().toLowerCase())
+			if (introFeat) {
+				const introParsed = safeJson(introFeat.entries, [])
+				const textEntries = introParsed.filter(e => typeof e === 'string' || (typeof e === 'object' && !e.name))
+				if (!subclassEntries.length && textEntries.length) {
+					subclassEntries = textEntries
+				}
+				const otherFeatures = features.filter(f => f.id !== introFeat.id)
+				if (otherFeatures.length > 0) {
+					displayFeatures = otherFeatures
+				}
+			}
+
+			const formatted = {
+				id: sc.id,
+				classId: sc.class_id,
+				name: sc.name,
+				shortName: sc.short_name,
+				edition: sc.edition,
+				source: sc.source,
+				page: sc.page,
+				spellcastingAbility: sc.spellcasting_ability,
+				entries: subclassEntries,
+				features: displayFeatures.map(f => ({
+					id: f.id,
+					name: f.name,
+					level: f.level,
+					edition: f.edition,
+					source: f.source,
+					page: f.page,
+					entries: safeJson(f.entries, [])
+				}))
+			}
+
+			return response.ok('success', 'Retrieved subclass detail', formatted, res)
+		} catch (err) {
+			console.error('Failed to get subclass detail:', err)
 			return response.badRequest(err.message, null, res)
 		}
 	},

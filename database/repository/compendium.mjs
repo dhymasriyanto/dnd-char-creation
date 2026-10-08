@@ -2,6 +2,19 @@
 
 import {compendium as sql} from '../sql/index.mjs'
 
+function applySourceFilter(query, params, source, sources) {
+	const srcList = sources ? (Array.isArray(sources) ? sources : String(sources).split(',').map(s => s.trim().toUpperCase()).filter(Boolean)) : null
+	if (srcList && srcList.length) {
+		params.push(srcList)
+		return query + ` AND UPPER(source) = ANY($${params.length})`
+	}
+	if (source) {
+		params.push(String(source).trim().toUpperCase())
+		return query + ` AND UPPER(source) = $${params.length}`
+	}
+	return query
+}
+
 class CompendiumRepository {
 	constructor(db, pgp) {
 		this.db = db
@@ -17,7 +30,7 @@ class CompendiumRepository {
 	}
 
 	// --- Races / Species ---
-	async getRaces({ edition = '2024', source = null, search = null, limit = null, offset = 0 } = {}) {
+	async getRaces({ edition = '2024', source = null, sources = null, search = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_races WHERE 1=1'
 		const params = []
 
@@ -25,10 +38,7 @@ class CompendiumRepository {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -93,7 +103,7 @@ class CompendiumRepository {
 	}
 
 	// --- Classes & Subclasses ---
-	async getClasses({ edition = '2024', source = null, search = null, limit = null, offset = 0 } = {}) {
+	async getClasses({ edition = '2024', source = null, sources = null, search = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_classes WHERE 1=1'
 		const params = []
 
@@ -101,10 +111,7 @@ class CompendiumRepository {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -132,7 +139,7 @@ class CompendiumRepository {
 		)
 	}
 
-	async getSubClasses({ classId = null, edition = '2024', search = null } = {}) {
+	async getSubClasses({ classId = null, edition = '2024', source = null, sources = null, search = null } = {}) {
 		let query = 'SELECT * FROM compendium_sub_classes WHERE 1=1'
 		const params = []
 
@@ -144,6 +151,7 @@ class CompendiumRepository {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
 		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -219,7 +227,7 @@ class CompendiumRepository {
 	}
 
 	// --- Backgrounds ---
-	async getBackgrounds({ edition = '2024', search = null, source = null, limit = null, offset = 0 } = {}) {
+	async getBackgrounds({ edition = '2024', search = null, source = null, sources = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_backgrounds WHERE 1=1'
 		const params = []
 
@@ -227,10 +235,7 @@ class CompendiumRepository {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -248,7 +253,7 @@ class CompendiumRepository {
 	}
 
 	// --- Feats ---
-	async getFeats({ edition = '2024', category = null, search = null, source = null, limit = null, offset = 0 } = {}) {
+	async getFeats({ edition = '2024', category = null, search = null, source = null, sources = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_feats WHERE 1=1'
 		const params = []
 
@@ -260,10 +265,7 @@ class CompendiumRepository {
 			params.push(category)
 			query += ` AND category = $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -281,7 +283,7 @@ class CompendiumRepository {
 	}
 
 	// --- Spells ---
-	async getSpells({ edition = '2024', level = null, maxLevel = null, school = null, className = null, search = null, source = null, limit = null, offset = 0 } = {}) {
+	async getSpells({ edition = '2024', level = null, maxLevel = null, school = null, className = null, search = null, source = null, sources = null, limit = null, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_spells WHERE 1=1'
 		const params = []
 
@@ -289,10 +291,7 @@ class CompendiumRepository {
 			params.push(edition)
 			query += ` AND edition = $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (level != null) {
 			params.push(level)
 			query += ` AND level = $${params.length}`
@@ -326,7 +325,7 @@ class CompendiumRepository {
 	}
 
 	// --- Items ---
-	async getItems({ edition = '2024', itemType = null, mastery = null, search = null, source = null, limit = 100, offset = 0 } = {}) {
+	async getItems({ edition = '2024', itemType = null, mastery = null, search = null, source = null, sources = null, limit = 100, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_items WHERE 1=1'
 		const params = []
 
@@ -342,10 +341,7 @@ class CompendiumRepository {
 			params.push(mastery.toLowerCase())
 			query += ` AND LOWER(mastery) = $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -363,7 +359,7 @@ class CompendiumRepository {
 	}
 
 	// --- Monsters ---
-	async getMonsters({ edition = '2024', cr = null, type = null, search = null, source = null, limit = 100, offset = 0 } = {}) {
+	async getMonsters({ edition = '2024', cr = null, type = null, search = null, source = null, sources = null, limit = 100, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_monsters WHERE 1=1'
 		const params = []
 
@@ -379,10 +375,7 @@ class CompendiumRepository {
 			params.push(`%${type.toLowerCase()}%`)
 			query += ` AND LOWER(type::text) LIKE $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -414,7 +407,7 @@ class CompendiumRepository {
 	}
 
 	// --- Rules ---
-	async getRules({ edition = '2024', type = null, category = null, search = null, source = null, limit = 200, offset = 0 } = {}) {
+	async getRules({ edition = '2024', type = null, category = null, search = null, source = null, sources = null, limit = 200, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_rules WHERE 1=1'
 		const params = []
 
@@ -430,10 +423,7 @@ class CompendiumRepository {
 			params.push(category)
 			query += ` AND LOWER(category) = LOWER($${params.length})`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
@@ -487,7 +477,7 @@ class CompendiumRepository {
 	}
 
 	// --- Optional Features ---
-	async getOptionalFeatures({ edition = '2024', featureType = null, search = null, source = null, limit = 200, offset = 0 } = {}) {
+	async getOptionalFeatures({ edition = '2024', featureType = null, search = null, source = null, sources = null, limit = 200, offset = 0 } = {}) {
 		let query = 'SELECT * FROM compendium_optional_features WHERE 1=1'
 		const params = []
 
@@ -499,10 +489,7 @@ class CompendiumRepository {
 			params.push(`%${featureType.toLowerCase()}%`)
 			query += ` AND LOWER(feature_type::text) LIKE $${params.length}`
 		}
-		if (source) {
-			params.push(source.toUpperCase())
-			query += ` AND UPPER(source) = $${params.length}`
-		}
+		query = applySourceFilter(query, params, source, sources)
 		if (search) {
 			params.push(`%${search.toLowerCase()}%`)
 			query += ` AND LOWER(name) LIKE $${params.length}`
