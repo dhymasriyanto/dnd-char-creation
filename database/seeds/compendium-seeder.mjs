@@ -551,11 +551,11 @@ async function seedBackgrounds() {
 				page: b.page ? String(b.page) : null,
 				ability_bonuses: null,
 				feats: null,
-				skill_proficiencies: JSON.stringify(b.skillProficiencies || []),
-				tool_proficiencies: JSON.stringify(b.toolProficiencies || []),
-				languages: JSON.stringify(b.languageProficiencies || []),
-				equipment: JSON.stringify(b.startingEquipment || []),
-				entries: JSON.stringify(b.entries || [])
+				skill_proficiencies: b.skillProficiencies || [],
+				tool_proficiencies: b.toolProficiencies || [],
+				languages: b.languageProficiencies || [],
+				equipment: b.startingEquipment || [],
+				entries: b.entries || []
 			})
 		}
 	}
@@ -576,13 +576,13 @@ async function seedBackgrounds() {
 				edition: '2024',
 				source: b.source || 'XPHB',
 				page: b.page ? String(b.page) : null,
-				ability_bonuses: JSON.stringify(b.ability || []),
-				feats: JSON.stringify(b.feats || []),
-				skill_proficiencies: JSON.stringify(b.skillProficiencies || []),
-				tool_proficiencies: JSON.stringify(b.toolProficiencies || []),
-				languages: JSON.stringify(b.languageProficiencies || []),
-				equipment: JSON.stringify(b.startingEquipment || []),
-				entries: JSON.stringify(b.entries || [])
+				ability_bonuses: b.ability || [],
+				feats: b.feats || [],
+				skill_proficiencies: b.skillProficiencies || [],
+				tool_proficiencies: b.toolProficiencies || [],
+				languages: b.languageProficiencies || [],
+				equipment: b.startingEquipment || [],
+				entries: b.entries || []
 			})
 		}
 	}
@@ -1503,6 +1503,121 @@ async function seedMonsters() {
 	await processBestiaryDir(DIR_2024, '2024')
 }
 
+async function resolveCompendiumFeatures() {
+	console.log('--- Resolving refClassFeature and refSubclassFeature in Compendium ---')
+	const cfRows = await db.any('SELECT id, name, edition, source, level, entries FROM compendium_class_features')
+	const cfMap = new Map()
+	for (const r of cfRows) {
+		const k = (r.name || '').trim().toLowerCase() + '|' + (r.edition || '')
+		cfMap.set(k, r)
+	}
+
+	function resolveClassEntries(entries, edition, depth = 0) {
+		if (depth > 6 || !entries) return entries
+		let parsed = entries
+		if (typeof parsed === 'string') {
+			try { parsed = JSON.parse(parsed) } catch { return entries }
+		}
+
+		const resolveItem = (item) => {
+			if (typeof item === 'object' && item !== null) {
+				if (item.type === 'refClassFeature') {
+					const parts = (item.classFeature || '').split('|')
+					const fName = parts[0].trim()
+					const target = cfMap.get(fName.toLowerCase() + '|' + edition) ||
+								   cfMap.get(fName.toLowerCase() + '|2024') ||
+								   cfMap.get(fName.toLowerCase() + '|2014')
+					if (target) {
+						const subEntries = typeof target.entries === 'string' ? JSON.parse(target.entries) : target.entries
+						return {
+							type: 'entries',
+							name: target.name,
+							entries: resolveClassEntries(subEntries, edition, depth + 1)
+						}
+					}
+				}
+				if (item.entries) {
+					return { ...item, entries: resolveClassEntries(item.entries, edition, depth) }
+				}
+				if (item.items) {
+					return { ...item, items: resolveClassEntries(item.items, edition, depth) }
+				}
+			}
+			return item
+		}
+
+		if (Array.isArray(parsed)) return parsed.map(resolveItem)
+		return resolveItem(parsed)
+	}
+
+	for (const r of cfRows) {
+		const rawStr = typeof r.entries === 'string' ? r.entries : JSON.stringify(r.entries)
+		if (rawStr.includes('refClassFeature')) {
+			const resolved = resolveClassEntries(r.entries, r.edition)
+			await db.none('UPDATE compendium_class_features SET entries = $1:json WHERE id = $2', [
+				resolved,
+				r.id
+			])
+		}
+	}
+
+	const scfRows = await db.any('SELECT id, name, edition, source, level, entries FROM compendium_sub_class_features')
+	const scfMap = new Map()
+	for (const r of scfRows) {
+		const k = (r.name || '').trim().toLowerCase() + '|' + (r.edition || '')
+		scfMap.set(k, r)
+	}
+
+	function resolveSubClassEntries(entries, edition, depth = 0) {
+		if (depth > 6 || !entries) return entries
+		let parsed = entries
+		if (typeof parsed === 'string') {
+			try { parsed = JSON.parse(parsed) } catch { return entries }
+		}
+
+		const resolveItem = (item) => {
+			if (typeof item === 'object' && item !== null) {
+				if (item.type === 'refSubclassFeature') {
+					const parts = (item.subclassFeature || '').split('|')
+					const fName = parts[0].trim()
+					const target = scfMap.get(fName.toLowerCase() + '|' + edition) ||
+								   scfMap.get(fName.toLowerCase() + '|2024') ||
+								   scfMap.get(fName.toLowerCase() + '|2014')
+					if (target) {
+						const subEntries = typeof target.entries === 'string' ? JSON.parse(target.entries) : target.entries
+						return {
+							type: 'entries',
+							name: target.name,
+							entries: resolveSubClassEntries(subEntries, edition, depth + 1)
+						}
+					}
+				}
+				if (item.entries) {
+					return { ...item, entries: resolveSubClassEntries(item.entries, edition, depth) }
+				}
+				if (item.items) {
+					return { ...item, items: resolveSubClassEntries(item.items, edition, depth) }
+				}
+			}
+			return item
+		}
+
+		if (Array.isArray(parsed)) return parsed.map(resolveItem)
+		return resolveItem(parsed)
+	}
+
+	for (const r of scfRows) {
+		const rawStr = typeof r.entries === 'string' ? r.entries : JSON.stringify(r.entries)
+		if (rawStr.includes('refSubclassFeature')) {
+			const resolved = resolveSubClassEntries(r.entries, r.edition)
+			await db.none('UPDATE compendium_sub_class_features SET entries = $1:json WHERE id = $2', [
+				resolved,
+				r.id
+			])
+		}
+	}
+}
+
 // -------------------------------------------------------------
 // MAIN RUNNER
 // -------------------------------------------------------------
@@ -1519,6 +1634,7 @@ async function run() {
 			await seedRaces()
 		} else if (target === 'classes') {
 			await seedClasses()
+			await resolveCompendiumFeatures()
 		} else if (target === 'feats') {
 			await seedFeats()
 		} else if (target === 'spells') {
@@ -1543,6 +1659,7 @@ async function run() {
 			await seedRules()
 			await seedOptionalFeatures()
 			await seedMonsters()
+			await resolveCompendiumFeatures()
 			await enrichCompendium()
 		}
 		console.log('=== Compendium Seeding Complete! ===')

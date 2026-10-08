@@ -443,7 +443,7 @@ export let character = {
 			}
 			const isOwner = req.user && String(req.user.id) === String(datas.user_id)
 			const isNumeric = /^\d+$/.test(String(req.params.id).trim())
-			if (isNumeric && !isOwner) {
+			if (isNumeric && datas.user_id && !isOwner && datas.is_public === false) {
 				return res.status(404).json({
 					status: 'error',
 					message: 'Character not found. Access via unique character ID is required.',
@@ -479,7 +479,7 @@ export let character = {
 			}
 			const isOwner = req.user && String(req.user.id) === String(datas.user_id)
 			const isNumeric = /^\d+$/.test(String(req.params.id).trim())
-			if (isNumeric && !isOwner) {
+			if (isNumeric && datas.user_id && !isOwner && datas.is_public === false) {
 				return res.status(404).json({
 					status: 'error',
 					message: 'Character not found. Access via unique character ID is required.'
