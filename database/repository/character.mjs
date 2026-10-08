@@ -414,7 +414,25 @@ class ServiceRepository {
 						r => +r.id
 					)
 
-					const scFeatures = subClass.subClassFeature || []
+					let scFeatures = subClass.subClassFeature || []
+					if (!Array.isArray(scFeatures) || scFeatures.length === 0) {
+						const scShort = (sc.shortName || sc.short_name || '').trim()
+						const compScf = await t.any(
+							`SELECT DISTINCT ON (LOWER(scf.name)) scf.name, scf.source, scf.page, scf.level
+							 FROM compendium_sub_class_features scf
+							 JOIN compendium_sub_classes csc ON csc.id = scf.sub_class_id
+							 JOIN compendium_classes cc ON cc.id = csc.class_id
+							 WHERE (
+								LOWER(csc.name) = LOWER($1)
+								OR LOWER(csc.short_name) = LOWER($1)
+								OR ($4 != '' AND (LOWER(csc.name) = LOWER($4) OR LOWER(csc.short_name) = LOWER($4)))
+							 ) AND ($5 = '' OR LOWER(cc.name) = LOWER($5))
+							   AND scf.level <= $2
+							 ORDER BY LOWER(scf.name), CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, scf.level ASC`,
+							[sc.name, cLvl, data.edition || '2024', scShort, className]
+						).catch(() => [])
+						scFeatures = compScf
+					}
 					const seenScf = new Set()
 					for (const sf of scFeatures) {
 						if ((sf.level || 1) <= cLvl) {
@@ -782,7 +800,25 @@ class ServiceRepository {
 							r => +r.id
 						)
 
-						const scFeatures = subClass.subClassFeature || []
+						let scFeatures = subClass.subClassFeature || []
+						if (!Array.isArray(scFeatures) || scFeatures.length === 0) {
+							const scShort = (sc.shortName || sc.short_name || '').trim()
+							const compScf = await t.any(
+								`SELECT DISTINCT ON (LOWER(scf.name)) scf.name, scf.source, scf.page, scf.level
+								 FROM compendium_sub_class_features scf
+								 JOIN compendium_sub_classes csc ON csc.id = scf.sub_class_id
+								 JOIN compendium_classes cc ON cc.id = csc.class_id
+								 WHERE (
+									LOWER(csc.name) = LOWER($1)
+									OR LOWER(csc.short_name) = LOWER($1)
+									OR ($4 != '' AND (LOWER(csc.name) = LOWER($4) OR LOWER(csc.short_name) = LOWER($4)))
+								 ) AND ($5 = '' OR LOWER(cc.name) = LOWER($5))
+								   AND scf.level <= $2
+								 ORDER BY LOWER(scf.name), CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, scf.level ASC`,
+								[sc.name, cLvl, data.edition || '2024', scShort, className]
+							).catch(() => [])
+							scFeatures = compScf
+						}
 						const seenScf = new Set()
 						for (const sf of scFeatures) {
 							if ((sf.level || 1) <= cLvl) {

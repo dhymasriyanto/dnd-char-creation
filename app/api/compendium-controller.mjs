@@ -303,22 +303,9 @@ return '-'
 }
 
 function getOrdinal(n) {
-const s = ['th', 'st', 'nd', 'rd']
-const v = n % 100
-return n + (s[(v - 20) % 10] || s[v] || s[0])
-}
-
-function formatAdventure(a) {
-return {
-	id: a.id,
-	name: a.name,
-	edition: a.edition,
-	source: a.source,
-	levelRange: a.level_range,
-	summary: a.summary,
-	entries: safeJson(a.entries, []),
-	_category: 'adventures'
-}
+	const s = ['th', 'st', 'nd', 'rd']
+	const v = n % 100
+	return n + (s[(v - 20) % 10] || s[v] || s[0])
 }
 
 function buildClassProgression(cl, dbFeatures = []) {
@@ -1797,19 +1784,19 @@ export const compendium = {
 			} else if (name) {
 				if (classId) {
 					sc = await db.oneOrNone(
-						'SELECT * FROM compendium_sub_classes WHERE LOWER(name) = LOWER($1) AND class_id = $2 AND edition = $3 LIMIT 1',
+						'SELECT * FROM compendium_sub_classes WHERE (LOWER(name) = LOWER($1) OR LOWER(short_name) = LOWER($1)) AND class_id = $2 AND edition = $3 LIMIT 1',
 						[name, classId, edition]
 					)
 				} else if (className) {
 					sc = await db.oneOrNone(
 						`SELECT sc.* FROM compendium_sub_classes sc
 						 JOIN compendium_classes c ON c.id = sc.class_id
-						 WHERE LOWER(sc.name) = LOWER($1) AND LOWER(c.name) = LOWER($2) AND sc.edition = $3 LIMIT 1`,
+						 WHERE (LOWER(sc.name) = LOWER($1) OR LOWER(sc.short_name) = LOWER($1)) AND LOWER(c.name) = LOWER($2) AND sc.edition = $3 LIMIT 1`,
 						[name, className, edition]
 					)
 				} else {
 					sc = await db.oneOrNone(
-						'SELECT * FROM compendium_sub_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+						'SELECT * FROM compendium_sub_classes WHERE (LOWER(name) = LOWER($1) OR LOWER(short_name) = LOWER($1)) AND edition = $2 LIMIT 1',
 						[name, edition]
 					)
 				}
@@ -1819,12 +1806,12 @@ export const compendium = {
 						sc = await db.oneOrNone(
 							`SELECT sc.* FROM compendium_sub_classes sc
 							 JOIN compendium_classes c ON c.id = sc.class_id
-							 WHERE LOWER(sc.name) = LOWER($1) AND LOWER(c.name) = LOWER($2) AND sc.edition = $3 LIMIT 1`,
+							 WHERE (LOWER(sc.name) = LOWER($1) OR LOWER(sc.short_name) = LOWER($1)) AND LOWER(c.name) = LOWER($2) AND sc.edition = $3 LIMIT 1`,
 							[name, className, fallbackEdition]
 						)
 					} else {
 						sc = await db.oneOrNone(
-							'SELECT * FROM compendium_sub_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+							'SELECT * FROM compendium_sub_classes WHERE (LOWER(name) = LOWER($1) OR LOWER(short_name) = LOWER($1)) AND edition = $2 LIMIT 1',
 							[name, fallbackEdition]
 						)
 					}
@@ -1881,29 +1868,6 @@ export const compendium = {
 		} catch (err) {
 			console.error('Failed to get subclass detail:', err)
 			return response.badRequest(err.message, null, res)
-		}
-	},
-
-	adventures: async (req, res) => {
-		const edition = req.query.edition || '2024'
-		const search = (req.query.search || '').trim()
-		try {
-			let sqlQ = 'SELECT * FROM compendium_adventures WHERE 1=1 '
-			const params = []
-			if (edition && edition !== 'all') {
-				params.push(edition)
-				sqlQ += `AND edition = $${params.length} `
-			}
-			if (search) {
-				params.push(`%${search}%`)
-				sqlQ += `AND LOWER(name) LIKE $${params.length} `
-			}
-			sqlQ += 'ORDER BY name ASC'
-			const adventures = await db.any(sqlQ, params)
-			return response.ok('success', 'Retrieved adventures', adventures.map(formatAdventure), res)
-		} catch (err) {
-			console.warn('[WARN] DB compendium adventures query failed:', err.message)
-			return response.ok('success', 'Retrieved adventures', [], res)
 		}
 	},
 
@@ -2073,25 +2037,6 @@ export const compendium = {
 				return response.ok('success', 'Homebrew feat saved', formatFeat(result), res)
 			}
 
-			if (cat === 'adventure') {
-				result = await db.one(`
-					INSERT INTO compendium_adventures (
-						name, edition, source, level_range, summary, entries
-					) VALUES (
-						$1, $2, $3, $4, $5, $6
-					)
-					ON CONFLICT (name, source, edition) DO UPDATE SET
-						level_range = EXCLUDED.level_range,
-						summary = EXCLUDED.summary,
-						entries = EXCLUDED.entries
-					RETURNING *
-				`, [
-					name, edition, source, data.level_range || 'Level 1-5',
-					data.summary || '', JSON.stringify(Array.isArray(data.entries) ? data.entries : (data.entries ? [data.entries] : []))
-				])
-				return response.ok('success', 'Homebrew adventure saved', formatAdventure(result), res)
-			}
-
 			if (cat === 'subclass') {
 				let classId = Number(data.class_id)
 				if (!classId && data.class_name) {
@@ -2188,7 +2133,6 @@ export const compendium = {
 			item: 'compendium_items',
 			monster: 'compendium_monsters',
 			feat: 'compendium_feats',
-			adventure: 'compendium_adventures',
 			subclass: 'compendium_sub_classes',
 			subrace: 'compendium_sub_races'
 		}

@@ -35,22 +35,34 @@ async function enrichWithCompendiumEntries(datas) {
 		// Class features
 		if (Array.isArray(datas.class_feature) && datas.class_feature.length > 0) {
 			const names = datas.class_feature.map(f => f.name.toLowerCase())
+			const charClassMap = new Map((datas.class || []).map(c => [c.id, (c.name || '').toLowerCase()]))
+			const defaultClassName = (datas.class?.[0]?.name || '').toLowerCase()
+
+			// ponytail: match features by class to prevent cross-class pollution (e.g. Spellcasting, Extra Attack)
 			const compRows = await db.any(
-				`SELECT name, entries FROM compendium_class_features 
-				 WHERE LOWER(name) = ANY($1) 
-				 ORDER BY CASE WHEN edition = $2 THEN 0 ELSE 1 END`,
+				`SELECT ccf.name, LOWER(cc.name) as class_name, ccf.entries 
+				 FROM compendium_class_features ccf
+				 JOIN compendium_classes cc ON cc.id = ccf.class_id
+				 WHERE LOWER(ccf.name) = ANY($1) 
+				 ORDER BY CASE WHEN ccf.edition = $2 THEN 0 ELSE 1 END`,
 				[names, edition]
 			)
 			const cMap = new Map()
 			for (const r of compRows) {
-				const k = r.name.toLowerCase()
-				if (!cMap.has(k)) {
-					cMap.set(k, safeEntries(r.entries))
+				const featKey = r.name.toLowerCase()
+				const fullKey = `${r.class_name}::${featKey}`
+				if (!cMap.has(fullKey)) {
+					cMap.set(fullKey, safeEntries(r.entries))
+				}
+				if (!cMap.has(featKey)) {
+					cMap.set(featKey, safeEntries(r.entries))
 				}
 			}
 			for (const cf of datas.class_feature) {
 				if (!cf.entries || cf.entries.length === 0) {
-					cf.entries = cMap.get(cf.name.toLowerCase()) || []
+					const featKey = cf.name.toLowerCase()
+					const cfClassName = charClassMap.get(cf.class_id) || defaultClassName
+					cf.entries = (cfClassName && cMap.get(`${cfClassName}::${featKey}`)) || cMap.get(featKey) || []
 				}
 			}
 		}
@@ -58,22 +70,48 @@ async function enrichWithCompendiumEntries(datas) {
 		// Subclass features
 		if (Array.isArray(datas.sub_class_feature) && datas.sub_class_feature.length > 0) {
 			const names = datas.sub_class_feature.map(f => f.name.toLowerCase())
+			const charScMap = new Map((datas.sub_class || []).map(sc => [sc.id, sc]))
+			const charClassMap = new Map((datas.class || []).map(c => [c.id, (c.name || '').toLowerCase()]))
+			const defaultClassName = (datas.class?.[0]?.name || '').toLowerCase()
+
+			// ponytail: join sub_classes & classes to prevent cross-class contamination (e.g. Bard vs Cleric Bonus Proficiencies)
 			const compRows = await db.any(
-				`SELECT name, entries FROM compendium_sub_class_features 
-				 WHERE LOWER(name) = ANY($1)
-				 ORDER BY CASE WHEN edition = $2 THEN 0 ELSE 1 END`,
+				`SELECT scf.name, LOWER(csc.name) as sc_name, LOWER(COALESCE(csc.short_name, '')) as sc_short_name, LOWER(cc.name) as class_name, scf.entries 
+				 FROM compendium_sub_class_features scf
+				 JOIN compendium_sub_classes csc ON csc.id = scf.sub_class_id
+				 JOIN compendium_classes cc ON cc.id = csc.class_id
+				 WHERE LOWER(scf.name) = ANY($1)
+				 ORDER BY CASE WHEN scf.edition = $2 THEN 0 ELSE 1 END`,
 				[names, edition]
 			)
 			const scMap = new Map()
 			for (const r of compRows) {
-				const k = r.name.toLowerCase()
-				if (!scMap.has(k)) {
-					scMap.set(k, safeEntries(r.entries))
+				const featKey = r.name.toLowerCase()
+				if (!scMap.has(`${r.sc_name}::${featKey}`)) {
+					scMap.set(`${r.sc_name}::${featKey}`, safeEntries(r.entries))
+				}
+				if (r.sc_short_name && !scMap.has(`${r.sc_short_name}::${featKey}`)) {
+					scMap.set(`${r.sc_short_name}::${featKey}`, safeEntries(r.entries))
+				}
+				if (!scMap.has(`${r.class_name}::${featKey}`)) {
+					scMap.set(`${r.class_name}::${featKey}`, safeEntries(r.entries))
+				}
+				if (!scMap.has(featKey)) {
+					scMap.set(featKey, safeEntries(r.entries))
 				}
 			}
 			for (const scf of datas.sub_class_feature) {
 				if (!scf.entries || scf.entries.length === 0) {
-					scf.entries = scMap.get(scf.name.toLowerCase()) || []
+					const featKey = scf.name.toLowerCase()
+					const scObj = charScMap.get(scf.sub_class_id) || datas.sub_class?.[0]
+					const scName = (scObj?.name || '').toLowerCase()
+					const scShort = (scObj?.short_name || scObj?.shortName || '').toLowerCase()
+					const className = charClassMap.get(scObj?.class_id) || defaultClassName
+					scf.entries = (scName && scMap.get(`${scName}::${featKey}`))
+						|| (scShort && scMap.get(`${scShort}::${featKey}`))
+						|| (className && scMap.get(`${className}::${featKey}`))
+						|| scMap.get(featKey)
+						|| []
 				}
 			}
 		}
@@ -296,6 +334,50 @@ export async function loadFullCharacter(characterId) {
 
 	datas.sub_class_feature = await db.character.findSubClassFeature(realId)
 		.catch(() => [])
+
+	// Ensure subclass features are populated if character has subclass(es)
+	if (Array.isArray(datas.sub_class) && datas.sub_class.length > 0) {
+		const existingNames = new Set((datas.sub_class_feature || []).map(f => (f.name || '').trim().toLowerCase()))
+		for (const sc of datas.sub_class) {
+			const parentClass = (datas.class || []).find(c => c.id === sc.class_id) || (datas.class || [])[0]
+			const cLvl = parentClass?.level || datas.level || 1
+			const parentClassName = (parentClass?.name || '').trim()
+			const compScf = await db.any(
+				`SELECT DISTINCT ON (LOWER(scf.name)) scf.name, scf.source, scf.page, scf.level, scf.entries
+				 FROM compendium_sub_class_features scf
+				 JOIN compendium_sub_classes csc ON csc.id = scf.sub_class_id
+				 JOIN compendium_classes cc ON cc.id = csc.class_id
+				 WHERE (
+					LOWER(csc.name) = LOWER($1)
+					OR LOWER(csc.short_name) = LOWER($1)
+					OR ($4 != '' AND (LOWER(csc.name) = LOWER($4) OR LOWER(csc.short_name) = LOWER($4)))
+				 ) AND ($5 = '' OR LOWER(cc.name) = LOWER($5))
+				   AND scf.level <= $2
+				 ORDER BY LOWER(scf.name), CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, scf.level ASC`,
+				[sc.name, cLvl, datas.edition || '2024', sc.short_name || sc.shortName || '', parentClassName]
+			).catch(() => [])
+
+			for (const sf of compScf) {
+				const k = (sf.name || '').trim().toLowerCase()
+				if (!k || existingNames.has(k)) continue
+				existingNames.add(k)
+				const newRow = await db.oneOrNone(
+					`INSERT INTO character_sub_class_features (character_id, sub_class_id, name, source, page, level)
+					 VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+					[realId, sc.id, sf.name, sf.source || null, sf.page ? String(sf.page) : null, sf.level || 1]
+				).catch(() => null)
+				datas.sub_class_feature.push(newRow ? { ...newRow, entries: safeEntries(sf.entries) } : {
+					character_id: realId,
+					sub_class_id: sc.id,
+					name: sf.name,
+					source: sf.source,
+					page: sf.page,
+					level: sf.level,
+					entries: safeEntries(sf.entries)
+				})
+			}
+		}
+	}
 
 	datas.ability_score = await db.character.findAbilityScore(realId)
 		.then(rows => rows ? rows[0] : {})
