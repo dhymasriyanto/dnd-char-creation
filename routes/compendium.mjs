@@ -13,6 +13,10 @@ router.get('/rules', compendium.rules)
 router.get('/optionalfeatures', compendium.optionalfeatures)
 router.get('/races', compendium.races)
 router.get('/classes', compendium.classes)
+router.get('/class-table', compendium.classTable)
+router.get('/adventures', compendium.adventures)
+router.post('/homebrew', compendium.saveHomebrew)
+router.delete('/homebrew/:category/:id', compendium.deleteHomebrew)
 router.get('/lookup', compendium.lookup)
 
 export { router as compendiumRoute }

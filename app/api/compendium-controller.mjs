@@ -261,6 +261,8 @@ function formatClass(cl, subclasses = []) {
 		startingEquipment: safeJson(cl.starting_equipment, []),
 		spellcastingAbility: cl.spellcasting_ability,
 		entries: safeJson(cl.entries, []),
+		classTableGroups: safeJson(cl.class_table_groups, []),
+		classFeatures: safeJson(cl.class_features, []),
 		subclasses: (subclasses || []).map(sc => ({
 			id: sc.id,
 			name: sc.name,
@@ -272,6 +274,148 @@ function formatClass(cl, subclasses = []) {
 			entries: safeJson(sc.entries, [])
 		}))
 	}
+}
+
+function clean5eTag(s) {
+if (typeof s !== 'string') return String(s || '')
+return s.replace(/\{@filter ([^|}]+)[^}]*\}/g, '$1')
+        .replace(/\{@[a-z]+ ([^|}]+)[^}]*\}/g, '$1')
+        .trim()
+}
+
+function formatTableCellValue(val) {
+if (val == null || val === '') return '-'
+if (typeof val === 'number') return val === 0 ? '-' : String(val)
+if (typeof val === 'string') return val === '0' ? '-' : val
+if (typeof val === 'object') {
+	if (val.type === 'dice' && Array.isArray(val.toRoll) && val.toRoll[0]) {
+		return `${val.toRoll[0].number}d${val.toRoll[0].faces}`
+	}
+	if (val.type === 'bonus') {
+		return (val.value >= 0 ? '+' : '') + val.value
+	}
+	if (val.type === 'bonusSpeed') {
+		return val.value > 0 ? `+${val.value} ft.` : '-'
+	}
+	if (val.value !== undefined) return String(val.value)
+}
+return '-'
+}
+
+function getOrdinal(n) {
+const s = ['th', 'st', 'nd', 'rd']
+const v = n % 100
+return n + (s[(v - 20) % 10] || s[v] || s[0])
+}
+
+function formatAdventure(a) {
+return {
+	id: a.id,
+	name: a.name,
+	edition: a.edition,
+	source: a.source,
+	levelRange: a.level_range,
+	summary: a.summary,
+	entries: safeJson(a.entries, []),
+	_category: 'adventures'
+}
+}
+
+function buildClassProgression(cl, dbFeatures = []) {
+const tableGroups = safeJson(cl.class_table_groups, [])
+
+const customHeaders = []
+tableGroups.forEach(group => {
+	const labels = group.colLabels || []
+	labels.forEach(lbl => {
+		customHeaders.push(clean5eTag(lbl))
+	})
+})
+
+const featuresByLevel = {}
+for (let lvl = 1; lvl <= 20; lvl++) {
+	featuresByLevel[lvl] = []
+}
+
+const embeddedNames = new Set()
+const scanEmbedded = (entry) => {
+	if (!entry) return
+	if (typeof entry === 'string') {
+		const m = entry.match(/<b>([^.<]+)[.<]/g)
+		if (m) {
+			m.forEach(sub => {
+				const clean = sub.replace(/<\/?b>/g, '').replace(/[.<]/g, '').trim().toLowerCase()
+				if (clean.length > 2) embeddedNames.add(clean)
+			})
+		}
+	} else if (typeof entry === 'object') {
+		if (entry.name && typeof entry.name === 'string') {
+			embeddedNames.add(entry.name.trim().toLowerCase())
+		}
+		if (Array.isArray(entry.entries)) entry.entries.forEach(scanEmbedded)
+		if (Array.isArray(entry.items)) entry.items.forEach(scanEmbedded)
+	}
+}
+dbFeatures.forEach(f => {
+	const ents = safeJson(f.entries, [])
+	if (Array.isArray(ents)) ents.forEach(scanEmbedded)
+})
+
+dbFeatures.forEach(f => {
+	const lvl = Math.min(20, Math.max(1, Number(f.level) || 1))
+	const fNameLower = (f.name || '').trim().toLowerCase()
+	const isChild = embeddedNames.has(fNameLower) && !dbFeatures.some(p => p.name.toLowerCase() === fNameLower && p.id !== f.id)
+	featuresByLevel[lvl].push({
+		id: f.id,
+		name: f.name,
+		level: lvl,
+		source: f.source,
+		edition: f.edition,
+		entries: safeJson(f.entries, []),
+		isChild: isChild
+	})
+})
+
+const rows = []
+for (let lvl = 1; lvl <= 20; lvl++) {
+	const pb = Math.floor((lvl - 1) / 4) + 2
+	const rowIdx = lvl - 1
+
+	const customValues = []
+	tableGroups.forEach(group => {
+		const rowData = (group.rows || group.rowsSpellProgression || [])[rowIdx] || []
+		rowData.forEach(c => {
+			customValues.push(formatTableCellValue(c))
+		})
+	})
+
+	const lvlFeats = featuresByLevel[lvl] || []
+	const topFeats = lvlFeats.filter(f => !f.isChild)
+	const displayFeats = topFeats.length > 0 ? topFeats : lvlFeats
+
+	rows.push({
+		level: lvl,
+		levelLabel: getOrdinal(lvl),
+		proficiencyBonus: `+${pb}`,
+		features: displayFeats,
+		allFeatures: lvlFeats,
+		customValues: customValues
+	})
+}
+
+return {
+	id: cl.id,
+	name: cl.name,
+	className: cl.name,
+	edition: cl.edition,
+	source: cl.source,
+	hitDice: cl.hit_dice,
+	primaryAbility: safeJson(cl.primary_ability, []),
+	subclassTitle: cl.subclass_title || 'Subclass',
+	subclassLevel: cl.subclass_level || 3,
+	headers: customHeaders,
+	rows
+}
 }
 
 function formatMonster(m) {
@@ -1567,5 +1711,364 @@ export const compendium = {
 		}
 
 		return response.ok('not_found', 'No detail found', null, res)
+	},
+
+	classTable: async (req, res) => {
+		const name = (req.query.name || req.query.class || '').trim()
+		let edition = req.query.edition || '2024'
+		if (!name) {
+			return response.badRequest('Class name is required', null, res)
+		}
+
+		try {
+			let cl = await db.oneOrNone(
+				'SELECT * FROM compendium_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+				[name, edition]
+			)
+			if (!cl) {
+				const fallbackEdition = edition === '2024' ? '2014' : '2024'
+				cl = await db.oneOrNone(
+					'SELECT * FROM compendium_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1',
+					[name, fallbackEdition]
+				)
+			}
+			if (!cl) {
+				return response.ok('not_found', 'Class not found', null, res)
+			}
+
+			const dbFeatures = await db.any(
+				'SELECT * FROM compendium_class_features WHERE class_id = $1 ORDER BY level ASC, name ASC',
+				[cl.id]
+			)
+
+			const progression = buildClassProgression(cl, dbFeatures)
+			return response.ok('success', 'Retrieved class progression table', progression, res)
+		} catch (err) {
+			console.error('Failed to get class table:', err)
+			return response.badRequest(err.message, null, res)
+		}
+	},
+
+	adventures: async (req, res) => {
+		const edition = req.query.edition || '2024'
+		const search = (req.query.search || '').trim()
+		try {
+			let sqlQ = 'SELECT * FROM compendium_adventures WHERE 1=1 '
+			const params = []
+			if (edition && edition !== 'all') {
+				params.push(edition)
+				sqlQ += `AND edition = $${params.length} `
+			}
+			if (search) {
+				params.push(`%${search}%`)
+				sqlQ += `AND LOWER(name) LIKE $${params.length} `
+			}
+			sqlQ += 'ORDER BY name ASC'
+			const adventures = await db.any(sqlQ, params)
+			return response.ok('success', 'Retrieved adventures', adventures.map(formatAdventure), res)
+		} catch (err) {
+			console.warn('[WARN] DB compendium adventures query failed:', err.message)
+			return response.ok('success', 'Retrieved adventures', [], res)
+		}
+	},
+
+	saveHomebrew: async (req, res) => {
+		const { category, data } = req.body || {}
+		if (!category || !data || !data.name) {
+			return response.badRequest('category, data, and data.name are required', null, res)
+		}
+
+		const cat = String(category).toLowerCase().trim()
+		const edition = data.edition || '2024'
+		const source = (data.source || 'Homebrew').trim()
+		const name = data.name.trim()
+
+		try {
+			let result = null
+			if (cat === 'spell') {
+				result = await db.one(`
+					INSERT INTO compendium_spells (
+						name, edition, source, level, school, casting_time, range, components,
+						duration, concentration, ritual, damage_type, damage_dice, save_ability,
+						classes, entries, higher_levels, page
+					) VALUES (
+						$1, $2, $3, $4, $5, $6, $7, $8,
+						$9, $10, $11, $12, $13, $14,
+						$15, $16, $17, $18
+					)
+					ON CONFLICT (name, source, edition) DO UPDATE SET
+						level = EXCLUDED.level,
+						school = EXCLUDED.school,
+						casting_time = EXCLUDED.casting_time,
+						range = EXCLUDED.range,
+						components = EXCLUDED.components,
+						duration = EXCLUDED.duration,
+						concentration = EXCLUDED.concentration,
+						ritual = EXCLUDED.ritual,
+						damage_type = EXCLUDED.damage_type,
+						damage_dice = EXCLUDED.damage_dice,
+						save_ability = EXCLUDED.save_ability,
+						classes = EXCLUDED.classes,
+						entries = EXCLUDED.entries,
+						higher_levels = EXCLUDED.higher_levels
+					RETURNING *
+				`, [
+					name, edition, source, Number(data.level) || 0, data.school || 'evocation',
+					data.casting_time || '1 action', data.range || '60 ft.', data.components || 'V, S',
+					data.duration || 'Instantaneous', Boolean(data.concentration), Boolean(data.ritual),
+					data.damage_type || null, data.damage_dice || null, data.save_ability || null,
+					JSON.stringify(Array.isArray(data.classes) ? data.classes : (data.classes ? [data.classes] : [])),
+					JSON.stringify(Array.isArray(data.entries) ? data.entries : (data.entries ? [data.entries] : [])),
+					JSON.stringify(Array.isArray(data.higher_levels) ? data.higher_levels : []),
+					data.page || null
+				])
+				return response.ok('success', 'Homebrew spell saved', formatSpell(result), res)
+			}
+
+			if (cat === 'item') {
+				result = await db.one(`
+					INSERT INTO compendium_items (
+						name, edition, source, item_type, rarity, cost_cp, weight,
+						damage_dice, damage_type, versatile_dice, mastery,
+						base_ac, ac_dex_bonus, stealth_disadvantage, strength_requirement,
+						properties, entries, equip_type, page
+					) VALUES (
+						$1, $2, $3, $4, $5, $6, $7,
+						$8, $9, $10, $11,
+						$12, $13, $14, $15,
+						$16, $17, $18, $19
+					)
+					ON CONFLICT (name, source, edition) DO UPDATE SET
+						item_type = EXCLUDED.item_type,
+						rarity = EXCLUDED.rarity,
+						cost_cp = EXCLUDED.cost_cp,
+						weight = EXCLUDED.weight,
+						damage_dice = EXCLUDED.damage_dice,
+						damage_type = EXCLUDED.damage_type,
+						versatile_dice = EXCLUDED.versatile_dice,
+						mastery = EXCLUDED.mastery,
+						base_ac = EXCLUDED.base_ac,
+						ac_dex_bonus = EXCLUDED.ac_dex_bonus,
+						stealth_disadvantage = EXCLUDED.stealth_disadvantage,
+						strength_requirement = EXCLUDED.strength_requirement,
+						properties = EXCLUDED.properties,
+						entries = EXCLUDED.entries,
+						equip_type = EXCLUDED.equip_type
+					RETURNING *
+				`, [
+					name, edition, source, data.item_type || 'gear', data.rarity || 'none',
+					Number(data.cost_cp) || 0, data.weight ? String(data.weight) : null,
+					data.damage_dice || null, data.damage_type || null, data.versatile_dice || null,
+					data.mastery || null, Number(data.base_ac) || null, Boolean(data.ac_dex_bonus),
+					Boolean(data.stealth_disadvantage), Number(data.strength_requirement) || null,
+					JSON.stringify(Array.isArray(data.properties) ? data.properties : []),
+					JSON.stringify(Array.isArray(data.entries) ? data.entries : (data.entries ? [data.entries] : [])),
+					data.equip_type || null, data.page || null
+				])
+				return response.ok('success', 'Homebrew item saved', formatItem(result), res)
+			}
+
+			if (cat === 'monster') {
+				result = await db.one(`
+					INSERT INTO compendium_monsters (
+						name, edition, source, cr, size, type, alignment,
+						ac, hp, speed, str, dex, con, int, wis, cha,
+						save, skill, passive, languages, senses,
+						trait, action, bonus, reaction, legendary,
+						spellcasting, environment, page, raw_data
+					) VALUES (
+						$1, $2, $3, $4, $5, $6, $7,
+						$8, $9, $10, $11, $12, $13, $14, $15, $16,
+						$17, $18, $19, $20, $21,
+						$22, $23, $24, $25, $26,
+						$27, $28, $29, $30
+					)
+					ON CONFLICT (name, source, edition) DO UPDATE SET
+						cr = EXCLUDED.cr, size = EXCLUDED.size, type = EXCLUDED.type, alignment = EXCLUDED.alignment,
+						ac = EXCLUDED.ac, hp = EXCLUDED.hp, speed = EXCLUDED.speed,
+						str = EXCLUDED.str, dex = EXCLUDED.dex, con = EXCLUDED.con,
+						int = EXCLUDED.int, wis = EXCLUDED.wis, cha = EXCLUDED.cha,
+						trait = EXCLUDED.trait, action = EXCLUDED.action, bonus = EXCLUDED.bonus,
+						reaction = EXCLUDED.reaction, raw_data = EXCLUDED.raw_data
+					RETURNING *
+				`, [
+					name, edition, source, String(data.cr || '1'),
+					JSON.stringify(Array.isArray(data.size) ? data.size : [data.size || 'M']),
+					JSON.stringify(typeof data.type === 'object' ? data.type : (data.type || 'humanoid')),
+					JSON.stringify(Array.isArray(data.alignment) ? data.alignment : [data.alignment || 'U']),
+					JSON.stringify(Array.isArray(data.ac) ? data.ac : [{ ac: Number(data.ac) || 10 }]),
+					JSON.stringify(typeof data.hp === 'object' ? data.hp : { average: Number(data.hp) || 10 }),
+					JSON.stringify(typeof data.speed === 'object' ? data.speed : { walk: Number(data.speed) || 30 }),
+					Number(data.str) || 10, Number(data.dex) || 10, Number(data.con) || 10,
+					Number(data.int) || 10, Number(data.wis) || 10, Number(data.cha) || 10,
+					JSON.stringify(data.save || null), JSON.stringify(data.skill || null),
+					Number(data.passive) || 10, JSON.stringify(data.languages || []), JSON.stringify(data.senses || []),
+					JSON.stringify(Array.isArray(data.trait) ? data.trait : []),
+					JSON.stringify(Array.isArray(data.action) ? data.action : []),
+					JSON.stringify(Array.isArray(data.bonus) ? data.bonus : []),
+					JSON.stringify(Array.isArray(data.reaction) ? data.reaction : []),
+					JSON.stringify(Array.isArray(data.legendary) ? data.legendary : []),
+					JSON.stringify(Array.isArray(data.spellcasting) ? data.spellcasting : []),
+					JSON.stringify(Array.isArray(data.environment) ? data.environment : []),
+					data.page || null, JSON.stringify(data.raw_data || {})
+				])
+				return response.ok('success', 'Homebrew monster saved', formatMonster(result), res)
+			}
+
+			if (cat === 'feat') {
+				result = await db.one(`
+					INSERT INTO compendium_feats (
+						name, edition, source, category, prerequisite, ability_bonus, repeatable, entries, page
+					) VALUES (
+						$1, $2, $3, $4, $5, $6, $7, $8, $9
+					)
+					ON CONFLICT (name, source, edition) DO UPDATE SET
+						category = EXCLUDED.category,
+						prerequisite = EXCLUDED.prerequisite,
+						ability_bonus = EXCLUDED.ability_bonus,
+						repeatable = EXCLUDED.repeatable,
+						entries = EXCLUDED.entries
+					RETURNING *
+				`, [
+					name, edition, source, data.category || 'G',
+					data.prerequisite || null, JSON.stringify(data.ability_bonus || []),
+					Boolean(data.repeatable), JSON.stringify(Array.isArray(data.entries) ? data.entries : [data.entries || '']),
+					data.page || null
+				])
+				return response.ok('success', 'Homebrew feat saved', formatFeat(result), res)
+			}
+
+			if (cat === 'adventure') {
+				result = await db.one(`
+					INSERT INTO compendium_adventures (
+						name, edition, source, level_range, summary, entries
+					) VALUES (
+						$1, $2, $3, $4, $5, $6
+					)
+					ON CONFLICT (name, source, edition) DO UPDATE SET
+						level_range = EXCLUDED.level_range,
+						summary = EXCLUDED.summary,
+						entries = EXCLUDED.entries
+					RETURNING *
+				`, [
+					name, edition, source, data.level_range || 'Level 1-5',
+					data.summary || '', JSON.stringify(Array.isArray(data.entries) ? data.entries : (data.entries ? [data.entries] : []))
+				])
+				return response.ok('success', 'Homebrew adventure saved', formatAdventure(result), res)
+			}
+
+			if (cat === 'subclass') {
+				let classId = Number(data.class_id)
+				if (!classId && data.class_name) {
+					const parentCl = await db.oneOrNone('SELECT id FROM compendium_classes WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1', [data.class_name, edition])
+					if (parentCl) classId = parentCl.id
+				}
+				if (!classId) {
+					return response.badRequest('Valid class_id or class_name is required for subclass', null, res)
+				}
+				result = await db.one(`
+					INSERT INTO compendium_sub_classes (
+						class_id, name, short_name, edition, source, spellcasting_ability, entries, page
+					) VALUES (
+						$1, $2, $3, $4, $5, $6, $7, $8
+					)
+					ON CONFLICT (class_id, name, source, edition) DO UPDATE SET
+						short_name = EXCLUDED.short_name,
+						spellcasting_ability = EXCLUDED.spellcasting_ability,
+						entries = EXCLUDED.entries
+					RETURNING *
+				`, [
+					classId, name, data.short_name || name, edition, source,
+					data.spellcasting_ability || null, JSON.stringify(Array.isArray(data.entries) ? data.entries : (data.entries ? [data.entries] : [])),
+					data.page || null
+				])
+
+				if (Array.isArray(data.features) && data.features.length > 0) {
+					for (const feat of data.features) {
+						if (!feat.name) continue
+						await db.none(`
+							INSERT INTO compendium_sub_class_features (
+								sub_class_id, name, level, edition, source, entries, page
+							) VALUES ($1, $2, $3, $4, $5, $6, $7)
+							ON CONFLICT (sub_class_id, name, level, source, edition) DO UPDATE SET
+								entries = EXCLUDED.entries
+						`, [
+							result.id, feat.name, Number(feat.level) || 3, edition, source,
+							JSON.stringify(Array.isArray(feat.entries) ? feat.entries : (feat.entries ? [feat.entries] : [])),
+							feat.page || null
+						])
+					}
+				}
+
+				return response.ok('success', 'Homebrew subclass saved', result, res)
+			}
+
+			if (cat === 'subrace') {
+				let raceId = Number(data.race_id)
+				if (!raceId && data.race_name) {
+					const parentR = await db.oneOrNone('SELECT id FROM compendium_races WHERE LOWER(name) = LOWER($1) AND edition = $2 LIMIT 1', [data.race_name, edition])
+					if (parentR) raceId = parentR.id
+				}
+				if (!raceId) {
+					return response.badRequest('Valid race_id or race_name is required for subrace', null, res)
+				}
+				result = await db.one(`
+					INSERT INTO compendium_sub_races (
+						race_id, name, edition, source, ability_bonuses, traits, entries, page
+					) VALUES (
+						$1, $2, $3, $4, $5, $6, $7, $8
+					)
+					ON CONFLICT (race_id, name, source, edition) DO UPDATE SET
+						ability_bonuses = EXCLUDED.ability_bonuses,
+						traits = EXCLUDED.traits,
+						entries = EXCLUDED.entries
+					RETURNING *
+				`, [
+					raceId, name, edition, source,
+					JSON.stringify(data.ability_bonuses || []),
+					JSON.stringify(data.traits || []),
+					JSON.stringify(Array.isArray(data.entries) ? data.entries : (data.entries ? [data.entries] : [])),
+					data.page || null
+				])
+				return response.ok('success', 'Homebrew subrace saved', result, res)
+			}
+
+			return response.badRequest(`Unknown homebrew category: ${cat}`, null, res)
+		} catch (err) {
+			console.error('Failed to save homebrew:', err)
+			return response.badRequest(err.message, null, res)
+		}
+	},
+
+	deleteHomebrew: async (req, res) => {
+		const { category, id } = req.params
+		const cat = (category || '').toLowerCase().trim()
+		const itemNumId = Number(id)
+		if (!itemNumId) {
+			return response.badRequest('Valid numeric ID required', null, res)
+		}
+
+		const tableMap = {
+			spell: 'compendium_spells',
+			item: 'compendium_items',
+			monster: 'compendium_monsters',
+			feat: 'compendium_feats',
+			adventure: 'compendium_adventures',
+			subclass: 'compendium_sub_classes',
+			subrace: 'compendium_sub_races'
+		}
+
+		const table = tableMap[cat]
+		if (!table) {
+			return response.badRequest(`Unknown category: ${cat}`, null, res)
+		}
+
+		try {
+			await db.none(`DELETE FROM ${table} WHERE id = $1`, [itemNumId])
+			return response.ok('success', `Homebrew ${cat} deleted`, { id: itemNumId }, res)
+		} catch (err) {
+			console.error('Failed to delete homebrew:', err)
+			return response.badRequest(err.message, null, res)
+		}
 	}
 }

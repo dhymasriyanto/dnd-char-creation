@@ -335,11 +335,16 @@ async function seedClasses() {
 					name, edition, source, page, hit_dice, primary_ability,
 					saving_throws, spellcasting_ability, subclass_title,
 					subclass_level, armor_proficiencies, weapon_proficiencies,
-					tool_proficiencies, skill_choices, starting_equipment, entries
+					tool_proficiencies, skill_choices, starting_equipment, entries,
+					class_table_groups, class_features
 				) VALUES (
-					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16
+					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18
 				)
-				ON CONFLICT (name, source, edition) DO UPDATE SET hit_dice = EXCLUDED.hit_dice, starting_equipment = EXCLUDED.starting_equipment
+				ON CONFLICT (name, source, edition) DO UPDATE SET
+					hit_dice = EXCLUDED.hit_dice,
+					starting_equipment = EXCLUDED.starting_equipment,
+					class_table_groups = EXCLUDED.class_table_groups,
+					class_features = EXCLUDED.class_features
 				RETURNING id
 			`, [
 				cl.name, edition, cl.source || (is2024 ? 'XPHB' : 'PHB'),
@@ -352,7 +357,9 @@ async function seedClasses() {
 				JSON.stringify(cl.startingProficiencies?.tools || []),
 				JSON.stringify(cl.startingProficiencies?.skills || []),
 				JSON.stringify(cl.startingEquipment || null),
-				JSON.stringify(cl.fluff || cl.entries || [])
+				JSON.stringify(cl.fluff || cl.entries || []),
+				JSON.stringify(cl.classTableGroups || []),
+				JSON.stringify(cl.classFeatures || [])
 			])
 
 			const classId = insertedClass?.id
