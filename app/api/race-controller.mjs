@@ -52,38 +52,39 @@ function formatRace(r) {
 	}
 }
 
-export let race = {
-	all: async (req, res, next) => {
-		const edition = req.query.edition || '2024'
+	export let race = {
+		all: async (req, res, next) => {
+			const edition = req.query.edition || '2024'
 
-		try {
-			const dbRaces = await db.compendium.getRaces({ edition })
-			if (dbRaces && dbRaces.length > 0) {
-				const filtered = edition === '2024'
-					? dbRaces.filter(r => r.source === 'XPHB')
-					: dbRaces.filter(r => r.source !== 'XPHB')
-				return response.ok('success', 'Retrieved all data', filtered.map(formatRace), res)
+			try {
+				// In 2024 mode, retrieve all races (2024 + 2014 compatible), letting frontend source toggles filter
+				const dbRaces = await db.compendium.getRaces({ edition: edition === '2024' ? null : '2014' })
+				if (dbRaces && dbRaces.length > 0) {
+					return response.ok('success', 'Retrieved all data', dbRaces.map(formatRace), res)
+				}
+			} catch (err) {
+				console.warn('[WARN] DB compendium race query failed:', err.message)
 			}
-		} catch (err) {
-			console.warn('[WARN] DB compendium race query failed:', err.message)
-		}
 
-		return response.ok('success', 'No races found', [], res)
-	},
+			return response.ok('success', 'No races found', [], res)
+		},
 
-	find: async (req, res, next) => {
-		const name = req.params.name
-		const edition = req.query.edition || '2024'
+		find: async (req, res, next) => {
+			const name = req.params.name
+			const edition = req.query.edition || '2024'
 
-		try {
-			const dbRace = await db.compendium.getRaceByName(name, edition)
-			if (dbRace) {
-				return response.ok('success', 'Retrieved all data', [formatRace(dbRace)], res)
+			try {
+				let dbRace = await db.compendium.getRaceByName(name, edition)
+				if (!dbRace && edition === '2024') {
+					dbRace = await db.compendium.getRaceByName(name, '2014')
+				}
+				if (dbRace) {
+					return response.ok('success', 'Retrieved all data', [formatRace(dbRace)], res)
+				}
+			} catch (err) {
+				console.warn('[WARN] DB compendium race find failed:', err.message)
 			}
-		} catch (err) {
-			console.warn('[WARN] DB compendium race find failed:', err.message)
-		}
 
-		return response.ok('success', 'Not Found', [], res)
+			return response.ok('success', 'Not Found', [], res)
+		}
 	}
-}

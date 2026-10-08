@@ -60,10 +60,17 @@ class CompendiumRepository {
 	}
 
 	async getRaceByName(name, edition = '2024') {
-		return this.db.oneOrNone(
+		let r = await this.db.oneOrNone(
 			'SELECT * FROM compendium_races WHERE LOWER(name) = LOWER($1) AND edition = $2',
 			[name, edition]
 		)
+		if (!r && edition === '2024') {
+			r = await this.db.oneOrNone(
+				'SELECT * FROM compendium_races WHERE LOWER(name) = LOWER($1) ORDER BY CASE WHEN edition = \'2024\' THEN 0 ELSE 1 END LIMIT 1',
+				[name]
+			)
+		}
+		return r
 	}
 
 	async getSubRaces({ raceId = null, edition = '2024', search = null } = {}) {
@@ -91,14 +98,14 @@ class CompendiumRepository {
 			SELECT sr.*, r.name as parent_race_name, r.source as parent_race_source
 			FROM compendium_sub_races sr
 			JOIN compendium_races r ON sr.race_id = r.id
-			WHERE LOWER(r.name) = LOWER($1) AND sr.edition = $2
+			WHERE LOWER(r.name) = LOWER($1)
 		`
-		const params = [raceName, edition]
+		const params = [raceName]
 		if (raceSource) {
 			params.push(raceSource.toLowerCase())
 			query += ` AND LOWER(r.source) = $${params.length}`
 		}
-		query += ' ORDER BY sr.name ASC'
+		query += ` ORDER BY CASE WHEN sr.edition = '${edition || '2024'}' THEN 0 ELSE 1 END, sr.name ASC`
 		return this.db.any(query, params)
 	}
 
@@ -195,8 +202,12 @@ class CompendiumRepository {
 		if (!cl) return null
 		const classFeature = await this.getClassFeatures({ classId: cl.id, edition })
 
-		let query = 'SELECT * FROM compendium_sub_classes WHERE class_id = $1 AND edition = $2'
-		const params = [cl.id, edition]
+		let query = 'SELECT * FROM compendium_sub_classes WHERE class_id = $1'
+		const params = [cl.id]
+		if (edition) {
+			params.push(edition)
+			query += ` AND edition = $${params.length}`
+		}
 		if (name) {
 			params.push(name.toLowerCase())
 			query += ` AND LOWER(name) = $${params.length}`
@@ -210,12 +221,34 @@ class CompendiumRepository {
 			query += ` AND LOWER(short_name) = $${params.length}`
 		}
 		query += ' ORDER BY name ASC'
-		const subClasses = await this.db.any(query, params)
+		let subClasses = await this.db.any(query, params)
+
+		if (subClasses.length === 0) {
+			let fbQuery = 'SELECT sc.* FROM compendium_sub_classes sc JOIN compendium_classes cc ON cc.id = sc.class_id WHERE LOWER(cc.name) = $1'
+			const fbParams = [className.toLowerCase()]
+			if (name) {
+				fbParams.push(name.toLowerCase())
+				fbQuery += ` AND LOWER(sc.name) = $${fbParams.length}`
+			}
+			if (source) {
+				fbParams.push(source.toLowerCase())
+				fbQuery += ` AND LOWER(sc.source) = $${fbParams.length}`
+			}
+			if (shortName) {
+				fbParams.push(shortName.toLowerCase())
+				fbQuery += ` AND LOWER(sc.short_name) = $${fbParams.length}`
+			}
+			fbQuery += ` ORDER BY CASE WHEN sc.edition = '${edition || '2024'}' THEN 0 ELSE 1 END, sc.name ASC`
+			subClasses = await this.db.any(fbQuery, fbParams)
+		}
 
 		let subClassFeature = []
 		if (subClasses.length > 0) {
-			const scId = subClasses[0].id
-			subClassFeature = await this.getSubClassFeatures({ subClassId: scId, edition })
+			const sc = subClasses[0]
+			subClassFeature = await this.getSubClassFeatures({ subClassId: sc.id, edition: sc.edition || edition })
+			if (subClassFeature.length === 0 && sc.edition !== edition) {
+				subClassFeature = await this.getSubClassFeatures({ subClassId: sc.id, edition: sc.edition })
+			}
 		}
 
 		return {

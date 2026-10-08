@@ -39,12 +39,15 @@ function formatSubRace(sr) {
 	}
 }
 
-export let subRace = {
+	export let subRace = {
 	all: async (req, res, next) => {
 		const edition = req.query.edition || '2024'
 
 		try {
-			const dbSubRaces = await db.compendium.getSubRaces({ edition })
+			let dbSubRaces = await db.compendium.getSubRaces({ edition })
+			if ((!dbSubRaces || dbSubRaces.length === 0) && edition === '2024') {
+				dbSubRaces = await db.compendium.getSubRaces({ edition: '2014' })
+			}
 			if (dbSubRaces && dbSubRaces.length > 0) {
 				return response.ok('success', 'Retrieved all data', dbSubRaces.map(formatSubRace), res)
 			}

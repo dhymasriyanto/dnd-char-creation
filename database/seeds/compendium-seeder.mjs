@@ -1568,11 +1568,26 @@ async function resolveCompendiumFeatures() {
 		}
 	}
 
-	const scfRows = await db.any('SELECT id, name, edition, source, level, entries FROM compendium_sub_class_features')
+	const scfRows = await db.any(`
+		SELECT scf.id, scf.name, scf.edition, scf.source, scf.level, scf.entries, 
+		       LOWER(csc.name) as sc_name, LOWER(COALESCE(csc.short_name, '')) as sc_short_name, 
+		       LOWER(cc.name) as class_name
+		FROM compendium_sub_class_features scf
+		JOIN compendium_sub_classes csc ON csc.id = scf.sub_class_id
+		JOIN compendium_classes cc ON cc.id = csc.class_id
+	`)
 	const scfMap = new Map()
 	for (const r of scfRows) {
-		const k = (r.name || '').trim().toLowerCase() + '|' + (r.edition || '')
-		scfMap.set(k, r)
+		const fName = (r.name || '').trim().toLowerCase()
+		const ed = r.edition || ''
+		scfMap.set(`${r.class_name}|${r.sc_name}|${fName}|${ed}`, r)
+		if (r.sc_short_name) scfMap.set(`${r.class_name}|${r.sc_short_name}|${fName}|${ed}`, r)
+		scfMap.set(`${r.sc_name}|${fName}|${ed}`, r)
+		if (r.sc_short_name) scfMap.set(`${r.sc_short_name}|${fName}|${ed}`, r)
+		scfMap.set(`${r.class_name}|${fName}|${ed}`, r)
+		if (!scfMap.has(`${fName}|${ed}`)) {
+			scfMap.set(`${fName}|${ed}`, r)
+		}
 	}
 
 	function resolveSubClassEntries(entries, edition, depth = 0) {
@@ -1586,10 +1601,15 @@ async function resolveCompendiumFeatures() {
 			if (typeof item === 'object' && item !== null) {
 				if (item.type === 'refSubclassFeature') {
 					const parts = (item.subclassFeature || '').split('|')
-					const fName = parts[0].trim()
-					const target = scfMap.get(fName.toLowerCase() + '|' + edition) ||
-								   scfMap.get(fName.toLowerCase() + '|2024') ||
-								   scfMap.get(fName.toLowerCase() + '|2014')
+					const fName = (parts[0] || '').trim().toLowerCase()
+					const cls = (parts[1] || '').trim().toLowerCase()
+					const sc = (parts[3] || '').trim().toLowerCase()
+					const target = (cls && sc && scfMap.get(`${cls}|${sc}|${fName}|${edition}`)) ||
+								   (sc && scfMap.get(`${sc}|${fName}|${edition}`)) ||
+								   (cls && scfMap.get(`${cls}|${fName}|${edition}`)) ||
+								   scfMap.get(`${fName}|${edition}`) ||
+								   scfMap.get(`${fName}|2024`) ||
+								   scfMap.get(`${fName}|2014`)
 					if (target) {
 						const subEntries = typeof target.entries === 'string' ? JSON.parse(target.entries) : target.entries
 						return {

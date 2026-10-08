@@ -417,6 +417,7 @@ class ServiceRepository {
 					let scFeatures = subClass.subClassFeature || []
 					if (!Array.isArray(scFeatures) || scFeatures.length === 0) {
 						const scShort = (sc.shortName || sc.short_name || '').trim()
+						const scSource = (sc.source || '').trim()
 						const compScf = await t.any(
 							`SELECT DISTINCT ON (LOWER(scf.name)) scf.name, scf.source, scf.page, scf.level
 							 FROM compendium_sub_class_features scf
@@ -427,9 +428,13 @@ class ServiceRepository {
 								OR LOWER(csc.short_name) = LOWER($1)
 								OR ($4 != '' AND (LOWER(csc.name) = LOWER($4) OR LOWER(csc.short_name) = LOWER($4)))
 							 ) AND ($5 = '' OR LOWER(cc.name) = LOWER($5))
+							   AND ($6 = '' OR LOWER(csc.source) = LOWER($6))
 							   AND scf.level <= $2
-							 ORDER BY LOWER(scf.name), CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, scf.level ASC`,
-							[sc.name, cLvl, data.edition || '2024', scShort, className]
+							 ORDER BY LOWER(scf.name), 
+							          CASE WHEN $6 != '' AND LOWER(csc.source) = LOWER($6) THEN 0 ELSE 1 END,
+							          CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, 
+							          scf.level ASC`,
+							[sc.name, cLvl, data.edition || '2024', scShort, className, scSource]
 						).catch(() => [])
 						scFeatures = compScf
 					}
@@ -803,6 +808,7 @@ class ServiceRepository {
 						let scFeatures = subClass.subClassFeature || []
 						if (!Array.isArray(scFeatures) || scFeatures.length === 0) {
 							const scShort = (sc.shortName || sc.short_name || '').trim()
+							const scSource = (sc.source || '').trim()
 							const compScf = await t.any(
 								`SELECT DISTINCT ON (LOWER(scf.name)) scf.name, scf.source, scf.page, scf.level
 								 FROM compendium_sub_class_features scf
@@ -813,9 +819,13 @@ class ServiceRepository {
 									OR LOWER(csc.short_name) = LOWER($1)
 									OR ($4 != '' AND (LOWER(csc.name) = LOWER($4) OR LOWER(csc.short_name) = LOWER($4)))
 								 ) AND ($5 = '' OR LOWER(cc.name) = LOWER($5))
+								   AND ($6 = '' OR LOWER(csc.source) = LOWER($6))
 								   AND scf.level <= $2
-								 ORDER BY LOWER(scf.name), CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, scf.level ASC`,
-								[sc.name, cLvl, data.edition || '2024', scShort, className]
+								 ORDER BY LOWER(scf.name), 
+								          CASE WHEN $6 != '' AND LOWER(csc.source) = LOWER($6) THEN 0 ELSE 1 END,
+								          CASE WHEN scf.edition = $3 THEN 0 ELSE 1 END, 
+								          scf.level ASC`,
+								[sc.name, cLvl, data.edition || '2024', scShort, className, scSource]
 							).catch(() => [])
 							scFeatures = compScf
 						}

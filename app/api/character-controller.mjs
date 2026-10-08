@@ -38,14 +38,17 @@ async function enrichWithCompendiumEntries(datas) {
 			const charClassMap = new Map((datas.class || []).map(c => [c.id, (c.name || '').toLowerCase()]))
 			const defaultClassName = (datas.class?.[0]?.name || '').toLowerCase()
 
+			const charClassNames = (datas.class || []).map(c => (c.name || '').toLowerCase()).filter(Boolean)
+
 			// ponytail: match features by class to prevent cross-class pollution (e.g. Spellcasting, Extra Attack)
 			const compRows = await db.any(
 				`SELECT ccf.name, LOWER(cc.name) as class_name, ccf.entries 
 				 FROM compendium_class_features ccf
 				 JOIN compendium_classes cc ON cc.id = ccf.class_id
 				 WHERE LOWER(ccf.name) = ANY($1) 
+				   AND ($3::text[] IS NULL OR cardinality($3::text[]) = 0 OR LOWER(cc.name) = ANY($3))
 				 ORDER BY CASE WHEN ccf.edition = $2 THEN 0 ELSE 1 END`,
-				[names, edition]
+				[names, edition, charClassNames]
 			)
 			const cMap = new Map()
 			for (const r of compRows) {
@@ -74,19 +77,26 @@ async function enrichWithCompendiumEntries(datas) {
 			const charClassMap = new Map((datas.class || []).map(c => [c.id, (c.name || '').toLowerCase()]))
 			const defaultClassName = (datas.class?.[0]?.name || '').toLowerCase()
 
+			const charClassNames = (datas.class || []).map(c => (c.name || '').toLowerCase()).filter(Boolean)
+
 			// ponytail: join sub_classes & classes to prevent cross-class contamination (e.g. Bard vs Cleric Bonus Proficiencies)
 			const compRows = await db.any(
-				`SELECT scf.name, LOWER(csc.name) as sc_name, LOWER(COALESCE(csc.short_name, '')) as sc_short_name, LOWER(cc.name) as class_name, scf.entries 
+				`SELECT scf.name, LOWER(csc.name) as sc_name, LOWER(COALESCE(csc.short_name, '')) as sc_short_name, 
+				        LOWER(COALESCE(csc.source, '')) as sc_source, LOWER(cc.name) as class_name, scf.entries 
 				 FROM compendium_sub_class_features scf
 				 JOIN compendium_sub_classes csc ON csc.id = scf.sub_class_id
 				 JOIN compendium_classes cc ON cc.id = csc.class_id
 				 WHERE LOWER(scf.name) = ANY($1)
+				   AND ($3::text[] IS NULL OR cardinality($3::text[]) = 0 OR LOWER(cc.name) = ANY($3))
 				 ORDER BY CASE WHEN scf.edition = $2 THEN 0 ELSE 1 END`,
-				[names, edition]
+				[names, edition, charClassNames]
 			)
 			const scMap = new Map()
 			for (const r of compRows) {
 				const featKey = r.name.toLowerCase()
+				if (r.sc_source && !scMap.has(`${r.sc_name}|${r.sc_source}::${featKey}`)) {
+					scMap.set(`${r.sc_name}|${r.sc_source}::${featKey}`, safeEntries(r.entries))
+				}
 				if (!scMap.has(`${r.sc_name}::${featKey}`)) {
 					scMap.set(`${r.sc_name}::${featKey}`, safeEntries(r.entries))
 				}
@@ -96,21 +106,19 @@ async function enrichWithCompendiumEntries(datas) {
 				if (!scMap.has(`${r.class_name}::${featKey}`)) {
 					scMap.set(`${r.class_name}::${featKey}`, safeEntries(r.entries))
 				}
-				if (!scMap.has(featKey)) {
-					scMap.set(featKey, safeEntries(r.entries))
-				}
 			}
 			for (const scf of datas.sub_class_feature) {
 				if (!scf.entries || scf.entries.length === 0) {
 					const featKey = scf.name.toLowerCase()
 					const scObj = charScMap.get(scf.sub_class_id) || datas.sub_class?.[0]
 					const scName = (scObj?.name || '').toLowerCase()
+					const scSource = (scf.source || scObj?.source || '').toLowerCase()
 					const scShort = (scObj?.short_name || scObj?.shortName || '').toLowerCase()
 					const className = charClassMap.get(scObj?.class_id) || defaultClassName
-					scf.entries = (scName && scMap.get(`${scName}::${featKey}`))
+					scf.entries = (scName && scSource && scMap.get(`${scName}|${scSource}::${featKey}`))
+						|| (scName && scMap.get(`${scName}::${featKey}`))
 						|| (scShort && scMap.get(`${scShort}::${featKey}`))
 						|| (className && scMap.get(`${className}::${featKey}`))
-						|| scMap.get(featKey)
 						|| []
 				}
 			}

@@ -117,8 +117,8 @@ export let subClass = {
 		const classSource = req.params.classSource
 		const name = req.params.name
 		const source = req.params.source
-		const shortName = req.params.shortName
-		const page = req.params.page
+		const shortName = req.params.shortName || null
+		const page = req.params.page || null
 		const edition = req.query.edition || '2024'
 
 		try {
